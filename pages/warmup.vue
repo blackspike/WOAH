@@ -2,18 +2,17 @@
 
 section.warmup
 
+  button.btn-plain.btn-square.start-button(v-show="!started" @click="startRoutine") Start
+
   .timer-wrapper
 
-    button.btn-plain.btn-square.start-button(v-show="!started" @click="startRoutine") Start
 
     .timer(v-show="started")
 
-      .number-huge(v-show="!paused")
+      .number-huge
         span.number-huge__number {{timer < 10 ? '0' + timer : timer}}
         span.number-huge__unit s
 
-      .number-huge(v-show="paused")
-        span.number-huge__unit Paused
 
       .controls
         button.btn-plain.btn-square(@click="start" v-if="!counting") Start
@@ -22,10 +21,8 @@ section.warmup
         button.btn-plain.btn-square(@click="reset" v-if="counting") Reset
 
 
-  .list-wrapper
-
-    ol.list
-      li.list__item(v-for="step, index in steps" :class="index === currentStep ? 'active' : 'inactive'") {{ step }}
+  ol.list(v-if="started")
+    li.list__item(v-for="step, index in steps" :class="index === currentStep ? 'active' : 'inactive'") {{ step }}
 
 </template>
 
@@ -36,8 +33,7 @@ export default {
     return {
       timer: 0,
       counting: false,
-      countdown: null,
-      finished: false,
+      countdownInterval: null,
       routineInterval: null,
       seconds: 30,
       cooldownSeconds: 2,
@@ -85,10 +81,9 @@ export default {
 
     reset() {
       console.info('resetting...')
-      clearInterval(this.countdown)
+      clearInterval(this.countdownInterval)
       this.paused = false
       this.counting = false
-      this.finished = true
       this.timer = this.seconds
     },
     pause() {
@@ -99,18 +94,16 @@ export default {
       console.info('starting...')
       this.timer = this.seconds
       this.counting = true
-      this.finished = false
 
-      this.countdown = setInterval(() => {
+      this.countdownInterval = setInterval(() => {
 
         if(this.paused) {
           return
         }
 
         if(this.timer === 0) {
-          clearInterval(this.countdown)
+          clearInterval(this.countdownInterval)
           this.counting = false
-          this.finished = true
           return
         }
         this.timer--
@@ -126,10 +119,15 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr ;
-  grid-template-areas: "list timer";
-  gap: 2rem;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 'list' 'timer';
+
+  @include media-query('md'){
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'list timer';
+  }
 }
 
 .timer-wrapper {
@@ -137,12 +135,19 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  align-self: end;
+  padding-bottom: var(--m-xl);
+
+  @include media-query('md'){
+    align-self: center;
+  }
 }
 
 .start-button {
-  width: 100%;
+  grid-area: list;
+  align-self: end;
   margin: auto;
+  width: 100%;
 }
 
 .timer {
@@ -150,7 +155,7 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  text-align: center;
 }
 
 .controls {
@@ -160,5 +165,34 @@ export default {
   align-items: center;
   line-height: 1;
 }
+
+.list {
+  grid-area: list;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--ff-heading);
+  line-height: 1;
+
+  &__item {
+    display: block;
+    padding: var(--m-sm) 0;
+    font-size: var(--fs-xxxl);
+
+    &.active {
+      color: var(--c-brand-pink);
+      font-size: var(--fs-xxxxl);
+    }
+    &.inactive {
+      opacity: 0.2;
+      display: none;
+      @include media-query('md'){
+        display: block;
+      }
+    }
+  }
+}
+
 
 </style>

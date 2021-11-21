@@ -59,12 +59,16 @@
 .btn-square {
   width: 100%;
   border: 3px solid #eee;
-  padding: var(--m-lg) var(--m);
+  padding: var(--m) var(--m) calc(var(--m) * 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--fs-xxxxl);
-  font-family: monospace;
+  font-size: var(--fs-xxl);
+  font-family: var(--ff-heading);
+
+  @include media-query('md') {
+    font-size: var(--fs-xxxxl);
+  }
 }
 
 // Icon buttons

@@ -8,8 +8,10 @@
     nuxt
 
   svg(xmlns='http://www.w3.org/2000/svg' style='display:none;')
-    symbol#icon_menu(viewBox='0 0 16 15')
-      path(d='M0,0h16v3H0V0z M0,9h16V6H0V9z M0,15h16v-3H0V15z')
+    symbol#icon_menu(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+      path(d='M3 12l18 0')
+      path(d='M3 6l18 0')
+      path(d='M3 18l18 0')
     symbol#icon_play(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
       polygon(points='5 3 19 12 5 21 5 3')
     symbol#icon_pause(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
@@ -36,8 +38,11 @@
       path(d='M2 17l5 0')
       path(d='M17 17l5 0')
       path(d='M17 7l5 0')
-</template>
+    symbol#icon_x(viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+      path(d='M18 6L6 18')
+      path(d='M6 6l12 12')
 
+</template>
 <script>
 export default {
   name: 'Index',
@@ -67,11 +72,16 @@ export default {
 }
 
 .content-wrapper  {
-  padding: var(--m) var(--m-lg);
+  padding: var(--m);
   grid-area: content;
   height: 100%;
   width: 100%;
   display: flex;
+
+  @include media-query('md'){
+    padding: var(--m) var(--m-lg);
+
+  }
 }
 
 

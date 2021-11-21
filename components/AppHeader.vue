@@ -1,14 +1,22 @@
 <template lang="pug">
 
-nav.nav
-  nuxt-link.nav__title.nav__nav-item.nav__link.btn-plain(to="/") WorkoutApp
-  //- button.btn.btn-icon
-  //-   svg.icon
-  //-     use(href='#icon_menu')
+header.header
+  nuxt-link.header__logo.header__link(@click.native="navOpen = false" to="/") WorkoutApp
 
-  nuxt-link.nav__nav-item.nav__link.btn-plain(to="/warmup") Warmup
-  nuxt-link.nav__nav-item.nav__link.btn-plain(to="/workout") Workout
-  nuxt-link.nav__nav-item.nav__link.btn-plain(to="/videos") Videos
+  nav.nav
+    nuxt-link.header__link(to="/warmup") Warmup
+    nuxt-link.header__link(to="/workout") Workout
+    nuxt-link.header__link(to="/videos") Videos
+
+  nav.nav-mobile(v-if="navOpen")
+    nuxt-link.header__link(@click.native="navOpen = false" to="/warmup") Warmup
+    nuxt-link.header__link(@click.native="navOpen = false" to="/workout") Workout
+    nuxt-link.header__link(@click.native="navOpen = false" to="/videos") Videos
+
+  button.btn.btn-icon.header__menu-btn(@click="navOpen = !navOpen")
+    svg.icon(height="24" width="24")
+      use(href='#icon_x' v-if="navOpen")
+      use(href='#icon_menu' v-else)
 
 </template>
 
@@ -25,40 +33,77 @@ export default {
 
 <style lang="scss" scoped>
 
-.nav {
-  padding: var(--m);
+.header {
   grid-area: header;
-  display: flex;
-  justify-content: center;
-  gap: var(--m);
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  grid-template-rows: auto auto ;
+  grid-template-areas: 'logo nav button' 'mobile-nav mobile-nav mobile-nav';
+  gap: 0 var(--m);
+  align-items: center;
+  position: relative;
 
-  &__nav-item {
+  @include media-query('md'){
+    padding: var(--m);
+  }
+
+
+  &__link {
     font-size: var(--fs-xxl);
     font-family: var(--ff-heading);
     line-height: 1;
     display: flex;
     padding: var(--m) var(--m) var(--m-sm);
-    color: var(--c-grey-300);
+    color: var(--c-gray-300);
 
     &:focus,
     &:active {
       outline: 2px dotted var(--c-brand-orange);
     }
 
-  }
-
-  &__title {
-    margin-right: auto;
-    height: 100%;
-  }
-
-  &__link  {
-
     &.nuxt-link-exact-active {
       color: var(--c-brand-orange);;
     }
 
+
   }
+  // Button
+  &__menu-btn {
+    grid-area: button;
+    .icon {
+      fill: var(--c-gray-300);
+    }
+
+    @include media-query('md'){
+      display: none;
+    }
+  }
+
+  &__logo {
+    margin-right: auto;
+    height: 100%;
+  }
+
+}
+
+.nav {
+  grid-area: nav;
+  display: none;
+  justify-content: center;
+  gap: var(--m);
+
+  @include media-query('md'){
+    display: flex;
+  }
+}
+.nav-mobile {
+  background-color: var(--c-bg-page);
+  width: 100%;
+  position: absolute;
+  top: 0;
+  grid-area: mobile-nav;
+  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
+  padding-bottom: var(--m);
 
 }
 

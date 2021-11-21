@@ -6,6 +6,7 @@ section.intro
     | Put Apple Watch On
   h3 Start Functional Strength Training
 
+  nuxt-link.btn-plain.btn-square.start-button(to="/warmup") Next
 
 </template>
 
@@ -30,6 +31,11 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 3rem;
+  text-align: center;
+
+  @include media-query('md'){
+    text-align: left;
+  }
 
   h2 {
     font-size: 4rem;
@@ -38,9 +44,15 @@ export default {
     font-size: 2rem;
   }
 
+  .start-button {
+    margin: var(--m) auto 0;
+    max-width: 20ch;
+  }
+
   .icon {
     height: 8rem;
     width: 8rem;
+    color: var(--c-brand-blue);
   }
 }
 </style>
