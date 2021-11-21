@@ -1,0 +1,112 @@
+// -----------------------------------------------------------------------------
+// This file contains very basic styles.
+// -----------------------------------------------------------------------------
+@use 'sass:math';
+
+body {
+  background-color: var(--c-bg-page);
+  color: var(--c-fg);
+  font: normal 100% / 1.5 var(--ff-base);
+
+  height: 100vh;
+
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+video,
+image,
+iframe {
+  max-width: 100%;
+}
+
+// Links
+a:not(.btn, button) {
+  color: var(--c-fg-link);
+  text-decoration: none;
+  transition: color 0.1s ease;
+
+  @include on-event {
+    color: var(--c-fg-link-over);
+  }
+}
+
+strong,
+b {
+  font-weight: var(--fw-bold);
+}
+
+// Headings
+
+.h1,
+h1,
+.h2,
+h2,
+.h3,
+h3,
+.h4,
+h4,
+.h5,
+h5,
+.h6,
+h6 {
+  font-family: var(--ff-heading);
+  line-height: var(--lh-sm);
+  color: var(--c-fg);
+  font-weight: 600;
+  margin: 0 0 var(--m);
+  word-wrap: break-word;
+}
+
+.h1,
+h1 {
+  // letter-spacing: -2px;
+  font-size: var(--fs-xxxxl);
+}
+.h2,
+h2 {
+  letter-spacing: -0.5px;
+  font-size: var(--fs-xxxl);
+}
+.h3,
+h3 {
+  letter-spacing: -0.5px;
+  font-size: var(--fs-lg);
+}
+.h4,
+h4 {
+  font-size: var(--fs-rg);
+}
+.h5,
+h5 {
+  font-size: var(--fs-sm);
+}
+.h6,
+h6 {
+  font-size: var(--fs-xs);
+}
+
+/* Typography overrides
+============================= */
+
+// More of an addition, really
+.fs-7 {
+  font-size: var(--fs-sm); // 14px
+}
+.fs-8 {
+  font-size: var(--fs-xs); // 12px
+}

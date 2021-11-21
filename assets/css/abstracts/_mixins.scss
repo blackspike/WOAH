@@ -1,0 +1,41 @@
+/// Event wrapper
+@mixin on-event($self: false) {
+  @if $self {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  } @else {
+    &:hover,
+    &:active,
+    &:focus {
+      @content;
+    }
+  }
+}
+
+// Media queries
+
+/// Breakpoints map
+$breakpoints: (
+  default: null,
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+
+@mixin media-query($label) {
+  $min-width: map-get($breakpoints, $label);
+  @if $min-width {
+    @media screen and (min-width: $min-width) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}

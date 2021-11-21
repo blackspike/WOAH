@@ -1,0 +1,14 @@
+.number-huge {
+  color: var(--c-brand-blue);
+  font-family: var(--ff-heading);
+  line-height: 1;
+  text-align: right;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-huge);
+  // display: flex;
+
+  &__unit {
+    font-size: calc(var(--fs-huge) / 1.75);
+  }
+}

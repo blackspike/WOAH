@@ -1,0 +1,89 @@
+// --------------------------
+// Buttons
+// --------------------------
+
+.btn {
+  all: unset;
+  box-sizing: border-box;
+  color: var(--c-btn-fg);
+  background-color: var(--c-btn-bg);
+  border-radius: 1rem;
+  cursor: default;
+  font-size: var(--fs-xs);
+  font-weight: bold;
+  line-height: 1;
+  padding: var(--m-sm) var(--m) calc(var(--m-sm) * 1.01);
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.1s var(--ease-cubic);
+
+  &.active,
+  &:active {
+    background-color: var(--c-btn-bg-over);
+    color: var(--c-btn-fg-over);
+    opacity: 1;
+  }
+
+  &:hover {
+    background-color: var(--c-btn-bg-over);
+    color: var(--c-btn-fg-over);
+    opacity: 0.9;
+  }
+  &:focus {
+    color: var(--c-btn-fg-over);
+    opacity: 1;
+    outline: 1px dotted var(--c-outline);
+    outline-offset: -1px;
+  }
+
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.btn-plain {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: currentColor;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn-square {
+  width: 100%;
+  border: 3px solid #eee;
+  padding: var(--m-lg) var(--m);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--fs-xxxxl);
+  font-family: monospace;
+}
+
+// Icon buttons
+.btn-icon {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  appearance: none;
+  display: flex;
+  padding: var(--m-sm);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  &:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 0.15rem rgb(65 82 96 / 25%);
+  }
+}

@@ -1,0 +1,108 @@
+:root {
+  color-scheme: dark;
+
+  // gray Colours
+  --c-gray-000: #fff;
+  --c-gray-100: #eee;
+  --c-gray-200: #ddd;
+  --c-gray-300: #bbb;
+  --c-gray-400: #aaa;
+  --c-gray-500: #999;
+  --c-gray-600: #666;
+  --c-gray-700: #444;
+  --c-gray-800: #222;
+  --c-gray-900: #000;
+
+  // Brand colours
+  --c-brand-blue: #00eeff;
+  --c-brand-light: #6000fa;
+  --c-brand-pink: #ff0095;
+  --c-brand-orange: orangered;
+  --c-brand-green: #65e41c;
+  --c-brand-yellow: #f2c811;
+
+  // Button colours
+  --c-btn-fg: var(--c-gray-000);
+  --c-btn-fg-over: var(--c-gray-000);
+  --c-btn-bg: var(--c-gray-700);
+  --c-btn-bg-over: var(--c-brand-blue);
+
+  // Text colours
+  --c-fg: var(--c-gray-300);
+  --c-fg-light: var(--c-gray-600);
+  --c-fg-dark: var(--c-gray-900);
+  --c-fg-inverse: var(--c-gray-000);
+  --c-fg-link: var(--c-brand-orange);
+  --c-fg-link-over: var(--c-brand-blue);
+
+  // Named grays
+  --c-border: var(--c-gray-300);
+  --c-border-dark: var(--c-gray-400);
+  --c-bg: var(--c-gray-900);
+  --c-bg-page: var(--c-gray-800);
+
+  // Status colours
+  --c-status-danger: #ff1d25;
+  --c-status-warning: #ff931e;
+  --c-status-success: #7ac943;
+  --c-status-neutral: var(--c-gray-600);
+  --c-status-activity: #37befb;
+
+  // Global margin
+  --m: 1rem;
+  --m-xs: calc(var(--m) / 4);
+  --m-sm: calc(var(--m) / 2);
+  --m-lg: calc(var(--m) * 2);
+  --m-xl: calc(var(--m) * 4);
+  --m-xxl: calc(var(--m) * 6);
+  --m-xxxl: calc(var(--m) * 8);
+
+  // Weights
+  --fw-normal: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-xbold: 900;
+
+  // Base font size
+  --fw-base: 1rem;
+
+  // Line height
+  --lh-base: 1;
+  --lh-sm: 1.1;
+  --lh-rg: 1.5;
+  --lh-loose: 1.65;
+
+  // Sizes
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-rg: 1rem;
+  --fs-md: var(--fs-rg);
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-xxl: 2rem;
+  --fs-xxxl: 3rem;
+  --fs-xxxxl: 4rem;
+  --fs-huge: 500px;
+
+  // Families
+  --ff-base: Inter, -system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  --ff-serif: Athelas, Georgia, serif;
+  --ff-heading: Bebas, var(--ff-base);
+  --ff-mono: 'Consolas', 'Menlo', 'Inconsolata', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', 'Monaco', monospace;
+
+  // Utils
+  --bxs-md: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.2);
+  --ease-cubic: cubic-bezier(0.645, 0.045, 0.355, 1); /* easeInOutCubic */
+  --bdr-md: 3px;
+
+  // Layout utils
+  --h-header: 3rem;
+  --h-footer: 4rem;
+
+  --p-x: var(--m);
+
+  // Z-indexes
+}
