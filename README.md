@@ -1,4 +1,4 @@
-# WorkoutApp
+# Work Out At Home WorkoutApp
 
 ## Build Setup
 

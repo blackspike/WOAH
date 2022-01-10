@@ -6,23 +6,27 @@ section.intro
     | Put Apple Watch On
   h3 Start Functional Strength Training
 
-  nuxt-link.btn-plain.btn-square.start-button(to="/warmup") Next
-
+  nuxt-link.btn-plain.btn-square.start-button(to='/warmup') Next
 </template>
 
 <script>
+import NoSleep from 'nosleep.js'
+
 export default {
   name: 'Index',
   data() {
     return {
-      currentPage: null
+      currentPage: null,
+      noSleep: null,
     }
-  }
+  },
+  mounted() {
+    this.noSleep = new NoSleep()
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .intro {
   height: 100%;
   width: 100%;
@@ -33,7 +37,7 @@ export default {
   gap: 3rem;
   text-align: center;
 
-  @include media-query('md'){
+  @include media-query('md') {
     text-align: left;
   }
 
