@@ -143,6 +143,8 @@ export default {
   grid-area: content;
   height: 100%;
   width: 100%;
+  max-width: var(--mw-content);
+  margin: auto;
   display: flex;
 
   @include media-query('md') {

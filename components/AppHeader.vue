@@ -51,10 +51,8 @@ export default {
   align-items: center;
   position: relative;
   color: var(--gray-5);
-
-  @include media-query('md') {
-    padding: var(--m);
-  }
+  margin: auto;
+  max-width: var(--mw-header);
 
   &__link {
     font-size: var(--fs-lg);

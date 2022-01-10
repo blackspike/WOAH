@@ -237,9 +237,6 @@ export default {
     &.inactive {
       opacity: 0.2;
       display: none;
-      @include media-query('md') {
-        display: block;
-      }
     }
   }
 }
