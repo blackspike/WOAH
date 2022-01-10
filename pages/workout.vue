@@ -136,6 +136,7 @@ export default {
   }
   &__count {
     color: var(--brand-orange);
+    font-variant-numeric: tabular-nums;
     font-size: var(--fs-xxl);
   }
   &__title {
