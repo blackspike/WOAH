@@ -1,26 +1,18 @@
 <template lang="pug">
-
 section.workout
-
-  .timer-wrapper
-
-
-    .timer
-
-      .number-huge
-        span.number-huge__unit Rep {{ '#' + repCount}}
-
-
-    .controls
-
-      //- button.btn-plain.btn-square(@click="next") Next
-      button.btn-plain.btn-square(@click="repCount++") +
-      button.btn-plain.btn-square(@click="repCount > 0 ? repCount-- : 1") -
-
+  .controls
+    //- button.btn-plain.btn-square(@click="next") Next
+    .rep-counter {{ "Rep #" + repCount }}
+    button.btn(@click='repCount++') +
+    button.btn(@click='repCount > 0 ? repCount-- : 1') -
 
   ol.list
-    li.list__item {{ step }}
-    li.list__item(v-for="step, index in steps" :class="index === currentStep ? 'active' : 'inactive'") {{ step }}
+    li.list__item(
+      v-for='(step, index) in steps',
+      :class='index === currentStep ? "active" : "inactive"'
+    )
+      span.list__count {{ step.count }}
+      span.list__title {{ step.title }}
 
     //- li.list__item #[span.list__count 20] Bodyweight squats
     //- li.list__item #[span.list__count 10] Push-ups
@@ -28,62 +20,70 @@ section.workout
     //- li.list__item #[span.list__count 10] Dumbbell rows
     //- li.list__item #[span.list__count 15] Second Plank
     //- li.list__item #[span.list__count 30] Jumping jacks
-
-
 </template>
 
 <script>
 export default {
-    name: "Warmup",
-    data() {
-      return {
-        currentStep: 0,
-        repCount: 3,
-        steps: [
-          '20 Bodyweight squats',
-          '10 Push-ups',
-          '20 Walking lunges',
-          '10 Dumbbell rows',
-          '15 Second Plank',
-          '30 Jumping jacks',
-        ]
-      };
-    },
-    methods: {
-      next() {
-        if(this.repCount === 0 && this.currentStep === this.steps.length -1) {
-          // this.currentStep = 0
-          return
-        }
-
-
-        if(this.currentStep === this.steps.length -1) {
-          this.currentStep = 0
-          this.repCount--
-        }  else {
-          this.currentStep++
-        }
-      }
+  name: 'Warmup',
+  data() {
+    return {
+      currentStep: 0,
+      repCount: 3,
+      steps: [
+        {
+          count: 20,
+          title: 'Bodyweight squats',
+        },
+        {
+          count: 10,
+          title: 'Push-ups',
+        },
+        {
+          count: 20,
+          title: 'Walking lunges',
+        },
+        {
+          count: 10,
+          title: 'Dumbbell rows × 2',
+        },
+        {
+          count: 15,
+          title: 'Second Plank',
+        },
+        {
+          count: 30,
+          title: 'Jumping jacks',
+        },
+      ],
     }
+  },
+  methods: {
+    next() {
+      if (this.repCount === 0 && this.currentStep === this.steps.length - 1) {
+        // this.currentStep = 0
+        return
+      }
+
+      if (this.currentStep === this.steps.length - 1) {
+        this.currentStep = 0
+        this.repCount--
+      } else {
+        this.currentStep++
+      }
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
-
 .workout {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 100%;
+  gap: var(--m);
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   grid-template-areas: 'list' 'timer';
-
-  @include media-query('md'){
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'list timer';
-  }
 }
 
 .timer-wrapper {
@@ -91,14 +91,9 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-self: end;
+  align-self: center;
   padding-bottom: var(--m-xl);
-
-  @include media-query('md'){
-    align-self: center;
-  }
 }
-
 
 .timer {
   width: 100%;
@@ -113,9 +108,17 @@ export default {
   gap: var(--m);
   align-items: center;
   line-height: 1;
+
+  .rep-counter {
+    width: 100%;
+    font-size: var(--fs-xl);
+    font-family: var(--ff-heading);
+    color: var(--brand-blue);
+  }
 }
 
 .list {
+  height: 100%;
   grid-area: list;
   align-self: center;
   display: flex;
@@ -123,20 +126,20 @@ export default {
   justify-content: space-between;
   font-family: var(--ff-heading);
   line-height: 1;
+  padding: var(--m) 0;
 
   &__item {
-    display: block;
-    padding: var(--m-sm) 0;
-    color: var(--c-brand-pink);
-    font-size: var(--fs-xxxl);
-
-    @include media-query('md'){
-    font-size: var(--fs-xxxxl);
-
-    }
-
+    display: flex;
+    align-items: center;
+    gap: var(--m);
+    font-size: var(--fs-xl);
+  }
+  &__count {
+    color: var(--brand-orange);
+    font-size: var(--fs-xxl);
+  }
+  &__title {
+    color: var(--brand-yellow);
   }
 }
-
-
 </style>

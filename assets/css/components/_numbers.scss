@@ -1,19 +1,17 @@
 .number-huge {
-  color: var(--c-brand-blue);
+  color: var(--brand-blue);
   font-family: var(--ff-heading);
-  line-height: 1;
-  width: 100%;
   font-variant-numeric: tabular-nums;
+  line-height: 0.8;
+  // margin-bottom: -1rem;
+  outline: 2px dotted orangered;
   text-align: center;
-
-  @include media-query('md') {
-    text-align: right;
-  }
+  width: 100%;
 
   &__number {
-    font-size: var(--fs-huge);
+    font-size: var(--fs-9);
   }
   &__unit {
-    font-size: calc(var(--fs-huge) / 2);
+    font-size: calc(var(--fs-9) / 2);
   }
 }

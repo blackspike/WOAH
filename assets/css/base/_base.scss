@@ -1,27 +1,36 @@
 // -----------------------------------------------------------------------------
 // This file contains very basic styles.
 // -----------------------------------------------------------------------------
-@use 'sass:math';
+
+:root {
+  scrollbar-color: var(--scrollbar-color) transparent;
+  accent-color: var(--brand);
+  caret-color: var(--brand);
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  background-color: var(--c-bg-page);
-  color: var(--c-fg);
-  font: normal 100% / 1.5 var(--ff-base);
-
-  height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-base);
+  -moz-font-feature-settings: 'kern';
+  font-feature-settings: 'kern';
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  line-height: var(--lh-sm);
+  position: relative;
+  text-rendering: optimizeLegibility;
 
   @supports (-webkit-touch-callout: none) {
     height: -webkit-fill-available;
   }
-}
-
-*,
-*:before,
-*:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  max-width: 100%;
 }
 
 [hidden] {
@@ -36,18 +45,18 @@ iframe {
 
 // Links
 a:not(.btn, button) {
-  color: var(--c-fg-link);
+  color: var(--text-link);
   text-decoration: none;
   transition: color 0.1s ease;
 
   @include on-event {
-    color: var(--c-fg-link-over);
+    color: var(--text-link-over);
   }
 }
 
 strong,
 b {
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-bd);
 }
 
 // Headings
@@ -65,9 +74,9 @@ h5,
 .h6,
 h6 {
   font-family: var(--ff-heading);
-  line-height: var(--lh-sm);
-  color: var(--c-fg);
-  font-weight: 600;
+  line-height: var(--lh-base);
+  color: var(--text);
+  font-weight: var(--fw-bd);
   margin: 0 0 var(--m);
   word-wrap: break-word;
 }
@@ -89,7 +98,7 @@ h3 {
 }
 .h4,
 h4 {
-  font-size: var(--fs-rg);
+  font-size: var(--fs-md);
 }
 .h5,
 h5 {

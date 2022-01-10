@@ -1,29 +1,32 @@
 <template lang="pug">
-
 section.warmup
-
-  button.btn-plain.btn-square.start-button(v-show="!started" @click="startRoutine") Start
+  h1.ready(v-show='!started && !finished') Ready?
+  h1.well-done(v-show='finished') Nice one!
+  button.btn.start-button(
+    v-show='!started && !finished',
+    @click='startRoutine'
+  ) Start
+  nuxt-link.btn.finish-button(v-if='finished', to='/workout') Go to workout
 
   .timer-wrapper
+    Timer(v-show='started', :seconds='`${timer < 10 ? "0" + timer : timer}`')
+    //- .timer(v-show='started')
+    //-   .number-huge
+    //-     span.number-huge__number {{ timer < 10 ? "0" + timer : timer }}
 
+  ol.list(v-if='started')
+    li.list__item(
+      v-for='(step, index) in steps',
+      :class='index === currentStep ? "active" : "inactive"'
+    ) {{ step }}
 
-    .timer(v-show="started")
-
-      .number-huge
-        span.number-huge__number {{timer < 10 ? '0' + timer : timer}}
-        span.number-huge__unit s
-
-
-      .controls
-        button.btn-plain.btn-square(@click="start" v-if="!counting") Start
-        button.btn-plain.btn-square(@click="pause" v-if="counting && !paused") Pause
-        button.btn-plain.btn-square(@click="paused = false" v-if="paused") Resume
-        button.btn-plain.btn-square(@click="reset" v-if="counting") Reset
-
-
-  ol.list(v-if="started")
-    li.list__item(v-for="step, index in steps" :class="index === currentStep ? 'active' : 'inactive'") {{ step }}
-
+  .controls(v-show='started')
+    button.btn.controls__btn(@click='prevNext("prev")', v-if='started') Back
+    button.btn.controls__btn(@click='start', v-if='!started') Start
+    //- button.btn.controls__btn(@click='pause', v-if='counting && !paused') Pause
+    //- button.btn.controls__btn(@click='paused = false', v-if='paused') Resume
+    //- button.btn.controls__btn(@click='reset', v-if='counting') Reset
+    button.btn.controls__btn(@click='prevNext("next")', v-if='started') Skip
 </template>
 
 <script>
@@ -40,6 +43,7 @@ export default {
       started: false,
       paused: false,
       currentStep: 0,
+      finished: false,
       steps: [
         'March in place (swing arms)',
         'Jog in place',
@@ -50,33 +54,32 @@ export default {
         'Opposite hand/toe touches',
         'Lateral butt kicks',
         'Mountain climbers',
-        'Jump rope',
         'Jump up & down, side to side',
-      ]
+        'Jump rope',
+      ],
     }
   },
   methods: {
-     startRoutine() {
+    startRoutine() {
       this.started = true
       this.start()
 
       this.routineInterval = setInterval(() => {
-
-        if(this.paused) {
+        if (this.paused) {
           return
         }
 
-        if(this.currentStep === this.steps.length) {
+        if (this.currentStep === this.steps.length - 1) {
           this.started = false
           this.currentStep = 0
           clearInterval(this.routineInterval)
+          this.finished = true
         } else {
           this.reset()
           this.start()
           this.currentStep++
         }
-
-      }, (this.seconds * 1000) + (this.cooldownSeconds * 1000));
+      }, this.seconds * 1000 + this.cooldownSeconds * 1000)
     },
 
     reset() {
@@ -90,70 +93,79 @@ export default {
       console.info('pausing...')
       this.paused = !this.paused
     },
+    prevNext(prevNext) {
+      if (this.currentStep === this.steps.length - 1) {
+        this.started = false
+        this.currentStep = 0
+        clearInterval(this.routineInterval)
+        this.finished = true
+        return
+      }
+
+      if (prevNext === 'prev') {
+        this.currentStep--
+      } else {
+        this.currentStep++
+      }
+      this.timer = this.seconds
+    },
     start() {
       console.info('starting...')
       this.timer = this.seconds
       this.counting = true
 
       this.countdownInterval = setInterval(() => {
-
-        if(this.paused) {
+        if (this.paused) {
           return
         }
 
-        if(this.timer === 0) {
+        if (this.timer === 0) {
           clearInterval(this.countdownInterval)
           this.counting = false
           return
         }
         this.timer--
-      }, 1000);
-    }
-  }
+      }, 1000)
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .warmup {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 1fr auto;
-  grid-template-areas: 'list' 'timer';
-
-  @include media-query('md'){
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 'list timer';
-  }
+  gap: var(--m);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr auto auto;
+  grid-template-areas: 'timer' 'list' 'controls';
 }
 
 .timer-wrapper {
   grid-area: timer;
+  grid-row: 1 / 3;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-self: end;
-  padding-bottom: var(--m-xl);
-
-  @include media-query('md'){
-    align-self: center;
-  }
+  align-self: start;
 }
 
+.ready,
+.well-done {
+  grid-area: timer;
+  align-self: center;
+  text-align: center;
+  width: 100%;
+  color: var(--brand-pink);
+  line-height: 0.8;
+}
 .start-button {
-  grid-area: list;
-  align-self: end;
-  margin: auto;
+  grid-area: controls;
   width: 100%;
 }
 
 .timer {
-  width: 100%;
-  height: 100%;
-  display: flex;
   flex-direction: column;
   text-align: center;
 }
@@ -164,11 +176,15 @@ export default {
   gap: var(--m);
   align-items: center;
   line-height: 1;
+
+  &__btn {
+    width: 100%;
+  }
 }
 
 .list {
   grid-area: list;
-  align-self: center;
+  align-self: end;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -176,23 +192,27 @@ export default {
   line-height: 1;
 
   &__item {
-    display: block;
+    align-items: center;
+    background-color: var(--gray);
+    border-radius: var(--radius-2);
+    color: var(--brand-pink);
+    display: flex;
+    font-size: var(--fs-xxl);
+    justify-content: center;
+    // padding: calc(var(--m) * 1.3) var(--m) var(--m);
     padding: var(--m-sm) 0;
-    font-size: var(--fs-xxxl);
+    text-align: center;
+    min-height: 7rem;
 
-    &.active {
-      color: var(--c-brand-pink);
-      font-size: var(--fs-xxxxl);
-    }
+    // &.active {
+    // }
     &.inactive {
       opacity: 0.2;
       display: none;
-      @include media-query('md'){
+      @include media-query('md') {
         display: block;
       }
     }
   }
 }
-
-
 </style>

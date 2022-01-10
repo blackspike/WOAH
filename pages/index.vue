@@ -2,26 +2,18 @@
 section.intro
   svg.icon
     use(href='#icon_watch')
-  h2
-    | Put Apple Watch On
-  h3 Start Functional Strength Training
+  h2 Start smart watch workout
 
-  nuxt-link.btn-plain.btn-square.start-button(to='/warmup') Next
+  nuxt-link.btn.start-button(to='/warmup') Next
 </template>
 
 <script>
-import NoSleep from 'nosleep.js'
-
 export default {
   name: 'Index',
   data() {
     return {
       currentPage: null,
-      noSleep: null,
     }
-  },
-  mounted() {
-    this.noSleep = new NoSleep()
   },
 }
 </script>
@@ -42,12 +34,8 @@ export default {
   }
 
   h2 {
-    font-size: 4rem;
+    font-size: var(--fs-xxl);
   }
-  h3 {
-    font-size: 2rem;
-  }
-
   .start-button {
     margin: var(--m) auto 0;
     max-width: 20ch;
@@ -56,7 +44,7 @@ export default {
   .icon {
     height: 8rem;
     width: 8rem;
-    color: var(--c-brand-blue);
+    color: var(--brand-blue);
   }
 }
 </style>

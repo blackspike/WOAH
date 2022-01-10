@@ -3,36 +3,39 @@
 // --------------------------
 
 .btn {
-  all: unset;
-  box-sizing: border-box;
-  color: var(--c-btn-fg);
-  background-color: var(--c-btn-bg);
-  border-radius: 1rem;
+  // Button colours
+  --btn-border: var(--brand-blue);
+  --btn-text: var(--gray-1);
+  --btn-text-over: var(--brand-purple);
+  --btn-bg: var(--gray-0);
+  --btn-bg-over: var(--brand-blue);
+
+  appearance: none;
+  color: var(--btn-text);
+  background-color: transparent;
+  border: 2px solid var(--brand);
+  border-radius: var(--radius-2);
   cursor: default;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-xl);
+  font-family: var(--ff-heading);
   font-weight: bold;
-  line-height: 1;
-  padding: var(--m-sm) var(--m) calc(var(--m-sm) * 1.01);
+  line-height: var(--lh-base);
+  padding: calc(var(--m-sm) * 1.6) var(--m-lg) var(--m-sm);
   text-align: center;
-  text-transform: uppercase;
+  text-decoration: none;
   transition: all 0.1s var(--ease-cubic);
 
   &.active,
+  &:hover,
   &:active {
-    background-color: var(--c-btn-bg-over);
-    color: var(--c-btn-fg-over);
-    opacity: 1;
+    background-color: var(--brand);
+    color: var(--text-inverse);
   }
 
-  &:hover {
-    background-color: var(--c-btn-bg-over);
-    color: var(--c-btn-fg-over);
-    opacity: 0.9;
-  }
   &:focus {
-    color: var(--c-btn-fg-over);
+    color: var(--text-inverse);
     opacity: 1;
-    outline: 1px dotted var(--c-outline);
+    outline: 1px dotted var(--outline);
     outline-offset: -1px;
   }
 
@@ -53,21 +56,6 @@
 
   &:focus {
     outline: none;
-  }
-}
-
-.btn-square {
-  width: 100%;
-  border: 3px solid #eee;
-  padding: var(--m) var(--m) calc(var(--m) * 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--fs-xxl);
-  font-family: var(--ff-heading);
-
-  @include media-query('md') {
-    font-size: var(--fs-xxxxl);
   }
 }
 
