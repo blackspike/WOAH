@@ -1,7 +1,7 @@
 <template lang="pug">
 section.warmup
   h1.ready(v-show='!started && !finished') Ready?
-  h1.well-done(v-show='finished') Nice one!
+  h1.well-done(v-show='finished') {{ finishedMsg }}
   button.btn.start-button(
     v-show='!started && !finished',
     @click='startRoutine'
@@ -9,7 +9,11 @@ section.warmup
   nuxt-link.btn.finish-button(v-if='finished', to='/workout') Go to workout
 
   .timer-wrapper
-    Timer(v-show='started', :seconds='`${timer < 10 ? "0" + timer : timer}`')
+    Timer(
+      v-show='started',
+      :timer='`${timer < 10 ? "0" + timer : timer}`',
+      :seconds='seconds'
+    )
     //- .timer(v-show='started')
     //-   .number-huge
     //-     span.number-huge__number {{ timer < 10 ? "0" + timer : timer }}
@@ -36,10 +40,11 @@ export default {
       counting: false,
       countdownInterval: null,
       routineInterval: null,
-      seconds: 7,
+      seconds: 30,
       cooldownSeconds: 2,
       started: false,
       currentStep: 0,
+      finishedMsg: 'Nice one!',
       finished: false,
       steps: [
         'March in place (swing arms)',
@@ -58,19 +63,22 @@ export default {
   },
   watch: {
     currentStep(newStep, prevStep) {
-      if (this.finished) return
-      this.speak(newStep)
+      if (this.finished) {
+        this.speak(this.finishedMsg)
+      } else {
+        this.speak(this.steps[newStep])
+      }
     },
   },
   methods: {
-    speak(step) {
+    speak(text) {
       const msg = new SpeechSynthesisUtterance()
-      msg.text = this.steps[step]
+      msg.text = text
       window.speechSynthesis.speak(msg)
     },
     startRoutine() {
       this.started = true
-      this.speak(0)
+      this.speak(this.steps[0])
       this.start()
 
       this.routineInterval = setInterval(() => {
@@ -198,12 +206,13 @@ export default {
     border-radius: var(--radius-2);
     color: var(--brand-pink);
     display: flex;
-    font-size: var(--fs-xxl);
+    font-size: var(--fs-xxxl);
     justify-content: center;
     // padding: calc(var(--m) * 1.3) var(--m) var(--m);
     padding: var(--m-sm) 0;
     text-align: center;
     min-height: 7rem;
+    text-shadow: 0 0.2rem 0.2rem black;
 
     // &.active {
     // }

@@ -10,10 +10,31 @@
       ref='number',
       text-anchor='middle',
       x='180',
-      y='280',
+      y='275',
       font-variant='tabular-nums',
-      :class='{ ending: seconds < 6 }'
-    ) {{ seconds }}
+      :class='{ ending: timer < 6 }'
+    ) {{ timer }}
+
+  //- pi
+  svg.pi(viewBox='0 0 36 36', xmlns='http://www.w3.org/2000/svg')
+    path.pi__done(
+      d='M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831',
+      fill='none',
+      stroke='#EAEAEA',
+      stroke-width='.5',
+      stroke-linecap='round',
+      stroke-dasharray='100, 100'
+    )
+    path.pi__total(
+      d='M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831',
+      fill='none',
+      stroke='#444',
+      stroke-width='.5',
+      stroke-linecap='round',
+      :class='{ ending: timer < 6 }',
+      :stroke-dasharray='`${percent}, 100`'
+    )
+  //- pi
 </template>
 
 <script>
@@ -21,8 +42,20 @@ export default {
   name: 'Timer',
   props: {
     seconds: {
+      type: Number,
+      default: 30,
+    },
+    timer: {
       type: String,
       default: '30',
+    },
+  },
+  computed: {
+    percent() {
+      const available = this.seconds - parseInt(this.timer)
+      const percentUsed =
+        this.seconds > 0 ? (available / this.seconds) * 100 : 0
+      return Math.round(percentUsed)
     },
   },
 }
@@ -32,17 +65,37 @@ export default {
 .timer {
   width: 100%;
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   flex-direction: column;
   justify-content: space-around;
 }
 
-// SVG
-.number {
+svg {
+  grid-column: 1;
+  grid-row: 1;
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
+}
+.pi {
+  path {
+    transition: stroke-dasharray 0.5s;
+  }
+  &__done {
+    stroke: var(--gray-8);
+  }
+  &__total {
+    stroke: var(--brand-green);
 
+    &.ending {
+      stroke: var(--brand-orange);
+    }
+  }
+}
+// SVG
+.number {
   &__bg {
     fill: var(--gray-10);
   }
