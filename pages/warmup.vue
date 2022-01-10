@@ -24,6 +24,9 @@ section.warmup
       :class='index === currentStep ? "active" : "inactive"'
     ) {{ step }}
 
+  .next-up(v-show='currentStep + 1 !== steps.length && started && !finished') Next
+    span {{ steps[currentStep + 1] }}
+
   .controls(v-show='started')
     button.btn.controls__btn(@click='prevNext("prev")', v-if='started') Back
     button.btn.controls__btn(@click='start', v-if='!started') Start
@@ -147,8 +150,8 @@ export default {
   display: grid;
   gap: var(--m);
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto auto;
-  grid-template-areas: 'timer' 'list' 'controls';
+  grid-template-rows: 1fr auto auto auto;
+  grid-template-areas: 'timer' 'list' 'next' 'controls';
 }
 
 .timer-wrapper {
@@ -173,13 +176,28 @@ export default {
   grid-area: controls;
   width: 100%;
 }
+.next-up {
+  grid-area: next;
+  font-family: var(--ff-heading);
+  line-height: 1;
+  color: var(--gray-7);
+  font-size: var(--fs-lg);
+  text-align: center;
+  margin-block-end: var(--m);
 
+  span {
+    display: inline-block;
+    margin-inline: var(--m-sm);
+    color: var(--gray-6);
+  }
+}
 .timer {
   flex-direction: column;
   text-align: center;
 }
 
 .controls {
+  grid-area: controls;
   width: 100%;
   display: flex;
   gap: var(--m);
@@ -206,7 +224,7 @@ export default {
     border-radius: var(--radius-2);
     color: var(--brand-pink);
     display: flex;
-    font-size: var(--fs-xxxl);
+    font-size: var(--fs-xxl);
     justify-content: center;
     // padding: calc(var(--m) * 1.3) var(--m) var(--m);
     padding: var(--m-sm) 0;

@@ -10,7 +10,7 @@
       ref='number',
       text-anchor='middle',
       x='180',
-      y='275',
+      y='250',
       font-variant='tabular-nums',
       :class='{ ending: timer < 6 }'
     ) {{ timer }}
@@ -84,7 +84,7 @@ svg {
     transition: stroke-dasharray 0.5s;
   }
   &__done {
-    stroke: var(--gray-8);
+    stroke: var(--gray-9);
   }
   &__total {
     stroke: var(--brand-green);
@@ -100,7 +100,7 @@ svg {
     fill: var(--gray-10);
   }
   &__text {
-    font-size: var(--fs-9);
+    font-size: var(--fs-8);
     fill: var(--brand-blue);
     font-family: var(--ff-heading);
     transition: fill 1s ease;
