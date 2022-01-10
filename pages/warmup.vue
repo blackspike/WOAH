@@ -23,8 +23,6 @@ section.warmup
   .controls(v-show='started')
     button.btn.controls__btn(@click='prevNext("prev")', v-if='started') Back
     button.btn.controls__btn(@click='start', v-if='!started') Start
-    //- button.btn.controls__btn(@click='pause', v-if='counting && !paused') Pause
-    //- button.btn.controls__btn(@click='paused = false', v-if='paused') Resume
     //- button.btn.controls__btn(@click='reset', v-if='counting') Reset
     button.btn.controls__btn(@click='prevNext("next")', v-if='started') Skip
 </template>
@@ -38,17 +36,16 @@ export default {
       counting: false,
       countdownInterval: null,
       routineInterval: null,
-      seconds: 30,
+      seconds: 7,
       cooldownSeconds: 2,
       started: false,
-      paused: false,
       currentStep: 0,
       finished: false,
       steps: [
         'March in place (swing arms)',
         'Jog in place',
         'Jumping jacks',
-        'Walking jack',
+        'Walking jacks',
         'March with pull down',
         'Lateral step',
         'Opposite hand/toe touches',
@@ -59,16 +56,24 @@ export default {
       ],
     }
   },
+  watch: {
+    currentStep(newStep, prevStep) {
+      if (this.finished) return
+      this.speak(newStep)
+    },
+  },
   methods: {
+    speak(step) {
+      const msg = new SpeechSynthesisUtterance()
+      msg.text = this.steps[step]
+      window.speechSynthesis.speak(msg)
+    },
     startRoutine() {
       this.started = true
+      this.speak(0)
       this.start()
 
       this.routineInterval = setInterval(() => {
-        if (this.paused) {
-          return
-        }
-
         if (this.currentStep === this.steps.length - 1) {
           this.started = false
           this.currentStep = 0
@@ -85,13 +90,8 @@ export default {
     reset() {
       console.info('resetting...')
       clearInterval(this.countdownInterval)
-      this.paused = false
       this.counting = false
       this.timer = this.seconds
-    },
-    pause() {
-      console.info('pausing...')
-      this.paused = !this.paused
     },
     prevNext(prevNext) {
       if (this.currentStep === this.steps.length - 1) {
@@ -102,12 +102,17 @@ export default {
         return
       }
 
+      this.timer = this.seconds
+
       if (prevNext === 'prev') {
+        this.reset()
+        this.start()
         this.currentStep--
       } else {
+        this.reset()
+        this.start()
         this.currentStep++
       }
-      this.timer = this.seconds
     },
     start() {
       console.info('starting...')
@@ -115,10 +120,6 @@ export default {
       this.counting = true
 
       this.countdownInterval = setInterval(() => {
-        if (this.paused) {
-          return
-        }
-
         if (this.timer === 0) {
           clearInterval(this.countdownInterval)
           this.counting = false

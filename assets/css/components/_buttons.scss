@@ -34,7 +34,7 @@
 
   &:focus {
     color: var(--text-inverse);
-    opacity: 1;
+    background-color: var(--brand);
     outline: 1px dotted var(--outline);
     outline-offset: -1px;
   }

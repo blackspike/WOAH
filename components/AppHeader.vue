@@ -4,7 +4,14 @@ header.header
     @click.native='navOpen = false',
     to='/',
     title='Work Out At Home'
-  ) W.O.A.H
+  )
+    span.letter W
+    span.dot .
+    span.letter O
+    span.dot .
+    span.letter A
+    span.dot .
+    span.letter H
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
@@ -56,6 +63,11 @@ export default {
     display: flex;
     padding: var(--m) var(--m) var(--m-sm);
     color: currentColor;
+    letter-spacing: -1px;
+
+    .dot {
+      opacity: 0.5;
+    }
 
     &:focus,
     &:active {

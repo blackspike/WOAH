@@ -21,8 +21,8 @@ export default {
   name: 'Timer',
   props: {
     seconds: {
-      type: Number,
-      default: 30,
+      type: String,
+      default: '30',
     },
   },
 }
