@@ -111,14 +111,9 @@ import NoSleep from 'nosleep.js'
 
 export default {
   name: 'Index',
-  data() {
-    return {
-      currentPage: null,
-      noSleep: null,
-    }
-  },
-  mounted() {
-    this.noSleep = new NoSleep()
+  enableNoSleep() {
+    const noSleep = new NoSleep()
+    noSleep.enable()
   },
 }
 </script>
@@ -139,16 +134,17 @@ export default {
 }
 
 .content-wrapper {
-  padding: var(--m);
   grid-area: content;
   height: 100%;
   width: 100%;
   max-width: var(--mw-content);
   margin: auto;
   display: flex;
-
-  @include media-query('md') {
-    padding: var(--m) var(--m-lg);
+  padding: var(--m-lg) var(--m);
+  @supports (padding: max(0px)) {
+    padding-left: max(var(--m), env(safe-area-inset-left));
+    padding-right: max(var(--m), env(safe-area-inset-right));
+    padding-bottom: max(var(--m-lg), env(safe-area-inset-bottom));
   }
 }
 </style>

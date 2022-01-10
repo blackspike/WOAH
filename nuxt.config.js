@@ -10,7 +10,10 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1, viewport-fit=cover',
+      },
       { hid: 'description', name: 'description', content: 'Work Out At Home' },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'theme-color', name: 'theme-color', content: 'yes' },

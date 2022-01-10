@@ -35,6 +35,8 @@ section.warmup
 </template>
 
 <script>
+import NoSleep from 'nosleep.js'
+
 export default {
   name: 'Warmup',
   data() {
@@ -74,12 +76,17 @@ export default {
     },
   },
   methods: {
+    enableNoSleep() {
+      const noSleep = new NoSleep()
+      noSleep.enable()
+    },
     speak(text) {
       const msg = new SpeechSynthesisUtterance()
       msg.text = text
       window.speechSynthesis.speak(msg)
     },
     startRoutine() {
+      this.enableNoSleep()
       this.started = true
       this.speak(this.steps[0])
       this.start()
@@ -229,7 +236,7 @@ export default {
     // padding: calc(var(--m) * 1.3) var(--m) var(--m);
     padding: var(--m-sm) 0;
     text-align: center;
-    min-height: 7rem;
+    min-height: 6rem;
     text-shadow: 0 0.2rem 0.2rem black;
 
     // &.active {

@@ -2,7 +2,8 @@
 section.intro
   svg.icon
     use(href='#icon_watch')
-  h2 Start smart watch workout
+  h1.intro__title Work Out At Home
+  h2.intro__subtitle Don't forget to start a workout on your smart watch!
 
   nuxt-link.btn.start-button(to='/warmup') Next
 </template>
@@ -29,13 +30,11 @@ export default {
   gap: 3rem;
   text-align: center;
 
-  @include media-query('md') {
-    text-align: left;
-  }
-
-  h2 {
+  &__subtitle {
+    color: var(--brand-green);
     font-size: var(--fs-xxl);
   }
+
   .start-button {
     margin: var(--m) auto 0;
     max-width: 20ch;
