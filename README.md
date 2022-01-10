@@ -1,5 +1,21 @@
 # Work Out At Home WorkoutApp
 
+## TODO
+
+- Skip
+- Center
+- remove seconds
+- blue text pink numbers
+- colour last 5 secconds (colour increments)
+- fix extra last 5 sec
+- adjust and store length
+- speak instructions
+- swiper slider
+- cards
+- up next
+- instruction below number
+- re-arrange / add / remove crud
+
 ## Build Setup
 
 ```bash
@@ -40,7 +56,6 @@ More information about the usage of this directory in [the documentation](https:
 Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
 
 More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
 
 ### `pages`
 

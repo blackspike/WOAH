@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'WorkoutApp',
+    title: 'WOAH | Work Out At Home',
     htmlAttrs: {
       lang: 'en',
     },
@@ -13,8 +13,17 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Work Out At Home' },
       { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'theme-color', name: 'theme-color', content: 'yes' },
+      {
+        hid: 'apple-mobile-web-app-capable',
+        name: 'apple-mobile-web-app-capable',
+        content: 'yes',
+      },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'manifest', type: 'image/x-icon', href: '/manifest.json' },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
