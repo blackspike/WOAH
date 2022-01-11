@@ -1,9 +1,11 @@
 <template lang="pug">
 section.intro
-  svg.icon
-    use(href='#icon_watch')
   h1.intro__title Work Out At Home
-  h2.intro__subtitle Don't forget to start a workout on your smart watch!
+
+  .intro__text
+    p A simple warmup &amp; workout timer
+    p Watch the #[nuxt-link(to='/videos') instruction videos] first!
+    p Content by the great #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
 
   nuxt-link.btn.start-button(to='/warmup') Next
 </template>
@@ -25,19 +27,22 @@ export default {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  gap: var(--m);
   align-items: center;
-  gap: 3rem;
   text-align: center;
+  padding-top: 5vh;
 
-  &__subtitle {
-    color: var(--brand-green);
-    font-size: var(--fs-xxl);
+  &__text {
+    color: var(--brand-yellow);
+    font-size: var(--fs-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--m);
   }
 
   .start-button {
-    margin: var(--m) auto 0;
-    max-width: 20ch;
+    width: 100%;
   }
 
   .icon {

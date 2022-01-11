@@ -63,7 +63,6 @@ export default {
 
   &__link {
     font-size: var(--fs-lg);
-    font-family: var(--ff-heading);
     line-height: 1;
     display: flex;
     color: currentColor;
@@ -110,7 +109,7 @@ export default {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: var(--m);
+  gap: var(--m-lg);
   right: 0;
   top: var(--m);
   grid-area: mobile-nav;
@@ -119,12 +118,11 @@ export default {
   border-radius: var(--radius-2);
 
   &__link {
-    font-size: var(--fs-xl);
-    font-family: var(--ff-heading);
+    font-size: var(--fs-xxl);
     line-height: var(--lh-xs);
     display: flex;
     letter-spacing: -1px;
-    color: var(--gray-5);
+    color: var(--gray-3);
 
     &.nuxt-link-exact-active {
       color: var(--brand-orange);

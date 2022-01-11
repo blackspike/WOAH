@@ -112,7 +112,6 @@ export default {
   .rep-counter {
     width: 100%;
     font-size: var(--fs-xxl);
-    font-family: var(--ff-heading);
     color: var(--brand-blue);
   }
 }
@@ -124,7 +123,6 @@ export default {
   gap: 4vh;
   flex-direction: column;
   justify-content: space-between;
-  font-family: var(--ff-heading);
   line-height: 1;
   padding: 4vh 0;
 

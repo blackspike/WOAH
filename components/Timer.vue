@@ -40,21 +40,13 @@
 <script>
 export default {
   name: 'Timer',
-  props: {
-    seconds: {
-      type: Number,
-      default: 30,
-    },
-    timer: {
-      type: String,
-      default: '30',
-    },
-  },
+  props: ['seconds', 'timer'],
   computed: {
     percent() {
-      const available = this.seconds - parseInt(this.timer)
-      const percentUsed =
-        this.seconds > 0 ? (available / this.seconds) * 100 : 0
+      const parseSecs = parseInt(this.seconds)
+      const parseTimer = parseInt(this.timer)
+      const available = parseSecs - parseTimer
+      const percentUsed = parseSecs > 0 ? (available / parseSecs) * 100 : 0
       return Math.round(percentUsed)
     },
   },
@@ -68,8 +60,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  flex-direction: column;
-  justify-content: space-around;
 }
 
 svg {
@@ -102,7 +92,6 @@ svg {
   &__text {
     font-size: var(--fs-8);
     fill: var(--brand-blue);
-    font-family: var(--ff-heading);
     transition: fill 1s ease;
 
     &.ending {

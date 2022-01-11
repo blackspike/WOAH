@@ -32,7 +32,7 @@
   --text-light: var(--gray-0);
   --text-dark: var(--gray-4);
   --text-inverse: var(--gray-8);
-  --text-link: var(--brand-purple);
+  --text-link: var(--brand-orange);
   --text-link-over: var(--brand-blue);
 
   // Named grays
@@ -109,10 +109,10 @@
   --fs-xxxxl: var(--fs-6);
 
   // Families
-  --ff-base: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+  --ff-base: Bebas, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
     Cantarell, Noto Sans, sans-serif;
   --ff-serif: ui-serif, serif;
-  --ff-heading: 'Bebas', var(--ff-base);
+  --ff-heading: var(--ff-base);
   --ff-mono: Consolas, SF Mono, Dank Mono, Operator Mono, Inconsolata, Fira Mono,
     ui-monospace, Monaco, Droid Sans Mono, Source Code Pro, monospace;
 

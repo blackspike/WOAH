@@ -95,6 +95,7 @@
       path(d='M2 17l5 0')
       path(d='M17 17l5 0')
       path(d='M17 7l5 0')
+
     symbol#icon_x(
       viewBox='0 0 24 24',
       fill='none',
@@ -105,6 +106,18 @@
     )
       path(d='M18 6L6 18')
       path(d='M6 6l12 12')
+
+    symbol#icon_gear(
+      viewBox='0 0 24 24',
+      fill='none',
+      stroke='currentColor',
+      stroke-width='2',
+      stroke-linecap='round',
+      stroke-linejoin='round'
+    )
+      path(
+        d='M11 19.938a7.96 7.96 0 0 1-3.906-1.618l-1.458 1.458l-1.414-1.414l1.458-1.458A7.96 7.96 0 0 1 4.062 13H2v-2h2.062A7.96 7.96 0 0 1 5.68 7.094L4.222 5.636l1.414-1.414L7.094 5.68A7.96 7.96 0 0 1 11 4.062V2h2v2.062a7.96 7.96 0 0 1 3.906 1.618l1.458-1.458l1.414 1.414l-1.458 1.458A7.96 7.96 0 0 1 19.938 11H22v2h-2.062a7.96 7.96 0 0 1-1.618 3.906l1.458 1.458l-1.414 1.414l-1.458-1.458A7.96 7.96 0 0 1 13 19.938V22h-2v-2.062zM12 17a5 5 0 1 0 0-10a5 5 0 0 0 0 10z'
+      )
 </template>
 <script>
 import NoSleep from 'nosleep.js'
@@ -140,7 +153,7 @@ export default {
   max-width: var(--mw-content);
   margin: auto;
   display: flex;
-  padding: var(--m-lg) var(--m);
+  padding: 0 var(--m) var(--m-lg);
   @supports (padding: max(0px)) {
     padding-left: max(var(--m), env(safe-area-inset-left));
     padding-right: max(var(--m), env(safe-area-inset-right));
