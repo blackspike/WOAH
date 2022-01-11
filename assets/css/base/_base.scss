@@ -15,8 +15,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--ff-base);
@@ -28,9 +31,15 @@ body {
   position: relative;
   text-rendering: optimizeLegibility;
 
-  @supports (-webkit-touch-callout: none) {
-    height: -webkit-fill-available;
-  }
+  padding: 0 var(--m) var(--m-lg);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#__nuxt,
+#__layout {
+  height: 100%;
 }
 
 [hidden] {

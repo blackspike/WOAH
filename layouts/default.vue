@@ -153,11 +153,5 @@ export default {
   max-width: var(--mw-content);
   margin: auto;
   display: flex;
-  padding: 0 var(--m) var(--m-lg);
-  @supports (padding: max(0px)) {
-    padding-left: max(var(--m), env(safe-area-inset-left));
-    padding-right: max(var(--m), env(safe-area-inset-right));
-    padding-bottom: max(var(--m-lg), env(safe-area-inset-bottom));
-  }
 }
 </style>
