@@ -146,6 +146,7 @@ export default {
   padding: 2vh 0;
 
   &__item {
+    padding: 1vh 0;
     display: flex;
     align-items: center;
     gap: var(--m);

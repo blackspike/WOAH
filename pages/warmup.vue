@@ -1,12 +1,13 @@
 <template lang="pug">
 section.warmup
+  h1.warmup__title(v-show='!started') Warmup
   //- Ready screen
   .ready(v-show='!started && !finished')
     h1.ready__title Ready?
     .reminder
       svg.icon.reminder__icon
         use(href='#icon_watch')
-      h2.reminder__title Remember to start a new workout on your smart watch!
+      h2.reminder__title Remember to start a workout on your smart watch!
 
   //- Finished
   h1.well-done(v-show='finished') {{ finishedMsg }}
@@ -229,14 +230,20 @@ export default {
 
 <style lang="scss" scoped>
 .warmup {
+  flex: 1;
   width: 100%;
-  height: 100%;
   display: grid;
   gap: var(--m);
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   grid-template-areas: 'timer' 'next' 'controls';
   user-select: none;
+
+  &__title {
+    grid-area: timer;
+    font-size: var(--fs-xxl);
+    margin: 0;
+  }
 }
 
 // Ready
@@ -309,7 +316,7 @@ export default {
     padding: var(--m-sm) 0;
     text-align: center;
     min-height: 6rem;
-    text-shadow: 0 0.2rem 0.2rem black;
+    text-shadow: 0 0.1rem 0.1rem black;
 
     &.inactive {
       opacity: 0.2;
@@ -363,19 +370,20 @@ export default {
   width: 100%;
   bottom: calc(100% + var(--m));
   grid-area: mobile-nav;
-  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--bxs-lg);
   padding: var(--m-lg);
   border-radius: var(--radius-2);
 
   &__title {
+    font-size: var(--fs-xxl);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     margin-bottom: 0;
   }
-  &__menu-btn .icon {
-    height: 3.8rem;
-    width: 3.8rem;
+  &__menu-btn {
+    justify-content: flex-end;
+    background-color: var(--gray-8);
   }
 
   &__row {

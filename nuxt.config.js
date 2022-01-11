@@ -22,6 +22,11 @@ export default {
         name: 'apple-mobile-web-app-capable',
         content: 'yes',
       },
+      {
+        hid: 'apple-mobile-web-app-status-bar-style',
+        name: 'apple-mobile-web-app-status-bar-style',
+        content: 'translucent',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -43,9 +48,7 @@ export default {
 
   // css: ['@/assets/css/main.scss'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/vendor/vue-draggable.js' }
-  ],
+  plugins: [{ src: '~/plugins/vendor/vue-draggable.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

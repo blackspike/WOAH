@@ -1,9 +1,9 @@
 <template lang="pug">
 .app
-  .header-wrapper
+  header.header-wrapper
     AppHeader
 
-  .content-wrapper
+  main.content-wrapper
     nuxt
 
   svg(xmlns='http://www.w3.org/2000/svg', style='display: none')
@@ -140,13 +140,12 @@ export default {
 
 <style lang="scss" >
 .app {
-  width: 100%;
-  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
   grid-template-areas: 'header' 'content';
-  align-items: center;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  padding: var(--m);
+  width: 100%;
 }
 
 .header-wrapper {
@@ -154,11 +153,15 @@ export default {
 }
 
 .content-wrapper {
-  grid-area: content;
   height: 100%;
-  width: 100%;
-  max-width: var(--mw-content);
+  grid-area: content;
   margin: auto;
-  display: flex;
+  max-width: var(--mw-content);
+  width: 100%;
+  padding-bottom: env(safe-area-inset-bottom);
+
+  > * {
+    height: 100%;
+  }
 }
 </style>

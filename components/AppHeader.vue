@@ -1,10 +1,11 @@
 <template lang="pug">
-header.header
+.header
   nuxt-link.header__logo.header__link(
     @click.native='navOpen = false',
     to='/',
-    title='Work Out At Home'
+    aria-title='Work Out At Home'
   )
+    //- | Work Out At Home
     span.letter W
     span.dot .
     span.letter O
@@ -52,14 +53,8 @@ export default {
   position: relative;
   color: var(--gray-5);
   margin: auto;
-  max-width: var(--mw-header);
-  padding: var(--m-lg) var(--m);
-
-  @supports (padding: max(0px)) {
-    padding-left: max(var(--m), env(safe-area-inset-left));
-    padding-right: max(var(--m), env(safe-area-inset-right));
-    padding-top: max(var(--m), env(safe-area-inset-top));
-  }
+  max-width: var(--mw-content);
+  padding: var(--m) 0;
 
   &__link {
     font-size: var(--fs-lg);
@@ -74,7 +69,8 @@ export default {
 
     &:focus,
     &:active {
-      outline: 2px dotted var(--brand-orange);
+      color: var(--brand-orange);
+      // outline: 2px dotted var(--brand-orange);
     }
 
     &.nuxt-link-exact-active {
@@ -84,8 +80,12 @@ export default {
   // Button
   &__menu-btn {
     grid-area: button;
+    height: 3rem;
+    width: 3rem;
     .icon {
       fill: currentColor;
+      height: 100%;
+      width: 100%;
     }
 
     @include media-query('md') {
@@ -105,7 +105,6 @@ export default {
   }
 }
 .nav-mobile {
-  background-color: var(--gray-10);
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -113,7 +112,9 @@ export default {
   right: 0;
   top: var(--m);
   grid-area: mobile-nav;
-  box-shadow: 0 2rem 2rem rgba(0, 0, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.95);
+
+  box-shadow: var(--bxs-lg);
   padding: var(--m-lg);
   border-radius: var(--radius-2);
 
@@ -122,7 +123,7 @@ export default {
     line-height: var(--lh-xs);
     display: flex;
     letter-spacing: -1px;
-    color: var(--gray-3);
+    color: var(--gray-10);
 
     &.nuxt-link-exact-active {
       color: var(--brand-orange);

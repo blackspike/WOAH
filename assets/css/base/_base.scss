@@ -16,25 +16,24 @@
   box-sizing: border-box;
 }
 html {
-  height: 100%;
+  background-color: var(--bg);
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 body {
-  height: 100%;
-  background-color: var(--bg);
   color: var(--text);
   font-family: var(--ff-base);
   -moz-font-feature-settings: 'kern';
   font-feature-settings: 'kern';
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
-  line-height: var(--lh-sm);
+  line-height: var(--lh-base);
   position: relative;
   text-rendering: optimizeLegibility;
-
-  padding: 0 var(--m) var(--m-lg);
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-  padding-bottom: env(safe-area-inset-bottom);
+  flex: 1;
+  max-height: 90%;
 }
 
 #__nuxt,

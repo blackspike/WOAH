@@ -17,6 +17,12 @@
 
   //- pi
   svg.pi(viewBox='0 0 36 36', xmlns='http://www.w3.org/2000/svg')
+    //- defs
+    //-   filter#glow
+    //-     fegaussianblur.blur(result='coloredBlur', stddeviation='0.2')
+    //-     femerge
+    //-       femergenode(in='coloredBlur')
+    //-       femergenode(in='SourceGraphic')
     path.pi__done(
       d='M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831',
       fill='none',
