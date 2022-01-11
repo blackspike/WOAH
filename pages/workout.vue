@@ -1,32 +1,38 @@
 <template lang="pug">
 section.workout
+  h1.workout__title Workout
+
+  //- Draggable
+  draggable.step-list(
+    v-model='steps',
+    @start='drag = true',
+    @end='dragEnd',
+    tag='ol',
+    v-bind='draggableOptions'
+  )
+    transition-group(type='transition', :name='!drag ? "flip-list" : null')
+      //- Draggable items
+      li.step-list__item(v-for='(step, index) in steps', :key='step.title')
+        span.step-list__count {{ step.count }}
+        span.step-list__title {{ step.title }}
+        //- step icon
+        .step-list__step-icon
+          svg.icon
+            use(xlink:href='#icon_drag')
+
   .controls
-    //- button.btn-plain.btn-square(@click="next") Next
     .rep-counter {{ "Rep #" + repCount }}
     button.btn(@click='repCount++') +
     button.btn(@click='repCount > 0 ? repCount-- : 1') -
-
-  ol.list
-    li.list__item(
-      v-for='(step, index) in steps',
-      :class='index === currentStep ? "active" : "inactive"'
-    )
-      span.list__count {{ step.count }}
-      span.list__title {{ step.title }}
-
-    //- li.list__item #[span.list__count 20] Bodyweight squats
-    //- li.list__item #[span.list__count 10] Push-ups
-    //- li.list__item #[span.list__count 20] Walking lunges
-    //- li.list__item #[span.list__count 10] Dumbbell rows
-    //- li.list__item #[span.list__count 15] Second Plank
-    //- li.list__item #[span.list__count 30] Jumping jacks
 </template>
 
 <script>
 export default {
-  name: 'Warmup',
+  name: 'Workout',
   data() {
     return {
+      drag: false,
+      hasChanged: false,
       currentStep: 0,
       repCount: 3,
       steps: [
@@ -57,7 +63,23 @@ export default {
       ],
     }
   },
+  computed: {
+    draggableOptions() {
+      return {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      }
+    },
+  },
   methods: {
+    // Drag end
+    dragEnd() {
+      this.hasChanged = true
+      this.drag = false
+    },
+
     next() {
       if (this.repCount === 0 && this.currentStep === this.steps.length - 1) {
         // this.currentStep = 0
@@ -82,17 +104,14 @@ export default {
   display: grid;
   gap: var(--m);
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
-  grid-template-areas: 'list' 'timer';
-}
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'title' 'list' 'timer';
 
-.timer-wrapper {
-  grid-area: timer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-self: center;
-  padding-bottom: var(--m-xl);
+  &__title {
+    grid-area: title;
+    font-size: var(--fs-xxl);
+    margin: 0;
+  }
 }
 
 .timer {
@@ -116,15 +135,15 @@ export default {
   }
 }
 
-.list {
+.step-list {
   grid-area: list;
   align-self: center;
   display: flex;
-  gap: 4vh;
+  gap: 2vh;
   flex-direction: column;
   justify-content: space-between;
   line-height: 1;
-  padding: 4vh 0;
+  padding: 2vh 0;
 
   &__item {
     display: flex;
@@ -132,13 +151,40 @@ export default {
     gap: var(--m);
     font-size: var(--fs-xl);
   }
+  &__step-icon {
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      height: 2rem;
+      width: 2rem;
+      color: var(--gray-7);
+    }
+  }
   &__count {
     color: var(--brand-orange);
     font-variant-numeric: tabular-nums;
     font-size: var(--fs-xxl);
   }
   &__title {
+    flex: 2;
     color: var(--brand-yellow);
   }
+}
+
+/* Draggable Transition
+============================= */
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+.no-move {
+  transition: transform 0s;
+}
+.ghost {
+  background-color: var(--c-bg);
+  color: var(--c-brand);
 }
 </style>

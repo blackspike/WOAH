@@ -7,6 +7,13 @@
     nuxt
 
   svg(xmlns='http://www.w3.org/2000/svg', style='display: none')
+    symbol#icon_drag(viewbox='0 0 16 9')
+      path(d='M16,0V1H0V0ZM0,5H16V4H0ZM0,9H16V8H0Z', fill='currentColor')
+      path(
+        d='M16,0H0V1H16V0Zm0,4H0V5H16V4Zm0,4H0V9H16V8Z',
+        fill='currentColor'
+      ).
+
     symbol#icon_menu(
       viewBox='0 0 24 24',
       fill='none',
