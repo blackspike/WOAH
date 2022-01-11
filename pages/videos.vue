@@ -43,9 +43,9 @@ export default {
   // gap: var(--m-xl);;
   //
   &__title {
-    font-size: var(--fs-xxl);
+    font-size: var(--fs-xl);
     color: var(--brand-pink);
-    margin-bottom: var(--m-xs);
+    margin-bottom: var(--m);
   }
 }
 
@@ -53,5 +53,9 @@ export default {
   height: auto;
   width: 100%;
   aspect-ratio: 16 / 9;
+  background-color: var(--gray-10);
+  border-radius: var(--radius-2);
+  box-shadow: var(--bxs-md);
+  overflow: hidden;
 }
 </style>

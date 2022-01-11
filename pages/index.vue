@@ -5,7 +5,7 @@ section.intro
   .intro__text
     p A simple warmup &amp; workout timer
     p Watch the #[nuxt-link(to='/videos') instruction videos] first!
-    p Content by the great #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+    p Content by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
 
   nuxt-link.btn.start-button(to='/warmup') Next
 </template>
@@ -31,7 +31,7 @@ export default {
   gap: var(--m);
   align-items: center;
   text-align: center;
-  padding-top: 5vh;
+  padding-top: 3vh;
 
   &__text {
     color: var(--brand-yellow);
