@@ -70,7 +70,7 @@ section.warmup
           @change='restartStep()',
           min='10',
           max='120',
-          step='10'
+          step='5'
         )
       //- Speech
       .settings__row
