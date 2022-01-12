@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 
 :root {
-  scrollbar-color: var(--scrollbar-color) transparent;
+  // scrollbar-color: var(--scrollbar-color) transparent;
   accent-color: var(--brand);
   caret-color: var(--brand);
 }
@@ -16,11 +16,15 @@
   box-sizing: border-box;
 }
 html {
-  background-color: var(--bg);
+  background-color: var(--bg-app);
   overflow: hidden;
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+  @include media-query('xl') {
+    background-color: var(--bg);
+  }
 }
 body {
   color: var(--text);
@@ -39,6 +43,9 @@ body {
 #__nuxt,
 #__layout {
   height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 [hidden] {

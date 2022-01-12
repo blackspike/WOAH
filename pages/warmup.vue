@@ -1,18 +1,25 @@
 <template lang="pug">
 section.warmup
-  h1.warmup__title(v-show='!started') Warmup
+  //- Title
+  h1.warmup__title(v-show='!started') {{ strings.warmupTitle }}
   //- Ready screen
   .ready(v-show='!started && !finished')
-    h1.ready__title Ready?
+    //- Ready title
+    h1.ready__title {{ strings.ready }}
+
+    //- Reminder
     .reminder
+      //- Watch icon
       svg.icon.reminder__icon
         use(href='#icon_watch')
-      h2.reminder__title Remember to start a workout on your smart watch!
+      //- Rminder
+      h2.reminder__title {{ strings.reminder }}
 
   //- Finished
-  h1.well-done(v-show='finished') {{ finishedMsg }}
+  h1.well-done(v-show='finished') {{ strings.finishedMsg }}
 
-  nuxt-link.btn.finish-button(v-if='finished', to='/workout') Go to workout
+  //- Finished button
+  nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
 
   //- Timer
   .timer-wrapper
@@ -30,71 +37,37 @@ section.warmup
     ) {{ step }}
 
   //- Next step
-  .next-up(v-show='currentStep + 1 !== steps.length && started && !finished') Next
+  .next-up(v-show='currentStep + 1 !== steps.length && started && !finished') {{ strings.next }}
     span {{ steps[currentStep + 1] }}
 
   //- Controls
-  .controls
-    button.btn.controls__btn(@click='prevNext("prev")', v-if='started') Back
-    button.btn.start-button(
-      v-show='!started && !finished',
-      @click='startRoutine'
-    ) Start warmup
-    button.btn.controls__btn.controls__btn--settings(
-      @click='settingsOpen = !settingsOpen',
-      v-if='started'
+  .controls-wrapper
+    WarmupControls(
+      :started='started',
+      :seconds='seconds',
+      :finished='finished',
+      :speech='speech',
+      @startRoutine='startRoutine',
+      @prevNext='prevNext',
+      @changeSeconds='changeSeconds',
+      @restartStep='restartStep',
+      @toggleSpeech='speech = !speech'
     )
-      svg.icon(height='24', width='24')
-        use(href='#icon_gear')
-    button.btn.controls__btn(@click='prevNext("next")', v-if='started') Skip
-
-    //- Settings menu
-    aside.settings(v-if='settingsOpen')
-      //- Title
-      h2.settings__title
-        | Settings
-        button.btn.btn-icon.settings__menu-btn(@click='settingsOpen = false')
-          svg.icon(height='24', width='24')
-            use(href='#icon_x', v-if='settingsOpen')
-            use(href='#icon_menu', v-else)
-
-      //- Duration
-      .settings__row
-        label(for='set_seconds') Step duration
-          span.seconds {{ seconds }}
-            span.s s
-        //- ({{ (seconds / 60).toFixed(2) }} mins)
-        input#set_seconds(
-          type='range',
-          v-model='seconds',
-          @change='restartStep()',
-          min='10',
-          max='120',
-          step='5'
-        )
-      //- Speech
-      .settings__row
-        label(for='set_speech')
-          | Announce steps?
-          input#set_speech(
-            type='checkbox',
-            v-model='speech',
-            @change='restartStep()'
-          )
 </template>
 
 <script>
 import ClickOutside from 'vue-click-outside'
 import NoSleep from 'nosleep.js'
+import WarmupControls from '../components/WarmupControls.vue'
 
 export default {
   name: 'Warmup',
   directives: {
     ClickOutside,
   },
+  components: { WarmupControls },
   data() {
     return {
-      settingsOpen: false,
       timer: 0,
       speech: true,
       counting: false,
@@ -104,7 +77,7 @@ export default {
       cooldownSeconds: 2,
       started: false,
       currentStep: 0,
-      finishedMsg: 'Nice one!',
+
       finished: false,
       steps: [
         'March in place (swing arms)',
@@ -119,15 +92,29 @@ export default {
         'Jump up & down, side to side',
         'Jump rope',
       ],
+      strings: {
+        finishedMsg: 'Nice one!',
+        finishedBtn: 'Go to workout',
+        warmupTitle: 'Warm up',
+        ready: 'Ready?',
+        reminder: 'Remember to start a workout on your smart watch!',
+        next: 'Next',
+      },
     }
   },
   watch: {
     currentStep(newStep, prevStep) {
       if (this.finished) {
-        this.speak(this.finishedMsg)
+        this.speak(this.strings.finishedMsg)
       } else {
         this.speak(this.steps[newStep])
       }
+    },
+    seconds(secs) {
+      localStorage.setItem('savedSeconds', secs)
+    },
+    speech(bool) {
+      localStorage.setItem('savedSpeech', bool)
     },
   },
   beforeMount() {
@@ -140,11 +127,10 @@ export default {
       savedSpeech === 'true' ? (this.speech = true) : (this.speech = false)
     }
   },
-
   methods: {
-    saveSettings() {
-      localStorage.setItem('savedSeconds', this.seconds)
-      localStorage.setItem('savedSpeech', this.speech)
+    changeSeconds(seconds) {
+      this.seconds = seconds
+      this.restartStep()
     },
     enableNoSleep() {
       const noSleep = new NoSleep()
@@ -156,9 +142,7 @@ export default {
       msg.text = text
       window.speechSynthesis.speak(msg)
     },
-
     restartStep() {
-      this.saveSettings()
       this.reset()
       this.start()
     },
@@ -167,7 +151,6 @@ export default {
       this.started = true
       this.speak(this.steps[0])
       this.start()
-
       this.routineInterval = setInterval(() => {
         if (this.currentStep === this.steps.length - 1) {
           this.started = false
@@ -181,7 +164,6 @@ export default {
         }
       }, this.seconds * 1000 + this.cooldownSeconds * 1000)
     },
-
     reset() {
       console.info('resetting...')
       clearInterval(this.countdownInterval)
@@ -196,9 +178,7 @@ export default {
         this.finished = true
         return
       }
-
       this.timer = this.seconds
-
       if (prevNext === 'prev') {
         if (this.currentStep === 0) return
         this.reset()
@@ -214,7 +194,6 @@ export default {
       console.info('starting...')
       this.timer = this.seconds
       this.counting = true
-
       this.countdownInterval = setInterval(() => {
         if (this.timer === 0) {
           clearInterval(this.countdownInterval)
@@ -274,9 +253,6 @@ export default {
     font-size: var(--fs-xl);
     margin: 0;
   }
-}
-.start-button {
-  width: 100%;
 }
 
 // Timer
@@ -341,77 +317,8 @@ export default {
   }
 }
 // Controls
-.controls {
-  position: relative;
+.controls-wrapper {
   grid-area: controls;
   width: 100%;
-  display: flex;
-  gap: var(--m);
-  align-items: center;
-  line-height: 1;
-
-  &__btn {
-    width: 100%;
-
-    &--settings {
-      width: auto;
-    }
-  }
-}
-
-// Settings
-.settings {
-  background-color: rgba(0, 0, 0, 0.9);
-  position: absolute;
-  display: flex;
-  font-size: var(--fs-lg);
-  flex-direction: column;
-  gap: var(--m-lg);
-  width: 100%;
-  bottom: calc(100% + var(--m));
-  grid-area: mobile-nav;
-  box-shadow: var(--bxs-lg);
-  padding: var(--m-lg);
-  border-radius: var(--radius-2);
-
-  &__title {
-    font-size: var(--fs-xxl);
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 0;
-  }
-  &__menu-btn {
-    justify-content: flex-end;
-    background-color: var(--gray-8);
-  }
-
-  &__row {
-    display: flex;
-    flex-direction: column;
-    gap: var(--m-sm);
-    font-variant: tabular-nums;
-  }
-
-  label {
-    font-size: var(--fs-xl);
-    color: var(--brand-yellow);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--m-sm);
-  }
-
-  input[type='checkbox'] {
-    transform: scale(2);
-  }
-
-  .seconds {
-    color: var(--gray-0);
-  }
-
-  .s {
-    font-size: var(--fs-lg);
-  }
 }
 </style>

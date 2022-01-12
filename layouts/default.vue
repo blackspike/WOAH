@@ -140,12 +140,20 @@ export default {
 
 <style lang="scss" >
 .app {
+  background-color: var(--bg-app);
   display: grid;
   grid-template-areas: 'header' 'content';
   grid-template-rows: auto 1fr;
   height: 100%;
-  padding: var(--m);
+  padding: 0 var(--m) var(--m);
   width: 100%;
+
+  @include media-query('xl') {
+    margin: var(--m-xl) auto;
+    padding: var(--m-xl);
+    border-radius: var(--radius-3);
+    box-shadow: var(--bxs-md);
+  }
 }
 
 .header-wrapper {

@@ -54,7 +54,7 @@ export default {
   color: var(--gray-5);
   margin: auto;
   max-width: var(--mw-content);
-  padding: var(--m) 0;
+  padding: var(--m-sm) 0 var(--m);
 
   &__link {
     font-size: var(--fs-lg);
@@ -82,6 +82,7 @@ export default {
     grid-area: button;
     height: 3rem;
     width: 3rem;
+    border: 1px solid var(--gray-8);
     .icon {
       fill: currentColor;
       height: 100%;
