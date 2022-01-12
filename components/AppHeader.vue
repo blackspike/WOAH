@@ -106,25 +106,24 @@ export default {
   }
 }
 .nav-mobile {
-  position: absolute;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-2);
+  box-shadow: var(--bxs-lg);
   display: flex;
   flex-direction: column;
   gap: var(--m-lg);
+  grid-area: mobile-nav;
+  padding: var(--m-lg);
+  position: absolute;
   right: 0;
   top: var(--m);
-  grid-area: mobile-nav;
-  background-color: rgba(255, 255, 255, 0.95);
-
-  box-shadow: var(--bxs-lg);
-  padding: var(--m-lg);
-  border-radius: var(--radius-2);
 
   &__link {
-    font-size: var(--fs-xxl);
-    line-height: var(--lh-xs);
-    display: flex;
-    letter-spacing: -1px;
     color: var(--gray-10);
+    display: flex;
+    font-size: var(--fs-xxl);
+    letter-spacing: -1px;
+    line-height: var(--lh-xs);
 
     &.nuxt-link-exact-active {
       color: var(--brand-orange);
