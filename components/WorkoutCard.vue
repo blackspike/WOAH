@@ -1,7 +1,22 @@
 <template lang="pug">
 .workout-card
-  //- Draggable
-  draggable.step-list(
+  h2.workout-card__title
+    | {{ day.title }}
+    button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
+      svg.icon(height='24', width='24')
+        use(href='#icon_x', v-if='editing')
+        use(href='#icon_edit', v-else)
+
+  //- step-list
+  .step-list(v-if='editing')
+    //- Draggable items
+    li.step-list__item(v-for='(step, index) in steps', :key='step.title')
+      span.step-list__count {{ step.count }}
+      span.step-list__title {{ step.title }}
+
+  //- Edit list
+  draggable.edit-list(
+    v-else,
     v-model='steps',
     @start='drag = true',
     @end='dragEnd',
@@ -10,11 +25,13 @@
   )
     transition-group(type='transition', :name='!drag ? "flip-list" : null')
       //- Draggable items
-      li.step-list__item(v-for='(step, index) in steps', :key='step.title')
-        span.step-list__count {{ step.count }}
-        span.step-list__title {{ step.title }}
-        //- step icon
-        .step-list__step-icon
+      li.edit-list__item(v-for='(step, index) in steps', :key='step.title')
+        //- Editor
+        .edit-list__editor
+          WorkoutEditor(:count='step.count', :title='step.title')
+
+        //- drag icon
+        .edit-list__drag-icon
           svg.icon
             use(xlink:href='#icon_drag')
 </template>
@@ -22,8 +39,15 @@
 <script>
 export default {
   name: 'WorkoutCard',
+  props: {
+    day: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
+      editing: false,
       drag: false,
       hasChanged: false,
       currentStep: 0,
@@ -98,6 +122,17 @@ export default {
   border-radius: var(--radius-2);
   width: 100%;
   height: 100%;
+
+  &__title {
+    font-size: var(--fs-xxl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__btn-edit {
+    border: 2px solid var(--gray-9);
+  }
 }
 
 .controls {
@@ -114,6 +149,7 @@ export default {
   }
 }
 
+// Step list
 .step-list {
   grid-area: list;
   align-self: center;
@@ -144,13 +180,55 @@ export default {
     }
   }
   &__count {
-    color: var(--brand-orange);
+    color: var(--brand-yellow);
     font-variant-numeric: tabular-nums;
     font-size: var(--fs-xxl);
   }
   &__title {
     flex: 2;
-    color: var(--brand-yellow);
+    color: var(--brand-blue);
+  }
+}
+// Edit list
+.edit-list {
+  grid-area: list;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 1;
+  padding: 2vh 0;
+
+  &__item {
+    padding: 0;
+    width: 100%;
+    display: grid;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'editor drag';
+    gap: var(--m-sm);
+    align-items: center;
+
+    & + & {
+      margin-top: var(--m-sm);
+    }
+  }
+
+  &__editor {
+    grid-area: editor;
+  }
+  &__drag-icon {
+    grid-area: drag;
+    height: 2rem;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      height: 2rem;
+      width: 2rem;
+      color: var(--gray-7);
+    }
   }
 }
 

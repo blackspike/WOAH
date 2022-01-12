@@ -118,7 +118,9 @@
 
   // Utils
   --bxs-md: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.2);
-  --bxs-lg: 0 5px 27px -5px rgba(0, 238, 255, 0.25),
+  --bxs-lg: 0 5px 27px -5px rgba(0, 0, 0, 0.25),
+    10vh 9vw 16vw -10vw rgba(0, 0, 0, 0.3);
+  --bxs-lg-blue: 0 5px 27px -5px rgba(0, 238, 255, 0.25),
     10vh 9vw 16vw -10vw rgba(0, 0, 0, 0.3);
   --ease-cubic: cubic-bezier(0.645, 0.045, 0.355, 1); /* easeInOutCubic */
 

@@ -1,19 +1,15 @@
 <template lang="pug">
 section.workout
+  //- Title
   h1.workout__title Workout
 
   //- Slider
-  client-only placeholder="Loading..."
-    agile(:options='agileSliderOptions')
-      .slide
-        h3 slide 1
+  client-only
+    splide(:options='splideOptions')
+      splide-slide(v-for='day in workouts', :key='day.title')
+        WorkoutCard(:day='day')
 
-      .slide
-        h3 slide 2
-
-      .slide
-        h3 slide 3
-
+  //- Controls
   .controls
     .rep-counter {{ "Rep #" + repCount }}
     button.btn(@click='repCount++') +
@@ -21,30 +17,56 @@ section.workout
 </template>
 
 <script>
+import '@splidejs/splide/dist/css/splide-core.min.css'
+
 export default {
   name: 'Workout',
   data() {
     return {
       repCount: 3,
-      agileSliderOptions: {
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        centerMode: true,
-        variableWidth: true,
+      workouts: {
+        sun: {
+          title: 'Sunday',
+        },
+        mon: {
+          title: 'Monday',
+        },
+        tue: {
+          title: 'Tuesday',
+        },
+        wed: {
+          title: 'Wednesday',
+        },
+        thu: {
+          title: 'Thursday',
+        },
+        fri: {
+          title: 'Friday',
+        },
+        sat: {
+          title: 'Saturday',
+        },
+      },
+      splideOptions: {
+        arrows: false,
+        gap: '.5rem',
+        keyboard: false,
+        padding: '1.5rem',
+        pagination: false,
+        start: 0,
+        type: 'loop',
       },
     }
+  },
+  mounted() {
+    // Set day of week
+    const d = new Date()
+    this.splideOptions.start = d.getDay()
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.slide {
-  height: 100%;
-  width: 100%;
-  outline: 2px dotted orangered;
-}
 // Workout
 .workout {
   width: 100%;

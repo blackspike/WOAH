@@ -82,7 +82,7 @@ export default {
     grid-area: button;
     height: 3rem;
     width: 3rem;
-    border: 1px solid var(--gray-8);
+    border: 2px solid var(--gray-8);
     .icon {
       fill: currentColor;
       height: 100%;
@@ -108,7 +108,7 @@ export default {
 .nav-mobile {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-2);
-  box-shadow: var(--bxs-lg);
+  box-shadow: var(--bxs-lg-blue);
   display: flex;
   flex-direction: column;
   gap: var(--m-lg);

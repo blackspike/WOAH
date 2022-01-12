@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'WOAH | Work Out At Home',
+    title: 'Work Out At Home | WOAH Fitness',
     htmlAttrs: {
       lang: 'en',
     },
@@ -29,6 +29,7 @@ export default {
       },
     ],
     link: [
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'manifest', type: 'image/x-icon', href: '/manifest.json' },
     ],
@@ -50,7 +51,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/vendor/vue-draggable.js' },
-    { src: '~/plugins/vendor/vue-agile' },
+    { src: '~/plugins/vendor/splide', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -69,8 +70,5 @@ export default {
   modules: [],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-
-  build: {
-    transpile: ['vue-agile'],
-  },
+  build: {},
 }

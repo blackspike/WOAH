@@ -8,8 +8,8 @@
 
 // 2. Vendors
 /* prettier-ignore */
-// @import
-// './node_modules/bootstrap/scss/bootstrap.scss';
+@import
+'./vendor/reset-josh';
 
 // 3. Base stuff
 /* prettier-ignore */
@@ -20,6 +20,7 @@
 // 4. Components
 /* prettier-ignore */
 @import
+  './components/forms',
   './components/lists',
   './components/numbers',
   './components/buttons';

@@ -43,6 +43,13 @@
     opacity: 0.4;
     pointer-events: none;
   }
+
+  &--border-blue {
+    border-color: var(--border-blue);
+  }
+  &--border-gray {
+    border-color: var(--gray-8);
+  }
 }
 
 .btn-plain {

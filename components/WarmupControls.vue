@@ -26,7 +26,9 @@
     //- Title
     h2.settings__title
       | {{ strings.settings }}
-      button.btn.btn-icon.settings__menu-btn(@click='settingsOpen = false')
+      button.btn.btn-icon.btn--border-graysettings__menu-btn(
+        @click='settingsOpen = false'
+      )
         svg.icon(height='24', width='24')
           use(href='#icon_x', v-if='settingsOpen')
           use(href='#icon_menu', v-else)
@@ -161,7 +163,7 @@ input[type='range']::-moz-range-track {
   width: 100%;
   bottom: calc(100% + var(--m));
   grid-area: mobile-nav;
-  box-shadow: var(--bxs-lg);
+  box-shadow: var(--bxs-lg-blue);
   padding: var(--m-lg);
   border-radius: var(--radius-2);
 
@@ -172,9 +174,8 @@ input[type='range']::-moz-range-track {
     justify-content: space-between;
     margin-bottom: 0;
   }
-  &__menu-btn {
+  btn--border-gray &__menu-btn {
     justify-content: flex-end;
-    border: 1px solid var(--gray-8);
   }
 
   &__row {
