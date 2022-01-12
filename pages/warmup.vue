@@ -75,6 +75,7 @@ export default {
       counting: false,
       currentStep: 0,
       finished: false,
+      noSleep: null,
       noSleepEnabled: true,
       routineInterval: null,
       seconds: 30,
@@ -122,6 +123,10 @@ export default {
       localStorage.setItem('savedNoSleepEnabled', bool)
     },
   },
+  beforeUnmount() {
+    this.noSleepEnabled = false
+    this.noSleep.disable()
+  },
   beforeMount() {
     const savedSeconds = localStorage.getItem('savedSeconds')
     const savedSpeech = localStorage.getItem('savedSpeech')
@@ -145,8 +150,8 @@ export default {
     },
     enableNoSleep() {
       if (this.noSleepEnabled) {
-        const noSleep = new NoSleep()
-        noSleep.enable()
+        this.noSleep = new NoSleep()
+        this.noSleep.enable()
       }
     },
     speak(text) {
