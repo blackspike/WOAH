@@ -54,6 +54,15 @@
           v-model='settingsSpeech',
           @change='$emit("toggleSpeech")'
         )
+    //- Sleep
+    .settings__row
+      label(for='set_sleep')
+        | {{ strings.sleepEnabled }}
+        input#set_sleep(
+          type='checkbox',
+          v-model='settingsSleep',
+          @change='$emit("toggleSleep")'
+        )
 </template>
 
 <script>
@@ -73,12 +82,16 @@ export default {
     finished: {
       type: Boolean,
     },
+    noSleepEnabled: {
+      type: Boolean,
+    },
   },
   data() {
     return {
       settingsOpen: false,
       settingsSeconds: 0,
       settingsSpeech: false,
+      settingsSleep: false,
       strings: {
         back: 'Back',
         startWarmup: 'Start warmup',
@@ -86,12 +99,14 @@ export default {
         settings: 'Settings',
         stepDuration: 'Step duration',
         announceSteps: 'Announce steps',
+        sleepEnabled: 'Prevent device sleep mode',
       },
     }
   },
   mounted() {
     this.settingsSeconds = this.seconds
     this.settingsSpeech = this.speech
+    this.settingsSleep = this.noSleepEnabled
   },
 }
 </script>

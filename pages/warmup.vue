@@ -47,11 +47,13 @@ section.warmup
       :seconds='seconds',
       :finished='finished',
       :speech='speech',
+      :noSleepEnabled='noSleepEnabled',
       @startRoutine='startRoutine',
       @prevNext='prevNext',
       @changeSeconds='changeSeconds',
       @restartStep='restartStep',
-      @toggleSpeech='speech = !speech'
+      @toggleSpeech='speech = !speech',
+      @toggleSleep='noSleepEnabled = !noSleepEnabled'
     )
 </template>
 
@@ -68,17 +70,17 @@ export default {
   components: { WarmupControls },
   data() {
     return {
-      timer: 0,
-      speech: true,
-      counting: false,
+      cooldownSeconds: 2,
       countdownInterval: null,
+      counting: false,
+      currentStep: 0,
+      finished: false,
+      noSleepEnabled: true,
       routineInterval: null,
       seconds: 30,
-      cooldownSeconds: 2,
+      speech: true,
       started: false,
-      currentStep: 0,
-
-      finished: false,
+      timer: 0,
       steps: [
         'March in place (swing arms)',
         'Jog in place',
@@ -116,15 +118,24 @@ export default {
     speech(bool) {
       localStorage.setItem('savedSpeech', bool)
     },
+    noSleepEnabled(bool) {
+      localStorage.setItem('savedNoSleepEnabled', bool)
+    },
   },
   beforeMount() {
     const savedSeconds = localStorage.getItem('savedSeconds')
     const savedSpeech = localStorage.getItem('savedSpeech')
+    const savedNoSleepEnabled = localStorage.getItem('savedNoSleepEnabled')
     if (savedSeconds) {
       this.seconds = parseInt(savedSeconds)
     }
     if (savedSpeech) {
       savedSpeech === 'true' ? (this.speech = true) : (this.speech = false)
+    }
+    if (savedNoSleepEnabled) {
+      savedNoSleepEnabled === 'true'
+        ? (this.noSleepEnabled = true)
+        : (this.noSleepEnabled = false)
     }
   },
   methods: {
@@ -133,8 +144,10 @@ export default {
       this.restartStep()
     },
     enableNoSleep() {
-      const noSleep = new NoSleep()
-      noSleep.enable()
+      if (this.noSleepEnabled) {
+        const noSleep = new NoSleep()
+        noSleep.enable()
+      }
     },
     speak(text) {
       if (!this.speech) return
