@@ -7,17 +7,19 @@
         use(href='#icon_x', v-if='editing')
         use(href='#icon_edit', v-else)
 
-  //- step-list
-  .step-list(v-if='editing')
-    //- Draggable items
-    li.step-list__item(v-for='(step, index) in steps', :key='step.title')
+  //- Step list
+  .step-list(v-if='!editing')
+    li.step-list__item(
+      v-for='(step, index) in editableSteps',
+      :key='step.title'
+    )
       span.step-list__count {{ step.count }}
       span.step-list__title {{ step.title }}
 
   //- Edit list
   draggable.edit-list(
     v-else,
-    v-model='steps',
+    v-model='editableSteps',
     @start='drag = true',
     @end='dragEnd',
     tag='ol',
@@ -25,15 +27,25 @@
   )
     transition-group(type='transition', :name='!drag ? "flip-list" : null')
       //- Draggable items
-      li.edit-list__item(v-for='(step, index) in steps', :key='step.title')
+      li.edit-list__item(
+        v-for='(step, index) in editableSteps',
+        :key='step.title'
+      )
         //- Editor
         .edit-list__editor
-          WorkoutEditor(:count='step.count', :title='step.title')
+          WorkoutEditor(
+            :count='step.count',
+            :title='step.title',
+            :index='index',
+            @removeStep='removeItem'
+          )
 
         //- drag icon
         .edit-list__drag-icon
           svg.icon
             use(xlink:href='#icon_drag')
+    li.edit-list__item.edit-list__item--add
+      button.btn.edit-list__btn-add(@click='addItem') Add exercise
 </template>
 
 <script>
@@ -52,32 +64,7 @@ export default {
       hasChanged: false,
       currentStep: 0,
       repCount: 3,
-      steps: [
-        {
-          count: 20,
-          title: 'Bodyweight squats',
-        },
-        {
-          count: 10,
-          title: 'Push-ups',
-        },
-        {
-          count: 20,
-          title: 'Walking lunges',
-        },
-        {
-          count: 10,
-          title: 'Dumbbell rows × 2',
-        },
-        {
-          count: 15,
-          title: 'Second Plank',
-        },
-        {
-          count: 30,
-          title: 'Jumping jacks',
-        },
-      ],
+      editableSteps: [],
     }
   },
   computed: {
@@ -90,25 +77,28 @@ export default {
       }
     },
   },
+  mounted() {
+    this.editableSteps = this.day.steps
+  },
   methods: {
     // Drag end
     dragEnd() {
       this.hasChanged = true
       this.drag = false
     },
-
-    next() {
-      if (this.repCount === 0 && this.currentStep === this.steps.length - 1) {
-        // this.currentStep = 0
-        return
-      }
-
-      if (this.currentStep === this.steps.length - 1) {
-        this.currentStep = 0
-        this.repCount--
-      } else {
-        this.currentStep++
-      }
+    // Add item
+    addItem() {
+      this.editableSteps.push({
+        count: null,
+        title: '',
+      })
+    },
+    // Remove item
+    removeItem(val) {
+      console.log(val)
+      const newArr = [...this.editableSteps]
+      newArr.splice(val, 1)
+      this.editableSteps = newArr
     },
   },
 }
@@ -212,6 +202,10 @@ export default {
 
     & + & {
       margin-top: var(--m-sm);
+    }
+
+    &--add {
+      margin-block-start: var(--m-lg);
     }
   }
 

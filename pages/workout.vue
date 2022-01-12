@@ -27,24 +27,206 @@ export default {
       workouts: {
         sun: {
           title: 'Sunday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         mon: {
           title: 'Monday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         tue: {
           title: 'Tuesday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         wed: {
           title: 'Wednesday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         thu: {
           title: 'Thursday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         fri: {
           title: 'Friday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
         sat: {
           title: 'Saturday',
+          steps: [
+            {
+              count: 20,
+              title: 'Bodyweight squats',
+            },
+            {
+              count: 10,
+              title: 'Push-ups',
+            },
+            {
+              count: 20,
+              title: 'Walking lunges',
+            },
+            {
+              count: 10,
+              title: 'Dumbbell rows × 2',
+            },
+            {
+              count: 15,
+              title: 'Second Plank',
+            },
+            {
+              count: 30,
+              title: 'Jumping jacks',
+            },
+          ],
         },
       },
       splideOptions: {

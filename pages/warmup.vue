@@ -234,7 +234,6 @@ export default {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   grid-template-areas: 'timer' 'next' 'controls';
-  user-select: none;
 
   &__title {
     grid-area: timer;

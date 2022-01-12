@@ -1,10 +1,5 @@
 <template lang="pug">
 form.editor
-  input.editor__title(
-    type='text',
-    v-model='editorTitle',
-    placeholder='Exercise type'
-  )
   input.editor__count(
     type='number',
     v-model='editorCount',
@@ -14,7 +9,15 @@ form.editor
     inputmode='decimal',
     placeholder='00'
   )
-  button.btn.editor__btn-delete(type='button')
+  input.editor__title(
+    type='text',
+    v-model='editorTitle',
+    placeholder='Exercise type'
+  )
+  button.btn.editor__btn-delete(
+    type='button',
+    @click='$emit("removeStep", index)'
+  )
     svg.icon(height='24', width='24')
       use(href='#icon_trash')
 </template>
@@ -24,10 +27,14 @@ export default {
   name: 'WorkoutEditor',
   props: {
     title: {
-      type: String,
+      type: null,
       required: true,
     },
     count: {
+      type: null,
+      required: true,
+    },
+    index: {
       type: Number,
       required: true,
     },
@@ -72,6 +79,13 @@ export default {
     background-color: var(--gray-9);
     color: var(--brand-orange);
     border: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--gray-9);
+      background-color: var(--brand-orange);
+    }
   }
 }
 </style>
