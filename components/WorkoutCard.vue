@@ -124,7 +124,8 @@ export default {
   height: 100%;
 
   &__title {
-    font-size: var(--fs-xxl);
+    color: var(--gray-6);
+    font-size: var(--fs-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;

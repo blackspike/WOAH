@@ -1,13 +1,18 @@
 <template lang="pug">
 form.editor
-  input.editor__title(type='text', v-model='editorTitle')
+  input.editor__title(
+    type='text',
+    v-model='editorTitle',
+    placeholder='Exercise type'
+  )
   input.editor__count(
     type='number',
     v-model='editorCount',
     min='0',
     max='999',
     maxlength='3',
-    inputmode='decimal'
+    inputmode='decimal',
+    placeholder='00'
   )
   button.btn.editor__btn-delete(type='button')
     svg.icon(height='24', width='24')
