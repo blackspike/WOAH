@@ -44,8 +44,20 @@
         .edit-list__drag-icon
           svg.icon
             use(xlink:href='#icon_drag')
-    li.edit-list__item.edit-list__item--add
-      button.btn.edit-list__btn-add(@click='addItem') Add exercise
+
+    li.edit-list__item.edit-list__item--add(slot='footer')
+      //- button.btn.edit-list__btn-add(@click='addItem') Add exercise
+      WorkoutEditor(
+        :count='0',
+        title='',
+        :index='0',
+        :addNew='true',
+        @click='addItem'
+      )
+      //- drag icon
+      .edit-list__drag-icon.edit-list__drag-icon--fake
+        svg.icon
+          use(xlink:href='#icon_drag')
 </template>
 
 <script>
@@ -218,6 +230,10 @@ export default {
     width: 2rem;
     display: flex;
     align-items: center;
+
+    &--fake {
+      opacity: 0;
+    }
 
     .icon {
       height: 2rem;

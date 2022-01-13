@@ -14,7 +14,19 @@ form.editor
     v-model='editorTitle',
     placeholder='Exercise type'
   )
+  //- Add/Delete
+  //- Add
+  button.btn.editor__btn-add(
+    v-if='addNew',
+    type='button',
+    @click='$emit("removeStep", index)'
+  )
+    svg.icon(height='24', width='24')
+      use(href='#icon_plus')
+
+  //- Delete
   button.btn.editor__btn-delete(
+    v-else,
     type='button',
     @click='$emit("removeStep", index)'
   )
@@ -37,6 +49,10 @@ export default {
     index: {
       type: Number,
       required: true,
+    },
+    addNew: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {
@@ -72,6 +88,7 @@ export default {
     height: 100%;
     font-size: var(--fs-lg);
   }
+  &__btn-add,
   &__btn-delete {
     padding: 0 var(--m-sm);
     height: 100%;
