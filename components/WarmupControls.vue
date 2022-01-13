@@ -26,9 +26,7 @@
     //- Title
     h2.settings__title
       | {{ strings.settings }}
-      button.btn.btn-icon.btn--border-graysettings__menu-btn(
-        @click='settingsOpen = false'
-      )
+      button.btn.btn-icon.settings__menu-btn(@click='settingsOpen = false')
         svg.icon(height='24', width='24')
           use(href='#icon_x', v-if='settingsOpen')
           use(href='#icon_menu', v-else)
@@ -121,14 +119,20 @@ export default {
   width: 100%;
   display: flex;
   gap: var(--m);
-  align-items: center;
   line-height: 1;
 
   &__btn {
     width: 100%;
+    flex: 3;
 
     &--settings {
+      align-items: center;
+      flex: 1;
       width: auto;
+      min-width: 5ch;
+      min-height: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
 }
@@ -175,7 +179,8 @@ input[type='range']::-moz-range-track {
     justify-content: space-between;
     margin-bottom: 0;
   }
-  btn--border-gray &__menu-btn {
+  &__menu-btn {
+    border-color: var(--gray-8);
     justify-content: flex-end;
   }
 

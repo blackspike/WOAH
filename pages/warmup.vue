@@ -234,6 +234,7 @@ export default {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   grid-template-areas: 'timer' 'next' 'controls';
+  padding: 0 var(--m);
 
   &__title {
     grid-area: timer;

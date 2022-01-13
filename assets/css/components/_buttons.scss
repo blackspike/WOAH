@@ -2,7 +2,7 @@
 // Buttons
 // --------------------------
 
-.btn {
+:where(html) .btn {
   // Button colours
   --btn-border: var(--brand-blue);
   --btn-text: var(--gray-1);
@@ -68,7 +68,7 @@
 }
 
 // Icon buttons
-.btn-icon {
+:where(.btn-icon) {
   border: none;
   font: inherit;
   color: inherit;
