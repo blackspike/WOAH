@@ -169,14 +169,15 @@ export default {
   grid-template-areas: 'header' 'content';
   grid-template-rows: auto 1fr;
   height: 100%;
-  padding: 0 var(--m) var(--m);
+  padding: 0 0 var(--m);
   width: 100%;
 
   @include media-query('xl') {
     margin: var(--m-xl) auto;
-    padding: var(--m-xl);
+    padding: var(--m-xl) 0;
     border-radius: var(--radius-3);
     box-shadow: var(--bxs-md);
+    max-width: var(--mw-content);
   }
 }
 

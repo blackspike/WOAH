@@ -263,6 +263,7 @@ export default {
     grid-area: title;
     font-size: var(--fs-xxl);
     margin: 0;
+    padding: 0 var(--m);
   }
 }
 
@@ -272,6 +273,7 @@ export default {
   gap: var(--m);
   align-items: center;
   line-height: 1;
+  padding: 0 var(--m);
 
   .rep-counter {
     width: 100%;

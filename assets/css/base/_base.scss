@@ -19,10 +19,10 @@ html {
     background-color: var(--bg);
   }
 }
+
 body {
   color: var(--text);
   font-family: var(--ff-base);
-  -moz-font-feature-settings: 'kern';
   font-feature-settings: 'kern';
   -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
@@ -32,7 +32,7 @@ body {
   flex: 1;
   max-height: 90%;
 }
-
+/* stylelint-disable */
 #__nuxt,
 #__layout {
   height: 100%;
@@ -40,6 +40,7 @@ body {
   display: flex;
   justify-content: center;
 }
+/* stylelint-enable */
 
 [hidden] {
   display: none !important;
@@ -94,24 +95,29 @@ h1 {
   // letter-spacing: -2px;
   font-size: var(--fs-xxxxl);
 }
+
 .h2,
 h2 {
   letter-spacing: -0.5px;
   font-size: var(--fs-xxxl);
 }
+
 .h3,
 h3 {
   letter-spacing: -0.5px;
   font-size: var(--fs-lg);
 }
+
 .h4,
 h4 {
   font-size: var(--fs-md);
 }
+
 .h5,
 h5 {
   font-size: var(--fs-sm);
 }
+
 .h6,
 h6 {
   font-size: var(--fs-xs);
@@ -124,6 +130,7 @@ h6 {
 .fs-7 {
   font-size: var(--fs-sm); // 14px
 }
+
 .fs-8 {
   font-size: var(--fs-xs); // 12px
 }

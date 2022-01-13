@@ -166,6 +166,7 @@ input[type='range']::-moz-range-track {
   box-shadow: var(--bxs-lg-blue);
   padding: var(--m-lg);
   border-radius: var(--radius-2);
+  z-index: var(--layer-4);
 
   &__title {
     font-size: var(--fs-xxl);

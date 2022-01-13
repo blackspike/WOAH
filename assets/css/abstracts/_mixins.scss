@@ -1,4 +1,5 @@
-/// Event wrapper
+/* stylelint-disable */
+// Event wrapper
 @mixin on-event($self: false) {
   @if $self {
     &,
@@ -18,7 +19,7 @@
 
 // Media queries
 
-/// Breakpoints map
+// Breakpoints map
 $breakpoints: (
   default: null,
   xs: 0,
@@ -31,6 +32,7 @@ $breakpoints: (
 
 @mixin media-query($label) {
   $min-width: map-get($breakpoints, $label);
+
   @if $min-width {
     @media screen and (min-width: $min-width) {
       @content;

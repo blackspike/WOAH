@@ -8,6 +8,7 @@
   &:focus-within {
     border: 2px solid var(--brand-blue);
   }
+
   &:invalid {
     border: 2px solid var(--brand-orange);
   }

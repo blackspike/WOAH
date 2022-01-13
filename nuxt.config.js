@@ -63,8 +63,11 @@ export default {
     '@nuxtjs/eslint-module',
     '@nuxtjs/style-resources',
     // https://go.nuxtjs.dev/stylelint
-    // '@nuxtjs/stylelint-module',
+    '@nuxtjs/stylelint-module',
   ],
+  stylelint: {
+    fix: true,
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],

@@ -54,7 +54,7 @@ export default {
   color: var(--gray-5);
   margin: auto;
   max-width: var(--mw-content);
-  padding: var(--m-sm) 0 var(--m);
+  padding: var(--m-sm) var(--m) var(--m);
 
   &__link {
     font-size: var(--fs-lg);
@@ -117,6 +117,7 @@ export default {
   position: absolute;
   right: 0;
   top: var(--m);
+  z-index: var(--layer-4);
 
   &__link {
     color: var(--gray-10);

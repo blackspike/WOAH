@@ -8,12 +8,14 @@
 *::after {
   box-sizing: border-box;
 }
+
 /*
   2. Remove default margin
 */
 * {
   margin: 0;
 }
+
 /*
   3. Allow percentage-based heights in the application
 */
@@ -21,6 +23,7 @@ html,
 body {
   height: 100%;
 }
+
 /*
   Typographic tweaks!
   4. Add accessible line-height
@@ -30,6 +33,7 @@ body {
   // line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
+
 /*
   6. Improve media defaults
 */
@@ -41,6 +45,7 @@ svg {
   display: block;
   max-width: 100%;
 }
+
 /*
   7. Remove built-in form typography styles
 */
@@ -50,6 +55,7 @@ textarea,
 select {
   font: inherit;
 }
+
 /*
   8. Avoid text overflows
 */
@@ -62,10 +68,13 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
 /*
   9. Create a root stacking context
 */
+/* stylelint-disable */
 #__layout,
 #__nuxt {
   isolation: isolate;
 }
+/* stylelint-enable */
