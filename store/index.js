@@ -30,11 +30,12 @@ export const mutations = {
     })
   },
   // Remove step
-  REMOVE_STEP(step) {
-    console.log(step)
-    const newArr = [...this.editableSteps]
-    newArr.splice(step, 1)
-    this.editableSteps = newArr
+  REMOVE_STEP(state,removeStep) {
+    console.log(removeStep)
+    const newArr = [...state.workOuts[removeStep.dayKey].steps]
+    newArr.splice(removeStep.index, 1)
+
+    state.workOuts[removeStep.dayKey].steps = newArr
   },
 }
 // Getters

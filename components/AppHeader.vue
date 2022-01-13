@@ -1,18 +1,23 @@
 <template lang="pug">
 .header
-  nuxt-link.header__logo.header__link(
-    @click.native='navOpen = false',
-    to='/',
-    aria-title='Work Out At Home'
-  )
-    //- | Work Out At Home
-    span.letter W
-    span.dot .
-    span.letter O
-    span.dot .
-    span.letter A
-    span.dot .
-    span.letter H
+  .header__masthead
+    nuxt-link.header__logo.header__link(
+      @click.native='navOpen = false',
+      to='/',
+      aria-title='Work Out At Home'
+    )
+      //- | Work Out At Home
+      span.letter W
+      span.dot .
+      span.letter O
+      span.dot .
+      span.letter A
+      span.dot .
+      span.letter H
+
+    span.header__divider(aria-hidden) ||
+
+    h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
@@ -52,7 +57,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto;
-  grid-template-areas: 'logo nav button' 'mobile-nav mobile-nav mobile-nav';
+  grid-template-areas: 'masthead nav button' 'mobile-nav mobile-nav mobile-nav';
   gap: 0 var(--m);
   align-items: center;
   position: relative;
@@ -60,6 +65,24 @@ export default {
   margin: auto;
   max-width: var(--mw-content);
   padding: var(--m-sm) var(--m) var(--m);
+
+  &__masthead {
+    grid-area: masthead;
+    display: flex;
+    align-items: center;
+    gap: var(--m-sm);
+  }
+  &__title {
+    font-size: var(--fs-lg);
+    line-height: 1;
+    color: var(--gray-5);
+    margin: 0;
+  }
+  &__divider {
+    display: block;
+    color: var(--gray-7);
+    font-weight: var(--fw-bd);
+  }
 
   &__link {
     font-size: var(--fs-lg);

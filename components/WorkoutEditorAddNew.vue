@@ -1,5 +1,5 @@
 <template lang="pug">
-form.editor(@sumbit.prevent='submitForm')
+form.editor(@submit.prevent='submitForm')
   input.editor__count(
     required,
     type='number',
@@ -18,7 +18,7 @@ form.editor(@sumbit.prevent='submitForm')
   )
   //- Add/Delete
   //- Add
-  button.btn.editor__btn-add(@click='submitForm')
+  button.btn.editor__btn-add(type='submit', @submit.prevent='submitForm')
     svg.icon(height='24', width='24')
       use(href='#icon_plus')
 </template>

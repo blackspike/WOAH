@@ -1,5 +1,5 @@
 <template lang="pug">
-form.editor(@submit.prevent='submitForm')
+form.editor
   input.editor__count(
     type='number',
     v-model.number.lazy='editableCount',
@@ -15,7 +15,7 @@ form.editor(@submit.prevent='submitForm')
     placeholder='Exercise type'
   )
   //- Delete
-  button.btn.editor__btn-delete(@click='$emit("removeItem", index)')
+  button.btn.editor__btn-delete(@click='removeStep', type='button')
     svg.icon(height='24', width='24')
       use(href='#icon_trash')
 </template>
@@ -66,12 +66,18 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['ADD_STEP', 'EDIT_STEP_TITLE', 'EDIT_STEP_COUNT']),
+    ...mapMutations(['REMOVE_STEP', 'EDIT_STEP_TITLE', 'EDIT_STEP_COUNT']),
     // Submit
     submitForm() {
       if (this.addNew) {
         this.ADD_STEP({ dayKey: this.dayKey, step: this.step })
       }
+    },
+    removeStep() {
+      this.REMOVE_STEP({
+        dayKey: this.dayKey,
+        index: this.index,
+      })
     },
   },
 }

@@ -1,8 +1,5 @@
 <template lang="pug">
 section.workout
-  //- Title
-  h1.workout__title Workout
-
   //- Slider
   client-only
     splide(:options='splideOptions')
@@ -58,13 +55,6 @@ export default {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 'title' 'list' 'timer';
-
-  &__title {
-    grid-area: title;
-    font-size: var(--fs-xxl);
-    margin: 0;
-    padding: 0 var(--m);
-  }
 }
 
 .controls {

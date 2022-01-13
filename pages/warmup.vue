@@ -1,7 +1,5 @@
 <template lang="pug">
 section.warmup
-  //- Title
-  h1.warmup__title(v-show='!started') {{ strings.warmupTitle }}
   //- Ready screen
   .ready(v-show='!started && !finished')
     //- Ready title
@@ -235,16 +233,9 @@ export default {
   grid-template-rows: 1fr auto auto;
   grid-template-areas: 'timer' 'next' 'controls';
   padding: 0 var(--m);
-
-  &__title {
-    grid-area: timer;
-    font-size: var(--fs-xxl);
-    margin: 0;
-  }
 }
 
 // Ready
-
 .ready {
   grid-area: timer;
   align-self: center;

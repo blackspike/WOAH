@@ -211,6 +211,7 @@ export default {
       height: 2rem;
       width: 2rem;
       color: var(--gray-7);
+      filter: drop-shadow(0 1px 1px var(--gray-9));
     }
   }
 }

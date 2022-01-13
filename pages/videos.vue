@@ -40,8 +40,8 @@ export default {
   flex-direction: column;
   gap: var(--m-lg);
   width: 100%;
-  // gap: var(--m-xl);;
-  //
+  padding: 0 var(--m);
+
   &__title {
     font-size: var(--fs-xl);
     margin-bottom: var(--m);
