@@ -28,8 +28,7 @@
   )
     //- Draggable items
     li.edit-list__item.draggable-item(
-      v-for='(step, index) in workOuts[dayKey].steps',
-      :key='step.title'
+      v-for='(step, index) in workOuts[dayKey].steps'
     )
       //- Editor
       .edit-list__editor
@@ -42,12 +41,7 @@
 
     li.edit-list__item.edit-list__item--add(slot='footer')
       //- button.btn.edit-list__btn-add(@click='addItem') Add exercise
-      WorkoutEditor(
-        :step='{ count: "10", title: "" }',
-        :index='0',
-        :dayKey='dayKey',
-        :addNew='true'
-      )
+      WorkoutEditorAddNew(:dayKey='dayKey')
       //- drag icon
       .edit-list__drag-icon.edit-list__drag-icon--fake
         svg.icon
@@ -87,9 +81,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations([
-      'nameOfMutation', // also supports payload `this.nameOfMutation(amount)`
-    ]),
+    ...mapMutations(['nameOfMutation']),
     // Drag end
     dragEnd() {
       this.hasChanged = true

@@ -1,3 +1,49 @@
+// Actions
+export const actions = {
+  counterUp({ state, commit }) {
+    commit('setCounter', state.counter + 1)
+  },
+}
+// Mutations
+export const mutations = {
+  SET_COUNTER(state, value) {
+    state.counter = value
+  },
+  // Set steps
+  SET_STEP(state, step) {
+    state.workOuts[step.dayKey].steps = step.newSteps
+  },
+  // Edit step title
+  EDIT_STEP_TITLE(state, editedStepTitle) {
+    state.workOuts[editedStepTitle.dayKey].steps[editedStepTitle.index].title = editedStepTitle.value
+  },
+  // Edit step Count
+  EDIT_STEP_COUNT(state, editedStepCount) {
+    state.workOuts[editedStepCount.dayKey].steps[editedStepCount.index].count = editedStepCount.value
+  },
+  // Add step
+  ADD_STEP(state, newStep) {
+    console.log(newStep)
+    state.workOuts[newStep.dayKey].steps.push({
+      count: newStep.count,
+      title: newStep.title,
+    })
+  },
+  // Remove step
+  REMOVE_STEP(step) {
+    console.log(step)
+    const newArr = [...this.editableSteps]
+    newArr.splice(step, 1)
+    this.editableSteps = newArr
+  },
+}
+// Getters
+export const getters = {
+  myGetter(state) {
+    return state.counter + 1000
+  },
+}
+
 // State
 export const state = () => ({
   counter: 0,
@@ -209,37 +255,3 @@ export const state = () => ({
     },
   },
 })
-
-// Actions
-export const actions = {
-  counterUp({ state, commit }) {
-    commit('setCounter', state.counter + 1)
-  },
-}
-// Mutations
-export const mutations = {
-  SET_COUNTER(state, value) {
-    state.counter = value
-  },
-  SET_STEP(state, step) {
-    state.workOuts[step.dayKey].steps = step.newSteps
-  },
-  // Add step
-  ADD_STEP(state, newStep) {
-    console.log({ ADD_STEP: newStep })
-    state.workOuts[newStep.dayKey].steps.push(newStep.step)
-  },
-  // Remove step
-  REMOVE_STEP(step) {
-    console.log(step)
-    const newArr = [...this.editableSteps]
-    newArr.splice(step, 1)
-    this.editableSteps = newArr
-  },
-}
-// Getters
-export const getters = {
-  myGetter(state) {
-    return state.counter + 1000
-  },
-}

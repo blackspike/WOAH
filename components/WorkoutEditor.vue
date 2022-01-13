@@ -1,8 +1,8 @@
 <template lang="pug">
-form.editor
+form.editor(@submit.prevent='submitForm')
   input.editor__count(
     type='number',
-    v-model='step.count',
+    v-model.number.lazy='editableCount',
     min='0',
     max='999',
     maxlength='3',
@@ -11,25 +11,11 @@ form.editor
   )
   input.editor__title(
     type='text',
-    v-model='step.title',
+    v-model.trim.lazy='editableTitle',
     placeholder='Exercise type'
   )
-  //- Add/Delete
-  //- Add
-  button.btn.editor__btn-add(
-    v-if='addNew',
-    type='button',
-    @click='ADD_STEP({ dayKey, step })'
-  )
-    svg.icon(height='24', width='24')
-      use(href='#icon_plus')
-
   //- Delete
-  button.btn.editor__btn-delete(
-    v-else,
-    type='button',
-    @click='$emit("removeItem", index)'
-  )
+  button.btn.editor__btn-delete(@click='$emit("removeItem", index)')
     svg.icon(height='24', width='24')
       use(href='#icon_trash')
 </template>
@@ -40,10 +26,6 @@ import { mapMutations } from 'vuex'
 export default {
   name: 'WorkoutEditor',
   props: {
-    step: {
-      type: Object,
-      required: true,
-    },
     dayKey: {
       type: String,
       required: true,
@@ -52,13 +34,45 @@ export default {
       type: Number,
       required: true,
     },
-    addNew: {
-      type: Boolean,
-      default: false,
+  },
+  computed: {
+    editableTitle: {
+      get() {
+        return this.$store.state.workOuts[this.dayKey].steps[this.index].title
+      },
+      set(value) {
+        console.log(value)
+
+        this.$store.commit('EDIT_STEP_TITLE', {
+          dayKey: this.dayKey,
+          index: this.index,
+          value,
+        })
+      },
+    },
+    editableCount: {
+      get() {
+        return this.$store.state.workOuts[this.dayKey].steps[this.index].count
+      },
+      set(value) {
+        console.log(value)
+
+        this.$store.commit('EDIT_STEP_COUNT', {
+          dayKey: this.dayKey,
+          index: this.index,
+          value,
+        })
+      },
     },
   },
   methods: {
-    ...mapMutations(['ADD_STEP']),
+    ...mapMutations(['ADD_STEP', 'EDIT_STEP_TITLE', 'EDIT_STEP_COUNT']),
+    // Submit
+    submitForm() {
+      if (this.addNew) {
+        this.ADD_STEP({ dayKey: this.dayKey, step: this.step })
+      }
+    },
   },
 }
 </script>
@@ -67,8 +81,8 @@ export default {
 .editor {
   align-items: center;
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  grid-template-areas: 'count title delete drag';
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas: 'count title delete';
   gap: var(--m-sm);
   max-width: 100%;
 

@@ -9,7 +9,7 @@
     border: 2px solid var(--brand-blue);
   }
 
-  &:invalid {
+  &:focus-within:invalid {
     border: 2px solid var(--brand-orange);
   }
 
