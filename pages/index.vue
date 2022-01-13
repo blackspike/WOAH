@@ -32,6 +32,7 @@ export default {
   text-align: center;
   width: 100%;
   height: 100%;
+  padding: 0 var(--m);
 
   &__content {
     display: flex;

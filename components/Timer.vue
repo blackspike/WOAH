@@ -44,17 +44,23 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'Timer',
-  props: ['seconds', 'timer'],
+  props: ['timer'],
   computed: {
+    // Percentage pi
     percent() {
-      const parseSecs = parseInt(this.seconds)
+      const parseSecs = parseInt(this.$store.state.warmUp.seconds)
       const parseTimer = parseInt(this.timer)
       const available = parseSecs - parseTimer
       const percentUsed = parseSecs > 0 ? (available / parseSecs) * 100 : 0
       return Math.round(percentUsed)
     },
+  },
+  methods: {
+    ...mapMutations(['SET_SECONDS']),
   },
 }
 </script>
@@ -74,6 +80,11 @@ svg {
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
+}
+@keyframes flasher {
+  to {
+    opacity: 0.3;
+  }
 }
 .pi {
   path {
@@ -102,6 +113,11 @@ svg {
 
     &.ending {
       fill: var(--brand-orange);
+      animation-name: flasher;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+      animation-timing-function: ease-out;
     }
   }
 }

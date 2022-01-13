@@ -1,55 +1,75 @@
 // Actions
 export const actions = {
-  counterUp({ state, commit }) {
-    commit('setCounter', state.counter + 1)
-  },
+  // counterUp({ state, commit }) {
+  //   commit('setCounter', state.counter + 1)
+  // },
 }
 // Mutations
 export const mutations = {
-  SET_COUNTER(state, value) {
-    state.counter = value
+  // --------------------------------
+  // Warmup Controls
+  // --------------------------------
+
+  // Set seconds
+  SET_SECONDS(state, seconds) {
+    state.warmUp.seconds = seconds
   },
+  // Set speech
+  SET_SPEECH(state) {
+    state.warmUp.speech = !state.warmUp.speech
+  },
+  // Set sleep
+  SET_SLEEP(state) {
+    state.warmUp.noSleep = !state.warmUp.noSleep
+  },
+
+  // --------------------------------
+  // Workout Steps
+  // --------------------------------
+
   // Set steps
-  SET_STEP(state, step) {
-    state.workOuts[step.dayKey].steps = step.newSteps
+  SET_DAY_STEPS(state, step) {
+    state.workOuts[step.dayKey].steps = step.value
   },
   // Edit step title
   EDIT_STEP_TITLE(state, editedStepTitle) {
-    state.workOuts[editedStepTitle.dayKey].steps[editedStepTitle.index].title = editedStepTitle.value
+    state.workOuts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
+      editedStepTitle.value
   },
   // Edit step Count
   EDIT_STEP_COUNT(state, editedStepCount) {
-    state.workOuts[editedStepCount.dayKey].steps[editedStepCount.index].count = editedStepCount.value
+    state.workOuts[editedStepCount.dayKey].steps[editedStepCount.index].count =
+      editedStepCount.value
   },
   // Add step
   ADD_STEP(state, newStep) {
-    console.log(newStep)
     state.workOuts[newStep.dayKey].steps.push({
       count: newStep.count,
       title: newStep.title,
     })
   },
   // Remove step
-  REMOVE_STEP(state,removeStep) {
-    console.log(removeStep)
+  REMOVE_STEP(state, removeStep) {
     const newArr = [...state.workOuts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
-
     state.workOuts[removeStep.dayKey].steps = newArr
   },
 }
 // Getters
 export const getters = {
-  myGetter(state) {
-    return state.counter + 1000
-  },
+  // myGetter(state) {
+  //   return state.counter + 1000
+  // },
 }
 
 // State
 export const state = () => ({
-  counter: 0,
   siteName: 'Work Out At Home',
-
+  warmUp: {
+    seconds: 30,
+    speech: true,
+    noSleep: true,
+  },
   workOuts: {
     sun: {
       title: 'Sunday',

@@ -41,8 +41,6 @@ export default {
         return this.$store.state.workOuts[this.dayKey].steps[this.index].title
       },
       set(value) {
-        console.log(value)
-
         this.$store.commit('EDIT_STEP_TITLE', {
           dayKey: this.dayKey,
           index: this.index,
@@ -55,8 +53,6 @@ export default {
         return this.$store.state.workOuts[this.dayKey].steps[this.index].count
       },
       set(value) {
-        console.log(value)
-
         this.$store.commit('EDIT_STEP_COUNT', {
           dayKey: this.dayKey,
           index: this.index,

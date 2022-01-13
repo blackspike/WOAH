@@ -3,7 +3,6 @@
 .controls
   //- Previous
   button.btn.controls__btn(@click='$emit("prevNext", "prev")', v-if='started') {{ strings.back }}
-
   //- Start
   button.btn.start-button(
     v-show='!started && !finished',
@@ -34,13 +33,13 @@
     //- Duration
     .settings__row
       label(for='set_seconds') {{ strings.stepDuration }}
-        span.seconds {{ settingsSeconds }}
+        span.seconds {{ getSetSeconds }}
           span.s s
       //- ({{ (seconds / 60).toFixed(2) }} mins)
       input#set_seconds(
         type='range',
-        v-model='settingsSeconds',
-        @change='$emit("changeSeconds", settingsSeconds)',
+        v-model='getSetSeconds',
+        @change='$emit("restartStep")',
         min='10',
         max='120',
         step='5'
@@ -49,49 +48,30 @@
     .settings__row
       label(for='set_speech')
         | {{ strings.announceSteps }}
-        input#set_speech(
-          type='checkbox',
-          v-model='settingsSpeech',
-          @change='$emit("toggleSpeech")'
-        )
+        input#set_speech(type='checkbox', v-model='getSetSpeech')
     //- Sleep
     .settings__row
       label(for='set_sleep')
         | {{ strings.sleepEnabled }}
-        input#set_sleep(
-          type='checkbox',
-          v-model='settingsSleep',
-          @change='$emit("toggleSleep")'
-        )
+        input#set_sleep(type='checkbox', v-model='getSetSleep')
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
+
 export default {
   name: 'WarmupControls',
   props: {
-    // eslint-disable-next-line vue/require-prop-types
-    seconds: {
-      default: 30,
-    },
-    speech: {
-      type: Boolean,
-    },
     started: {
       type: Boolean,
     },
     finished: {
       type: Boolean,
     },
-    noSleepEnabled: {
-      type: Boolean,
-    },
   },
   data() {
     return {
       settingsOpen: false,
-      settingsSeconds: 0,
-      settingsSpeech: false,
-      settingsSleep: false,
       strings: {
         back: 'Back',
         startWarmup: 'Start warmup',
@@ -99,14 +79,49 @@ export default {
         settings: 'Settings',
         stepDuration: 'Step duration',
         announceSteps: 'Announce steps',
-        sleepEnabled: 'Prevent device sleep mode',
+        sleepEnabled: 'Prevent device sleeping',
       },
     }
   },
-  mounted() {
-    this.settingsSeconds = this.seconds
-    this.settingsSpeech = this.speech
-    this.settingsSleep = this.noSleepEnabled
+  computed: {
+    ...mapState({
+      seconds: (state) => state.warmUp.seconds,
+      speech: (state) => state.warmUp.speech,
+      noSleep: (state) => state.warmUp.noSleep,
+    }),
+
+    // GetSet Seconds
+    getSetSeconds: {
+      get() {
+        return this.seconds
+      },
+      set(value) {
+        this.$store.commit('SET_SECONDS', value)
+      },
+    },
+
+    // GetSet Speech
+    getSetSpeech: {
+      get() {
+        return this.speech
+      },
+      set() {
+        this.$store.commit('SET_SPEECH')
+      },
+    },
+
+    // GetSet sleep
+    getSetSleep: {
+      get() {
+        return this.noSleep
+      },
+      set() {
+        this.$store.commit('SET_SLEEP')
+      },
+    },
+  },
+  methods: {
+    ...mapMutations(['SET_SECONDS', 'SET_SPEECH', 'SET_SLEEP']),
   },
 }
 </script>
@@ -156,20 +171,20 @@ input[type='range']::-moz-range-track {
   background-color: var(--brand-pink);
 }
 
-// Settings
+// Settings menu
 .settings {
   background-color: rgba(0, 0, 0, 0.9);
-  position: absolute;
-  display: flex;
-  font-size: var(--fs-lg);
-  flex-direction: column;
-  gap: var(--m-lg);
-  width: 100%;
+  border-radius: var(--radius-3);
   bottom: calc(100% + var(--m));
-  grid-area: mobile-nav;
   box-shadow: var(--bxs-lg-blue);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-lg);
+  gap: var(--m-lg);
+  grid-area: mobile-nav;
   padding: var(--m-lg);
-  border-radius: var(--radius-2);
+  position: absolute;
+  width: 100%;
   z-index: var(--layer-4);
 
   &__title {

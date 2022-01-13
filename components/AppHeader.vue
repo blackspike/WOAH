@@ -79,6 +79,7 @@ export default {
     margin: 0;
   }
   &__divider {
+    transform: translateY(-1px);
     display: block;
     color: var(--gray-7);
     font-weight: var(--fw-bd);
@@ -111,10 +112,11 @@ export default {
     height: 3rem;
     width: 3rem;
     border: 2px solid var(--gray-8);
+    padding: 0;
     .icon {
       fill: currentColor;
-      height: 100%;
-      width: 100%;
+      height: 1.5rem;
+      width: 1.5rem;
     }
 
     @include media-query('md') {
@@ -144,7 +146,7 @@ export default {
   padding: var(--m-lg);
   position: absolute;
   right: 0;
-  top: var(--m);
+  top: var(--m-sm);
   z-index: var(--layer-4);
 
   &__link {

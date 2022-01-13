@@ -21,11 +21,7 @@ section.warmup
 
   //- Timer
   .timer-wrapper
-    Timer(
-      v-show='started',
-      :timer='`${timer < 10 ? "0" + timer : timer}`',
-      :seconds='seconds'
-    )
+    Timer(v-show='started', :timer='`${timer < 10 ? "0" + timer : timer}`')
 
   //- Steps list
   ol.steps-list(v-if='started')
@@ -42,30 +38,25 @@ section.warmup
   .controls-wrapper
     WarmupControls(
       :started='started',
-      :seconds='seconds',
       :finished='finished',
       :speech='speech',
-      :noSleepEnabled='noSleepEnabled',
+      :noSleepEnabled='noSleep',
       @startRoutine='startRoutine',
       @prevNext='prevNext',
-      @changeSeconds='changeSeconds',
-      @restartStep='restartStep',
-      @toggleSpeech='speech = !speech',
-      @toggleSleep='noSleepEnabled = !noSleepEnabled'
+      @restartStep='restartStep'
     )
 </template>
 
 <script>
+import { mapMutations, mapState } from 'vuex'
 import ClickOutside from 'vue-click-outside'
 import NoSleep from 'nosleep.js'
-import WarmupControls from '../components/WarmupControls.vue'
 
 export default {
   name: 'Warmup',
   directives: {
     ClickOutside,
   },
-  components: { WarmupControls },
   data() {
     return {
       cooldownSeconds: 2,
@@ -73,11 +64,8 @@ export default {
       counting: false,
       currentStep: 0,
       finished: false,
-      noSleep: null,
-      noSleepEnabled: true,
+      noSleepLib: null,
       routineInterval: null,
-      seconds: 30,
-      speech: true,
       started: false,
       timer: 0,
       steps: [
@@ -103,6 +91,13 @@ export default {
       },
     }
   },
+  computed: {
+    ...mapState({
+      seconds: (state) => state.warmUp.seconds,
+      speech: (state) => state.warmUp.speech,
+      noSleep: (state) => state.warmUp.noSleep,
+    }),
+  },
   watch: {
     currentStep(newStep, prevStep) {
       if (this.finished) {
@@ -111,45 +106,18 @@ export default {
         this.speak(this.steps[newStep])
       }
     },
-    seconds(secs) {
-      localStorage.setItem('savedSeconds', secs)
-    },
-    speech(bool) {
-      localStorage.setItem('savedSpeech', bool)
-    },
-    noSleepEnabled(bool) {
-      localStorage.setItem('savedNoSleepEnabled', bool)
-    },
   },
   beforeUnmount() {
-    this.noSleepEnabled = false
-    this.noSleep.disable()
-  },
-  beforeMount() {
-    const savedSeconds = localStorage.getItem('savedSeconds')
-    const savedSpeech = localStorage.getItem('savedSpeech')
-    const savedNoSleepEnabled = localStorage.getItem('savedNoSleepEnabled')
-    if (savedSeconds) {
-      this.seconds = parseInt(savedSeconds)
-    }
-    if (savedSpeech) {
-      savedSpeech === 'true' ? (this.speech = true) : (this.speech = false)
-    }
-    if (savedNoSleepEnabled) {
-      savedNoSleepEnabled === 'true'
-        ? (this.noSleepEnabled = true)
-        : (this.noSleepEnabled = false)
-    }
+    this.noSleepLib.disable()
   },
   methods: {
-    changeSeconds(seconds) {
-      this.seconds = seconds
-      this.restartStep()
-    },
+    ...mapMutations(['SET_SECONDS', 'SET_SPEECH', 'SET_SLEEP']),
+
+    // Enable no sleep
     enableNoSleep() {
-      if (this.noSleepEnabled) {
-        this.noSleep = new NoSleep()
-        this.noSleep.enable()
+      if (this.noSleep) {
+        this.noSleepLib = new NoSleep()
+        this.noSleepLib.enable()
       }
     },
     speak(text) {
@@ -207,7 +175,6 @@ export default {
       }
     },
     start() {
-      console.info('starting...')
       this.timer = this.seconds
       this.counting = true
       this.countdownInterval = setInterval(() => {

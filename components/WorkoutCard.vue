@@ -10,7 +10,7 @@
   //- Step list
   .step-list(v-if='!editing')
     li.step-list__item(
-      v-for='(step, index) in workOuts[dayKey].steps',
+      v-for='(step, index) in editableSteps',
       :key='step.title'
     )
       span.step-list__count {{ step.count }}
@@ -20,16 +20,12 @@
   draggable.edit-list(
     v-else,
     v-model='editableSteps',
-    @start='drag = true',
-    @end='dragEnd',
     tag='ol',
     v-bind='draggableOptions',
     draggable='.draggable-item'
   )
     //- Draggable items
-    li.edit-list__item.draggable-item(
-      v-for='(step, index) in workOuts[dayKey].steps'
-    )
+    li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
       //- Editor
       .edit-list__editor
         WorkoutEditor(:step='step', :dayKey='dayKey', :index='index')
@@ -62,31 +58,32 @@ export default {
   data() {
     return {
       editing: false,
-      drag: false,
-      hasChanged: false,
-      currentStep: 0,
       repCount: 3,
-      editableSteps: [],
-    }
-  },
-  computed: {
-    ...mapState(['workOuts']),
-    draggableOptions() {
-      return {
+      draggableOptions: {
         animation: 200,
         group: 'description',
         disabled: false,
         ghostClass: 'ghost',
-      }
+      },
+    }
+  },
+  computed: {
+    ...mapState(['workOuts']),
+
+    editableSteps: {
+      get() {
+        return this.$store.state.workOuts[this.dayKey].steps
+      },
+      set(value) {
+        this.$store.commit('SET_DAY_STEPS', {
+          dayKey: this.dayKey,
+          value,
+        })
+      },
     },
   },
   methods: {
-    ...mapMutations(['nameOfMutation']),
-    // Drag end
-    dragEnd() {
-      this.hasChanged = true
-      this.drag = false
-    },
+    ...mapMutations(['SET_DAY_STEPS']),
   },
 }
 </script>
