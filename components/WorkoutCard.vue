@@ -1,7 +1,7 @@
 <template lang="pug">
 .workout-card
   h2.workout-card__title
-    | {{ day.title }}
+    | {{ workOuts[dayKey].title }}
     button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
       svg.icon(height='24', width='24')
         use(href='#icon_x', v-if='editing')
@@ -10,7 +10,7 @@
   //- Step list
   .step-list(v-if='!editing')
     li.step-list__item(
-      v-for='(step, index) in editableSteps',
+      v-for='(step, index) in workOuts[dayKey].steps',
       :key='step.title'
     )
       span.step-list__count {{ step.count }}
@@ -23,36 +23,30 @@
     @start='drag = true',
     @end='dragEnd',
     tag='ol',
-    v-bind='draggableOptions'
+    v-bind='draggableOptions',
+    draggable='.draggable-item'
   )
-    transition-group(type='transition', :name='!drag ? "flip-list" : null')
-      //- Draggable items
-      li.edit-list__item(
-        v-for='(step, index) in editableSteps',
-        :key='step.title'
-      )
-        //- Editor
-        .edit-list__editor
-          WorkoutEditor(
-            :count='step.count',
-            :title='step.title',
-            :index='index',
-            @removeStep='removeItem'
-          )
+    //- Draggable items
+    li.edit-list__item.draggable-item(
+      v-for='(step, index) in workOuts[dayKey].steps',
+      :key='step.title'
+    )
+      //- Editor
+      .edit-list__editor
+        WorkoutEditor(:step='step', :dayKey='dayKey', :index='index')
 
-        //- drag icon
-        .edit-list__drag-icon
-          svg.icon
-            use(xlink:href='#icon_drag')
+      //- drag icon
+      .edit-list__drag-icon
+        svg.icon
+          use(xlink:href='#icon_drag')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
       //- button.btn.edit-list__btn-add(@click='addItem') Add exercise
       WorkoutEditor(
-        :count='0',
-        title='',
+        :step='{ count: "10", title: "" }',
         :index='0',
-        :addNew='true',
-        @click='addItem'
+        :dayKey='dayKey',
+        :addNew='true'
       )
       //- drag icon
       .edit-list__drag-icon.edit-list__drag-icon--fake
@@ -61,11 +55,13 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
   name: 'WorkoutCard',
   props: {
-    day: {
-      type: Object,
+    dayKey: {
+      type: String,
       required: true,
     },
   },
@@ -80,6 +76,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['workOuts']),
     draggableOptions() {
       return {
         animation: 200,
@@ -89,28 +86,14 @@ export default {
       }
     },
   },
-  mounted() {
-    this.editableSteps = this.day.steps
-  },
   methods: {
+    ...mapMutations([
+      'nameOfMutation', // also supports payload `this.nameOfMutation(amount)`
+    ]),
     // Drag end
     dragEnd() {
       this.hasChanged = true
       this.drag = false
-    },
-    // Add item
-    addItem() {
-      this.editableSteps.push({
-        count: null,
-        title: '',
-      })
-    },
-    // Remove item
-    removeItem(val) {
-      console.log(val)
-      const newArr = [...this.editableSteps]
-      newArr.splice(val, 1)
-      this.editableSteps = newArr
     },
   },
 }
@@ -203,18 +186,15 @@ export default {
   padding: 2vh 0;
 
   &__item {
+    align-items: center;
+    display: grid;
+    display: grid;
+    gap: var(--m-sm);
+    grid-template-areas: 'editor drag';
+    grid-template-columns: 1fr auto;
+    margin-top: var(--m-sm);
     padding: 0;
     width: 100%;
-    display: grid;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-areas: 'editor drag';
-    gap: var(--m-sm);
-    align-items: center;
-
-    & + & {
-      margin-top: var(--m-sm);
-    }
 
     &--add {
       margin-block-start: var(--m-lg);

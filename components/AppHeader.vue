@@ -31,12 +31,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'Header',
   data() {
     return {
       navOpen: false,
     }
+  },
+  computed: {
+    ...mapState(['siteName']),
   },
 }
 </script>

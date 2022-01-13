@@ -2,7 +2,7 @@
 form.editor
   input.editor__count(
     type='number',
-    v-model='editorCount',
+    v-model='step.count',
     min='0',
     max='999',
     maxlength='3',
@@ -11,7 +11,7 @@ form.editor
   )
   input.editor__title(
     type='text',
-    v-model='editorTitle',
+    v-model='step.title',
     placeholder='Exercise type'
   )
   //- Add/Delete
@@ -19,7 +19,7 @@ form.editor
   button.btn.editor__btn-add(
     v-if='addNew',
     type='button',
-    @click='$emit("removeStep", index)'
+    @click='ADD_STEP({ dayKey, step })'
   )
     svg.icon(height='24', width='24')
       use(href='#icon_plus')
@@ -28,22 +28,24 @@ form.editor
   button.btn.editor__btn-delete(
     v-else,
     type='button',
-    @click='$emit("removeStep", index)'
+    @click='$emit("removeItem", index)'
   )
     svg.icon(height='24', width='24')
       use(href='#icon_trash')
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'WorkoutEditor',
   props: {
-    title: {
-      type: null,
+    step: {
+      type: Object,
       required: true,
     },
-    count: {
-      type: null,
+    dayKey: {
+      type: String,
       required: true,
     },
     index: {
@@ -55,15 +57,8 @@ export default {
       default: false,
     },
   },
-  data() {
-    return {
-      editorTitle: '',
-      editorCount: 0,
-    }
-  },
-  mounted() {
-    this.editorTitle = this.title
-    this.editorCount = this.count
+  methods: {
+    ...mapMutations(['ADD_STEP']),
   },
 }
 </script>
