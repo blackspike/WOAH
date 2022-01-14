@@ -1,34 +1,21 @@
 <template lang="pug">
 section.warmup
-  //- Ready screen
-  .ready(v-show='!started && !finished')
-    //- Ready title
-    h1.ready__title {{ strings.ready }}
-
-    //- Reminder
-    .reminder
-      //- Watch icon
-      svg.icon.reminder__icon
-        use(href='#icon_watch')
-      //- Rminder
-      h2.reminder__title {{ strings.reminder }}
+  //- Intro
+  .warmup-intro-wrapper
+    WarmupIntro(v-show='!started && !finished')
 
   //- Finished
-  h1.well-done(v-show='finished') {{ strings.finishedMsg }}
-
-  //- Finished button
-  nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
+  h2.finish-message(v-show='finished') {{ strings.finishedMsg }}
+  .finish-button-wrapper
+    nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
 
   //- Timer
   .timer-wrapper
     Timer(v-show='started', :timer='`${timer < 10 ? "0" + timer : timer}`')
 
   //- Steps list
-  ol.steps-list(v-if='started')
-    li.steps-list__item(
-      v-for='(step, index) in steps',
-      :class='index === currentStep ? "active" : "inactive"'
-    ) {{ step }}
+  .steps-wrapper(v-if='started')
+    WarmupSteps(:started='started', :currentStep='currentStep', @test='test')
 
   //- Next step
   .next-up(v-show='currentStep + 1 !== steps.length && started && !finished') {{ strings.next }}
@@ -39,8 +26,6 @@ section.warmup
     WarmupControls(
       :started='started',
       :finished='finished',
-      :speech='speech',
-      :noSleepEnabled='noSleep',
       @startRoutine='startRoutine',
       @prevNext='prevNext',
       @restartStep='restartStep'
@@ -68,25 +53,9 @@ export default {
       routineInterval: null,
       started: false,
       timer: 0,
-      steps: [
-        'March in place (swing arms)',
-        'Jog in place',
-        'Jumping jacks',
-        'Walking jacks',
-        'March with pull down',
-        'Lateral step',
-        'Opposite hand/toe touches',
-        'Lateral butt kicks',
-        'Mountain climbers',
-        'Jump up & down, side to side',
-        'Jump rope',
-      ],
       strings: {
         finishedMsg: 'Nice one!',
         finishedBtn: 'Go to workout',
-        warmupTitle: 'Warm up',
-        ready: 'Ready?',
-        reminder: 'Remember to start a workout on your smart watch!',
         next: 'Next',
       },
     }
@@ -96,6 +65,7 @@ export default {
       seconds: (state) => state.warmUp.seconds,
       speech: (state) => state.warmUp.speech,
       noSleep: (state) => state.warmUp.noSleep,
+      steps: (state) => state.warmUp.steps,
     }),
   },
   watch: {
@@ -112,7 +82,9 @@ export default {
   },
   methods: {
     ...mapMutations(['SET_SECONDS', 'SET_SPEECH', 'SET_SLEEP']),
-
+    test(val) {
+      console.log(val)
+    },
     // Enable no sleep
     enableNoSleep() {
       if (this.noSleep) {
@@ -199,36 +171,19 @@ export default {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 1fr auto auto;
   grid-template-areas: 'timer' 'next' 'controls';
-  padding: 0 var(--m);
 }
 
-// Ready
-.ready {
+// Intro
+.warmup-intro-wrapper {
   grid-area: timer;
   align-self: center;
   width: 100%;
-  &__title {
-    color: var(--brand-pink);
-    text-align: center;
-    font-size: var(--fs-7);
-  }
 }
 
-// Set watch
-.reminder {
-  display: flex;
-  align-items: center;
-
-  &__icon {
-    color: var(--brand-blue);
-    width: 14rem;
-    height: 7rem;
-  }
-  &__title {
-    color: var(--brand-green);
-    font-size: var(--fs-xl);
-    margin: 0;
-  }
+// Steps
+.steps-wrapper {
+  grid-area: timer;
+  align-self: end;
 }
 
 // Timer
@@ -236,45 +191,22 @@ export default {
   grid-area: timer;
   grid-row: 1 / 3;
   align-self: start;
+  padding: 0 var(--m);
 }
 
 // Done
-.well-done {
-  grid-area: timer;
+.finish-message {
   align-self: center;
+  color: var(--brand-pink);
+  grid-area: timer;
+  line-height: 0.8;
+  padding: 0 var(--m);
   text-align: center;
   width: 100%;
-  color: var(--brand-pink);
-  line-height: 0.8;
 }
-
-// Steps list
-.steps-list {
-  grid-area: timer;
-  align-self: end;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  line-height: 1;
-
-  &__item {
-    align-items: center;
-    background-color: var(--gray);
-    border-radius: var(--radius-2);
-    color: var(--brand-pink);
-    display: flex;
-    font-size: var(--fs-xxl);
-    justify-content: center;
-    padding: var(--m-sm) 0;
-    text-align: center;
-    min-height: 6rem;
-    text-shadow: 0 0.1rem 0.1rem black;
-
-    &.inactive {
-      opacity: 0.2;
-      display: none;
-    }
-  }
+.finish-button-wrapper {
+  grid-area: controls;
+  padding: 0 var(--m);
 }
 
 // Next step
@@ -294,6 +226,7 @@ export default {
 }
 // Controls
 .controls-wrapper {
+  padding: 0 var(--m);
   grid-area: controls;
   width: 100%;
 }

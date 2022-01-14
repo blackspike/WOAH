@@ -69,6 +69,19 @@ export const state = () => ({
     seconds: 30,
     speech: true,
     noSleep: true,
+    steps: [
+      'March in place (swing arms)',
+      'Jog in place',
+      'Jumping jacks',
+      'Walking jacks',
+      'March with pull down',
+      'Lateral step',
+      'Opposite hand/toe touches',
+      'Lateral butt kicks',
+      'Mountain climbers',
+      'Jump up & down, side to side',
+      'Jump rope',
+    ],
   },
   workOuts: {
     sun: {

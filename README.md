@@ -2,19 +2,27 @@
 
 ## TODO
 
-- Skip
-- Center
+- swiper warmup
+- edit warmup
+- standalone timer
+- refactor timer
+- necksercises
+
+### Done
+
+- swiper slider
+- re-arrange / add / remove crud
+- instruction below number
+- up next
+- cards
+- speak instructions
+- adjust and store length
+- fix extra last 5 sec
+- colour last 5 secconds (colour increments)
 - remove seconds
 - blue text pink numbers
-- colour last 5 secconds (colour increments)
-- fix extra last 5 sec
-- adjust and store length
-- speak instructions
-- swiper slider
-- cards
-- up next
-- instruction below number
-- re-arrange / add / remove crud
+- Center
+- Skip
 
 ## Build Setup
 

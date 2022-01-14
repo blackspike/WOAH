@@ -71,7 +71,12 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['vue-plausible'],
+
+  // Plausible
+  plausible: {
+   domain: 'woah.monster'
+  }
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
