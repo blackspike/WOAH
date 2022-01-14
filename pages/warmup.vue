@@ -4,44 +4,46 @@ section.warmup
   .warmup-intro-wrapper
     WarmupIntro(v-show='!started && !finished')
 
+  //- Start
+  .start-button-wrapper(v-show='!started && !finished')
+    button.btn.start-button(@click='startRoutine') {{ strings.startWarmup }}
+
   //- Finished
   h2.finish-message(v-show='finished') {{ strings.finishedMsg }}
-  .finish-button-wrapper
+  .finish-button-wrapper(v-show='finished')
     nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
 
-  //- Timer
-  .timer-wrapper
-    Timer(v-show='started', :timer='`${timer < 10 ? "0" + timer : timer}`')
-
   //- Steps list
-  .steps-wrapper(v-if='started')
-    WarmupSteps(:started='started', :currentStep='currentStep', @test='test')
-
-  //- Next step
-  .next-up(v-show='currentStep + 1 !== steps.length && started && !finished') {{ strings.next }}
-    span {{ steps[currentStep + 1] }}
+  .warmup-card-wrapper(v-if='started')
+    //- Slider
+    client-only
+      splide(
+        :options='splideOptions',
+        @splide:move='slideChange',
+        ref='warmupSplide'
+      )
+        splide-slide(v-for='(step, index) in steps', :key='step')
+          WarmupCard(
+            :ref='`warmupCard${index}`',
+            :started='started',
+            :currentStep='currentStep',
+            :timer='timer',
+            :step='step',
+            :nextStep='steps[currentStep + 1]',
+            @prevNext='prevNext'
+          )
 
   //- Controls
-  .controls-wrapper
-    WarmupControls(
-      :started='started',
-      :finished='finished',
-      @startRoutine='startRoutine',
-      @prevNext='prevNext',
-      @restartStep='restartStep'
-    )
+  .controls-wrapper(v-show='started && !finished')
+    WarmupControls(:started='started', :finished='finished')
 </template>
 
 <script>
+import '@splidejs/splide/dist/css/splide-core.min.css'
 import { mapMutations, mapState } from 'vuex'
-import ClickOutside from 'vue-click-outside'
-import NoSleep from 'nosleep.js'
 
 export default {
   name: 'Warmup',
-  directives: {
-    ClickOutside,
-  },
   data() {
     return {
       cooldownSeconds: 2,
@@ -49,22 +51,28 @@ export default {
       counting: false,
       currentStep: 0,
       finished: false,
-      noSleepLib: null,
       routineInterval: null,
       started: false,
       timer: 0,
       strings: {
         finishedMsg: 'Nice one!',
         finishedBtn: 'Go to workout',
-        next: 'Next',
+        startWarmup: 'Start warmup',
+      },
+      splideOptions: {
+        arrows: false,
+        gap: '.5rem',
+        keyboard: false,
+        padding: '1rem',
+        start: 0,
+        type: 'slide',
       },
     }
   },
   computed: {
     ...mapState({
-      seconds: (state) => state.warmUp.seconds,
-      speech: (state) => state.warmUp.speech,
-      noSleep: (state) => state.warmUp.noSleep,
+      stepDuration: (state) => state.warmUp.stepDuration,
+      speech: (state) => state.settings.speech,
       steps: (state) => state.warmUp.steps,
     }),
   },
@@ -77,86 +85,43 @@ export default {
       }
     },
   },
-  beforeUnmount() {
-    this.noSleepLib.disable()
-  },
   methods: {
-    ...mapMutations(['SET_SECONDS', 'SET_SPEECH', 'SET_SLEEP']),
-    test(val) {
-      console.log(val)
-    },
-    // Enable no sleep
-    enableNoSleep() {
-      if (this.noSleep) {
-        this.noSleepLib = new NoSleep()
-        this.noSleepLib.enable()
-      }
-    },
+    ...mapMutations([
+      'SET_STEP_DURATION',
+      'SET_CURRENT_STEP',
+      'SET_SPEECH',
+      'SET_SLEEP',
+    ]),
+
+    // Speak
     speak(text) {
       if (!this.speech) return
       const msg = new SpeechSynthesisUtterance()
       msg.text = text
       window.speechSynthesis.speak(msg)
     },
-    restartStep() {
-      this.reset()
-      this.start()
-    },
+
+    // Start routine
     startRoutine() {
-      this.enableNoSleep()
       this.started = true
-      this.speak(this.steps[0])
-      this.start()
-      this.routineInterval = setInterval(() => {
-        if (this.currentStep === this.steps.length - 1) {
-          this.started = false
-          this.currentStep = 0
-          clearInterval(this.routineInterval)
-          this.finished = true
-        } else {
-          this.reset()
-          this.start()
-          this.currentStep++
-        }
-      }, this.seconds * 1000 + this.cooldownSeconds * 1000)
     },
-    reset() {
-      console.info('resetting...')
-      clearInterval(this.countdownInterval)
-      this.counting = false
+
+    // slideChange
+    slideChange(el, newIndex, prevIndex, destIndex) {
+      // Reset timer
       this.timer = this.seconds
+
+      // Update vuex
+      this.SET_CURRENT_STEP(newIndex)
     },
-    prevNext(prevNext) {
-      if (this.currentStep === this.steps.length - 1) {
-        this.started = false
-        this.currentStep = 0
-        clearInterval(this.routineInterval)
-        this.finished = true
-        return
-      }
-      this.timer = this.seconds
-      if (prevNext === 'prev') {
-        if (this.currentStep === 0) return
-        this.reset()
-        this.start()
-        this.currentStep--
+
+    // Prev/Next slidestep
+    prevNext(next = true) {
+      if (next) {
+        this.$refs.warmupSplide.go('>')
       } else {
-        this.reset()
-        this.start()
-        this.currentStep++
+        this.$refs.warmupSplide.go('<')
       }
-    },
-    start() {
-      this.timer = this.seconds
-      this.counting = true
-      this.countdownInterval = setInterval(() => {
-        if (this.timer === 0) {
-          clearInterval(this.countdownInterval)
-          this.counting = false
-          return
-        }
-        this.timer--
-      }, 1000)
     },
   },
 }
@@ -169,26 +134,37 @@ export default {
   display: grid;
   gap: var(--m);
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto auto;
-  grid-template-areas: 'timer' 'next' 'controls';
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 'cards' 'controls';
 }
 
 // Intro
 .warmup-intro-wrapper {
-  grid-area: timer;
+  grid-area: cards;
   align-self: center;
   width: 100%;
 }
 
+.start-button-wrapper {
+  grid-area: controls;
+  padding: 0 var(--m);
+  width: 100%;
+}
+.start-button {
+  grid-area: controls;
+  width: 100%;
+}
+
 // Steps
-.steps-wrapper {
-  grid-area: timer;
-  align-self: end;
+.warmup-card-wrapper {
+  grid-area: cards;
+  align-self: center;
+  height: 100%;
 }
 
 // Timer
 .timer-wrapper {
-  grid-area: timer;
+  grid-area: cards;
   grid-row: 1 / 3;
   align-self: start;
   padding: 0 var(--m);
@@ -198,7 +174,7 @@ export default {
 .finish-message {
   align-self: center;
   color: var(--brand-pink);
-  grid-area: timer;
+  grid-area: cards;
   line-height: 0.8;
   padding: 0 var(--m);
   text-align: center;
@@ -209,21 +185,6 @@ export default {
   padding: 0 var(--m);
 }
 
-// Next step
-.next-up {
-  grid-area: next;
-  line-height: 1;
-  color: var(--gray-7);
-  font-size: var(--fs-lg);
-  text-align: center;
-  margin-block-end: var(--m);
-
-  span {
-    display: inline-block;
-    margin-inline: var(--m-sm);
-    color: var(--gray-6);
-  }
-}
 // Controls
 .controls-wrapper {
   padding: 0 var(--m);

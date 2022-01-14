@@ -19,6 +19,8 @@
 
     h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
 
+    span.header__currentStep {{ $store.state.warmUp.currentStep }}/{{ $store.state.warmUp.steps.length }}
+
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
     nuxt-link.header__link(to='/workout') Workout
@@ -74,15 +76,16 @@ export default {
   }
   &__title {
     font-size: var(--fs-lg);
-    line-height: 1;
     color: var(--gray-5);
-    margin: 0;
   }
   &__divider {
     transform: translateY(-1px);
     display: block;
     color: var(--gray-7);
     font-weight: var(--fw-bd);
+  }
+  &__currentStep {
+    color: var(--gray-6);
   }
 
   &__link {

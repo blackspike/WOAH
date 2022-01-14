@@ -1,14 +1,6 @@
 <template lang="pug">
 //- Controls
 .controls
-  //- Previous
-  button.btn.controls__btn(@click='$emit("prevNext", "prev")', v-if='started') {{ strings.back }}
-  //- Start
-  button.btn.start-button(
-    v-show='!started && !finished',
-    @click='$emit("startRoutine")'
-  ) {{ strings.startWarmup }}
-
   //- Show Settings
   button.btn.controls__btn.controls__btn--settings(
     @click='settingsOpen = !settingsOpen',
@@ -16,9 +8,6 @@
   )
     svg.icon(height='24', width='24')
       use(href='#icon_gear')
-
-  //- Next
-  button.btn.controls__btn(@click='$emit("prevNext", "next")', v-if='started') {{ strings.skip }}
 
   //- Settings menu
   aside.settings(v-if='settingsOpen')
@@ -73,9 +62,6 @@ export default {
     return {
       settingsOpen: false,
       strings: {
-        back: 'Back',
-        startWarmup: 'Start warmup',
-        skip: 'Skip',
         settings: 'Settings',
         stepDuration: 'Step duration',
         announceSteps: 'Announce steps',
@@ -142,18 +128,10 @@ export default {
 
     &--settings {
       align-items: center;
-      flex: 1;
-      width: auto;
-      min-width: 5ch;
-      min-height: 100%;
       display: flex;
       justify-content: center;
     }
   }
-}
-
-.start-button {
-  width: 100%;
 }
 
 input[type='range']::-webkit-slider-runnable-track {

@@ -10,9 +10,13 @@ export const mutations = {
   // Warmup Controls
   // --------------------------------
 
-  // Set seconds
-  SET_SECONDS(state, seconds) {
+  // Set step duration
+  SET_STEP_DURATION(state, seconds) {
     state.warmUp.seconds = seconds
+  },
+  // Set current step
+  SET_CURRENT_STEP(state, step) {
+    state.warmUp.currentStep = step
   },
   // Set speech
   SET_SPEECH(state) {
@@ -65,10 +69,13 @@ export const getters = {
 // State
 export const state = () => ({
   siteName: 'Work Out At Home',
-  warmUp: {
-    seconds: 30,
+  settings: {
     speech: true,
     noSleep: true,
+  },
+  warmUp: {
+    stepDuration: 8,
+    currentStep: 0,
     steps: [
       'March in place (swing arms)',
       'Jog in place',
