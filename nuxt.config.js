@@ -76,7 +76,7 @@ export default {
   // Plausible
   plausible: {
    domain: 'woah.monster'
-  }
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
