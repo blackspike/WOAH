@@ -3,7 +3,7 @@ section.workout
   //- Slider
   client-only
     splide(:options='splideOptions')
-      splide-slide(v-for='(day, dayKey) in workOuts', :key='dayKey')
+      splide-slide(v-for='(day, dayKey) in workouts', :key='dayKey')
         WorkoutCard(:dayKey='dayKey')
 
   //- Controls
@@ -35,7 +35,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['workOuts']),
+    ...mapState(['workouts']),
   },
   mounted() {
     // Set day of week

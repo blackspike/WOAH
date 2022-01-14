@@ -1,7 +1,7 @@
 <template lang="pug">
 .workout-card
   h2.workout-card__title
-    | {{ workOuts[dayKey].title }}
+    | {{ workouts[dayKey].title }}
     button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
       svg.icon(height='24', width='24')
         use(href='#icon_x', v-if='editing')
@@ -68,11 +68,11 @@ export default {
     }
   },
   computed: {
-    ...mapState(['workOuts']),
+    ...mapState(['workouts']),
 
     editableSteps: {
       get() {
-        return this.$store.state.workOuts[this.dayKey].steps
+        return this.$store.state.workouts[this.dayKey].steps
       },
       set(value) {
         this.$store.commit('SET_DAY_STEPS', {

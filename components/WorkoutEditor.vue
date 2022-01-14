@@ -38,7 +38,7 @@ export default {
   computed: {
     editableTitle: {
       get() {
-        return this.$store.state.workOuts[this.dayKey].steps[this.index].title
+        return this.$store.state.workouts[this.dayKey].steps[this.index].title
       },
       set(value) {
         this.$store.commit('EDIT_STEP_TITLE', {
@@ -50,7 +50,7 @@ export default {
     },
     editableCount: {
       get() {
-        return this.$store.state.workOuts[this.dayKey].steps[this.index].count
+        return this.$store.state.workouts[this.dayKey].steps[this.index].count
       },
       set(value) {
         this.$store.commit('EDIT_STEP_COUNT', {

@@ -8,28 +8,24 @@ article.warmup-card
       @countdownFinished='callNextSlide'
     )
 
-  h2.warmup-card__title {{ step }}
+  h2.warmup-card__title {{ step }} {{ index }} {{ currentStep }}
 
   //- Next step
   .warmup-card__next-up Next:
-    span {{ nextStep }}
+    span {{ getNextStep }}
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'WarmupCard',
   props: {
-    timer: {
-      type: null,
+    index: {
+      type: Number,
       required: true,
     },
     step: {
-      type: String,
-      required: true,
-    },
-    nextStep: {
       type: String,
       required: true,
     },
@@ -37,30 +33,38 @@ export default {
       type: Boolean,
       required: true,
     },
-    currentStep: {
-      type: Number,
-      required: true,
-    },
   },
   data() {
     return {}
   },
+
   computed: {
     ...mapState({
-      steps: (state) => state.warmUp.steps,
+      steps: (state) => state.warmup.steps,
+      currentStep: (state) => state.warmup.currentStep,
     }),
+    ...mapGetters(['getNextStep']),
+  },
+  watch: {
+    // If the vuex currentStep changes, start the timer
+    currentStep() {
+      this.startTimer()
+    },
   },
   methods: {
     startTimer() {
-      this.$refs.countdownTimer.startTimer()
+      // Start timer if current slide is active
+      if (this.index === this.currentStep) {
+        this.$refs.countdownTimer.startCountdown()
+      }
     },
 
     // After 2sec cooldown, call for next slide
     callNextSlide() {
+      console.log('callNextSlide')
       setTimeout(() => {
         this.$emit('prevNext')
-        console.log('callNextSlide')
-      }, 2000)
+      }, 1000)
     },
   },
 }

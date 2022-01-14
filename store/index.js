@@ -12,19 +12,19 @@ export const mutations = {
 
   // Set step duration
   SET_STEP_DURATION(state, seconds) {
-    state.warmUp.seconds = seconds
+    state.warmup.seconds = seconds
   },
   // Set current step
   SET_CURRENT_STEP(state, step) {
-    state.warmUp.currentStep = step
+    state.warmup.currentStep = step
   },
   // Set speech
   SET_SPEECH(state) {
-    state.warmUp.speech = !state.warmUp.speech
+    state.warmup.speech = !state.warmup.speech
   },
   // Set sleep
   SET_SLEEP(state) {
-    state.warmUp.noSleep = !state.warmUp.noSleep
+    state.warmup.noSleep = !state.warmup.noSleep
   },
 
   // --------------------------------
@@ -33,37 +33,41 @@ export const mutations = {
 
   // Set steps
   SET_DAY_STEPS(state, step) {
-    state.workOuts[step.dayKey].steps = step.value
+    state.workouts[step.dayKey].steps = step.value
   },
   // Edit step title
   EDIT_STEP_TITLE(state, editedStepTitle) {
-    state.workOuts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
+    state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
       editedStepTitle.value
   },
   // Edit step Count
   EDIT_STEP_COUNT(state, editedStepCount) {
-    state.workOuts[editedStepCount.dayKey].steps[editedStepCount.index].count =
+    state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
       editedStepCount.value
   },
   // Add step
   ADD_STEP(state, newStep) {
-    state.workOuts[newStep.dayKey].steps.push({
+    state.workouts[newStep.dayKey].steps.push({
       count: newStep.count,
       title: newStep.title,
     })
   },
   // Remove step
   REMOVE_STEP(state, removeStep) {
-    const newArr = [...state.workOuts[removeStep.dayKey].steps]
+    const newArr = [...state.workouts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
-    state.workOuts[removeStep.dayKey].steps = newArr
+    state.workouts[removeStep.dayKey].steps = newArr
   },
 }
+
 // Getters
 export const getters = {
-  // myGetter(state) {
-  //   return state.counter + 1000
-  // },
+  getNextStep(state) {
+    return state.warmup.steps[state.warmup.currentStep + 1]
+  },
+  getWarmup(state) {
+    return state.warmup
+  },
 }
 
 // State
@@ -73,7 +77,7 @@ export const state = () => ({
     speech: true,
     noSleep: true,
   },
-  warmUp: {
+  warmup: {
     stepDuration: 8,
     currentStep: 0,
     steps: [
@@ -90,7 +94,7 @@ export const state = () => ({
       'Jump rope',
     ],
   },
-  workOuts: {
+  workouts: {
     sun: {
       title: 'Sunday',
       steps: [

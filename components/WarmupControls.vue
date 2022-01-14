@@ -71,9 +71,9 @@ export default {
   },
   computed: {
     ...mapState({
-      seconds: (state) => state.warmUp.seconds,
-      speech: (state) => state.warmUp.speech,
-      noSleep: (state) => state.warmUp.noSleep,
+      seconds: (state) => state.warmup.seconds,
+      speech: (state) => state.warmup.speech,
+      noSleep: (state) => state.warmup.noSleep,
     }),
 
     // GetSet Seconds

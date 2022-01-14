@@ -19,7 +19,7 @@
 
     h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
 
-    span.header__currentStep {{ $store.state.warmUp.currentStep }}/{{ $store.state.warmUp.steps.length }}
+    span.header__currentStep {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup

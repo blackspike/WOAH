@@ -54,12 +54,13 @@ export default {
   },
   computed: {
     ...mapState({
-      stepDuration: (state) => state.warmUp.stepDuration,
+      stepDuration: (state) => state.warmup.stepDuration,
+      currentStep: (state) => state.warmup.currentStep,
     }),
 
     // Percentage pi
     percent() {
-      const secondsTotal = this.$store.state.warmUp.stepDuration
+      const secondsTotal = this.$store.state.warmup.stepDuration
       const secondsLeft = secondsTotal - this.countdown
 
       return Math.round(
@@ -67,13 +68,20 @@ export default {
       )
     },
   },
-  mounted() {
-    // Initialise countdown fron vuex
-    this.countdown = this.stepDuration
-  },
   methods: {
+    // Reset timer
+    resetTimer() {
+      // Reset clock
+      clearInterval(this.timerInteval)
+      this.countdown = this.stepDuration
+    },
+
     // Countdown timer
-    startTimer() {
+    startCountdown() {
+      // Reset first
+      this.resetTimer()
+
+      // Start clock
       this.timerInteval = setInterval(() => {
         // If not 0, decrease, else clear interval and move on
         if (this.countdown > 0) {

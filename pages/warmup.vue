@@ -24,12 +24,9 @@ section.warmup
       )
         splide-slide(v-for='(step, index) in steps', :key='step')
           WarmupCard(
-            :ref='`warmupCard${index}`',
             :started='started',
-            :currentStep='currentStep',
-            :timer='timer',
             :step='step',
-            :nextStep='steps[currentStep + 1]',
+            :index='index',
             @prevNext='prevNext'
           )
 
@@ -39,21 +36,15 @@ section.warmup
 </template>
 
 <script>
-import '@splidejs/splide/dist/css/splide-core.min.css'
+import '@splidejs/splide/dist/css/splide.min.css'
 import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'Warmup',
   data() {
     return {
-      cooldownSeconds: 2,
-      countdownInterval: null,
-      counting: false,
-      currentStep: 0,
       finished: false,
-      routineInterval: null,
       started: false,
-      timer: 0,
       strings: {
         finishedMsg: 'Nice one!',
         finishedBtn: 'Go to workout',
@@ -64,6 +55,7 @@ export default {
         gap: '.5rem',
         keyboard: false,
         padding: '1rem',
+        pagination: false,
         start: 0,
         type: 'slide',
       },
@@ -71,9 +63,10 @@ export default {
   },
   computed: {
     ...mapState({
-      stepDuration: (state) => state.warmUp.stepDuration,
+      stepDuration: (state) => state.warmup.stepDuration,
       speech: (state) => state.settings.speech,
-      steps: (state) => state.warmUp.steps,
+      steps: (state) => state.warmup.steps,
+      currentStep: (state) => state.warmup.currentStep,
     }),
   },
   watch: {
@@ -104,22 +97,24 @@ export default {
     // Start routine
     startRoutine() {
       this.started = true
+      this.SET_CURRENT_STEP(0)
     },
 
     // slideChange
     slideChange(el, newIndex, prevIndex, destIndex) {
-      // Reset timer
-      this.timer = this.seconds
-
       // Update vuex
       this.SET_CURRENT_STEP(newIndex)
     },
 
     // Prev/Next slidestep
     prevNext(next = true) {
+      console.log('prevNext', next)
+
       if (next) {
+        this.SET_CURRENT_STEP(this.currentStep + 1)
         this.$refs.warmupSplide.go('>')
       } else {
+        this.SET_CURRENT_STEP(this.currentStep + -1)
         this.$refs.warmupSplide.go('<')
       }
     },
