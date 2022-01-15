@@ -4,64 +4,93 @@ article.warmup-card
   .warmup-card__timer-wrapper
     CountdownTimer(
       ref='countdownTimer',
-      v-show='started',
-      @countdownFinished='callNextSlide'
+      :time='timerCount',
+      :duration='stepDuration',
+      :active='activeSlide'
     )
 
-  h2.warmup-card__title {{ step }} {{ index }} {{ currentStep }}
+  h2.warmup-card__title {{ step }}
 
   //- Next step
-  .warmup-card__next-up Next:
-    span {{ getNextStep }}
+  .warmup-card__next-up(v-if='nextStep') Next:
+    span {{ nextStep }}
+  .warmup-card__next-up(v-else)
+    span Final step!
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'WarmupCard',
   props: {
-    index: {
-      type: Number,
-      required: true,
-    },
     step: {
       type: String,
       required: true,
     },
-    started: {
+    nextStep: {
+      type: null,
+      required: true,
+    },
+    activeSlide: {
       type: Boolean,
       required: true,
     },
   },
-  data() {
-    return {}
-  },
 
+  data() {
+    return {
+      timerCount: 10,
+    }
+  },
   computed: {
     ...mapState({
-      steps: (state) => state.warmup.steps,
-      currentStep: (state) => state.warmup.currentStep,
+      speech: (state) => state.settings.speech,
+      stepDuration: (state) => state.warmup.stepDuration,
     }),
-    ...mapGetters(['getNextStep']),
   },
   watch: {
-    // If the vuex currentStep changes, start the timer
-    currentStep() {
-      this.startTimer()
-    },
-  },
-  methods: {
-    startTimer() {
-      // Start timer if current slide is active
-      if (this.index === this.currentStep) {
-        this.$refs.countdownTimer.startCountdown()
+    activeSlide(isActiveSlide) {
+      if (isActiveSlide) {
+        // Speak step
+        this.speak(this.step)
+        setTimeout(() => {
+          this.timerCount--
+        }, 1000)
+      } else {
+        // Reset timer
+        this.timerCount = this.stepDuration
       }
     },
 
-    // After 2sec cooldown, call for next slide
+    timerCount: {
+      handler(timerCountVal) {
+        if (timerCountVal > 0 && this.activeSlide) {
+          setTimeout(() => {
+            this.timerCount--
+          }, 1000)
+        } else if (timerCountVal === 0) {
+          // Call next slide
+          this.callNextSlide()
+        }
+      },
+      // This ensures the watcher is triggered upon creation
+      immediate: true,
+    },
+  },
+
+  methods: {
+    // Speak
+    speak(text) {
+      if (!this.speech) return
+      const msg = new SpeechSynthesisUtterance()
+      msg.text = text
+      window.speechSynthesis.cancel()
+      window.speechSynthesis.speak(msg)
+    },
+
+    // After 1sec cooldown, call for next slide
     callNextSlide() {
-      console.log('callNextSlide')
       setTimeout(() => {
         this.$emit('prevNext')
       }, 1000)

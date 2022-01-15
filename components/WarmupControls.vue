@@ -3,8 +3,7 @@
 .controls
   //- Show Settings
   button.btn.controls__btn.controls__btn--settings(
-    @click='settingsOpen = !settingsOpen',
-    v-if='started'
+    @click='settingsOpen = !settingsOpen'
   )
     svg.icon(height='24', width='24')
       use(href='#icon_gear')

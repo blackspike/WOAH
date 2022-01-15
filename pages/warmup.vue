@@ -1,32 +1,32 @@
 <template lang="pug">
 section.warmup
-  //- Intro
-  .warmup-intro-wrapper
-    WarmupIntro(v-show='!started && !finished')
-
-  //- Start
-  .start-button-wrapper(v-show='!started && !finished')
-    button.btn.start-button(@click='startRoutine') {{ strings.startWarmup }}
-
   //- Finished
   h2.finish-message(v-show='finished') {{ strings.finishedMsg }}
   .finish-button-wrapper(v-show='finished')
     nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
 
   //- Steps list
-  .warmup-card-wrapper(v-if='started')
+  .warmup-card-wrapper(v-show='!finished')
     //- Slider
     client-only
       splide(
         :options='splideOptions',
-        @splide:move='slideChange',
+        @splide:moved='slideChange',
         ref='warmupSplide'
       )
-        splide-slide(v-for='(step, index) in steps', :key='step')
+        splide-slide(
+          v-for='(step, index) in steps',
+          :key='step',
+          ref='warmupSplides'
+        )
           WarmupCard(
+            ref='warmupSplideCard',
             :started='started',
             :step='step',
+            :currentStep='currentStep',
             :index='index',
+            :activeSlide='index === currentStep',
+            :nextStep='steps[index + 1]',
             @prevNext='prevNext'
           )
 
@@ -37,85 +37,56 @@ section.warmup
 
 <script>
 import '@splidejs/splide/dist/css/splide.min.css'
-import { mapMutations, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'Warmup',
   data() {
     return {
+      currentStep: 0,
       finished: false,
       started: false,
       strings: {
         finishedMsg: 'Nice one!',
         finishedBtn: 'Go to workout',
-        startWarmup: 'Start warmup',
       },
       splideOptions: {
         arrows: false,
         gap: '.5rem',
-        keyboard: false,
         padding: '1rem',
         pagination: false,
         start: 0,
         type: 'slide',
+        speed: 500,
       },
     }
   },
   computed: {
     ...mapState({
-      stepDuration: (state) => state.warmup.stepDuration,
-      speech: (state) => state.settings.speech,
       steps: (state) => state.warmup.steps,
-      currentStep: (state) => state.warmup.currentStep,
     }),
   },
-  watch: {
-    currentStep(newStep, prevStep) {
-      if (this.finished) {
-        this.speak(this.strings.finishedMsg)
-      } else {
-        this.speak(this.steps[newStep])
-      }
-    },
-  },
   methods: {
-    ...mapMutations([
-      'SET_STEP_DURATION',
-      'SET_CURRENT_STEP',
-      'SET_SPEECH',
-      'SET_SLEEP',
-    ]),
-
-    // Speak
-    speak(text) {
-      if (!this.speech) return
-      const msg = new SpeechSynthesisUtterance()
-      msg.text = text
-      window.speechSynthesis.speak(msg)
-    },
-
-    // Start routine
-    startRoutine() {
-      this.started = true
-      this.SET_CURRENT_STEP(0)
-    },
-
     // slideChange
     slideChange(el, newIndex, prevIndex, destIndex) {
       // Update vuex
-      this.SET_CURRENT_STEP(newIndex)
+      this.currentStep = newIndex
     },
 
     // Prev/Next slidestep
     prevNext(next = true) {
-      console.log('prevNext', next)
-
+      // Back / forth
       if (next) {
-        this.SET_CURRENT_STEP(this.currentStep + 1)
+        this.currentStep++
         this.$refs.warmupSplide.go('>')
       } else {
-        this.SET_CURRENT_STEP(this.currentStep + -1)
+        this.currentStep--
         this.$refs.warmupSplide.go('<')
+      }
+
+      // Stop if last slide
+      if (this.currentStep === this.steps.length - 1) {
+        this.finished = true
       }
     },
   },

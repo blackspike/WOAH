@@ -8,19 +8,20 @@
   )
     circle.svg-number__bg(cx='180', cy='180', r='180')
     text.svg-number__text(
+      v-show='active',
       ref='number',
       text-anchor='middle',
       x='180',
       y='250',
       font-variant='tabular-nums',
-      :class='{ ending: countdown < 6 && countdown !== 0 }'
-    ) {{ countdown }}
+      :class='{ ending: time < 6 && time !== 0 }'
+    ) {{ time }}
 
   //- SVG pi
   svg.svg-pi(
     viewBox='0 0 36 36',
     xmlns='http://www.w3.org/2000/svg',
-    v-show='percent'
+    v-show='percent && active'
   )
     path.svg-pi__done(
       d='M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831',
@@ -36,18 +37,16 @@
       stroke='#444',
       stroke-width='1',
       stroke-linecap='round',
-      :class='{ ending: countdown < 6 && countdown !== 0 }',
+      :class='{ ending: time < 6 && time !== 0 }',
       :stroke-dasharray='`${percent}, 100`'
     )
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'CountdownTimer',
   props: {
-    secondsTotal: {
+    time: {
       type: Number,
       required: true,
     },
@@ -55,53 +54,20 @@ export default {
       type: Number,
       required: true,
     },
-  },
-  data() {
-    return {
-      countdown: 0,
-      timerInteval: null,
-    }
+    active: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
-    ...mapState({
-      stepDuration: (state) => state.warmup.stepDuration,
-      currentStep: (state) => state.warmup.currentStep,
-    }),
-
     // Percentage pi
     percent() {
-      const secondsTotal = this.$store.state.warmup.stepDuration
-      const secondsLeft = secondsTotal - this.countdown
+      const secondsTotal = this.duration
+      const secondsLeft = secondsTotal - this.time
 
       return Math.round(
         secondsTotal > 0 ? (secondsLeft / secondsTotal) * 100 : 0
       )
-    },
-  },
-  methods: {
-    // Reset timer
-    resetCountdown() {
-      // Reset clock
-      clearInterval(this.timerInteval)
-      this.countdown = this.stepDuration
-    },
-
-    // Countdown timer
-    startCountdown() {
-      // Reset first
-      this.resetCountdown()
-
-      // Start clock
-      this.timerInteval = setInterval(() => {
-        // If not 0, decrease, else clear interval and move on
-        if (this.countdown > 0) {
-          this.countdown--
-        } else if (this.countdown === 0) {
-          clearInterval(this.timerInteval)
-          this.$emit('countdownFinished')
-          console.log('finished!')
-        }
-      }, 1000)
     },
   },
 }

@@ -14,9 +14,9 @@ export const mutations = {
   SET_STEP_DURATION(state, seconds) {
     state.warmup.seconds = seconds
   },
-  // Set current step
-  SET_CURRENT_STEP(state, step) {
-    state.warmup.currentStep = step
+  // Set timer count
+  SET_TIMER_COUNT(state, count) {
+    state.warmup.timerCount = count
   },
   // Set speech
   SET_SPEECH(state) {
@@ -67,7 +67,7 @@ export const mutations = {
 // Getters
 export const getters = {
   getNextStep(state) {
-    return state.warmup.steps[state.warmup.currentStep + 1]
+    // return state.warmup.steps[state.warmup.currentStep + 1]
   },
   getWarmup(state) {
     return state.warmup
@@ -82,9 +82,7 @@ export const state = () => ({
     noSleep: true,
   },
   warmup: {
-    timer: 0,
-    stepDuration: 8,
-    currentStep: 0,
+    stepDuration: 10,
     steps: [
       'March in place (swing arms)',
       'Jog in place',

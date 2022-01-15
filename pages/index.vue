@@ -8,7 +8,11 @@ section.intro
       p Watch the #[nuxt-link(to='/videos') instruction videos] first!
       p Content by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
 
-  nuxt-link.btn.start-button(to='/warmup') Go to warmup
+  //- Intro
+  .warmup-intro-wrapper
+    WarmupIntro
+
+  nuxt-link.btn.start-button(to='/warmup') Start warmup
 </template>
 
 <script>
@@ -42,6 +46,10 @@ export default {
     height: 100%;
   }
 
+  &__title {
+    font-size: var(--fs-xxxl);
+  }
+
   &__text {
     color: var(--brand-yellow);
     display: flex;
@@ -52,12 +60,6 @@ export default {
 
   .start-button {
     width: 100%;
-  }
-
-  .icon {
-    color: var(--brand-blue);
-    height: 8rem;
-    width: 8rem;
   }
 }
 </style>
