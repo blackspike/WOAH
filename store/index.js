@@ -26,6 +26,10 @@ export const mutations = {
   SET_SLEEP(state) {
     state.warmup.noSleep = !state.warmup.noSleep
   },
+  // Set sleep
+  SET_TIMER_ZERO(state) {
+    state.warmup.noSleep = !state.warmup.noSleep
+  },
 
   // --------------------------------
   // Workout Steps
@@ -78,6 +82,7 @@ export const state = () => ({
     noSleep: true,
   },
   warmup: {
+    timer: 0,
     stepDuration: 8,
     currentStep: 0,
     steps: [
@@ -85,7 +90,7 @@ export const state = () => ({
       'Jog in place',
       'Jumping jacks',
       'Walking jacks',
-      'March with pull down',
+      'March with pulldown',
       'Lateral step',
       'Opposite hand/toe touches',
       'Lateral butt kicks',

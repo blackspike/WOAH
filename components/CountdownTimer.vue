@@ -46,6 +46,16 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'CountdownTimer',
+  props: {
+    secondsTotal: {
+      type: Number,
+      required: true,
+    },
+    duration: {
+      type: Number,
+      required: true,
+    },
+  },
   data() {
     return {
       countdown: 0,
@@ -70,7 +80,7 @@ export default {
   },
   methods: {
     // Reset timer
-    resetTimer() {
+    resetCountdown() {
       // Reset clock
       clearInterval(this.timerInteval)
       this.countdown = this.stepDuration
@@ -79,7 +89,7 @@ export default {
     // Countdown timer
     startCountdown() {
       // Reset first
-      this.resetTimer()
+      this.resetCountdown()
 
       // Start clock
       this.timerInteval = setInterval(() => {
