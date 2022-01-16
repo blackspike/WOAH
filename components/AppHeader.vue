@@ -55,45 +55,46 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  grid-area: header;
+  align-items: center;
+  color: var(--gray-5);
   display: grid;
+  gap: 0 var(--m);
+  grid-area: header;
+  grid-template-areas: 'masthead nav button' 'mobile-nav mobile-nav mobile-nav';
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto;
-  grid-template-areas: 'masthead nav button' 'mobile-nav mobile-nav mobile-nav';
-  gap: 0 var(--m);
-  align-items: center;
-  position: relative;
-  color: var(--gray-5);
   margin: auto;
   max-width: var(--mw-content);
   padding: var(--m-sm) var(--m) var(--m);
+  position: relative;
+  user-select: none;
 
   &__masthead {
-    grid-area: masthead;
-    display: flex;
     align-items: center;
+    display: flex;
     gap: var(--m-sm);
+    grid-area: masthead;
   }
   &__title {
-    font-size: var(--fs-lg);
     color: var(--gray-5);
+    font-size: var(--fs-lg);
   }
   &__divider {
-    transform: translateY(-1px);
-    display: block;
     color: var(--gray-7);
+    display: block;
     font-weight: var(--fw-bd);
+    transform: translateY(-1px);
   }
   &__currentStep {
     color: var(--gray-6);
   }
 
   &__link {
-    font-size: var(--fs-lg);
-    line-height: 1;
-    display: flex;
     color: currentColor;
+    display: flex;
+    font-size: var(--fs-lg);
     letter-spacing: -1px;
+    line-height: 1;
 
     .dot {
       opacity: 0.5;
@@ -111,11 +112,12 @@ export default {
   }
   // Button
   &__menu-btn {
+    border: 2px solid var(--gray-8);
     grid-area: button;
     height: 3rem;
-    width: 3rem;
-    border: 2px solid var(--gray-8);
     padding: 0;
+    width: 3rem;
+
     .icon {
       fill: currentColor;
       height: 1.5rem;
@@ -129,10 +131,10 @@ export default {
 }
 
 .nav {
-  grid-area: nav;
   display: none;
-  justify-content: center;
   gap: var(--m);
+  grid-area: nav;
+  justify-content: center;
 
   @include media-query('md') {
     display: flex;

@@ -83,10 +83,9 @@ export default {
 .editor {
   align-items: center;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
   grid-template-areas: 'count title delete';
   gap: var(--m-sm);
-  max-width: 100%;
 
   &__title {
     grid-area: title;
@@ -95,7 +94,7 @@ export default {
   }
   &__count {
     grid-area: count;
-    min-width: 4.5ch;
+    max-width: 4ch;
     height: 100%;
     font-size: var(--fs-lg);
   }

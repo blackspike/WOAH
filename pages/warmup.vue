@@ -149,6 +149,11 @@ export default {
 .finish-button-wrapper {
   grid-area: controls;
   padding: 0 var(--m);
+  width: 100%;
+}
+.finish-button {
+  width: 100%;
+  display: block;
 }
 
 // Controls
