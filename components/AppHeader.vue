@@ -19,7 +19,7 @@
 
     h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
 
-    span.header__currentStep {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
+    span.header__current-step {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
@@ -85,7 +85,7 @@ export default {
     font-weight: var(--fw-bd);
     transform: translateY(-1px);
   }
-  &__currentStep {
+  &__current-step {
     color: var(--gray-6);
   }
 
@@ -112,11 +112,18 @@ export default {
   }
   // Button
   &__menu-btn {
-    border: 2px solid var(--gray-8);
     grid-area: button;
     height: 3rem;
     padding: 0;
     width: 3rem;
+    border: 2px solid transparent;
+    color: var(--gray-5);
+
+    &:focus,
+    &:hover,
+    &:active {
+      color: var(--gray-10);
+    }
 
     .icon {
       fill: currentColor;
@@ -157,7 +164,7 @@ export default {
   &__link {
     color: var(--gray-10);
     display: flex;
-    font-size: var(--fs-xxl);
+    font-size: var(--fs-xl);
     letter-spacing: -1px;
     line-height: var(--lh-xs);
 

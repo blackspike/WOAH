@@ -109,10 +109,10 @@
   --fs-xxxxl: var(--fs-6);
 
   // Families
-  --ff-base: bebas, system-ui, -apple-system, segoe ui, roboto, ubuntu,
+  --ff-base: 'Inter', system-ui, -apple-system, segoe ui, roboto, ubuntu,
     cantarell, noto sans, sans-serif;
   --ff-serif: ui-serif, serif;
-  --ff-heading: var(--ff-base);
+  --ff-heading: bebas, var(--ff-base);
   --ff-mono: consolas, sf mono, dank mono, operator mono, inconsolata, fira mono,
     ui-monospace, monaco, droid sans mono, source code pro, monospace;
 

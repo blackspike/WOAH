@@ -108,7 +108,7 @@ export default {
   box-shadow: var(--bxs-lg);
   display: grid;
   grid-template-areas: 'timer' 'step';
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 1fr auto;
   height: 100%;
   justify-content: center;
   user-select: none;

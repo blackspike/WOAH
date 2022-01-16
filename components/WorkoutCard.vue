@@ -90,11 +90,12 @@ export default {
 <style lang="scss" scoped>
 .workout-card {
   background-color: var(--gray-8);
-  box-shadow: var(--bxs-lg);
-  padding: var(--m);
   border-radius: var(--radius-2);
-  width: 100%;
+  box-shadow: var(--bxs-lg);
+  font-family: var(--ff-heading);
   height: 100%;
+  padding: var(--m);
+  width: 100%;
 
   &__title {
     color: var(--gray-6);
