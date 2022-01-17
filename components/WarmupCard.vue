@@ -107,8 +107,8 @@ export default {
   border-radius: var(--radius-2);
   box-shadow: var(--bxs-lg);
   display: grid;
-  grid-template-areas: 'timer' 'step';
-  grid-template-rows: 1fr auto;
+  grid-template-areas: 'timer' 'step' 'next';
+  grid-template-rows: auto auto auto;
   height: 100%;
   justify-content: center;
   user-select: none;
@@ -136,6 +136,7 @@ export default {
 
   // Next step
   &__next-up {
+    grid-area: next;
     line-height: 1;
     color: var(--gray-7);
     font-size: var(--fs-lg);
