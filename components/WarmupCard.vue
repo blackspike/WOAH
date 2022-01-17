@@ -107,10 +107,11 @@ export default {
   border-radius: var(--radius-2);
   box-shadow: var(--bxs-lg);
   display: grid;
-  height: 100%;
   grid-template-areas: 'timer' 'step';
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 1fr auto;
+  height: 100%;
   justify-content: center;
+  user-select: none;
 
   &__timer-wrapper {
     grid-area: timer;

@@ -107,6 +107,7 @@ export default {
   }
   &__text {
     font-size: var(--fs-8);
+    font-family: var(--ff-heading);
     fill: var(--brand-blue);
     transition: fill 1s ease;
 

@@ -30,18 +30,17 @@
       .edit-list__editor
         WorkoutEditor(:step='step', :dayKey='dayKey', :index='index')
 
-      //- drag icon
-      .edit-list__drag-icon
-        svg.icon
-          use(xlink:href='#icon_drag')
+      //- //- drag icon
+      //- .edit-list__drag-icon
+      //-   svg.icon
+      //-     use(xlink:href='#icon_drag')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
-      //- button.btn.edit-list__btn-add(@click='addItem') Add exercise
       WorkoutEditorAddNew(:dayKey='dayKey')
-      //- drag icon
-      .edit-list__drag-icon.edit-list__drag-icon--fake
-        svg.icon
-          use(xlink:href='#icon_drag')
+      //- //- drag icon
+      //- .edit-list__drag-icon.edit-list__drag-icon--fake
+      //-   svg.icon
+      //-     use(xlink:href='#icon_drag')
 </template>
 
 <script>
@@ -91,11 +90,12 @@ export default {
 <style lang="scss" scoped>
 .workout-card {
   background-color: var(--gray-8);
-  box-shadow: var(--bxs-lg);
-  padding: var(--m-lg);
   border-radius: var(--radius-2);
-  width: 100%;
+  box-shadow: var(--bxs-lg);
+  font-family: var(--ff-heading);
   height: 100%;
+  padding: var(--m);
+  width: 100%;
 
   &__title {
     color: var(--gray-6);
@@ -168,19 +168,10 @@ export default {
 .edit-list {
   grid-area: list;
   align-self: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  line-height: 1;
   padding: 2vh 0;
 
   &__item {
-    align-items: center;
-    display: grid;
-    display: grid;
-    gap: var(--m-sm);
-    grid-template-areas: 'editor drag';
-    grid-template-columns: 1fr auto;
+    list-style: none;
     margin-top: var(--m-sm);
     padding: 0;
     width: 100%;
@@ -192,11 +183,12 @@ export default {
 
   &__editor {
     grid-area: editor;
+    min-width: 0;
   }
   &__drag-icon {
     grid-area: drag;
-    height: 2rem;
-    width: 2rem;
+    height: 1rem;
+    width: 1rem;
     display: flex;
     align-items: center;
 
@@ -205,8 +197,8 @@ export default {
     }
 
     .icon {
-      height: 2rem;
-      width: 2rem;
+      height: 1rem;
+      width: 1rem;
       color: var(--gray-7);
       filter: drop-shadow(0 1px 1px var(--gray-9));
     }
