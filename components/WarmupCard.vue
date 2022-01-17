@@ -1,5 +1,5 @@
 <template lang="pug">
-article.warmup-card
+article.warmup-card.card-bg
   //- Timer
   .warmup-card__timer-wrapper
     CountdownTimer(
@@ -9,11 +9,11 @@ article.warmup-card
       :active='activeSlide'
     )
 
-  h2.warmup-card__title {{ step }}
+  h2.warmup-card__title {{ step.title }}
 
   //- Next step
   .warmup-card__next-up(v-if='nextStep') Next:
-    span {{ nextStep }}
+    span {{ nextStep.title }}
   .warmup-card__next-up(v-else)
     span Final step!
 </template>
@@ -25,7 +25,7 @@ export default {
   name: 'WarmupCard',
   props: {
     step: {
-      type: String,
+      type: Object,
       required: true,
     },
     nextStep: {
@@ -53,7 +53,7 @@ export default {
     activeSlide(isActiveSlide) {
       if (isActiveSlide) {
         // Speak step
-        this.speak(this.step)
+        this.speak(this.step.title)
         setTimeout(() => {
           this.timerCount--
         }, 1000)
@@ -103,7 +103,7 @@ export default {
 // Steps list
 .warmup-card {
   align-items: center;
-  background-color: var(--gray-8);
+  background-color: var(--gray-9);
   border-radius: var(--radius-2);
   box-shadow: var(--bxs-lg);
   display: grid;
@@ -112,6 +112,7 @@ export default {
   height: 100%;
   justify-content: center;
   user-select: none;
+  overflow: hidden;
 
   &__timer-wrapper {
     grid-area: timer;
@@ -123,15 +124,14 @@ export default {
     align-items: center;
     background-color: var(--gray);
     border-radius: var(--radius-2);
-    color: var(--brand-pink);
+    color: var(--gray-0);
     display: flex;
-    font-size: var(--fs-xxl);
+    font-size: var(--fs-xxxl);
     grid-area: step;
     justify-content: center;
     height: 100%;
     padding: var(--m);
     text-align: center;
-    text-shadow: 0 0.1rem 0.1rem black;
   }
 
   // Next step
@@ -139,6 +139,7 @@ export default {
     line-height: 1;
     color: var(--gray-7);
     font-size: var(--fs-lg);
+    font-family: var(--ff-brand);
     text-align: center;
     margin-block: var(--m);
 

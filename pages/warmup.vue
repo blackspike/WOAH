@@ -16,7 +16,7 @@ section.warmup
       )
         splide-slide(
           v-for='(step, index) in steps',
-          :key='step',
+          :key='step.title',
           ref='warmupSplides'
         )
           WarmupCard(
@@ -33,6 +33,9 @@ section.warmup
   //- Controls
   .controls-wrapper(v-show='started && !finished')
     WarmupControls(:started='started', :finished='finished')
+
+  //- Editor
+  //- WarmupEditorCard
 </template>
 
 <script>
@@ -85,7 +88,7 @@ export default {
       }
 
       // Stop if last slide
-      if (this.currentStep === this.steps.length - 1) {
+      if (this.currentStep === this.steps.length) {
         this.finished = true
       }
     },

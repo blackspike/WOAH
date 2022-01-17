@@ -9,15 +9,11 @@
 }
 
 html {
-  background-color: var(--bg-app);
+  background-color: var(--bg);
   overflow: hidden;
   height: 100vh;
   display: flex;
   flex-direction: column;
-
-  @include media-query('xl') {
-    background-color: var(--bg);
-  }
 }
 
 body {

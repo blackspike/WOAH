@@ -31,6 +31,33 @@ export const mutations = {
     state.warmup.noSleep = !state.warmup.noSleep
   },
 
+  SET_WARMUP_STEPS(state, steps) {
+    state.warmup.steps = steps
+  },
+  // Add step
+  ADD_WORKOUT_STEP(state, newStep) {
+    state.warmup.steps.push({
+      count: newStep.count,
+      title: newStep.title,
+    })
+  },
+  // Edit step title
+  EDIT_WARMUP_STEP_TITLE(state, editedStepTitle) {
+    state.warmup.steps[editedStepTitle.index].title =
+      editedStepTitle.value
+  },
+  // Edit step Count
+  EDIT_WARMUP_STEP_COUNT(state, editedStepCount) {
+    state.warmup.steps[editedStepCount.index].count =
+      editedStepCount.value
+  },
+  // Remove step
+  REMOVE_WARMUP_STEP(state, removeStep) {
+    const newArr = [...state.workouts.steps]
+    newArr.splice(removeStep.index, 1)
+    state.workouts.steps = newArr
+  },
+
   // --------------------------------
   // Workout Steps
   // --------------------------------
@@ -41,12 +68,12 @@ export const mutations = {
   },
   // Edit step title
   EDIT_STEP_TITLE(state, editedStepTitle) {
-    state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
+    state.workouts[editedStepTitle.dayKey].title =
       editedStepTitle.value
   },
   // Edit step Count
   EDIT_STEP_COUNT(state, editedStepCount) {
-    state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
+    state.workouts[editedStepCount.dayKey].count =
       editedStepCount.value
   },
   // Add step
@@ -84,19 +111,52 @@ export const state = () => ({
   warmup: {
     stepDuration: 25,
     steps: [
-      'March in place (swing arms)',
-      'Jog in place',
-      'Jumping jacks',
-      'Walking jacks',
-      'March with pulldown',
-      'Lateral step',
-      'Opposite hand/toe touches',
-      'Lateral butt kicks',
-      'Mountain climbers',
-      'Jump up & down, side to side',
-      'Jump rope',
+      {
+        count: 25,
+        title: 'March in place (swing arms)',
+      },
+      {
+        count: 25,
+        title: 'Jog in place',
+      },
+      {
+        count: 25,
+        title: 'Jumping jacks',
+      },
+      {
+        count: 25,
+        title: 'Walking jacks',
+      },
+      {
+        count: 25,
+        title: 'March with pulldown',
+      },
+      {
+        count: 25,
+        title: 'Lateral step',
+      },
+      {
+        count: 25,
+        title: 'Opposite hand/toe touches',
+      },
+      {
+        count: 25,
+        title: 'Lateral butt kicks',
+      },
+      {
+        count: 25,
+        title: 'Mountain climbers',
+      },
+      {
+        count: 25,
+        title: 'Jump up & down, side to side',
+      },
+      {
+        count: 25,
+        title: 'Jump rope',
+      }
     ],
-  },
+} ,
   workouts: {
     sun: {
       title: 'Sunday',

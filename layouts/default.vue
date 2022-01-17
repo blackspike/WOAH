@@ -34,7 +34,6 @@ export default {
 <style lang="scss">
 // App
 .app {
-  background-color: var(--bg-app);
   display: grid;
   grid-template-areas: 'header' 'content';
   grid-template-rows: auto 1fr;

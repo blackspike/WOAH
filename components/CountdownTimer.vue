@@ -12,7 +12,7 @@
       ref='number',
       text-anchor='middle',
       x='180',
-      y='250',
+      y='230',
       font-variant='tabular-nums',
       :class='{ ending: time < 6 && time !== 0 }'
     ) {{ time }}
@@ -106,9 +106,10 @@ export default {
     fill: var(--gray-9);
   }
   &__text {
-    font-size: var(--fs-8);
-    font-family: var(--ff-heading);
-    fill: var(--brand-blue);
+    font-size: var(--fs-7);
+    font-family: var(--ff-brand);
+    fill: var(--brand);
+    font-variant-numeric: tabular-nums;
     transition: fill 1s ease;
 
     &.ending {

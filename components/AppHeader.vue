@@ -5,21 +5,19 @@
       @click.native='navOpen = false',
       to='/',
       aria-title='Work Out At Home'
-    )
+    ) WOAH
       //- | Work Out At Home
-      span.letter W
-      span.dot .
-      span.letter O
-      span.dot .
-      span.letter A
-      span.dot .
-      span.letter H
-
-    span.header__divider(aria-hidden) ||
+      //- span.letter W
+      //- span.dot .
+      //- span.letter O
+      //- span.dot .
+      //- span.letter A
+      //- span.dot .
+      //- span.letter H
 
     h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
 
-    span.header__current-step {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
+    //- span.header__current-step(v-if='$nuxt.$route.name === "warmup"') {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
@@ -70,20 +68,20 @@ export default {
   user-select: none;
 
   &__masthead {
-    align-items: center;
+    align-items: end;
     display: flex;
-    gap: var(--m-sm);
+    gap: var(--m);
     grid-area: masthead;
+  }
+  &__logo {
+    font-family: var(--ff-brand);
   }
   &__title {
     color: var(--gray-5);
-    font-size: var(--fs-lg);
-  }
-  &__divider {
-    color: var(--gray-7);
-    display: block;
+    font-size: var(--fs-sm);
+    font-family: var(--ff-base);
+    text-transform: uppercase;
     font-weight: var(--fw-bd);
-    transform: translateY(-1px);
   }
   &__current-step {
     color: var(--gray-6);
