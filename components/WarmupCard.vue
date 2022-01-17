@@ -40,7 +40,7 @@ export default {
 
   data() {
     return {
-      timerCount: 10,
+      timerCount: 25,
     }
   },
   computed: {

@@ -82,7 +82,7 @@ export const state = () => ({
     noSleep: true,
   },
   warmup: {
-    stepDuration: 10,
+    stepDuration: 25,
     steps: [
       'March in place (swing arms)',
       'Jog in place',
