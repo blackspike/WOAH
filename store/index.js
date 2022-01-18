@@ -154,38 +154,13 @@ export const state = () => ({
       {
         count: 25,
         title: 'Jump rope',
-      }
+      },
     ],
-} ,
+  },
   workouts: {
     sun: {
       title: 'Sunday',
-      steps: [
-        {
-          count: 20,
-          title: 'Bodyweight squats',
-        },
-        {
-          count: 10,
-          title: 'Push-ups',
-        },
-        {
-          count: 20,
-          title: 'Walking lunges',
-        },
-        {
-          count: 10,
-          title: 'Dumbbell rows × 2',
-        },
-        {
-          count: 15,
-          title: 'Second Plank',
-        },
-        {
-          count: 30,
-          title: 'Jumping jacks',
-        },
-      ],
+      steps: [],
     },
     mon: {
       title: 'Monday',
@@ -220,28 +195,8 @@ export const state = () => ({
       title: 'Tuesday',
       steps: [
         {
-          count: 20,
-          title: 'Bodyweight squats',
-        },
-        {
-          count: 10,
-          title: 'Push-ups',
-        },
-        {
-          count: 20,
-          title: 'Walking lunges',
-        },
-        {
-          count: 10,
-          title: 'Dumbbell rows × 2',
-        },
-        {
-          count: 15,
-          title: 'Second Plank',
-        },
-        {
-          count: 30,
-          title: 'Jumping jacks',
+          count: 25,
+          title: 'Min. Cardio Run',
         },
       ],
     },
@@ -278,28 +233,8 @@ export const state = () => ({
       title: 'Thursday',
       steps: [
         {
-          count: 20,
-          title: 'Bodyweight squats',
-        },
-        {
-          count: 10,
-          title: 'Push-ups',
-        },
-        {
-          count: 20,
-          title: 'Walking lunges',
-        },
-        {
-          count: 10,
-          title: 'Dumbbell rows × 2',
-        },
-        {
-          count: 15,
-          title: 'Second Plank',
-        },
-        {
-          count: 30,
-          title: 'Jumping jacks',
+          count: 25,
+          title: 'Min. Cardio Indoor bike',
         },
       ],
     },
@@ -336,28 +271,8 @@ export const state = () => ({
       title: 'Saturday',
       steps: [
         {
-          count: 20,
-          title: 'Bodyweight squats',
-        },
-        {
-          count: 10,
-          title: 'Push-ups',
-        },
-        {
-          count: 20,
-          title: 'Walking lunges',
-        },
-        {
-          count: 10,
-          title: 'Dumbbell rows × 2',
-        },
-        {
-          count: 15,
-          title: 'Second Plank',
-        },
-        {
-          count: 30,
-          title: 'Jumping jacks',
+          count: 25,
+          title: 'Min. Cardio Run',
         },
       ],
     },

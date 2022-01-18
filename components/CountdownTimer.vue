@@ -8,13 +8,12 @@
   )
     circle.svg-number__bg(cx='180', cy='180', r='180')
     text.svg-number__text(
-      v-show='active',
       ref='number',
       text-anchor='middle',
       x='180',
       y='250',
       font-variant='tabular-nums',
-      :class='{ ending: time < 6 && time !== 0 }'
+      :class='{ ending: time < 6 && time !== 0, active }'
     ) {{ time }}
 
   //- SVG pi
@@ -109,7 +108,17 @@ export default {
     font-size: var(--fs-8);
     font-family: var(--ff-heading);
     fill: var(--brand-blue);
-    transition: fill 1s ease;
+    transition: animation 1s ease-in-out,
+      transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
+      opacity 0.5s cubic-bezier(0.87, 0, 0.13, 1);
+
+    transform: translateY(3rem);
+    opacity: 0;
+
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
 
     &.ending {
       fill: var(--brand-orange);

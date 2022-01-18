@@ -11,7 +11,15 @@
 
   //- Step list
   .step-list(v-if='!editing')
+    //- Rest day (no steps)
+    li.step-list__item.rest-day(v-if='!editableSteps.length')
+      span.rest-day__title Rest day
+      svg.rest-day__icon.icon(height='24', width='24')
+        use(href='#icon_yoga')
+
+    //- Step list items
     li.step-list__item(
+      v-else,
       v-for='(step, index) in editableSteps',
       :key='step.title'
     )
@@ -123,6 +131,7 @@ export default {
   align-self: center;
   display: flex;
   gap: 2vh;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   line-height: 1;
@@ -142,6 +151,24 @@ export default {
   &__title {
     flex: 2;
     color: var(--brand-blue);
+  }
+
+  // Rest day
+  .rest-day {
+    color: var(--gray-10);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    opacity: 0.25;
+
+    &__title {
+      font-size: var(--fs-xxxl);
+    }
+    &__icon.icon {
+      height: 30vh;
+      width: 30vh;
+    }
   }
 }
 // Edit list
