@@ -7,6 +7,7 @@ article.warmup-card.card-bg
   )
     svg.icon(height='24', width='24')
       use(href='#icon_gear')
+
   //- Timer
   .warmup-card__timer-wrapper
     CountdownTimer(
@@ -35,6 +36,10 @@ export default {
       type: Object,
       required: true,
     },
+    index: {
+      type: Number,
+      required: true,
+    },
     nextStep: {
       type: null,
       required: true,
@@ -46,15 +51,16 @@ export default {
   },
 
   data() {
-    return {
-      timerCount: 25,
-    }
+    return { timerCount: this.$store.state.warmup.steps[this.index].count }
   },
   computed: {
     ...mapState({
       speech: (state) => state.settings.speech,
-      stepDuration: (state) => state.warmup.stepDuration,
     }),
+
+    stepDuration() {
+      return this.$store.state.warmup.steps[this.index].count
+    },
   },
   watch: {
     activeSlide(isActiveSlide) {
@@ -86,6 +92,13 @@ export default {
     },
   },
 
+  mounted() {
+    // Speak first step on mount
+    if (this.index === 0) {
+      this.speak(this.step.title)
+    }
+  },
+
   methods: {
     // Speak
     speak(text) {
@@ -115,7 +128,7 @@ export default {
   grid-template-areas: 'timer' 'step' 'next';
   grid-template-rows: max-content 1fr auto;
   grid-template-columns: 1fr;
-  gap: var(--m);
+  gap: var(--m-lg);
   justify-content: center;
   user-select: none;
   padding: var(--m-lg) var(--m);

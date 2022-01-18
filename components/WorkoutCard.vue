@@ -12,7 +12,7 @@
   //- Step list
   .step-list(v-if='!editing')
     //- Rest day (no steps)
-    li.step-list__item.rest-day(v-if='!editableSteps.length')
+    li.rest-day(v-if='!editableSteps.length')
       span.rest-day__title Rest day
       svg.rest-day__icon.icon(height='24', width='24')
         use(href='#icon_yoga')
@@ -95,15 +95,16 @@ export default {
   height: 100%;
   width: 100%;
   user-select: none;
-  padding: var(--m-lg) var(--m);
+  padding: var(--m) var(--m) var(--m-lg);
 
   &__title {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-lg);
+    font-family: var(--ff-brand);
   }
 
   &__btn-edit {
     position: absolute;
-    top: var(--m-lg);
+    top: var(--m);
     right: var(--m);
     border-color: transparent;
     opacity: 0.5;
@@ -130,19 +131,22 @@ export default {
   grid-area: list;
   align-self: center;
   display: flex;
-  gap: 2vh;
+  gap: var(--m-sm);
   height: 100%;
   flex-direction: column;
-  justify-content: space-between;
   line-height: 1;
-  padding: 2vh 0;
+  padding: 3vh 0;
 
   &__item {
-    padding: 1vh 0;
+    align-items: baseline;
+    background-color: var(--gray-9);
+    border-radius: var(--radius-2);
+    border: 2px solid var(--gray-9);
+    // box-shadow: inset 1px 1px 3px var(--gray-10);
     display: flex;
-    align-items: center;
-    gap: var(--m-sm);
     font-size: var(--fs-xl);
+    gap: var(--m-sm);
+    padding: var(--m-sm) var(--m-sm) var(--m-xs);
   }
   &__count {
     color: var(--brand-yellow);
@@ -150,7 +154,7 @@ export default {
   }
   &__title {
     flex: 2;
-    color: var(--brand-blue);
+    color: var(--brand-pink);
   }
 
   // Rest day
@@ -160,6 +164,7 @@ export default {
     flex-direction: column;
     height: 100%;
     justify-content: center;
+    align-items: center;
     opacity: 0.25;
 
     &__title {

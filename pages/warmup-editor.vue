@@ -1,6 +1,14 @@
 <template lang="pug">
 .warmup-editor.card-bg
   h2.warmup-editor__title Drag steps to rearrange
+  //- Edit
+  nuxt-link.btn.btn-icon.warmup-editor__btn-edit(
+    to='/warmup',
+    aria-label='Back top warmup'
+  )
+    svg.icon(height='24', width='24')
+      use(href='#icon_check_square')
+
   //- Edit list
   draggable.edit-list(
     v-model='editableSteps',
@@ -56,7 +64,7 @@ export default {
 
 <style lang="scss" scoped>
 .warmup-editor {
-  padding: var(--m-lg) var(--m);
+  padding: var(--m) var(--m);
   margin: 0 var(--m);
   display: grid;
   grid-template-rows: auto 1fr auto;
@@ -67,10 +75,31 @@ export default {
     font-family: var(--ff-base);
     text-transform: uppercase;
     font-size: var(--fs-sm);
+    margin-top: var(--m-xs);
   }
   &__finished {
     grid-area: done;
     margin-top: var(--m);
+  }
+  &__btn-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    opacity: 0.8;
+
+    &.active,
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--gray-0);
+      opacity: 1;
+    }
+
+    &:focus {
+      color: var(--gray-0);
+      outline-offset: -1px;
+    }
   }
 }
 

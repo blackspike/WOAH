@@ -4,7 +4,7 @@ section.warmup
   client-only
     splide.woah-splide(
       :options='splideOptions',
-      @splide:moved='slideChange',
+      @splide:move='slideChange',
       ref='warmupSplide'
     )
       splide-slide(
@@ -46,7 +46,7 @@ export default {
         pagination: false,
         start: 0,
         type: 'slide',
-        speed: 500,
+        speed: 750,
       },
     }
   },

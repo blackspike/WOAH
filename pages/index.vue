@@ -2,7 +2,7 @@
 section.intro.card-bg
   .intro__header
     h1.intro__title Work Out At Home
-    p Warmup &amp; workout timer
+    p.intro__subtitle Warmup &amp; workout timer
 
   .intro__start
     nuxt-link.btn.start-button.start-button--warmup(to='/warmup') Start warmup
@@ -26,23 +26,29 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-  margin: var(--m);
+  margin: 0 var(--m);
   align-items: center;
   display: grid;
   grid-template-areas: 'header' 'start' 'footer';
-  grid-template-rows: max-content 1fr auto;
-  gap: var(--m);
+  grid-template-rows: 1fr 1fr auto;
+  gap: var(--m-lg);
   justify-content: center;
   user-select: none;
-  padding: var(--m-lg) var(--m);
+  padding: var(--m) var(--m-lg) var(--m-lg);
   font-weight: var(--fw-bd);
   text-transform: uppercase;
+
+  &__header {
+    grid-area: header;
+  }
 
   &__title {
     font-size: var(--fs-xxl);
     font-family: var(--ff-brand);
-    grid-area: header;
     margin-bottom: var(--m);
+  }
+  &__subtitle {
+    color: var(--brand-yellow);
   }
 
   &__footer {
@@ -50,9 +56,15 @@ export default {
     display: flex;
     flex-direction: column;
     gap: var(--m);
+    text-align: center;
+
+    a {
+      color: var(--brand-yellow);
+    }
   }
 
   &__start {
+    align-self: start;
     display: flex;
     flex-direction: column;
     gap: var(--m);
@@ -61,10 +73,6 @@ export default {
       width: 100%;
       display: block;
       margin: auto;
-
-      &--workout {
-        border-color: var(--brand-yellow);
-      }
     }
   }
 }
