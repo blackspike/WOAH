@@ -1,5 +1,6 @@
 <template lang="pug">
-.warmup-editor
+.warmup-editor.card-bg
+  h2.warmup-editor__title Drag steps to rearrange
   //- Edit list
   draggable.edit-list(
     v-model='editableSteps',
@@ -12,7 +13,9 @@
       WarmupEditorRow(:index='index')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
-      //- WarmupEditorRowAddNew
+      WarmupEditorRowAddNew
+
+  nuxt-link.btn.warmup-editor__finished(to='/warmup') Finished editing
 </template>
 
 <script>
@@ -37,6 +40,7 @@ export default {
 
     editableSteps: {
       get() {
+        console.log(this.warmup)
         return this.warmup.steps
       },
       set(value) {
@@ -51,82 +55,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.workout-card {
-  background-color: var(--gray-8);
-  border-radius: var(--radius-2);
-  box-shadow: var(--bxs-lg);
-  font-family: var(--ff-heading);
-  height: 100%;
-  padding: var(--m);
-  width: 100%;
+.warmup-editor {
+  padding: var(--m-lg) var(--m);
+  margin: 0 var(--m);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' 'list' 'done';
 
   &__title {
-    color: var(--gray-6);
-    font-size: var(--fs-xl);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    grid-area: header;
+    font-family: var(--ff-base);
+    text-transform: uppercase;
+    font-size: var(--fs-sm);
   }
-
-  &__btn-edit {
-    border: 2px solid var(--gray-9);
-  }
-}
-
-.controls {
-  width: 100%;
-  display: flex;
-  gap: var(--m);
-  align-items: center;
-  line-height: 1;
-
-  .rep-counter {
-    width: 100%;
-    font-size: var(--fs-xxl);
-    color: var(--brand-blue);
+  &__finished {
+    grid-area: done;
+    margin-top: var(--m);
   }
 }
 
-// Step list
-.step-list {
-  grid-area: list;
-  align-self: center;
-  display: flex;
-  gap: 2vh;
-  flex-direction: column;
-  justify-content: space-between;
-  line-height: 1;
-  padding: 2vh 0;
-
-  &__item {
-    padding: 1vh 0;
-    display: flex;
-    align-items: center;
-    gap: var(--m);
-    font-size: var(--fs-xl);
-  }
-  &__step-icon {
-    height: 2rem;
-    width: 2rem;
-    display: flex;
-    align-items: center;
-
-    .icon {
-      height: 2rem;
-      width: 2rem;
-      color: var(--gray-7);
-    }
-  }
-  &__count {
-    color: var(--brand-yellow);
-    font-variant-numeric: tabular-nums;
-    font-size: var(--fs-xxl);
-  }
-  &__title {
-    flex: 2;
-    color: var(--brand-blue);
-  }
-}
 // Edit list
 .edit-list {
   grid-area: list;
@@ -148,75 +95,5 @@ export default {
     grid-area: editor;
     min-width: 0;
   }
-  &__drag-icon {
-    grid-area: drag;
-    height: 1rem;
-    width: 1rem;
-    display: flex;
-    align-items: center;
-
-    &--fake {
-      opacity: 0;
-    }
-
-    .icon {
-      height: 1rem;
-      width: 1rem;
-      color: var(--gray-7);
-      filter: drop-shadow(0 1px 1px var(--gray-9));
-    }
-  }
-}
-
-// Editor
-
-.editor {
-  align-items: center;
-  display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
-  grid-template-areas: 'count title delete';
-  gap: var(--m-sm);
-
-  &__title {
-    grid-area: title;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__count {
-    grid-area: count;
-    max-width: 4ch;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__btn-add,
-  &__btn-delete {
-    padding: 0 var(--m-sm);
-    height: 100%;
-    grid-area: delete;
-    background-color: var(--gray-9);
-    color: var(--brand-orange);
-    border: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--gray-9);
-      background-color: var(--brand-orange);
-    }
-  }
-}
-
-/* Draggable Transition
-============================= */
-
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.no-move {
-  transition: transform 0s;
-}
-.ghost {
-  background-color: var(--c-bg);
-  color: var(--c-brand);
 }
 </style>

@@ -37,6 +37,7 @@ export default {
   display: grid;
   grid-template-areas: 'header' 'content';
   grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
   height: 100%;
   padding: 0 0 var(--m);
   width: 100%;
@@ -63,9 +64,12 @@ export default {
   max-width: var(--mw-content);
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 
   > * {
-    height: 100%;
+    flex: 1;
   }
 }
 </style>

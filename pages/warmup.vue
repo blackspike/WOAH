@@ -1,41 +1,27 @@
 <template lang="pug">
 section.warmup
-  //- Finished
-  h2.finish-message(v-show='finished') {{ strings.finishedMsg }}
-  .finish-button-wrapper(v-show='finished')
-    nuxt-link.btn.finish-button(v-if='finished', to='/workout') {{ strings.finishedBtn }}
-
-  //- Steps list
-  .warmup-card-wrapper(v-show='!finished')
-    //- Slider
-    client-only
-      splide.woah-splide(
-        :options='splideOptions',
-        @splide:moved='slideChange',
-        ref='warmupSplide'
+  //- Slider
+  client-only
+    splide.woah-splide(
+      :options='splideOptions',
+      @splide:moved='slideChange',
+      ref='warmupSplide'
+    )
+      splide-slide(
+        v-for='(step, index) in steps',
+        :key='step.title',
+        ref='warmupSplides'
       )
-        splide-slide(
-          v-for='(step, index) in steps',
-          :key='step.title',
-          ref='warmupSplides'
+        WarmupCard(
+          ref='warmupSplideCard',
+          :started='started',
+          :step='step',
+          :currentStep='currentStep',
+          :index='index',
+          :activeSlide='index === currentStep',
+          :nextStep='steps[index + 1]',
+          @prevNext='prevNext'
         )
-          WarmupCard(
-            ref='warmupSplideCard',
-            :started='started',
-            :step='step',
-            :currentStep='currentStep',
-            :index='index',
-            :activeSlide='index === currentStep',
-            :nextStep='steps[index + 1]',
-            @prevNext='prevNext'
-          )
-
-  //- Controls
-  .controls-wrapper(v-show='started && !finished')
-    WarmupControls(:started='started', :finished='finished')
-
-  //- Editor
-  WarmupEditorCard
 </template>
 
 <script>
@@ -56,7 +42,7 @@ export default {
       splideOptions: {
         arrows: false,
         gap: '.5rem',
-        padding: '1rem',
+        padding: { left: '1rem', right: '1rem' },
         pagination: false,
         start: 0,
         type: 'slide',
@@ -95,65 +81,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.warmup {
-  flex: 1;
-  display: grid;
-  gap: var(--m);
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: 1fr auto;
-  grid-template-areas: 'cards' 'controls';
-}
-
-// Intro
-.warmup-intro-wrapper {
-  grid-area: cards;
-  align-self: center;
-}
-
-.start-button-wrapper {
-  grid-area: controls;
-  padding: 0 var(--m);
-}
-.start-button {
-  grid-area: controls;
-}
-
-// Steps
-.warmup-card-wrapper {
-  grid-area: cards;
-  align-self: center;
-}
-
-// Timer
-.timer-wrapper {
-  grid-area: cards;
-  grid-row: 1 / 3;
-  align-self: start;
-  padding: 0 var(--m);
-}
-
-// Done
-.finish-message {
-  align-self: center;
-  color: var(--brand-pink);
-  grid-area: cards;
-  line-height: 0.8;
-  padding: 0 var(--m);
-  text-align: center;
-}
-.finish-button-wrapper {
-  grid-area: controls;
-  padding: 0 var(--m);
-}
-.finish-button {
-  display: block;
-}
-
-// Controls
-.controls-wrapper {
-  padding: 0 var(--m);
-  grid-area: controls;
-}
-</style>

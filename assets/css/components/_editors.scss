@@ -1,0 +1,55 @@
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  grid-template-areas: 'count title action';
+  gap: var(--m-sm);
+
+  &__count {
+    grid-area: count;
+    max-width: 4ch;
+    height: 100%;
+    font-size: var(--fs-lg);
+  }
+
+  &__title {
+    grid-area: title;
+    height: 100%;
+    font-size: var(--fs-lg);
+  }
+
+  &__action {
+    grid-area: action;
+  }
+
+  &__btn-add,
+  &__btn-delete {
+    padding: 0 var(--m-sm);
+    height: 100%;
+    border: 0;
+    border-radius: var(--radius-2);
+  }
+
+  &__btn-add {
+    background-color: var(--gray-9);
+    color: var(--brand-blue);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--gray-9);
+      background-color: var(--brand-blue);
+    }
+  }
+
+  &__btn-delete {
+    background-color: var(--gray-9);
+    color: var(--brand-orange);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: var(--gray-9);
+      background-color: var(--brand-orange);
+    }
+  }
+}

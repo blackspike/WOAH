@@ -1,11 +1,13 @@
 <template lang="pug">
-.workout-card
-  h2.workout-card__title
-    | {{ workouts[dayKey].title }}
-    button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
-      svg.icon(height='24', width='24')
-        use(href='#icon_x', v-if='editing')
-        use(href='#icon_edit', v-else)
+.workout-card.card-bg
+  //- Title
+  h2.workout-card__title {{ workouts[dayKey].title }}
+
+  //- Edit button
+  button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
+    svg.icon(height='24', width='24')
+      use(href='#icon_x', v-if='editing')
+      use(href='#icon_gear', v-else)
 
   //- Step list
   .step-list(v-if='!editing')
@@ -30,17 +32,9 @@
       .edit-list__editor
         WorkoutEditorRow(:step='step', :dayKey='dayKey', :index='index')
 
-      //- //- drag icon
-      //- .edit-list__drag-icon
-      //-   svg.icon
-      //-     use(xlink:href='#icon_drag')
-
+    //- Add new
     li.edit-list__item.edit-list__item--add(slot='footer')
       WorkoutEditorRowAddNew(:dayKey='dayKey')
-      //- //- drag icon
-      //- .edit-list__drag-icon.edit-list__drag-icon--fake
-      //-   svg.icon
-      //-     use(xlink:href='#icon_drag')
 </template>
 
 <script>
@@ -74,7 +68,7 @@ export default {
         return this.$store.state.workouts[this.dayKey].steps
       },
       set(value) {
-        this.$store.commit('SET_DAY_STEPS', {
+        this.$store.commit('SET_WORKOUT_DAY_STEPS', {
           dayKey: this.dayKey,
           value,
         })
@@ -82,45 +76,44 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['SET_DAY_STEPS']),
+    ...mapMutations(['SET_WORKOUT_DAY_STEPS']),
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .workout-card {
-  background-color: var(--gray-8);
-  border-radius: var(--radius-2);
-  box-shadow: var(--bxs-lg);
   font-family: var(--ff-heading);
   height: 100%;
-  padding: var(--m);
   width: 100%;
+  user-select: none;
+  padding: var(--m-lg) var(--m);
 
   &__title {
-    color: var(--gray-6);
     font-size: var(--fs-xl);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   &__btn-edit {
-    border: 2px solid var(--gray-9);
-  }
-}
+    position: absolute;
+    top: var(--m-lg);
+    right: var(--m);
+    border-color: transparent;
+    opacity: 0.5;
+    padding: 0;
 
-.controls {
-  width: 100%;
-  display: flex;
-  gap: var(--m);
-  align-items: center;
-  line-height: 1;
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--gray-0);
+      opacity: 1;
+    }
 
-  .rep-counter {
-    width: 100%;
-    font-size: var(--fs-xxl);
-    color: var(--brand-blue);
+    &:focus {
+      background-color: transparent;
+      color: var(--gray-0);
+      outline-offset: -1px;
+      opacity: 1;
+    }
   }
 }
 
@@ -139,25 +132,12 @@ export default {
     padding: 1vh 0;
     display: flex;
     align-items: center;
-    gap: var(--m);
+    gap: var(--m-sm);
     font-size: var(--fs-xl);
-  }
-  &__step-icon {
-    height: 2rem;
-    width: 2rem;
-    display: flex;
-    align-items: center;
-
-    .icon {
-      height: 2rem;
-      width: 2rem;
-      color: var(--gray-7);
-    }
   }
   &__count {
     color: var(--brand-yellow);
     font-variant-numeric: tabular-nums;
-    font-size: var(--fs-xxl);
   }
   &__title {
     flex: 2;
@@ -184,24 +164,6 @@ export default {
   &__editor {
     grid-area: editor;
     min-width: 0;
-  }
-  &__drag-icon {
-    grid-area: drag;
-    height: 1rem;
-    width: 1rem;
-    display: flex;
-    align-items: center;
-
-    &--fake {
-      opacity: 0;
-    }
-
-    .icon {
-      height: 1rem;
-      width: 1rem;
-      color: var(--gray-7);
-      filter: drop-shadow(0 1px 1px var(--gray-9));
-    }
   }
 }
 

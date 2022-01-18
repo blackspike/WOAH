@@ -14,13 +14,17 @@ form.editor(@submit.prevent='submitForm')
     required,
     type='text',
     v-model.trim.lazy='title',
-    placeholder='Exercise type'
+    placeholder='Add Exercise step'
   )
   //- Add/Delete
-  //- Add
-  button.btn.editor__btn-add(type='submit', @submit.prevent='submitForm')
-    svg.icon(height='24', width='24')
-      use(href='#icon_plus')
+  .editor__action
+    //- Add
+    button.btn-icon.editor__btn-add(
+      type='submit',
+      @submit.prevent='submitForm'
+    )
+      svg.icon(height='24', width='24')
+        use(href='#icon_plus')
 </template>
 
 <script>
@@ -52,40 +56,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" scoped>
-.editor {
-  align-items: center;
-  display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
-  grid-template-areas: 'count title add';
-  gap: var(--m-sm);
-
-  &__title {
-    grid-area: title;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__count {
-    grid-area: count;
-    max-width: 4ch;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__btn-add {
-    padding: 0 var(--m-sm);
-    height: 100%;
-    grid-area: add;
-    background-color: var(--gray-9);
-    color: var(--brand-blue);
-    border: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--gray-9);
-      background-color: var(--brand-blue);
-    }
-  }
-}
-</style>

@@ -2,15 +2,15 @@
 section.intro.card-bg
   .intro__header
     h1.intro__title Work Out At Home
-    p A simple warmup &amp; workout timer
+    p Warmup &amp; workout timer
 
   .intro__start
-    nuxt-link.btn.start-button(to='/warmup') Start warmup
-    nuxt-link.btn.start-button(to='/workout') Start workout
+    nuxt-link.btn.start-button.start-button--warmup(to='/warmup') Start warmup
+    nuxt-link.btn.start-button.start-button--workout(to='/workout') Start workout
 
   .intro__footer
-    p Watch the #[nuxt-link(to='/videos') instruction videos] first!
-    p Content by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+    p Watch the #[nuxt-link(to='/videos') instruction videos]
+    p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
 </template>
 
 <script>
@@ -29,7 +29,6 @@ export default {
   margin: var(--m);
   align-items: center;
   display: grid;
-  height: 100%;
   grid-template-areas: 'header' 'start' 'footer';
   grid-template-rows: max-content 1fr auto;
   gap: var(--m);
@@ -62,6 +61,10 @@ export default {
       width: 100%;
       display: block;
       margin: auto;
+
+      &--workout {
+        border-color: var(--brand-yellow);
+      }
     }
   }
 }

@@ -1,7 +1,10 @@
 .woah-splide {
+  height: 100%;
+
   .splide {
     &__track {
-      overflow: visible;
+      // Stop box shadow clipping
+      padding-bottom: 3rem;
     }
   }
 }

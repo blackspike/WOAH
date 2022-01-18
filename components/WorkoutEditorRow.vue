@@ -15,9 +15,10 @@ form.editor
     placeholder='Exercise type'
   )
   //- Delete
-  button.btn.editor__btn-delete(@click='removeStep', type='button')
-    svg.icon(height='24', width='24')
-      use(href='#icon_trash')
+  .editor__action
+    button.btn-icon.editor__btn-delete(@click='removeStep', type='button')
+      svg.icon(height='24', width='24')
+        use(href='#icon_trash')
 </template>
 
 <script>
@@ -41,7 +42,7 @@ export default {
         return this.$store.state.workouts[this.dayKey].steps[this.index].title
       },
       set(value) {
-        this.$store.commit('EDIT_STEP_TITLE', {
+        this.$store.commit('EDIT_WORKOUT_STEP_TITLE', {
           dayKey: this.dayKey,
           index: this.index,
           value,
@@ -53,7 +54,7 @@ export default {
         return this.$store.state.workouts[this.dayKey].steps[this.index].count
       },
       set(value) {
-        this.$store.commit('EDIT_STEP_COUNT', {
+        this.$store.commit('EDIT_WORKOUT_STEP_COUNT', {
           dayKey: this.dayKey,
           index: this.index,
           value,
@@ -62,15 +63,19 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['REMOVE_STEP', 'EDIT_STEP_TITLE', 'EDIT_STEP_COUNT']),
+    ...mapMutations([
+      'REMOVE_WORKOUT_STEP',
+      'EDIT_WORKOUT_STEP_TITLE',
+      'EDIT_WORKOUT_STEP_COUNT',
+    ]),
     // Submit
     submitForm() {
       if (this.addNew) {
-        this.ADD_STEP({ dayKey: this.dayKey, step: this.step })
+        this.ADD_WORKOUT_STEP({ dayKey: this.dayKey, step: this.step })
       }
     },
     removeStep() {
-      this.REMOVE_STEP({
+      this.REMOVE_WORKOUT_STEP({
         dayKey: this.dayKey,
         index: this.index,
       })
@@ -79,40 +84,3 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.editor {
-  align-items: center;
-  display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
-  grid-template-areas: 'count title delete';
-  gap: var(--m-sm);
-
-  &__title {
-    grid-area: title;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__count {
-    grid-area: count;
-    max-width: 4ch;
-    height: 100%;
-    font-size: var(--fs-lg);
-  }
-  &__btn-add,
-  &__btn-delete {
-    padding: 0 var(--m-sm);
-    height: 100%;
-    grid-area: delete;
-    background-color: var(--gray-9);
-    color: var(--brand-orange);
-    border: none;
-
-    &:hover,
-    &:focus,
-    &:active {
-      color: var(--gray-9);
-      background-color: var(--brand-orange);
-    }
-  }
-}
-</style>

@@ -2,15 +2,23 @@
 section.workout
   //- Slider
   client-only
-    splide(:options='splideOptions')
+    splide.woah-splide(:options='splideOptions')
       splide-slide(v-for='(day, dayKey) in workouts', :key='dayKey')
         WorkoutCard(:dayKey='dayKey')
 
   //- Controls
   .controls
-    .rep-counter {{ "Rep #" + repCount }}
-    button.btn(@click='repCount++') +
-    button.btn(@click='repCount > 0 ? repCount-- : 1') -
+    .rep-counter
+      span.rep-counter__title Rep
+      span.rep-counter__count {{ "#" + repCount }}
+    button.btn.btn-icon.rep-counter__btn(@click='repCount++')
+      svg.icon(height='24', width='24')
+        use(href='#icon_plus')
+    button.btn.btn-icon.rep-counter__btn(
+      @click='repCount > 0 ? repCount-- : 1'
+    )
+      svg.icon(height='24', width='24')
+        use(href='#icon_minus')
 </template>
 
 <script>
@@ -25,10 +33,10 @@ export default {
       splideOptions: {
         arrows: false,
         gap: '.5rem',
-        keyboard: false,
-        padding: '1.5rem',
+        padding: { left: '1rem', right: '1rem' },
         pagination: false,
         start: 0,
+        speed: 500,
         type: 'loop',
       },
     }
@@ -67,8 +75,20 @@ export default {
 
   .rep-counter {
     width: 100%;
-    font-size: var(--fs-xxl);
-    color: var(--brand-blue);
+    font-size: var(--fs-xl);
+    font-family: var(--ff-brand);
+
+    &__title {
+      margin-right: var(--m-sm);
+    }
+    &__count {
+      color: var(--brand-yellow);
+    }
+    &__btn {
+      height: 3rem;
+      width: 5rem;
+      padding: 0;
+    }
   }
 }
 </style>

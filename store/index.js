@@ -35,7 +35,7 @@ export const mutations = {
     state.warmup.steps = steps
   },
   // Add step
-  ADD_WORKOUT_STEP(state, newStep) {
+  ADD_WARMUP_STEP(state, newStep) {
     state.warmup.steps.push({
       count: newStep.count,
       title: newStep.title,
@@ -63,28 +63,28 @@ export const mutations = {
   // --------------------------------
 
   // Set steps
-  SET_DAY_STEPS(state, step) {
+  SET_WORKOUT_DAY_STEPS(state, step) {
     state.workouts[step.dayKey].steps = step.value
   },
   // Edit step title
-  EDIT_STEP_TITLE(state, editedStepTitle) {
+  EDIT_WORKOUT_STEP_TITLE(state, editedStepTitle) {
     state.workouts[editedStepTitle.dayKey].title =
       editedStepTitle.value
   },
   // Edit step Count
-  EDIT_STEP_COUNT(state, editedStepCount) {
+  EDIT_WORKOUT_STEP_COUNT(state, editedStepCount) {
     state.workouts[editedStepCount.dayKey].count =
       editedStepCount.value
   },
   // Add step
-  ADD_STEP(state, newStep) {
+  ADD_WORKOUT_STEP(state, newStep) {
     state.workouts[newStep.dayKey].steps.push({
       count: newStep.count,
       title: newStep.title,
     })
   },
   // Remove step
-  REMOVE_STEP(state, removeStep) {
+  REMOVE_WORKOUT_STEP(state, removeStep) {
     const newArr = [...state.workouts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
     state.workouts[removeStep.dayKey].steps = newArr

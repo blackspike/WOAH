@@ -1,5 +1,12 @@
 <template lang="pug">
 article.warmup-card.card-bg
+  //- Edit
+  nuxt-link.btn.btn-icon.warmup-card__btn-edit(
+    to='/warmup-editor',
+    aria-label='Edit warmup steps'
+  )
+    svg.icon(height='24', width='24')
+      use(href='#icon_gear')
   //- Timer
   .warmup-card__timer-wrapper
     CountdownTimer(
@@ -107,6 +114,7 @@ export default {
   height: 100%;
   grid-template-areas: 'timer' 'step' 'next';
   grid-template-rows: max-content 1fr auto;
+  grid-template-columns: 1fr;
   gap: var(--m);
   justify-content: center;
   user-select: none;
@@ -123,11 +131,32 @@ export default {
     border-radius: var(--radius-2);
     color: var(--gray-0);
     display: flex;
-    font-size: var(--fs-xxxl);
+    font-size: var(--fs-xxl);
     grid-area: step;
     justify-content: center;
     height: 100%;
     text-align: center;
+  }
+
+  &__btn-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    opacity: 0.2;
+
+    &.active,
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: var(--gray-0);
+      opacity: 1;
+    }
+
+    &:focus {
+      color: var(--gray-0);
+      outline-offset: -1px;
+    }
   }
 
   // Next step

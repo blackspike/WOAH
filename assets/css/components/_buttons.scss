@@ -55,14 +55,16 @@
 
 .btn-plain {
   padding: 0;
-  border: none;
+  border: 0;
   font: inherit;
   color: currentColor;
   background-color: transparent;
   cursor: pointer;
   appearance: none;
 
-  &:focus {
+  &.active,
+  &:hover,
+  &:active {
     outline: none;
   }
 }
@@ -82,6 +84,5 @@
 
   &:focus {
     outline: none;
-    box-shadow: inset 0 0 0 0.15rem rgb(65 82 96 / 25%);
   }
 }

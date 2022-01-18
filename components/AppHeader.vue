@@ -29,7 +29,10 @@
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/workout') Workout
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/videos') Videos
 
-  button.btn.btn-icon.header__menu-btn(@click='navOpen = !navOpen')
+  button.btn-plain.btn-icon.header__menu-btn(
+    @click='navOpen = !navOpen',
+    :style='{ active: navOpen }'
+  )
     svg.icon(height='24', width='24')
       use(href='#icon_x', v-if='navOpen')
       use(href='#icon_menu', v-else)
@@ -91,8 +94,8 @@ export default {
     color: currentColor;
     display: flex;
     font-size: var(--fs-lg);
-    letter-spacing: -1px;
-    line-height: 1;
+    font-weight: var(--fw-bd);
+    text-transform: uppercase;
 
     .dot {
       opacity: 0.5;
@@ -101,7 +104,6 @@ export default {
     &:focus,
     &:active {
       color: var(--brand-orange);
-      // outline: 2px dotted var(--brand-orange);
     }
 
     &.nuxt-link-exact-active {
@@ -112,15 +114,16 @@ export default {
   &__menu-btn {
     grid-area: button;
     height: 3rem;
-    padding: 0;
     width: 3rem;
-    border: 2px solid transparent;
+    display: flex;
+    justify-content: flex-end;
+    padding: 0;
     color: var(--gray-5);
 
     &:focus,
     &:hover,
     &:active {
-      color: var(--gray-10);
+      color: var(--brand-orange);
     }
 
     .icon {
@@ -161,10 +164,8 @@ export default {
 
   &__link {
     color: var(--gray-10);
-    display: flex;
-    font-size: var(--fs-xl);
-    letter-spacing: -1px;
-    line-height: var(--lh-xs);
+    font-size: var(--fs-lg);
+    font-family: var(--ff-brand);
 
     &.nuxt-link-exact-active {
       color: var(--brand-orange);
