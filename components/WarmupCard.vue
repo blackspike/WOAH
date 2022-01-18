@@ -56,6 +56,7 @@ export default {
   computed: {
     ...mapState({
       speech: (state) => state.settings.speech,
+      stepsLength: (state) => state.warmup.steps.length,
     }),
 
     stepDuration() {
@@ -124,14 +125,14 @@ export default {
 .warmup-card {
   align-items: center;
   display: grid;
-  height: 100%;
-  grid-template-areas: 'timer' 'step' 'next';
-  grid-template-rows: max-content 1fr auto;
-  grid-template-columns: 1fr;
   gap: var(--m-lg);
+  grid-template-areas: 'timer' 'step' 'next';
+  grid-template-columns: 1fr;
+  grid-template-rows: max-content 1fr auto;
+  height: 100%;
   justify-content: center;
-  user-select: none;
   padding: var(--m-lg) var(--m);
+  user-select: none;
 
   &__timer-wrapper {
     grid-area: timer;

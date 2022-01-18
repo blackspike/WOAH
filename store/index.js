@@ -111,42 +111,42 @@ export const state = () => ({
   warmup: {
     stepDuration: 25,
     steps: [
-      {
-        count: 25,
-        title: 'March in place (swing arms)',
-      },
-      {
-        count: 25,
-        title: 'Jog in place',
-      },
-      {
-        count: 25,
-        title: 'Jumping jacks',
-      },
-      {
-        count: 25,
-        title: 'Walking jacks',
-      },
-      {
-        count: 25,
-        title: 'March with pulldown',
-      },
-      {
-        count: 25,
-        title: 'Lateral step',
-      },
-      {
-        count: 25,
-        title: 'Opposite hand/toe touches',
-      },
-      {
-        count: 25,
-        title: 'Lateral butt kicks',
-      },
-      {
-        count: 25,
-        title: 'Mountain climbers',
-      },
+      // {
+      //   count: 25,
+      //   title: 'March in place (swing arms)',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Jog in place',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Jumping jacks',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Walking jacks',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'March with pulldown',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Lateral step',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Opposite hand/toe touches',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Lateral butt kicks',
+      // },
+      // {
+      //   count: 25,
+      //   title: 'Mountain climbers',
+      // },
       {
         count: 25,
         title: 'Jump up & down, side to side',

@@ -14,14 +14,18 @@ section.warmup
       )
         WarmupCard(
           ref='warmupSplideCard',
-          :started='started',
           :step='step',
-          :currentStep='currentStep',
           :index='index',
           :activeSlide='index === currentStep',
           :nextStep='steps[index + 1]',
           @prevNext='prevNext'
         )
+      splide-slide
+        .card-finished.card-bg
+          .card-finished__message
+            h2.card-finished__title Warmup Finished
+            h3.card-finished__subtitle Nice one!
+          nuxt-link.btn.card-finished__btn-finished(to='/workout') Start workout
 </template>
 
 <script>
@@ -81,3 +85,31 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.card-finished {
+  align-items: center;
+  display: grid;
+  gap: var(--m-lg);
+  grid-template-areas: 'title' 'button';
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr auto;
+  height: 100%;
+  justify-content: center;
+  padding: var(--m-lg) var(--m);
+  user-select: none;
+
+  &__message {
+    grid-area: title;
+    text-align: center;
+  }
+
+  &__subtitle {
+    color: var(--brand-pink);
+    font-size: var(--fs-xxl);
+  }
+  &__btn-finished {
+    grid-area: button;
+  }
+}
+</style>
