@@ -9,10 +9,10 @@
   )
     //- Draggable items
     li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
-      WarmupEditor(:index='index')
+      WarmupEditorRow(:index='index')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
-      //- WarmupEditorAddNew
+      //- WarmupEditorRowAddNew
 </template>
 
 <script>

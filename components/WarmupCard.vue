@@ -12,7 +12,7 @@ article.warmup-card.card-bg
   h2.warmup-card__title {{ step.title }}
 
   //- Next step
-  .warmup-card__next-up(v-if='nextStep') Next:
+  .warmup-card__next-up(v-if='nextStep') Next up
     span {{ nextStep.title }}
   .warmup-card__next-up(v-else)
     span Final step!
@@ -103,22 +103,19 @@ export default {
 // Steps list
 .warmup-card {
   align-items: center;
-  background-color: var(--gray-9);
-  border-radius: var(--radius-2);
-  box-shadow: var(--bxs-lg);
   display: grid;
-  grid-template-areas: 'timer' 'step' 'next';
-  grid-template-rows: auto auto auto;
   height: 100%;
+  grid-template-areas: 'timer' 'step' 'next';
+  grid-template-rows: max-content 1fr auto;
+  gap: var(--m);
   justify-content: center;
   user-select: none;
-  overflow: hidden;
+  padding: var(--m-lg) var(--m);
 
   &__timer-wrapper {
     grid-area: timer;
     align-self: center;
     height: 100%;
-    padding: var(--m);
   }
   &__title {
     align-items: center;
@@ -130,7 +127,6 @@ export default {
     grid-area: step;
     justify-content: center;
     height: 100%;
-    padding: var(--m);
     text-align: center;
   }
 
@@ -138,16 +134,22 @@ export default {
   &__next-up {
     grid-area: next;
     line-height: 1;
-    color: var(--gray-7);
-    font-size: var(--fs-lg);
-    font-family: var(--ff-brand);
+    color: var(--brand-blue);
+    // font-size: var(--fs-lg);
+    font-weight: var(--fw-bd);
     text-align: center;
-    margin-block: var(--m);
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--m-sm);
 
     span {
+      font-size: var(--fs-xl);
+      font-family: var(--ff-heading);
       display: inline-block;
       margin-inline: var(--m-sm);
-      color: var(--gray-6);
+      color: var(--gray-4);
     }
   }
 }

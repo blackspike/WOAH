@@ -28,7 +28,7 @@
     li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
       //- Editor
       .edit-list__editor
-        WorkoutEditor(:step='step', :dayKey='dayKey', :index='index')
+        WorkoutEditorRow(:step='step', :dayKey='dayKey', :index='index')
 
       //- //- drag icon
       //- .edit-list__drag-icon
@@ -36,7 +36,7 @@
       //-     use(xlink:href='#icon_drag')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
-      WorkoutEditorAddNew(:dayKey='dayKey')
+      WorkoutEditorRowAddNew(:dayKey='dayKey')
       //- //- drag icon
       //- .edit-list__drag-icon.edit-list__drag-icon--fake
       //-   svg.icon

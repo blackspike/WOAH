@@ -52,10 +52,10 @@ export const mutations = {
       editedStepCount.value
   },
   // Remove step
-  REMOVE_WARMUP_STEP(state, removeStep) {
-    const newArr = [...state.workouts.steps]
-    newArr.splice(removeStep.index, 1)
-    state.workouts.steps = newArr
+  REMOVE_WARMUP_STEP(state, removeStepIndex) {
+    const newArr = [...state.warmup.steps]
+    newArr.splice(removeStepIndex, 1)
+    state.warmup.steps = newArr
   },
 
   // --------------------------------

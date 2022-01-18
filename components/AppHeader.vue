@@ -68,7 +68,7 @@ export default {
   user-select: none;
 
   &__masthead {
-    align-items: end;
+    align-items: flex-end;
     display: flex;
     gap: var(--m);
     grid-area: masthead;

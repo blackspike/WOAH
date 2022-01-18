@@ -9,7 +9,7 @@ section.warmup
   .warmup-card-wrapper(v-show='!finished')
     //- Slider
     client-only
-      splide(
+      splide.woah-splide(
         :options='splideOptions',
         @splide:moved='slideChange',
         ref='warmupSplide'
@@ -35,7 +35,7 @@ section.warmup
     WarmupControls(:started='started', :finished='finished')
 
   //- Editor
-  //- WarmupEditorCard
+  WarmupEditorCard
 </template>
 
 <script>
@@ -99,7 +99,6 @@ export default {
 <style lang="scss" scoped>
 .warmup {
   flex: 1;
-  width: 100%;
   display: grid;
   gap: var(--m);
   grid-template-columns: minmax(0, 1fr);
@@ -111,24 +110,20 @@ export default {
 .warmup-intro-wrapper {
   grid-area: cards;
   align-self: center;
-  width: 100%;
 }
 
 .start-button-wrapper {
   grid-area: controls;
   padding: 0 var(--m);
-  width: 100%;
 }
 .start-button {
   grid-area: controls;
-  width: 100%;
 }
 
 // Steps
 .warmup-card-wrapper {
   grid-area: cards;
   align-self: center;
-  height: 100%;
 }
 
 // Timer
@@ -147,15 +142,12 @@ export default {
   line-height: 0.8;
   padding: 0 var(--m);
   text-align: center;
-  width: 100%;
 }
 .finish-button-wrapper {
   grid-area: controls;
   padding: 0 var(--m);
-  width: 100%;
 }
 .finish-button {
-  width: 100%;
   display: block;
 }
 
@@ -163,6 +155,5 @@ export default {
 .controls-wrapper {
   padding: 0 var(--m);
   grid-area: controls;
-  width: 100%;
 }
 </style>

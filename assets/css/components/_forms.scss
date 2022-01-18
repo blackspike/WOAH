@@ -1,9 +1,16 @@
-:where(input[type='text'], input[type='number'], input[type='email']) {
+input[type='number'] {
+  appearance: textfield; /* Firefox */
+}
+
+input[type='text'],
+input[type='number'],
+input[type='email'] {
   padding: var(--m-xs) var(--m-sm) 0;
   border: 2px solid var(--gray-9);
   background-color: var(--gray-9);
   border-radius: var(--radius-2);
   box-shadow: inset 1px 1px 3px var(--gray-10);
+  font-family: var(--ff-heading);
 
   &:focus-within {
     border: 2px solid var(--brand-blue);
@@ -25,8 +32,4 @@ input::-webkit-inner-spin-button {
   /* display: none; <- Crashes Chrome on hover */
   appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-
-input[type='number'] {
-  appearance: textfield; /* Firefox */
 }

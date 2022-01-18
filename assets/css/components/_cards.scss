@@ -1,17 +1,9 @@
 .card-bg {
-  position: relative;
-
-  &::before {
-    opacity: 0.1;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-image: url('../img/WOAH-bg-gradient.jpg');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-image: url('../img/bg-blur.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: var(--gray-9);
+  border-radius: var(--radius-3);
+  box-shadow: var(--bxs-lg);
 }

@@ -1,18 +1,16 @@
 <template lang="pug">
-section.intro
-  .intro__content
+section.intro.card-bg
+  .intro__header
     h1.intro__title Work Out At Home
+    p A simple warmup &amp; workout timer
 
-    .intro__text
-      p A simple warmup &amp; workout timer
-      p Watch the #[nuxt-link(to='/videos') instruction videos] first!
-      p Content by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+  .intro__start
+    nuxt-link.btn.start-button(to='/warmup') Start warmup
+    nuxt-link.btn.start-button(to='/workout') Start workout
 
-  //- Intro
-  .warmup-intro-wrapper
-    WarmupIntro
-
-  nuxt-link.btn.start-button(to='/warmup') Start warmup
+  .intro__footer
+    p Watch the #[nuxt-link(to='/videos') instruction videos] first!
+    p Content by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
 </template>
 
 <script>
@@ -28,38 +26,43 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
+  margin: var(--m);
   align-items: center;
-  display: flex;
-  flex-direction: column;
-  gap: var(--m);
-  justify-content: space-between;
-  text-align: center;
-  width: 100%;
+  display: grid;
   height: 100%;
-  padding: 0 var(--m);
-
-  &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-  }
+  grid-template-areas: 'header' 'start' 'footer';
+  grid-template-rows: max-content 1fr auto;
+  gap: var(--m);
+  justify-content: center;
+  user-select: none;
+  padding: var(--m-lg) var(--m);
+  font-weight: var(--fw-bd);
+  text-transform: uppercase;
 
   &__title {
-    font-size: var(--fs-xxxl);
+    font-size: var(--fs-xxl);
+    font-family: var(--ff-brand);
+    grid-area: header;
+    margin-bottom: var(--m);
   }
 
-  &__text {
-    color: var(--brand-yellow);
+  &__footer {
+    grid-area: footer;
     display: flex;
     flex-direction: column;
-    font-size: var(--fs-lg);
     gap: var(--m);
   }
 
-  .start-button {
-    width: 100%;
+  &__start {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m);
+
+    .start-button {
+      width: 100%;
+      display: block;
+      margin: auto;
+    }
   }
 }
 </style>
