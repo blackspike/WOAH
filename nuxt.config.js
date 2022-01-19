@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Work Out At Home | WOAH Fitness',
+    title: 'Work Out At Home | Warmup & workout timer | WOAH',
     htmlAttrs: {
       lang: 'en',
     },
@@ -14,13 +14,59 @@ export default {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1, viewport-fit=cover',
       },
-      { hid: 'description', name: 'description', content: 'Work Out At Home' },
+      { hid: 'author', name: 'author', content: 'blackspike.com' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Warmup & workout timer',
+      },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: 'Work Out At Home | WOAH',
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: 'Warmup & workout timer',
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: 'Work Out At Home | WOAH',
+      },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
+      { hid: 'og:url', name: 'og:url', content: 'https://woah.monster/' },
+      {
+        hid: 'og:image',
+        name: 'og:image',
+        content: `/social_1200x630.png`,
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: `/social_1200x630.png`,
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'color-scheme',
+        content: 'dark',
+      },
       { name: 'format-detection', content: 'telephone=no' },
       { hid: 'theme-color', name: 'theme-color', content: 'yes' },
       {
         hid: 'apple-mobile-web-app-capable',
         name: 'apple-mobile-web-app-capable',
         content: 'yes',
+      },
+      {
+        hid: 'apple-mobile-web-app-title',
+        name: 'apple-mobile-web-app-title',
+        content: 'W.O.A.H',
       },
       {
         hid: 'apple-mobile-web-app-status-bar-style',
@@ -34,6 +80,9 @@ export default {
       { rel: 'manifest', type: 'image/x-icon', href: '/manifest.json' },
     ],
   },
+
+  // Loading bar color
+  loading: { color: 'var(--brand)' },
 
   server: {
     host: '0.0.0.0',
@@ -75,7 +124,7 @@ export default {
 
   // Plausible
   plausible: {
-   domain: 'woah.monster'
+    domain: 'woah.monster',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
