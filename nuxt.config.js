@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Work Out At Home | Warmup & workout timer | WOAH',
+    title: 'Work Out At Home | warmup & workout timer | WOAH',
     htmlAttrs: {
       lang: 'en',
     },
@@ -40,12 +40,12 @@ export default {
       {
         hid: 'og:image',
         name: 'og:image',
-        content: `/social_1200x630.png`,
+        content: `https://woah.monster/social_1200x630.png`,
       },
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: `/social_1200x630.png`,
+        content: `https://woah.monster/social_1200x630.png`,
       },
       {
         hid: 'twitter:card',
