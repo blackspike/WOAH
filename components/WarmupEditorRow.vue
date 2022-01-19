@@ -3,7 +3,8 @@ form.editor
   select.editor__count(v-model.number='editableCount')
     option(v-for='i in 120', :value='i') {{ i }}
 
-  input.editor__title(
+  label.visually-hidden(for='edit_title') Edit step title
+  input#edit_title.editor__title(
     type='text',
     v-model.trim.lazy='editableTitle',
     placeholder='Exercise type',

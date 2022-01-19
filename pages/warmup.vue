@@ -23,9 +23,9 @@ section.warmup
       splide-slide
         .card-finished.card-bg
           .card-finished__message
-            h2.card-finished__title Warmup Finished
-            h3.card-finished__subtitle Nice one!
-          nuxt-link.btn.card-finished__btn-finished(to='/workout') Start workout
+            h2.card-finished__title {{ strings.finishedTitle }}
+            h3.card-finished__subtitle {{ strings.finishedMsg }}
+          nuxt-link.btn.card-finished__btn-finished(to='/workout') {{ strings.finishedBtn }}
 </template>
 
 <script>
@@ -40,8 +40,9 @@ export default {
       finished: false,
       started: false,
       strings: {
+        finishedTitle: 'Warmup Finished',
         finishedMsg: 'Nice one!',
-        finishedBtn: 'Go to workout',
+        finishedBtn: 'Start workout',
       },
       splideOptions: {
         arrows: false,
@@ -57,6 +58,7 @@ export default {
   computed: {
     ...mapState({
       steps: (state) => state.warmup.steps,
+      speech: (state) => state.settings.speech,
     }),
   },
   methods: {
@@ -64,6 +66,10 @@ export default {
     slideChange(el, newIndex, prevIndex, destIndex) {
       // Update vuex
       this.currentStep = newIndex
+      // Speak last step
+      if (this.currentStep === this.steps.length) {
+        this.speak(this.strings.finishedTitle + ', ' + this.strings.finishedMsg)
+      }
     },
 
     // Prev/Next slidestep
@@ -81,6 +87,14 @@ export default {
       if (this.currentStep === this.steps.length) {
         this.finished = true
       }
+    },
+    // Speak
+    speak(text) {
+      if (!this.speech) return
+      const msg = new SpeechSynthesisUtterance()
+      msg.text = text
+      window.speechSynthesis.cancel()
+      window.speechSynthesis.speak(msg)
     },
   },
 }

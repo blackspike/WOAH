@@ -1,5 +1,12 @@
 <template lang="pug">
 //- Controls
+//- OLD - SEE SETTINGS
+//- OLD - SEE SETTINGS
+//- OLD - SEE SETTINGS
+//- OLD - SEE SETTINGS
+//- OLD - SEE SETTINGS
+//- OLD - SEE SETTINGS
+
 .controls
   //- Show Settings
   button.btn.controls__btn.controls__btn--settings(

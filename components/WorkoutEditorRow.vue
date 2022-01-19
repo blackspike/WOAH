@@ -5,7 +5,8 @@ form.editor
     option(v-for='i in 120', :value='i') {{ i }}
 
   //- Title
-  input.editor__title(
+  label.visually-hidden(for='edit_title') Edit step title
+  input#edit_title.editor__title(
     type='text',
     v-model.trim.lazy='editableTitle',
     placeholder='Exercise type',
