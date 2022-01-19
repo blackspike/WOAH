@@ -76,6 +76,7 @@ export default {
     ...mapState({
       steps: (state) => state.warmup.steps,
       speech: (state) => state.settings.speech,
+      sleep: (state) => state.settings.noSleep,
     }),
   },
   mounted() {
@@ -95,7 +96,6 @@ export default {
 
     // Start/stop sleep
     toggleNoSleep(value = true) {
-      if (!process.client) return
       if (value && this.sleep) {
         this.noSleepLib.enable()
       } else {

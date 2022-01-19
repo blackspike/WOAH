@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       title: '',
-      count: null,
+      count: 20,
     }
   },
   methods: {

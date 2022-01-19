@@ -1,5 +1,5 @@
 <template lang="pug">
-form.editor
+.editor
   select.editor__count(v-model.number='editableCount')
     option(v-for='i in 120', :value='i') {{ i }}
 

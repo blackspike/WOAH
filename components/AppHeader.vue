@@ -175,7 +175,7 @@ export default {
   padding: var(--m-lg);
   position: absolute;
   right: 0;
-  top: var(--m-sm);
+  top: var(--m-xs);
   z-index: var(--layer-4);
 
   &__link {

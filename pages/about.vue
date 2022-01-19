@@ -5,7 +5,7 @@ section.about.card-bg
     p.about__subtitle Warmup &amp; workout timer
 
   .about__content
-    p I made this app as I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build a little app, and got kind of carried away!
+    p I made this app as I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build myself a little app.
 
     P I'll open source it on github as soon as I've ironed out the kinks. Cheers!
 

@@ -11,6 +11,7 @@ section.intro.card-bg
   .intro__footer
     p Watch the #[nuxt-link(to='/videos') instruction videos]
     p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+    p What is this? #[nuxt-link(to='/about') About this app]
 </template>
 
 <script>
