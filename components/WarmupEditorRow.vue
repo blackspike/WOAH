@@ -1,18 +1,13 @@
 <template lang="pug">
 form.editor
-  input.editor__count(
-    type='number',
-    v-model.number.lazy='editableCount',
-    min='0',
-    max='999',
-    maxlength='3',
-    inputmode='decimal',
-    placeholder='00'
-  )
+  select.editor__count(v-model.number='editableCount')
+    option(v-for='i in 120', :value='i') {{ i }}
+
   input.editor__title(
     type='text',
     v-model.trim.lazy='editableTitle',
-    placeholder='Exercise type'
+    placeholder='Exercise type',
+    @focus='$event.target.select()'
   )
 
   //- Delete

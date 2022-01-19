@@ -69,6 +69,7 @@ export default {
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 'header' 'list' 'done';
+  flex: 0;
 
   &__title {
     color: var(--gray-5);
@@ -108,7 +109,6 @@ export default {
 // Edit list
 .edit-list {
   grid-area: list;
-  align-self: center;
   padding: 2vh 0;
 
   &__item {

@@ -129,7 +129,6 @@ export default {
 // Step list
 .step-list {
   grid-area: list;
-  align-self: center;
   display: flex;
   gap: var(--m-sm);
   height: 100%;
@@ -179,7 +178,6 @@ export default {
 // Edit list
 .edit-list {
   grid-area: list;
-  align-self: center;
   padding: 2vh 0;
 
   &__item {

@@ -40,10 +40,8 @@ export default {
   width: 100%;
 
   @include media-query('xl') {
-    margin: var(--m-xl) auto;
-    padding: var(--m-xl) 0;
+    margin: var(--m) auto var(--m-xl);
     border-radius: var(--radius-3);
-    box-shadow: var(--bxs-md);
     max-width: var(--mw-content);
   }
 }

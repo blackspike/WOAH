@@ -1,21 +1,17 @@
 <template lang="pug">
 form.editor(@submit.prevent='submitForm')
-  input.editor__count(
-    required,
-    type='number',
-    v-model.number.lazy='count',
-    min='0',
-    max='999',
-    maxlength='3',
-    inputmode='decimal',
-    placeholder='00'
-  )
+  //- Count
+  select.editor__count(v-model.number='count')
+    option(v-for='i in 120', :value='i') {{ i }}
+
+  //- Title
   input.editor__title(
     required,
     type='text',
     v-model.trim.lazy='title',
     placeholder='Add Exercise step'
   )
+
   //- Add/Delete
   .editor__action
     //- Add

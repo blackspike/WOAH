@@ -7,17 +7,9 @@ export const actions = {
 // Mutations
 export const mutations = {
   // --------------------------------
-  // Warmup Controls
+  // Settings Controls
   // --------------------------------
 
-  // Set step duration
-  SET_STEP_DURATION(state, seconds) {
-    state.warmup.seconds = seconds
-  },
-  // Set timer count
-  SET_TIMER_COUNT(state, count) {
-    state.warmup.timerCount = count
-  },
   // Set speech
   SET_SPEECH(state) {
     state.warmup.speech = !state.warmup.speech
@@ -26,11 +18,16 @@ export const mutations = {
   SET_SLEEP(state) {
     state.warmup.noSleep = !state.warmup.noSleep
   },
-  // Set sleep
-  SET_TIMER_ZERO(state) {
-    state.warmup.noSleep = !state.warmup.noSleep
-  },
 
+  // --------------------------------
+  // Warmup Controls
+  // --------------------------------
+
+  // Set timer count
+  SET_TIMER_COUNT(state, count) {
+    state.warmup.timerCount = count
+  },
+  // Set all steps
   SET_WARMUP_STEPS(state, steps) {
     state.warmup.steps = steps
   },
@@ -43,13 +40,11 @@ export const mutations = {
   },
   // Edit step title
   EDIT_WARMUP_STEP_TITLE(state, editedStepTitle) {
-    state.warmup.steps[editedStepTitle.index].title =
-      editedStepTitle.value
+    state.warmup.steps[editedStepTitle.index].title = editedStepTitle.value
   },
   // Edit step Count
   EDIT_WARMUP_STEP_COUNT(state, editedStepCount) {
-    state.warmup.steps[editedStepCount.index].count =
-      editedStepCount.value
+    state.warmup.steps[editedStepCount.index].count = editedStepCount.value
   },
   // Remove step
   REMOVE_WARMUP_STEP(state, removeStepIndex) {
@@ -68,13 +63,11 @@ export const mutations = {
   },
   // Edit step title
   EDIT_WORKOUT_STEP_TITLE(state, editedStepTitle) {
-    state.workouts[editedStepTitle.dayKey].title =
-      editedStepTitle.value
+    state.workouts[editedStepTitle.dayKey].title = editedStepTitle.value
   },
   // Edit step Count
   EDIT_WORKOUT_STEP_COUNT(state, editedStepCount) {
-    state.workouts[editedStepCount.dayKey].count =
-      editedStepCount.value
+    state.workouts[editedStepCount.dayKey].count = editedStepCount.value
   },
   // Add step
   ADD_WORKOUT_STEP(state, newStep) {
@@ -93,12 +86,9 @@ export const mutations = {
 
 // Getters
 export const getters = {
-  getNextStep(state) {
-    // return state.warmup.steps[state.warmup.currentStep + 1]
-  },
-  getWarmup(state) {
-    return state.warmup
-  },
+  // getWarmup(state) {
+  //   return state.warmup
+  // },
 }
 
 // State

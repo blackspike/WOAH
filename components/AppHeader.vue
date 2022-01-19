@@ -1,7 +1,7 @@
 <template lang="pug">
 .header
   .header__masthead
-    nuxt-link.header__logo.header__link(
+    nuxt-link.header__logo(
       @click.native='navOpen = false',
       to='/',
       aria-title='Work Out At Home'
@@ -23,11 +23,13 @@
     nuxt-link.header__link(to='/warmup') Warmup
     nuxt-link.header__link(to='/workout') Workout
     nuxt-link.header__link(to='/videos') Videos
+    nuxt-link.header__link(to='/settings') Settings
 
   nav.nav-mobile(v-if='navOpen')
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/warmup') Warmup
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/workout') Workout
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/videos') Videos
+    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/settings') Settings
 
   button.btn-plain.btn-icon.header__menu-btn(
     @click='navOpen = !navOpen',
@@ -70,6 +72,10 @@ export default {
   user-select: none;
   width: 100%;
 
+  @include media-query('xl') {
+    padding: 0 var(--m) var(--m);
+  }
+
   &__masthead {
     align-items: flex-end;
     display: flex;
@@ -78,6 +84,16 @@ export default {
   }
   &__logo {
     font-family: var(--ff-brand);
+    color: currentColor;
+    display: flex;
+    font-size: var(--fs-lg);
+    font-weight: var(--fw-bd);
+    text-transform: uppercase;
+
+    &:focus,
+    &:active {
+      color: var(--brand-orange);
+    }
   }
   &__title {
     color: var(--gray-5);
@@ -93,13 +109,9 @@ export default {
   &__link {
     color: currentColor;
     display: flex;
-    font-size: var(--fs-lg);
+    // font-size: var(--fs-lg);
     font-weight: var(--fw-bd);
     text-transform: uppercase;
-
-    .dot {
-      opacity: 0.5;
-    }
 
     &:focus,
     &:active {

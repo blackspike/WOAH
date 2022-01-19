@@ -1,7 +1,7 @@
 <template lang="pug">
-.section.videos
+section.videos
   article.videos__wrap
-    h2.videos__title.videos__title--warmup Warmup
+    h2.videos__title.videos__title--warmup Warmup tutorial
     .video
       iframe.video-iframe(
         src='https://www.youtube.com/embed/qQ96oXp5RTU',
@@ -12,7 +12,7 @@
       )
 
   article.videos__wrap
-    h2.videos__title.videos__title--workout Workout
+    h2.videos__title.videos__title--workout Workout tutorial
     .video
       iframe.video-iframe(
         src='https://www.youtube.com/embed/qvhHhDNjtxM',
@@ -44,7 +44,7 @@ export default {
 
   &__title {
     font-size: var(--fs-xl);
-    margin-bottom: var(--m);
+    margin: var(--m) 0;
 
     &--warmup {
       color: var(--brand-yellow);
