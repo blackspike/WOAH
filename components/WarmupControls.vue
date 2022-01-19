@@ -114,7 +114,6 @@ export default {
 <style lang="scss" scoped>
 // Controls
 .controls {
-  position: relative;
   grid-area: controls;
   width: 100%;
   display: flex;

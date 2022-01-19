@@ -1,6 +1,6 @@
 <template lang="pug">
-.warmup-editor.card-bg
-  h2.warmup-editor__title Drag steps to rearrange
+section.warmup-editor.card-bg
+  p.warmup-editor__title (Drag steps to rearrange)
   //- Edit
   nuxt-link.btn.btn-icon.warmup-editor__btn-edit(
     to='/warmup',
@@ -65,17 +65,19 @@ export default {
 <style lang="scss" scoped>
 .warmup-editor {
   padding: var(--m) var(--m);
-  margin: 0 var(--m);
+  margin: 0 var(--m) var(--m-lg);
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: 'header' 'list' 'done';
 
   &__title {
-    grid-area: header;
+    color: var(--gray-5);
     font-family: var(--ff-base);
-    text-transform: uppercase;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-bd);
+    grid-area: header;
     margin-top: var(--m-xs);
+    text-transform: uppercase;
   }
   &__finished {
     grid-area: done;

@@ -16,27 +16,23 @@ section.intro.card-bg
 <script>
 export default {
   name: 'Home',
-  data() {
-    return {
-      currentPage: null,
-    }
-  },
 }
 </script>
 
 <style lang="scss" scoped>
 .intro {
-  margin: 0 var(--m);
   align-items: center;
   display: grid;
+  font-weight: var(--fw-bd);
+  gap: var(--m-lg);
   grid-template-areas: 'header' 'start' 'footer';
   grid-template-rows: 1fr 1fr auto;
-  gap: var(--m-lg);
+  height: 100%;
   justify-content: center;
-  user-select: none;
+  margin: 0 var(--m);
   padding: var(--m) var(--m-lg) var(--m-lg);
-  font-weight: var(--fw-bd);
   text-transform: uppercase;
+  user-select: none;
 
   &__header {
     grid-area: header;
@@ -47,6 +43,7 @@ export default {
     font-family: var(--ff-brand);
     margin-bottom: var(--m);
   }
+
   &__subtitle {
     color: var(--brand-yellow);
   }
@@ -56,7 +53,6 @@ export default {
     display: flex;
     flex-direction: column;
     gap: var(--m);
-    text-align: center;
 
     a {
       color: var(--brand-yellow);

@@ -1,8 +1,7 @@
 <template lang="pug">
 .app
   //- Header
-  header.header-wrapper
-    AppHeader
+  AppHeader
 
   //- Content
   main.content-wrapper
@@ -34,10 +33,8 @@ export default {
 <style lang="scss">
 // App
 .app {
-  display: grid;
-  grid-template-areas: 'header' 'content';
-  grid-template-rows: auto 1fr;
-  grid-template-columns: minmax(0, 1fr);
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 0 0 var(--m);
   width: 100%;
@@ -51,22 +48,15 @@ export default {
   }
 }
 
-// Header
-.header-wrapper {
-  grid-area: header;
-}
-
 // Content
 .content-wrapper {
   height: 100%;
-  grid-area: content;
   margin: auto;
   max-width: var(--mw-content);
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
-  overflow: auto;
 
   > * {
     flex: 1;

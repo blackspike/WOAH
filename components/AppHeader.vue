@@ -66,9 +66,9 @@ export default {
   grid-template-rows: auto auto;
   margin: auto;
   max-width: var(--mw-content);
-  padding: var(--m-sm) var(--m) var(--m);
-  position: relative;
+  padding: 0 var(--m) var(--m-sm);
   user-select: none;
+  width: 100%;
 
   &__masthead {
     align-items: flex-end;
@@ -117,7 +117,7 @@ export default {
     width: 3rem;
     display: flex;
     justify-content: flex-end;
-    padding: 0;
+    padding: var(--m-sm) 0 0;
     color: var(--gray-5);
 
     &:focus,
