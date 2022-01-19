@@ -12,11 +12,11 @@ export const mutations = {
 
   // Set speech
   SET_SPEECH(state) {
-    state.warmup.speech = !state.warmup.speech
+    state.settings.speech = !state.settings.speech
   },
   // Set sleep
   SET_SLEEP(state) {
-    state.warmup.noSleep = !state.warmup.noSleep
+    state.settings.noSleep = !state.settings.noSleep
   },
 
   // --------------------------------

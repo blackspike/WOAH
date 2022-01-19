@@ -72,6 +72,9 @@ export default {
   user-select: none;
   width: 100%;
 
+  @include media-query('md') {
+    padding: var(--m);
+  }
   @include media-query('xl') {
     padding: 0 var(--m) var(--m);
   }

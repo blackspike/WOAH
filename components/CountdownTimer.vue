@@ -7,14 +7,19 @@
     viewBox='0 0 360 360'
   )
     circle.svg-number__bg(cx='180', cy='180', r='180')
-    text.svg-number__text(
-      ref='number',
-      text-anchor='middle',
-      x='180',
-      y='250',
-      font-variant='tabular-nums',
-      :class='{ ending: time < 6 && time !== 0, active }'
-    ) {{ time }}
+    g.svg-number__text-wrapper.needed-for-safari(
+      :class='{ active }',
+      y='000',
+      height='360'
+    )
+      text.svg-number__text(
+        ref='number',
+        text-anchor='middle',
+        x='180',
+        y='250',
+        font-variant='tabular-nums',
+        :class='{ ending: time < 6 && time !== 0, active }'
+      ) {{ time }}
 
   //- SVG pi
   svg.svg-pi(
@@ -104,20 +109,27 @@ export default {
   &__bg {
     fill: var(--gray-9);
   }
+
+  &__text-wrapper {
+    opacity: 0;
+    transform: translateY(3rem);
+    transition: animation 1s ease-in-out,
+      transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
+      opacity 0.5s cubic-bezier(0.87, 0, 0.13, 1);
+    &.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
   &__text {
     font-size: var(--fs-8);
     font-family: var(--ff-heading);
     fill: var(--brand-blue);
-    transition: animation 1s ease-in-out,
-      transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
-      opacity 0.5s cubic-bezier(0.87, 0, 0.13, 1);
-
-    transform: translateY(3rem);
-    opacity: 0;
+    transition: animation 1s ease-in-out;
 
     &.active {
       transform: translateY(0);
-      opacity: 1;
     }
 
     &.ending {

@@ -17,7 +17,7 @@ article.warmup-card.card-bg
       :active='activeSlide'
     )
 
-  h2.warmup-card__title {{ step.title }}
+  h2.warmup-card__title {{ step.title }} {{ speech }}
 
   //- Next step
   .warmup-card__next-up(v-if='nextStep') Next up

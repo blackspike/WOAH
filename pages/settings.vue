@@ -4,17 +4,17 @@ section.settings.card-bg
 
   //- Speech
   .settings__row
-    label(for='set_speech') {{ strings.announceSteps }}
-    input#set_speech(type='checkbox', v-model='getSetSpeech')
+    label.settings__label(for='set_speech') {{ strings.announceSteps }}
+    input#set_speech.settings__input(type='checkbox', v-model='getSetSpeech')
 
   //- Sleep
   .settings__row
-    label(for='set_sleep') {{ strings.sleepEnabled }}
-    input#set_sleep(type='checkbox', v-model='getSetSleep')
+    label.settings__label(for='set_sleep') {{ strings.sleepEnabled }}
+    input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
 </template>
 
 <script>
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'Settings',
@@ -28,15 +28,10 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      speech: (state) => state.settings.speech,
-      noSleep: (state) => state.settings.noSleep,
-    }),
-
     // GetSet Speech
     getSetSpeech: {
       get() {
-        return this.speech
+        return this.$store.state.settings.speech
       },
       set() {
         this.$store.commit('SET_SPEECH')
@@ -46,7 +41,7 @@ export default {
     // GetSet sleep
     getSetSleep: {
       get() {
-        return this.noSleep
+        return this.$store.state.settings.noSleep
       },
       set() {
         this.$store.commit('SET_SLEEP')
@@ -61,10 +56,10 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
-  margin: 0 var(--m);
-  padding: var(--m-lg);
-  user-select: none;
   flex: 0;
+  margin: 0 var(--m);
+  padding: var(--m-lg) var(--m);
+  user-select: none;
 
   &__title {
     font-family: var(--ff-brand);
@@ -75,25 +70,26 @@ export default {
 
 // Settings menu
 .settings {
+  // Rows
   &__row {
-    display: flex;
-    gap: var(--m-sm);
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--m);
     align-items: baseline;
+    align-items: center;
     background-color: var(--gray-9);
     border-radius: var(--radius-2);
     border: 2px solid var(--gray-9);
     display: flex;
+    display: flex;
     gap: var(--m-sm);
+    gap: var(--m);
+    justify-content: space-between;
+    margin-bottom: var(--m);
     padding: var(--m);
   }
 
-  label {
-    text-transform: uppercase;
+  &__label {
+    flex: 1;
     font-weight: var(--fw-bd);
-    // font-size: var(--fs-lg);
+    text-transform: uppercase;
   }
 
   input[type='checkbox'] {
