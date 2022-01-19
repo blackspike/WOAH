@@ -19,8 +19,6 @@ article.warmup-card.card-bg
 
   h2.warmup-card__title {{ step.title }}
 
-  h3 {{ activeSlide }}
-
   //- Next step
   .warmup-card__next-up(v-if='nextStep') Next up
     span {{ nextStep.title }}

@@ -159,6 +159,9 @@ export default {
     text-align: center;
   }
 
+  &__title {
+    margin-bottom: var(--m);
+  }
   &__subtitle {
     color: var(--brand-pink);
     font-size: var(--fs-xxl);
