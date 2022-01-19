@@ -11,6 +11,23 @@ section.settings.card-bg
   .settings__row
     label.settings__label(for='set_sleep') {{ strings.sleepEnabled }}
     input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
+
+  //- Reset
+  .settings__row
+    //- Reset?
+    button.btn.settings__button(
+      v-if='!resetConfirm',
+      @click='resetConfirm = true'
+    ) {{ strings.resetState }}
+
+    //- Reset confirm
+    button.btn.settings__button.settings__button--danger(
+      v-if='resetConfirm && !resetDone',
+      @click='resetVuex'
+    ) {{ strings.resetStateConfirm }}
+
+    //- Reset confirmed
+    p.settings__reset-confirmed(v-if='resetDone') {{ strings.resetStateConfirmed }}
 </template>
 
 <script>
@@ -20,10 +37,15 @@ export default {
   name: 'Settings',
   data() {
     return {
+      resetDone: false,
+      resetConfirm: false,
       strings: {
         settings: 'Settings',
         announceSteps: 'Announce steps',
         sleepEnabled: 'Prevent device sleeping',
+        resetState: 'Reset all settings & steps',
+        resetStateConfirm: 'This will delete all your changes! ',
+        resetStateConfirmed: 'All settings reset.',
       },
     }
   },
@@ -49,7 +71,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['SET_SPEECH', 'SET_SLEEP']),
+    ...mapMutations(['SET_SPEECH', 'SET_SLEEP', 'RESET_STATE']),
+
+    resetVuex() {
+      this.resetDone = true
+      this.$store.commit('RESET_STATE')
+    },
   },
 }
 </script>
@@ -94,6 +121,25 @@ export default {
 
   input[type='checkbox'] {
     transform: scale(2);
+  }
+
+  &__button {
+    font-size: var(--fs-lg);
+    flex: 1;
+
+    &--danger {
+      border-color: var(--brand-orange);
+      background-color: var(--brand-orange);
+      color: var(--gray-0);
+    }
+  }
+
+  &__reset-confirmed {
+    font-weight: var(--fw-bd);
+    text-transform: uppercase;
+    color: var(--brand-orange);
+    text-align: center;
+    flex: 1;
   }
 }
 </style>

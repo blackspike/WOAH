@@ -39,7 +39,6 @@ section.warmup
 import '@splidejs/splide/dist/css/splide.min.css'
 import { mapState } from 'vuex'
 import NoSleep from 'nosleep.js'
-const noSleep = new NoSleep()
 
 export default {
   name: 'Warmup',
@@ -53,6 +52,7 @@ export default {
       currentStep: 0,
       finished: false,
       started: false,
+      noSleepLib: false,
       strings: {
         finishedTitle: 'Warmup Finished',
         finishedMsg: 'Nice one!',
@@ -78,6 +78,10 @@ export default {
       speech: (state) => state.settings.speech,
     }),
   },
+  mounted() {
+    // Doing this via mount to keep client side!
+    this.noSleepLib = new NoSleep()
+  },
   methods: {
     // slideChange
     slideChange(el, newIndex, prevIndex, destIndex) {
@@ -91,10 +95,11 @@ export default {
 
     // Start/stop sleep
     toggleNoSleep(value = true) {
+      if (!process.client) return
       if (value && this.sleep) {
-        noSleep.enable()
+        this.noSleepLib.enable()
       } else {
-        noSleep.disable()
+        this.noSleepLib.disable()
       }
     },
 

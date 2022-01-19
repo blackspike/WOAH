@@ -66,30 +66,42 @@ export const mutations = {
   // Workout Steps
   // --------------------------------
 
-  // Set steps
+  // Set workout steps
   SET_WORKOUT_DAY_STEPS(state, step) {
     state.workouts[step.dayKey].steps = step.value
   },
-  // Edit step title
+  // Edit workout step title
   EDIT_WORKOUT_STEP_TITLE(state, editedStepTitle) {
-    state.workouts[editedStepTitle.dayKey].title = editedStepTitle.value
+    state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
+      editedStepTitle.value
   },
-  // Edit step Count
+  // Edit workout step Count
   EDIT_WORKOUT_STEP_COUNT(state, editedStepCount) {
-    state.workouts[editedStepCount.dayKey].count = editedStepCount.value
+    state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
+      editedStepCount.value
   },
-  // Add step
+  // Add workout step
   ADD_WORKOUT_STEP(state, newStep) {
     state.workouts[newStep.dayKey].steps.push({
       count: newStep.count,
       title: newStep.title,
     })
   },
-  // Remove step
+  // Remove workout step
   REMOVE_WORKOUT_STEP(state, removeStep) {
     const newArr = [...state.workouts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
     state.workouts[removeStep.dayKey].steps = newArr
+  },
+
+  // --------------------------------
+  // Reset State
+  // --------------------------------
+
+  RESET_STATE(state) {
+    state.settings = state.initialState.settings
+    state.warmup = state.initialState.warmup
+    state.workouts = state.initialState.workouts
   },
 }
 
@@ -274,6 +286,183 @@ export const state = () => ({
           title: 'Min. Cardio Run',
         },
       ],
+    },
+  },
+  // Intitial state is just a copy of the original state so we can reset the app! Prob a better way...
+
+  initialState: {
+    settings: {
+      speech: true,
+      noSleep: true,
+    },
+    warmup: {
+      stepDuration: 25,
+      steps: [
+        {
+          count: 25,
+          title: 'March in place (swing arms)',
+        },
+        {
+          count: 25,
+          title: 'Jog in place',
+        },
+        {
+          count: 25,
+          title: 'Jumping jacks',
+        },
+        {
+          count: 25,
+          title: 'Walking jacks',
+        },
+        {
+          count: 25,
+          title: 'March with pulldown',
+        },
+        {
+          count: 25,
+          title: 'Lateral step',
+        },
+        {
+          count: 25,
+          title: 'Opposite hand/toe touches',
+        },
+        {
+          count: 25,
+          title: 'Lateral butt kicks',
+        },
+        {
+          count: 25,
+          title: 'Mountain climbers',
+        },
+        {
+          count: 25,
+          title: 'Jump up & down, side to side',
+        },
+        {
+          count: 25,
+          title: 'Jump rope',
+        },
+      ],
+    },
+    workouts: {
+      sun: {
+        title: 'Sunday',
+        steps: [],
+      },
+      mon: {
+        title: 'Monday',
+        steps: [
+          {
+            count: 20,
+            title: 'Bodyweight squats',
+          },
+          {
+            count: 10,
+            title: 'Push-ups',
+          },
+          {
+            count: 20,
+            title: 'Walking lunges',
+          },
+          {
+            count: 10,
+            title: 'Dumbbell rows × 2',
+          },
+          {
+            count: 15,
+            title: 'Second Plank',
+          },
+          {
+            count: 30,
+            title: 'Jumping jacks',
+          },
+        ],
+      },
+      tue: {
+        title: 'Tuesday',
+        steps: [
+          {
+            count: 25,
+            title: 'Min. Cardio Run',
+          },
+        ],
+      },
+      wed: {
+        title: 'Wednesday',
+        steps: [
+          {
+            count: 20,
+            title: 'Bodyweight squats',
+          },
+          {
+            count: 10,
+            title: 'Push-ups',
+          },
+          {
+            count: 20,
+            title: 'Walking lunges',
+          },
+          {
+            count: 10,
+            title: 'Dumbbell rows × 2',
+          },
+          {
+            count: 15,
+            title: 'Second Plank',
+          },
+          {
+            count: 30,
+            title: 'Jumping jacks',
+          },
+        ],
+      },
+      thu: {
+        title: 'Thursday',
+        steps: [
+          {
+            count: 25,
+            title: 'Min. Cardio Indoor bike',
+          },
+        ],
+      },
+      fri: {
+        title: 'Friday',
+        steps: [
+          {
+            count: 20,
+            title: 'Bodyweight squats',
+          },
+          {
+            count: 10,
+            title: 'Push-ups',
+          },
+          {
+            count: 20,
+            title: 'Walking lunges',
+          },
+          {
+            count: 10,
+            title: 'Dumbbell rows × 2',
+          },
+          {
+            count: 15,
+            title: 'Second Plank',
+          },
+          {
+            count: 30,
+            title: 'Jumping jacks',
+          },
+        ],
+      },
+      sat: {
+        title: 'Saturday',
+        steps: [
+          {
+            count: 25,
+            title: 'Min. Cardio Run',
+          },
+        ],
+      },
     },
   },
 })

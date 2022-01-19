@@ -47,7 +47,6 @@ export default {
       },
       set(value) {
         this.$store.commit('EDIT_WARMUP_STEP_COUNT', {
-          dayKey: this.dayKey,
           index: this.index,
           value,
         })
