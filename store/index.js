@@ -1,9 +1,18 @@
-// Actions
-export const actions = {
-  // counterUp({ state, commit }) {
-  //   commit('setCounter', state.counter + 1)
-  // },
-}
+// import NoSleep from 'nosleep.js'
+// const noSleep = new NoSleep()
+
+
+// // Actions
+// export const actions = {
+//   enableNoSleep() {
+//     console.log(state.settings)
+//     noSleep.enable()
+//   },
+//   disableNoSleep() {
+//     console.log(state.settings)
+//     noSleep.disable()
+//   },
+// }
 // Mutations
 export const mutations = {
   // --------------------------------

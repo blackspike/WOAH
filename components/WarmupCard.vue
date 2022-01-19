@@ -17,7 +17,9 @@ article.warmup-card.card-bg
       :active='activeSlide'
     )
 
-  h2.warmup-card__title {{ step.title }} {{ speech }}
+  h2.warmup-card__title {{ step.title }}
+
+  h3 {{ activeSlide }}
 
   //- Next step
   .warmup-card__next-up(v-if='nextStep') Next up
@@ -93,13 +95,6 @@ export default {
     },
   },
 
-  mounted() {
-    // Speak first step on mount
-    if (this.index === 0) {
-      this.speak(this.step.title)
-    }
-  },
-
   methods: {
     // Speak
     speak(text) {
@@ -153,6 +148,8 @@ export default {
   }
 
   &__btn-edit {
+    color: var(--gray-0);
+    background-color: transparent;
     position: absolute;
     top: 0;
     right: 0;
@@ -163,7 +160,6 @@ export default {
     &:hover,
     &:active {
       background-color: transparent;
-      color: var(--gray-0);
       opacity: 1;
     }
 

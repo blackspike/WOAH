@@ -88,14 +88,15 @@ export default {
     position: absolute;
     top: 0;
     right: 0;
+    background-color: transparent;
     border-color: transparent;
     opacity: 0.8;
+    color: var(--gray-0);
 
     &.active,
     &:hover,
     &:active {
       background-color: transparent;
-      color: var(--gray-0);
       opacity: 1;
     }
 

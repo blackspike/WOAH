@@ -7,6 +7,13 @@ section.warmup
       @splide:move='slideChange',
       ref='warmupSplide'
     )
+      splide-slide
+        .card-start.card-bg
+          .card-start__message
+            h2.card-start__title {{ strings.startTitle }}
+            h3.card-start__subtitle {{ strings.startMsg }}
+          a.btn.card-start__btn-start(@click='startWarmup') {{ strings.startBtn }}
+
       splide-slide(
         v-for='(step, index) in steps',
         :key='step.title',
@@ -16,7 +23,7 @@ section.warmup
           ref='warmupSplideCard',
           :step='step',
           :index='index',
-          :activeSlide='index === currentStep',
+          :activeSlide='index === currentStep - 1',
           :nextStep='steps[index + 1]',
           @prevNext='prevNext'
         )
@@ -25,15 +32,22 @@ section.warmup
           .card-finished__message
             h2.card-finished__title {{ strings.finishedTitle }}
             h3.card-finished__subtitle {{ strings.finishedMsg }}
-          nuxt-link.btn.card-finished__btn-finished(to='/workout') {{ strings.finishedBtn }}
+          button.btn.card-finished__btn-finished(@click='finishWarmup') {{ strings.finishedBtn }}
 </template>
 
 <script>
 import '@splidejs/splide/dist/css/splide.min.css'
 import { mapState } from 'vuex'
+import NoSleep from 'nosleep.js'
+const noSleep = new NoSleep()
 
 export default {
   name: 'Warmup',
+  beforeRouteLeave(to, from, next) {
+    // Disable no sleep on page leave
+    this.toggleNoSleep(false)
+    next()
+  },
   data() {
     return {
       currentStep: 0,
@@ -43,6 +57,9 @@ export default {
         finishedTitle: 'Warmup Finished',
         finishedMsg: 'Nice one!',
         finishedBtn: 'Start workout',
+        startTitle: 'Warmup start',
+        startMsg: "Don't forget to start your smartwatch!",
+        startBtn: 'Start warmup',
       },
       splideOptions: {
         arrows: false,
@@ -72,6 +89,28 @@ export default {
       }
     },
 
+    // Start/stop sleep
+    toggleNoSleep(value = true) {
+      if (value && this.sleep) {
+        noSleep.enable()
+      } else {
+        noSleep.disable()
+      }
+    },
+
+    // Start warmup button
+    startWarmup() {
+      this.toggleNoSleep(true)
+      this.prevNext(true)
+    },
+    // Finish warmup button
+    finishWarmup() {
+      this.toggleNoSleep(false)
+      this.$router.push({
+        path: '/workout',
+      })
+    },
+
     // Prev/Next slidestep
     prevNext(next = true) {
       // Back / forth
@@ -88,6 +127,7 @@ export default {
         this.finished = true
       }
     },
+
     // Speak
     speak(text) {
       if (!this.speech) return
@@ -101,6 +141,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-start,
 .card-finished {
   align-items: center;
   display: grid;

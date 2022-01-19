@@ -106,6 +106,8 @@ export default {
     position: absolute;
     top: var(--m);
     right: var(--m);
+    background-color: transparent;
+    color: var(--gray-0);
     border-color: transparent;
     opacity: 0.5;
     padding: 0;
@@ -113,7 +115,6 @@ export default {
     &:hover,
     &:active {
       background-color: transparent;
-      color: var(--gray-0);
       opacity: 1;
     }
 

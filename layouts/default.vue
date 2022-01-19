@@ -11,22 +11,8 @@
   SVGIcons
 </template>
 <script>
-import NoSleep from 'nosleep.js'
-
 export default {
   name: 'Index',
-  data() {
-    return {
-      noSleep: null,
-    }
-  },
-  methods: {
-    // Nosleep
-    enableNoSleep() {
-      this.noSleep = new NoSleep()
-      this.noSleep.enable()
-    },
-  },
 }
 </script>
 
