@@ -1,23 +1,9 @@
 <template lang="pug">
-.header
+.header(v-click-outside='hideNav')
   .header__masthead
-    nuxt-link.header__logo(
-      @click.native='navOpen = false',
-      to='/',
-      aria-title='Work Out At Home'
-    ) WOAH
-      //- | Work Out At Home
-      //- span.letter W
-      //- span.dot .
-      //- span.letter O
-      //- span.dot .
-      //- span.letter A
-      //- span.dot .
-      //- span.letter H
+    nuxt-link.header__logo(@click.native='navOpen = false', to='/') WOAH
 
-    h1.header__title {{ $nuxt.$route.name === "index" ? "Home" : $nuxt.$route.name }}
-
-    //- span.header__current-step(v-if='$nuxt.$route.name === "warmup"') {{ $store.state.warmup.currentStep }}/{{ $store.state.warmup.steps.length }}
+    h1.header__title {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("-", " ") }}
 
   nav.nav
     nuxt-link.header__link(to='/warmup') Warmup
@@ -32,8 +18,9 @@
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/settings') Settings
 
   button.btn-plain.btn-icon.header__menu-btn(
-    @click='navOpen = !navOpen',
-    :style='{ active: navOpen }'
+    @click='toggleNav',
+    :style='{ active: navOpen }',
+    aria-label='Toggle nav'
   )
     svg.icon(height='24', width='24')
       use(href='#icon_x', v-if='navOpen')
@@ -42,9 +29,13 @@
 
 <script>
 import { mapState } from 'vuex'
+import ClickOutside from 'vue-click-outside'
 
 export default {
   name: 'Header',
+  directives: {
+    ClickOutside,
+  },
   data() {
     return {
       navOpen: false,
@@ -52,6 +43,14 @@ export default {
   },
   computed: {
     ...mapState(['siteName']),
+  },
+  methods: {
+    toggleNav() {
+      this.navOpen = !this.navOpen
+    },
+    hideNav() {
+      this.navOpen = false
+    },
   },
 }
 </script>
