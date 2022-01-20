@@ -83,11 +83,12 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
-  max-width: var(--mw-content);
-  margin: var(--m-lg) auto;
   flex: 0;
+  margin: var(--m-lg) auto;
+  max-width: var(--mw-content);
   padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
+  width: 100%;
 
   &__title {
     font-family: var(--ff-brand);

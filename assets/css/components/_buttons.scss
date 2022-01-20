@@ -16,7 +16,7 @@
   font-size: var(--fs-xl);
   font-family: var(--ff-heading);
   font-weight: bold;
-  border: 2px solid var(--brand);
+  border: 5px solid var(--brand);
   line-height: var(--lh-base);
   padding: calc(var(--m-sm) * 1.6) var(--m) var(--m-sm);
   text-align: center;
@@ -25,12 +25,34 @@
   touch-action: manipulation;
   background-color: var(--brand);
   color: var(--text-inverse);
+  z-index: 1;
+  position: relative;
+
+  // &::after {
+  //   content: '';
+  //   top: 0;
+  //   left: 0;
+  //   bottom: 0;
+  //   right: 0;
+  //   position: absolute;
+  //   z-index: -1;
+  //   opacity: 0;
+  //   transition: opacity 0.1s ease-out;
+  //   background-image: url('../img/bg-blur.png');
+  //   background-position: center center;
+  //   background-repeat: no-repeat;
+  //   background-size: cofanver;
+  // }
 
   &.active,
   &:hover,
   &:active {
     color: var(--btn-text);
     background-color: transparent;
+
+    // &::after {
+    //   opacity: 0.9;
+    // }
   }
 
   &:focus {

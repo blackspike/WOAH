@@ -44,7 +44,6 @@ export default {
   padding: var(--m);
   max-width: var(--mw-content-wide);
   text-transform: uppercase;
-  user-select: none;
 
   @include media-query('lg') {
     gap: var(--m-xl);
@@ -70,7 +69,7 @@ export default {
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     font-family: var(--ff-brand);
-    margin: var(--m-xl) 0 var(--m);
+    margin: var(--m-xl) 0 var(--m-lg);
 
     // @include media-query('lg') {
 
@@ -111,6 +110,27 @@ export default {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+
+    &:nth-child(2) {
+      border-color: var(--brand-yellow);
+      background-color: var(--brand-yellow);
+      &.active,
+      &:hover,
+      &:active {
+        background-color: transparent;
+      }
+    }
+    &:nth-child(3) {
+      border-color: var(--brand-green);
+      background-color: var(--brand-green);
+      &.active,
+      &:hover,
+      &:active {
+        color: var(--btn-text);
+        background-color: transparent;
+      }
+    }
+
     @include media-query('lg') {
       width: clamp(20rem, 50vw, 30rem);
       box-shadow: var(--bxs-lg);
