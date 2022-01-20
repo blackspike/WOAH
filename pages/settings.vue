@@ -85,7 +85,7 @@ export default {
 .settings {
   flex: 0;
   margin: 0 var(--m);
-  padding: var(--m-lg) 5vw;
+  padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
 
   &__title {

@@ -70,7 +70,6 @@ export default {
   grid-template-columns: 1fr auto auto;
   grid-template-rows: auto auto;
   margin: auto;
-  max-width: var(--mw-content);
   padding: 0 var(--m) var(--m-sm);
   user-select: none;
   width: 100%;
@@ -79,8 +78,8 @@ export default {
     padding: var(--m);
     align-items: baseline;
   }
-  @include media-query('xl') {
-    padding: 0 var(--m) var(--m);
+  @include media-query('lg') {
+    padding: var(--m) var(--m-xl);
   }
 
   &__masthead {

@@ -116,8 +116,14 @@ export default {
   grid-template-rows: max-content 1fr auto;
   height: 100%;
   justify-content: center;
-  padding: var(--m-lg) var(--m);
+  padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
+
+  @include media-query('lg') {
+    grid-template-areas: 'timer step' 'timer next';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
 
   &__timer-wrapper {
     grid-area: timer;
@@ -135,6 +141,32 @@ export default {
     justify-content: center;
     height: 100%;
     text-align: center;
+
+    @include media-query('lg') {
+      font-size: var(--fs-xxxl);
+    }
+  }
+
+  &__btn-edit {
+    color: var(--gray-0);
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-color: transparent;
+    opacity: 0.2;
+
+    &.active,
+    &:hover,
+    &:active {
+      background-color: transparent;
+      opacity: 1;
+    }
+
+    &:focus {
+      color: var(--gray-0);
+      outline-offset: -1px;
+    }
   }
 
   // Next step
@@ -151,6 +183,10 @@ export default {
     justify-content: center;
     gap: var(--m-sm);
 
+    @include media-query('lg') {
+      margin-block-end: var(--m-lg);
+    }
+
     span {
       font-size: var(--fs-xl);
       font-family: var(--ff-heading);
@@ -161,3 +197,4 @@ export default {
   }
 }
 </style>
+

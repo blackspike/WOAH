@@ -124,8 +124,14 @@ export default {
   grid-template-rows: max-content 1fr auto;
   height: 100%;
   justify-content: center;
-  padding: var(--m-lg) 5vw;
+  padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
+
+  @include media-query('lg') {
+    grid-template-areas: 'timer step' 'timer next';
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+  }
 
   &__timer-wrapper {
     grid-area: timer;
@@ -143,6 +149,10 @@ export default {
     justify-content: center;
     height: 100%;
     text-align: center;
+
+    @include media-query('lg') {
+      font-size: var(--fs-xxxl);
+    }
   }
 
   &__btn-edit {
@@ -180,6 +190,10 @@ export default {
     flex-direction: column;
     justify-content: center;
     gap: var(--m-sm);
+
+    @include media-query('lg') {
+      margin-block-end: var(--m-lg);
+    }
 
     span {
       font-size: var(--fs-xl);

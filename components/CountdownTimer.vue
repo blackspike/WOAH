@@ -91,7 +91,7 @@ export default {
     max-width: 95%;
 
     @include media-query('md') {
-      max-width: 80%;
+      max-width: 100%;
     }
   }
 }

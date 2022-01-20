@@ -31,7 +31,7 @@ export default {
   height: 100%;
   justify-content: center;
   margin: 0 var(--m);
-  padding: var(--m) 5vw var(--m-lg);
+  padding: var(--m) clamp(var(--m), 5vw, var(--m-lg)) var(--m-lg);
   text-transform: uppercase;
   user-select: none;
 

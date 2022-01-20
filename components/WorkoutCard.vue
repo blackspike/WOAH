@@ -95,7 +95,7 @@ export default {
   height: 100%;
   width: 100%;
   user-select: none;
-  padding: var(--m) 5vw var(--m-lg);
+  padding: var(--m) clamp(var(--m), 5vw, var(--m-lg)) var(--m-lg);
 
   &__title {
     font-size: var(--fs-lg);

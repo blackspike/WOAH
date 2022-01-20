@@ -12,7 +12,7 @@ section.neck
           .card-start__message
             h2.card-start__title {{ strings.startTitle }}
             h3.card-start__subtitle {{ strings.startMsg }}
-          a.btn.card-start__btn-start(@click='startNeck') {{ strings.startBtn }}
+          a.btn.card-start__btn-action(@click='startNeck') {{ strings.startBtn }}
 
       splide-slide(
         v-for='(step, index) in steps',
@@ -147,8 +147,13 @@ export default {
     color: var(--brand-pink);
     font-size: var(--fs-xxl);
   }
-  &__btn-finished {
+  &__btn-action {
     grid-area: button;
+
+    @include media-query('lg') {
+      width: 30vw;
+      justify-self: center;
+    }
   }
 }
 </style>

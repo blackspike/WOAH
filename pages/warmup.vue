@@ -12,7 +12,7 @@ section.warmup
           .card-start__message
             h2.card-start__title {{ strings.startTitle }}
             h3.card-start__subtitle {{ strings.startMsg }}
-          a.btn.card-start__btn-start(@click='startWarmup') {{ strings.startBtn }}
+          a.btn.card-start__btn-action(@click='startWarmup') {{ strings.startBtn }}
 
       splide-slide(
         v-for='(step, index) in steps',
@@ -32,7 +32,7 @@ section.warmup
           .card-finished__message
             h2.card-finished__title {{ strings.finishedTitle }}
             h3.card-finished__subtitle {{ strings.finishedMsg }}
-          button.btn.card-finished__btn-finished(@click='finishWarmup') {{ strings.finishedBtn }}
+          button.btn.card-finished__btn-action(@click='finishWarmup') {{ strings.finishedBtn }}
 </template>
 
 <script>
@@ -177,8 +177,13 @@ export default {
     color: var(--brand-pink);
     font-size: var(--fs-xxl);
   }
-  &__btn-finished {
+  &__btn-action {
     grid-area: button;
+
+    @include media-query('lg') {
+      width: 30vw;
+      justify-self: center;
+    }
   }
 }
 </style>
