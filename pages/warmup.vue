@@ -95,7 +95,7 @@ export default {
       // Update vuex
       this.currentStep = newIndex
       // Speak last step
-      if (this.currentStep === this.steps.length) {
+      if (this.currentStep === this.steps.length + 1) {
         this.speak(this.strings.finishedTitle + ', ' + this.strings.finishedMsg)
       }
     },
