@@ -12,7 +12,7 @@ article.neck-card.card-bg
   h2.neck-card__title {{ step.title }}
 
   //- Next step
-  .neck-card__next-up Rep {{ currentRep + 1 }} of {{ reps }}
+  .neck-card__next-up Rep {{ currentRep }} of {{ reps }}
     span Step {{ index + 1 }} of {{ stepsLength }}
 </template>
 

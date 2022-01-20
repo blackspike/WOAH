@@ -1,11 +1,13 @@
 <template lang="pug">
 section.about.card-bg
   .about__header
-    h2.about__title About Work Out At Home
+    h2.about__title About
     p.about__subtitle Warmup &amp; workout timer
 
   .about__content
     p I made this app as I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build myself a little app.
+
+    p The neck exercises are for those of us who sit at computers all day!
 
     P I'll open source it on github as soon as I've ironed out the kinks. Cheers!
 
@@ -21,6 +23,7 @@ section.about.card-bg
 
   .about__footer
     p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+    p Neck by #[a(href='https://www.versusarthritis.org/', target='_blank') versusarthritis.org] #[a(href='https://www.versusarthritis.org/media/21788/neckpain-exercise-sheet.pdf', target='_blank') | (pdf)]
 </template>
 
 <script>
@@ -44,6 +47,12 @@ export default {
 
   &__header {
     grid-area: header;
+  }
+
+  &__content {
+    grid-area: content;
+    max-width: var(--mw-content);
+    margin: 0 auto;
   }
 
   &__title {

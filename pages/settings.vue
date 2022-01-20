@@ -83,8 +83,9 @@ export default {
 
 <style lang="scss" scoped>
 .settings {
+  max-width: var(--mw-content);
+  margin: var(--m-lg) auto;
   flex: 0;
-  margin: 0 var(--m);
   padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
 
@@ -93,10 +94,7 @@ export default {
     font-size: var(--fs-lg);
     margin-bottom: var(--m-lg);
   }
-}
 
-// Settings menu
-.settings {
   // Rows
   &__row {
     align-items: baseline;

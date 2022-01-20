@@ -41,11 +41,11 @@ import '@splidejs/splide/dist/css/splide.min.css'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Neck',
+  name: 'Neckcersises',
   data() {
     return {
       currentStep: 0,
-      currentRep: 0,
+      currentRep: 1,
       finished: false,
       started: false,
       strings: {
@@ -53,7 +53,7 @@ export default {
         finishedMsg: 'Nice one!',
         finishedBtn: 'Start neck',
         startTitle: 'Neck start',
-        startMsg: 'Ready?',
+        startMsg: 'Relax shoulders!',
         startBtn: 'Start neck',
       },
       splideOptions: {
@@ -103,9 +103,9 @@ export default {
         this.currentStep === this.steps.length &&
         this.currentRep < this.reps
       ) {
-        this.currentRep++
         this.$refs.neckSplide.go(1)
         this.currentStep = 1
+        this.currentRep++
         return
         // if (this.currentRep < this.reps) {
         //   this.currentRep++

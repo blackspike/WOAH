@@ -124,28 +124,28 @@ export const state = () => ({
     reps: 5,
     steps: [
       {
-        count: 6,
-        title: 'Chin on chest',
-      },
-      {
-        count: 6,
-        title: 'Push chin forward',
-      },
-      {
-        count: 6,
+        count: 5,
         title: 'Look to left',
       },
       {
-        count: 6,
+        count: 5,
         title: 'Look to right',
       },
       {
-        count: 6,
-        title: 'Tilt head right',
+        count: 5,
+        title: 'Chin on chest',
       },
       {
-        count: 6,
+        count: 5,
+        title: 'Push chin forward',
+      },
+      {
+        count: 5,
         title: 'Tilt head left',
+      },
+      {
+        count: 5,
+        title: 'Tilt head right',
       },
     ],
   },

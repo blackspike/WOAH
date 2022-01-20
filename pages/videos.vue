@@ -5,7 +5,7 @@ section.videos
     .video
       iframe.video-iframe(
         src='https://www.youtube.com/embed/qQ96oXp5RTU',
-        title='YouTube video player',
+        title='Warmup tutorial on YouTube',
         frameborder='0',
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
         allowfullscreen
@@ -16,7 +16,17 @@ section.videos
     .video
       iframe.video-iframe(
         src='https://www.youtube.com/embed/qvhHhDNjtxM',
-        title='YouTube video player',
+        title='Workout tutorial on YouTube',
+        frameborder='0',
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen
+      )
+  article.videos__wrap
+    h2.videos__title.videos__title--workout Neck exercises
+    .video
+      iframe.video-iframe(
+        src='https://www.youtube.com/embed/fTUKGwC_-WE',
+        title='Neck exercises on YouTube',
         frameborder='0',
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
         allowfullscreen
@@ -39,8 +49,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: var(--m-lg);
+  margin: auto;
+  max-width: var(--mw-content-wide);
+  padding: 0 var(--m) var(--m-xl);
   width: 100%;
-  padding: 0 var(--m);
 
   &__title {
     font-size: var(--fs-xl);
