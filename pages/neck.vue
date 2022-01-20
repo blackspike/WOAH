@@ -23,6 +23,8 @@ section.neck
           ref='neckSplideCard',
           :step='step',
           :index='index',
+          :currentRep='currentRep',
+          :reps='reps',
           :activeSlide='index === currentStep - 1',
           :nextStep='steps[index + 1]',
           @prevNext='prevNext'
@@ -43,6 +45,7 @@ export default {
   data() {
     return {
       currentStep: 0,
+      currentRep: 0,
       finished: false,
       started: false,
       strings: {
@@ -73,6 +76,7 @@ export default {
   computed: {
     ...mapState({
       steps: (state) => state.neck.steps,
+      reps: (state) => state.neck.reps,
       speech: (state) => state.settings.speech,
       sleep: (state) => state.settings.noSleep,
     }),
@@ -94,6 +98,21 @@ export default {
 
     // Prev/Next slidestep
     prevNext(next = true) {
+      // Repeat for reps at last slide
+      if (
+        this.currentStep === this.steps.length &&
+        this.currentRep < this.reps
+      ) {
+        this.currentRep++
+        this.$refs.neckSplide.go(1)
+        this.currentStep = 1
+        return
+        // if (this.currentRep < this.reps) {
+        //   this.currentRep++
+        //   return
+        // }
+      }
+
       // Back / forth
       if (next) {
         this.currentStep++

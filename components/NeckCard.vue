@@ -12,10 +12,8 @@ article.neck-card.card-bg
   h2.neck-card__title {{ step.title }}
 
   //- Next step
-  .neck-card__next-up(v-if='nextStep') Next up
-    span {{ nextStep.title }}
-  .neck-card__next-up(v-else)
-    span Final step!
+  .neck-card__next-up Rep {{ currentRep + 1 }} of {{ reps }}
+    span Step {{ index + 1 }} of {{ stepsLength }}
 </template>
 
 <script>
@@ -29,6 +27,14 @@ export default {
       required: true,
     },
     index: {
+      type: Number,
+      required: true,
+    },
+    currentRep: {
+      type: Number,
+      required: true,
+    },
+    reps: {
       type: Number,
       required: true,
     },
