@@ -85,7 +85,7 @@ export default {
 .settings {
   flex: 0;
   margin: 0 var(--m);
-  padding: var(--m-lg) var(--m);
+  padding: var(--m-lg) 5vw;
   user-select: none;
 
   &__title {

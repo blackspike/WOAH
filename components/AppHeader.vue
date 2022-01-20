@@ -157,6 +157,7 @@ export default {
   }
 }
 
+// List nav
 .nav {
   display: none;
   gap: var(--m);
@@ -167,13 +168,15 @@ export default {
     display: flex;
   }
 }
+
+// Dropdown nav
 .nav-mobile {
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: var(--radius-2);
   box-shadow: var(--bxs-lg-blue);
   display: flex;
   flex-direction: column;
-  gap: var(--m-lg);
+  gap: var(--m);
   grid-area: mobile-nav;
   padding: var(--m-lg);
   position: absolute;

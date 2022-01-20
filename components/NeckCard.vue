@@ -1,15 +1,7 @@
 <template lang="pug">
-article.warmup-card.card-bg
-  //- Edit
-  nuxt-link.btn.btn-icon.warmup-card__btn-edit(
-    to='/warmup-editor',
-    aria-label='Edit warmup steps'
-  )
-    svg.icon(height='24', width='24')
-      use(href='#icon_gear')
-
+article.neck-card.card-bg
   //- Timer
-  .warmup-card__timer-wrapper
+  .neck-card__timer-wrapper
     CountdownTimer(
       ref='countdownTimer',
       :time='timerCount',
@@ -17,12 +9,12 @@ article.warmup-card.card-bg
       :active='activeSlide'
     )
 
-  h2.warmup-card__title {{ step.title }}
+  h2.neck-card__title {{ step.title }}
 
   //- Next step
-  .warmup-card__next-up(v-if='nextStep') Next up
+  .neck-card__next-up(v-if='nextStep') Next up
     span {{ nextStep.title }}
-  .warmup-card__next-up(v-else)
+  .neck-card__next-up(v-else)
     span Final step!
 </template>
 
@@ -30,7 +22,7 @@ article.warmup-card.card-bg
 import { mapState } from 'vuex'
 
 export default {
-  name: 'WarmupCard',
+  name: 'NeckCard',
   props: {
     step: {
       type: Object,
@@ -51,16 +43,16 @@ export default {
   },
 
   data() {
-    return { timerCount: this.$store.state.warmup.steps[this.index].count }
+    return { timerCount: this.$store.state.neck.steps[this.index].count }
   },
   computed: {
     ...mapState({
       speech: (state) => state.settings.speech,
-      stepsLength: (state) => state.warmup.steps.length,
+      stepsLength: (state) => state.neck.steps.length,
     }),
 
     stepDuration() {
-      return this.$store.state.warmup.steps[this.index].count
+      return this.$store.state.neck.steps[this.index].count
     },
   },
   watch: {
@@ -115,7 +107,7 @@ export default {
 
 <style lang="scss" scoped>
 // Steps list
-.warmup-card {
+.neck-card {
   align-items: center;
   display: grid;
   gap: var(--m-lg);
@@ -124,7 +116,7 @@ export default {
   grid-template-rows: max-content 1fr auto;
   height: 100%;
   justify-content: center;
-  padding: var(--m-lg) 5vw;
+  padding: var(--m-lg) var(--m);
   user-select: none;
 
   &__timer-wrapper {
@@ -143,28 +135,6 @@ export default {
     justify-content: center;
     height: 100%;
     text-align: center;
-  }
-
-  &__btn-edit {
-    color: var(--gray-0);
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-color: transparent;
-    opacity: 0.2;
-
-    &.active,
-    &:hover,
-    &:active {
-      background-color: transparent;
-      opacity: 1;
-    }
-
-    &:focus {
-      color: var(--gray-0);
-      outline-offset: -1px;
-    }
   }
 
   // Next step

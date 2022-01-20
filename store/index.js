@@ -119,6 +119,36 @@ export const state = () => ({
     speech: true,
     noSleep: true,
   },
+  neck: {
+    stepDuration: 5,
+    reps: 5,
+    steps: [
+      {
+        count: 5,
+        title: 'Chin on chest',
+      },
+      {
+        count: 5,
+        title: 'Push chin forward',
+      },
+      {
+        count: 5,
+        title: 'Look to left',
+      },
+      {
+        count: 5,
+        title: 'Look to right',
+      },
+      {
+        count: 5,
+        title: 'Tilt head right',
+      },
+      {
+        count: 5,
+        title: 'Tilt head left',
+      },
+    ],
+  },
   warmup: {
     stepDuration: 25,
     steps: [
