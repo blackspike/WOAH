@@ -9,6 +9,7 @@
     nuxt-link.header__link(to='/warmup') Warmup
     nuxt-link.header__link(to='/workout') Workout
     nuxt-link.header__link(to='/videos') Videos
+    nuxt-link.header__link(to='/neck') Neck
     nuxt-link.header__link(to='/settings') Settings
     nuxt-link.header__link(to='/about') About
 
@@ -17,6 +18,7 @@
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/workout') Workout
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/videos') Videos
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/settings') Settings
+    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/neck') Neck
     nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/about') About
 
   button.btn-plain.btn-icon.header__menu-btn(
@@ -75,6 +77,7 @@ export default {
 
   @include media-query('md') {
     padding: var(--m);
+    align-items: baseline;
   }
   @include media-query('xl') {
     padding: 0 var(--m) var(--m);
@@ -113,7 +116,7 @@ export default {
   &__link {
     color: currentColor;
     display: flex;
-    // font-size: var(--fs-lg);
+    font-size: var(--fs-xs);
     font-weight: var(--fw-bd);
     text-transform: uppercase;
 

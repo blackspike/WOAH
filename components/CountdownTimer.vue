@@ -1,7 +1,7 @@
 <template lang="pug">
 .timer
   //- SVG number
-  svg.svg-number(
+  svg.timer__svg.svg-number(
     xmlns='http://www.w3.org/2000/svg',
     xlink='http://www.w3.org/1999/xlink',
     viewBox='0 0 360 360'
@@ -22,7 +22,7 @@
       ) {{ time }}
 
   //- SVG pi
-  svg.svg-pi(
+  svg.timer__svg.svg-pi(
     viewBox='0 0 36 36',
     xmlns='http://www.w3.org/2000/svg',
     v-show='percent && active'
@@ -85,6 +85,15 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+
+  &__svg {
+    margin: auto;
+    max-width: 95%;
+
+    @include media-query('md') {
+      max-width: 80%;
+    }
+  }
 }
 
 // SVGs

@@ -21,14 +21,18 @@ export default {
 .app {
   display: flex;
   flex-direction: column;
-  height: 100%;
   padding: 0 0 var(--m);
   width: 100%;
 
   @include media-query('xl') {
+    background-color: var(--bg);
+    height: auto;
+    padding: var(--m) 0;
     margin: var(--m) auto var(--m-xl);
     border-radius: var(--radius-3);
+    border: 2px solid var(--gray-8);
     max-width: var(--mw-content);
+    box-shadow: var(--bxs-lg);
   }
 }
 
@@ -36,11 +40,14 @@ export default {
 .content-wrapper {
   height: 100%;
   margin: auto;
-  max-width: var(--mw-content);
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom);
   display: flex;
   flex-direction: column;
+
+  @include media-query('xl') {
+    max-width: var(--mw-content);
+  }
 
   > * {
     flex: 1;

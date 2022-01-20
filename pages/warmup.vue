@@ -63,12 +63,18 @@ export default {
       },
       splideOptions: {
         arrows: false,
-        gap: '.5rem',
-        padding: { left: '1rem', right: '1rem' },
         pagination: false,
         start: 0,
         type: 'slide',
         speed: 750,
+        padding: { left: '2.5rem', right: '2.5rem' },
+        gap: '1.5rem',
+        breakpoints: {
+          640: {
+            gap: '.5rem',
+            padding: { left: '1rem', right: '1rem' },
+          },
+        },
       },
     }
   },
