@@ -144,7 +144,7 @@ export default {
     border-radius: var(--radius-2);
     color: var(--gray-0);
     display: flex;
-    font-size: var(--fs-xxl);
+    font-size: clamp(3rem, 7vw + 2rem, 5rem);
     grid-area: step;
     justify-content: center;
     height: 100%;
