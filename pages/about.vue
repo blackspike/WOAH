@@ -13,16 +13,26 @@ section.about
       img(alt='', src='~/assets/img/screengrabs/screengrab-tall-smol.png')
 
     .intro__header
-      h2.intro__title About Work Out At Home
+      h2.intro__title
+        span.spanimation About
+        span.spanimation Work
+        span.spanimation Out
+        span.spanimation At
+        span.spanimation Home
 
   .about__content
-    p I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build myself a little app.
+    p I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build this web app.
 
     p The neck exercises are for those of us who sit at computers all day 😬
 
-    P I'll open source it on github as soon as I've ironed out the kinks. Cheers!
+    P This app will be open sourced on github once the kinks are ironed out. Cheers!
+
+    h3.about__fat-title Ideas? Bugs?
+
+    p Please ping an email to <a href="mailto:info+woah@blackspike.com">info+woah@blackspike.com</a>
 
     h3.about__by-title App design &amp; build by
+
     p
       a(
         href='https://blackspike.com/',
@@ -62,11 +72,47 @@ export default {
       margin-top: 2vh;
     }
   }
+  // Drop in animation
+  @keyframes drop-in {
+    from {
+      transform: translate(0, -5rem);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, -0);
+      opacity: 1;
+    }
+  }
 
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     font-family: var(--ff-brand);
     margin: var(--m-xl) 0 var(--m-lg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--m);
+
+    .spanimation {
+      opacity: 0;
+      transform: translate(0, -5rem);
+      animation: drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+
+      &:nth-child(1) {
+        animation-delay: 0.25s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.35s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(4) {
+        animation-delay: 0.65s;
+      }
+      &:nth-child(5) {
+        animation-delay: 0.75s;
+      }
+    }
   }
 }
 .about {
@@ -94,6 +140,12 @@ export default {
     * {
       max-width: var(--mw-content);
     }
+  }
+
+  &__fat-title {
+    font-family: var(--ff-brand);
+    font-size: var(--fs-xl);
+    margin: var(--m-lg) 0;
   }
 
   &__by-title {

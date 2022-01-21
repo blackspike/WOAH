@@ -41,7 +41,7 @@ import '@splidejs/splide/dist/css/splide.min.css'
 import { mapState } from 'vuex'
 
 export default {
-  name: 'Neckcersises',
+  name: 'Neck',
   data() {
     return {
       currentStep: 0,
@@ -51,7 +51,6 @@ export default {
       strings: {
         finishedTitle: 'Neck Finished',
         finishedMsg: 'Nice one!',
-        finishedBtn: 'Start neck',
         startTitle: 'Neck start',
         startMsg: 'Relax shoulders!',
         startBtn: 'Start neck',

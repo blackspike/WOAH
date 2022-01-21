@@ -12,7 +12,11 @@ section.intro
     img(alt='', src='~/assets/img/screengrabs/screengrab-tall-smol.png')
 
   .intro__header
-    h1.intro__title Work Out At Home
+    h1.intro__title
+      span.spanimation Work
+      span.spanimation Out
+      span.spanimation At
+      span.spanimation Home
     p.intro__subtitle Warmup &amp; workout timer
 
   .intro__actions
@@ -54,11 +58,26 @@ export default {
     text-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
   }
 
+  // Bobbing animation
+  @keyframes bobbing {
+    from {
+      transform: translate(0, 0);
+    }
+    60% {
+      transform: translate(0, 1rem);
+    }
+    to {
+      transform: translate(0, -0);
+    }
+  }
+
   &__screengrabs {
     position: absolute;
     top: 0;
     right: 0;
     opacity: 0.5;
+
+    animation: bobbing 10s ease-in-out infinite;
 
     @include media-query('lg') {
       opacity: 1;
@@ -66,14 +85,43 @@ export default {
     }
   }
 
+  // Drop in animation
+  @keyframes drop-in {
+    from {
+      transform: translate(0, -5rem);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, -0);
+      opacity: 1;
+    }
+  }
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     font-family: var(--ff-brand);
     margin: var(--m-xl) 0 var(--m-lg);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 var(--m);
 
-    // @include media-query('lg') {
+    .spanimation {
+      opacity: 0;
+      transform: translate(0, -5rem);
+      animation: drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
-    // }
+      &:nth-child(1) {
+        animation-delay: 0.25s;
+      }
+      &:nth-child(2) {
+        animation-delay: 0.35s;
+      }
+      &:nth-child(3) {
+        animation-delay: 0.5s;
+      }
+      &:nth-child(4) {
+        animation-delay: 0.65s;
+      }
+    }
   }
 
   &__subtitle {
