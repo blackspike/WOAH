@@ -96,6 +96,19 @@ export default {
       opacity: 1;
     }
   }
+
+  // Drop up animation
+  @keyframes drop-up {
+    from {
+      transform: translate(0, 3rem);
+      opacity: 0;
+    }
+    to {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     font-family: var(--ff-brand);
@@ -106,7 +119,7 @@ export default {
 
     .spanimation {
       opacity: 0;
-      transform: translate(0, -5rem);
+      transform: translate(0, 3rem);
       animation: drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
       &:nth-child(1) {
@@ -125,8 +138,12 @@ export default {
   }
 
   &__subtitle {
+    opacity: 0;
+    transform: translate(0, -5rem);
     color: var(--brand-yellow);
     font-size: clamp(1rem, 1.5vw + 1rem, 3rem);
+    animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.95s;
   }
 
   &__footer {
@@ -158,6 +175,10 @@ export default {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    // Anim
+    opacity: 0;
+    transform: translate(0, 3rem);
+    animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
     &:nth-child(2) {
       border-color: var(--brand-yellow);
@@ -183,6 +204,19 @@ export default {
       width: clamp(20rem, 50vw, 30rem);
       box-shadow: var(--bxs-lg);
       margin: 0 auto 0 0;
+    }
+
+    &:nth-child(1) {
+      animation-delay: 1.25s;
+    }
+    &:nth-child(2) {
+      animation-delay: 1.35s;
+    }
+    &:nth-child(3) {
+      animation-delay: 1.5s;
+    }
+    &:nth-child(4) {
+      animation-delay: 1.65s;
     }
   }
 }
