@@ -4,7 +4,11 @@
   .splide {
     &__track {
       // Stop box shadow clipping
-      padding-bottom: 4rem;
+      padding-bottom: 2rem;
+
+      @include media-query('md') {
+        padding-bottom: 4rem;
+      }
     }
   }
 }

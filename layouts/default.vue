@@ -19,9 +19,9 @@ export default {
 <style lang="scss">
 // App
 .app {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 var(--m);
+  // display: flex;
+  // flex-direction: column;
+  // padding: 0 0 var(--m);
   width: 100%;
 
   // @include media-query('xl') {
@@ -38,19 +38,19 @@ export default {
 
 // Content
 .content-wrapper {
-  height: 100%;
+  // height: 100%;
   margin: auto;
   width: 100%;
-  padding-bottom: env(safe-area-inset-bottom);
-  display: flex;
-  flex-direction: column;
+  // padding-bottom: env(safe-area-inset-bottom);
+  // display: flex;
+  // flex-direction: column;
 
   // @include media-query('xl') {
   //   max-width: var(--mw-content);
   // }
 
   > * {
-    flex: 1;
+    // flex: 1;
   }
 }
 </style>

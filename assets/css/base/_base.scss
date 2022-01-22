@@ -10,9 +10,10 @@
 
 html {
   background-color: var(--bg);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+
+  // height: 100%;
+  // display: flex;
+  // flex-direction: column;
 }
 
 body {
@@ -27,12 +28,12 @@ body {
   flex: 1;
 }
 /* stylelint-disable */
-#__nuxt,
-#__layout {
-  height: 100%;
-  width: 100%;
-  display: flex;
-}
+// #__nuxt,
+// #__layout {
+//   height: 100%;
+//   width: 100%;
+//   display: flex;
+// }
 /* stylelint-enable */
 
 [hidden] {
