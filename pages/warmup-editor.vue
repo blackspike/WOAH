@@ -82,7 +82,7 @@ export default {
   }
   &__finished {
     grid-area: done;
-    margin-top: var(--m);
+    margin: var(--m) 0 var(--m);
   }
   &__btn-edit {
     background-color: transparent;
