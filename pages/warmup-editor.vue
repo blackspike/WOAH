@@ -7,7 +7,7 @@ section.warmup-editor.card-bg
     aria-label='Back top warmup'
   )
     svg.icon(height='24', width='24')
-      use(href='#icon_check_square')
+      use(href='#icon_check')
 
   //- Edit list
   draggable.edit-list(

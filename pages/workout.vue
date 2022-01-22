@@ -1,22 +1,27 @@
 <template lang="pug">
 section.workout
+  //- reps
+  .reps
+    //- Title
+    .reps__counter
+      span.reps__count(v-if='repCount > 1') {{ "Rep #" + repCount }}
+      span.reps__count.reps__count--last(v-else-if='repCount === 1') Last rep
+      span.reps__count.reps__count--done(v-else) Done!
+
+    //- +
+    button.btn.reps__btn(@click='repCount++')
+      svg.icon(height='24', width='24')
+        use(href='#icon_plus')
+    //-  -
+    button.btn.reps__btn(@click='repCount > 0 ? repCount-- : 1')
+      svg.icon(height='24', width='24')
+        use(href='#icon_minus')
+
   //- Slider
   client-only
     splide.woah-splide(:options='splideOptions')
       splide-slide(v-for='(day, dayKey) in workouts', :key='dayKey')
         WorkoutCard(:dayKey='dayKey')
-
-  //- Controls
-  .controls
-    .rep-counter
-      span.rep-counter__title Rep
-      span.rep-counter__count {{ "#" + repCount }}
-    button.btn-icon.rep-counter__btn(@click='repCount++')
-      svg.icon(height='24', width='24')
-        use(href='#icon_plus')
-    button.btn-icon.rep-counter__btn(@click='repCount > 0 ? repCount-- : 1')
-      svg.icon(height='24', width='24')
-        use(href='#icon_minus')
 </template>
 
 <script>
@@ -60,39 +65,48 @@ export default {
 <style lang="scss" scoped>
 // Workout
 .workout {
-  width: 100%;
-  height: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--m);
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas: 'title' 'list' 'timer';
+  height: 100%;
+  width: 100%;
 }
 
-.controls {
+.reps {
   width: 100%;
+  align-items: center;
   display: flex;
   gap: var(--m);
-  align-items: center;
   line-height: 1;
+  margin: 0 auto;
   padding: 0 var(--m);
+  width: 100%;
 
-  .rep-counter {
-    width: 100%;
-    font-size: var(--fs-xl);
+  @include media-query('lg') {
+    max-width: var(--mw-content-wide);
+    padding: var(--m) var(--m);
+  }
+  &__counter {
+    flex: 1;
+  }
+
+  &__count {
+    color: var(--brand-yellow);
     font-family: var(--ff-brand);
+    font-size: var(--fs-lg);
+    margin-right: var(--m-sm);
 
-    &__title {
-      margin-right: var(--m-sm);
+    &--last {
+      color: var(--brand-orange);
     }
-    &__count {
-      color: var(--brand-yellow);
+    &--done {
+      color: var(--brand-green);
     }
-    &__btn {
-      height: 3rem;
-      width: 5rem;
-      padding: 0;
-    }
+  }
+  &__btn {
+    height: 100%;
+    padding: var(--m-sm) var(--m-sm);
+    color: var(--gray-9);
   }
 }
 </style>

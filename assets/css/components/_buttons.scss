@@ -13,6 +13,9 @@
   border: 0;
   color: var(--gray-0);
   cursor: default;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: var(--ff-brand);
   font-size: var(--fs-md);
   font-weight: bold;
@@ -37,7 +40,7 @@
     position: absolute;
     background-image: url('../img/bg-blur-button.jpg');
     background-position: center bottom;
-    background-size: 150% auto;
+    background-size: 150% 150%;
     transition: background-size 0.3s var(--ease-cubic);
     z-index: -1;
   }
@@ -48,7 +51,7 @@
     background-color: hsl(0deg 0% 20% / 100%);
 
     &::after {
-      background-size: 100% auto;
+      background-size: 100% 150%;
     }
   }
 
@@ -57,7 +60,7 @@
     outline-offset: -1px;
 
     &::after {
-      background-size: 200% auto;
+      background-size: 200% 200%;
     }
   }
 

@@ -21,7 +21,7 @@ section.about
         span.spanimation Home
 
   .about__content
-    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? You'll also need a timer for the reps. This is a web app for those things.
+    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? You also need a timer for the reps? Look no further! This is a web app for those things.
 
     p The neck exercises are for those of us who sit at computers all day 😬
 

@@ -6,7 +6,7 @@
   //- Edit button
   button.btn-icon.workout-card__btn-edit(@click='editing = !editing')
     svg.icon(height='24', width='24')
-      use(href='#icon_x', v-if='editing')
+      use(href='#icon_check', v-if='editing')
       use(href='#icon_gear', v-else)
 
   //- Step list
@@ -105,7 +105,7 @@ export default {
   &__btn-edit {
     position: absolute;
     top: var(--m);
-    right: var(--m);
+    right: clamp(var(--m), 5vw, var(--m-lg));
     background-color: transparent;
     color: var(--gray-0);
     border-color: transparent;
@@ -154,7 +154,7 @@ export default {
   }
   &__title {
     flex: 2;
-    color: var(--brand-pink);
+    color: var(--brand-blue);
   }
 
   // Rest day
