@@ -10,7 +10,7 @@
   "orientation": "landscape",
   "splash_pages": null,
   "theme_color": "orangered",
-  "background_color": "#000",
+  "background_color": "#212529",
   "icons": [
     {
       "src": "/manifest-icons/48.png",

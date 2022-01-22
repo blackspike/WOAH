@@ -121,7 +121,7 @@ export const state = () => ({
   },
   neck: {
     stepDuration: 6,
-    reps: 5,
+    reps: 4,
     steps: [
       {
         count: 5,
@@ -153,47 +153,47 @@ export const state = () => ({
     stepDuration: 25,
     steps: [
       {
-        count: 25,
+        count: 20,
         title: 'March in place (swing arms)',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Jog in place',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Jumping jacks',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Walking jacks',
       },
       {
-        count: 25,
+        count: 20,
         title: 'March with pulldown',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Lateral step',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Opposite hand/toe touches',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Lateral butt kicks',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Mountain climbers',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Jump up & down, side to side',
       },
       {
-        count: 25,
+        count: 20,
         title: 'Jump rope',
       },
     ],
@@ -329,47 +329,47 @@ export const state = () => ({
       stepDuration: 25,
       steps: [
         {
-          count: 25,
+          count: 20,
           title: 'March in place (swing arms)',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Jog in place',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Jumping jacks',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Walking jacks',
         },
         {
-          count: 25,
+          count: 20,
           title: 'March with pulldown',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Lateral step',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Opposite hand/toe touches',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Lateral butt kicks',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Mountain climbers',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Jump up & down, side to side',
         },
         {
-          count: 25,
+          count: 20,
           title: 'Jump rope',
         },
       ],

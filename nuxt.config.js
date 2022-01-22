@@ -57,7 +57,7 @@ export default {
         content: 'dark',
       },
       { name: 'format-detection', content: 'telephone=no' },
-      { hid: 'theme-color', name: 'theme-color', content: 'yes' },
+      { hid: 'theme-color', name: 'theme-color', content: '#212529' },
       {
         hid: 'apple-mobile-web-app-capable',
         name: 'apple-mobile-web-app-capable',

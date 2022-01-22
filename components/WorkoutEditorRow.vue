@@ -27,7 +27,7 @@ export default {
   props: {
     dayKey: {
       type: String,
-      required: true,
+      default: '',
     },
     index: {
       type: Number,

@@ -1,6 +1,6 @@
 <template lang="pug">
 section.warmup-editor.card-bg
-  p.warmup-editor__title (Drag steps to rearrange)
+  p.warmup-editor__title PSST &mdash; Drag steps to rearrange!
   //- Edit
   nuxt-link.btn-icon.warmup-editor__btn-edit(
     to='/warmup',
@@ -18,7 +18,7 @@ section.warmup-editor.card-bg
   )
     //- Draggable items
     li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
-      WarmupEditorRow(:index='index')
+      WarmupEditorRow(:index='index', :type='warmup')
 
     li.edit-list__item.edit-list__item--add(slot='footer')
       WarmupEditorRowAddNew

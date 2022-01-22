@@ -39,10 +39,10 @@ export default {
         start: 0,
         speed: 500,
         type: 'loop',
-        padding: { left: '2.5rem', right: '2.5rem' },
+        padding: { left: '5rem', right: '5rem' },
         gap: '1.5rem',
         breakpoints: {
-          640: {
+          1024: {
             gap: '.5rem',
             padding: { left: '1rem', right: '1rem' },
           },

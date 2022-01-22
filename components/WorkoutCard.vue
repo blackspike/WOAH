@@ -38,7 +38,12 @@
     li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
       //- Editor
       .edit-list__editor
-        WorkoutEditorRow(:step='step', :dayKey='dayKey', :index='index')
+        WorkoutEditorRow(
+          :step='step',
+          :dayKey='dayKey',
+          :index='index',
+          :type='warmup'
+        )
 
     //- Add new
     li.edit-list__item.edit-list__item--add(slot='footer')
