@@ -13,7 +13,7 @@ section.settings.card-bg
     input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
 
   //- Reset
-  .settings__row
+  .settings__row.settings__row--plain
     //- Reset?
     button.btn.settings__button(
       v-if='!resetConfirm',
@@ -43,8 +43,8 @@ export default {
         settings: 'Settings',
         announceSteps: 'Announce steps',
         sleepEnabled: 'Prevent device sleeping',
-        resetState: 'Reset all settings & steps',
-        resetStateConfirm: 'This will delete all your changes! ',
+        resetState: 'Reset data',
+        resetStateConfirm: 'Confirm delete ',
         resetStateConfirmed: 'All settings reset.',
       },
     }
@@ -84,11 +84,15 @@ export default {
 <style lang="scss" scoped>
 .settings {
   flex: 0;
-  margin: var(--m-lg) auto;
+  margin: var(--m-lg) var(--m);
   max-width: var(--mw-content);
   padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
-  width: 100%;
+
+  @include media-query('lg') {
+    margin: var(--m-lg) auto;
+    width: 100%;
+  }
 
   &__title {
     font-family: var(--ff-brand);
@@ -98,18 +102,23 @@ export default {
 
   // Rows
   &__row {
-    align-items: baseline;
     align-items: center;
     background-color: var(--gray-9);
     border-radius: var(--radius-2);
     border: 2px solid var(--gray-9);
     display: flex;
-    display: flex;
-    gap: var(--m-sm);
     gap: var(--m);
     justify-content: space-between;
     margin-bottom: var(--m);
     padding: var(--m);
+
+    &--plain {
+      background-color: unset;
+      border-radius: unset;
+      border: unset;
+      margin-bottom: unset;
+      padding: unset;
+    }
   }
 
   &__label {
@@ -123,14 +132,7 @@ export default {
   }
 
   &__button {
-    font-size: var(--fs-lg);
     flex: 1;
-
-    &--danger {
-      border-color: var(--brand-orange);
-      background-color: var(--brand-orange);
-      color: var(--gray-0);
-    }
   }
 
   &__reset-confirmed {
@@ -139,6 +141,7 @@ export default {
     color: var(--brand-orange);
     text-align: center;
     flex: 1;
+    padding: var(--m) 0;
   }
 }
 </style>

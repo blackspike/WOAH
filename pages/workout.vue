@@ -11,12 +11,10 @@ section.workout
     .rep-counter
       span.rep-counter__title Rep
       span.rep-counter__count {{ "#" + repCount }}
-    button.btn.btn-icon.rep-counter__btn(@click='repCount++')
+    button.btn-icon.rep-counter__btn(@click='repCount++')
       svg.icon(height='24', width='24')
         use(href='#icon_plus')
-    button.btn.btn-icon.rep-counter__btn(
-      @click='repCount > 0 ? repCount-- : 1'
-    )
+    button.btn-icon.rep-counter__btn(@click='repCount > 0 ? repCount-- : 1')
       svg.icon(height='24', width='24')
         use(href='#icon_minus')
 </template>

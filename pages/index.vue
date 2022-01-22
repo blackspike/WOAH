@@ -162,11 +162,6 @@ export default {
     display: grid;
     grid-auto-flow: row;
     gap: var(--m);
-
-    // @include media-query('lg') {
-    //   grid-auto-flow: column;
-    //   min-height: 220px;
-    // }
   }
   .action-button {
     width: 100%;
@@ -180,29 +175,8 @@ export default {
     transform: translate(0, 3rem);
     animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
-    &:nth-child(2) {
-      border-color: var(--brand-yellow);
-      background-color: var(--brand-yellow);
-      &.active,
-      &:hover,
-      &:active {
-        background-color: transparent;
-      }
-    }
-    &:nth-child(3) {
-      border-color: var(--brand-green);
-      background-color: var(--brand-green);
-      &.active,
-      &:hover,
-      &:active {
-        color: var(--btn-text);
-        background-color: transparent;
-      }
-    }
-
     @include media-query('lg') {
       width: clamp(20rem, 50vw, 30rem);
-      box-shadow: var(--bxs-lg);
       margin: 0 auto 0 0;
     }
 

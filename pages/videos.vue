@@ -22,7 +22,7 @@ section.videos
         allowfullscreen
       )
   article.videos__wrap
-    h2.videos__title.videos__title--workout Neck exercises
+    h2.videos__title.videos__title--neck Neck exercises
     .video
       iframe.video-iframe(
         src='https://www.youtube.com/embed/fTUKGwC_-WE',
@@ -63,6 +63,9 @@ export default {
     }
     &--workout {
       color: var(--brand-pink);
+    }
+    &--neck {
+      color: var(--brand-green);
     }
   }
 }

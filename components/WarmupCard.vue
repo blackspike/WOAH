@@ -1,7 +1,7 @@
 <template lang="pug">
 article.warmup-card.card-bg
   //- Edit
-  nuxt-link.btn.btn-icon.warmup-card__btn-edit(
+  nuxt-link.btn-icon.warmup-card__btn-edit(
     to='/warmup-editor',
     aria-label='Edit warmup steps'
   )
@@ -159,10 +159,11 @@ export default {
     color: var(--gray-0);
     background-color: transparent;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1rem;
+    right: 1rem;
     border-color: transparent;
     opacity: 0.2;
+    z-index: var(--layer-2);
 
     &.active,
     &:hover,

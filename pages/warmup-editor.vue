@@ -2,7 +2,7 @@
 section.warmup-editor.card-bg
   p.warmup-editor__title (Drag steps to rearrange)
   //- Edit
-  nuxt-link.btn.btn-icon.warmup-editor__btn-edit(
+  nuxt-link.btn-icon.warmup-editor__btn-edit(
     to='/warmup',
     aria-label='Back top warmup'
   )
@@ -64,12 +64,12 @@ export default {
 
 <style lang="scss" scoped>
 .warmup-editor {
-  padding: var(--m) var(--m);
-  margin: 0 var(--m) var(--m-lg);
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-areas: 'header' 'list' 'done';
   flex: 0;
+  grid-template-areas: 'header' 'list' 'done';
+  grid-template-rows: auto 1fr auto;
+  margin: 0 var(--m) var(--m-lg);
+  padding: var(--m) var(--m);
 
   &__title {
     color: var(--gray-5);
@@ -85,13 +85,14 @@ export default {
     margin-top: var(--m);
   }
   &__btn-edit {
-    position: absolute;
-    top: 0;
-    right: 0;
     background-color: transparent;
     border-color: transparent;
-    opacity: 0.8;
     color: var(--gray-0);
+    opacity: 0.8;
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    z-index: var(--layer-2);
 
     &.active,
     &:hover,

@@ -21,7 +21,7 @@ section.about
         span.spanimation Home
 
   .about__content
-    p I've been following the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but kept forgetting the steps &mdash; plus I needed a timer for the reps so I thought I'd just build this web app.
+    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? You'll also need a timer for the reps. This is a web app for those things.
 
     p The neck exercises are for those of us who sit at computers all day 😬
 
@@ -29,7 +29,7 @@ section.about
 
     h3.about__fat-title Ideas? Bugs?
 
-    p Please ping an email to <a href="mailto:info+woah@blackspike.com">info+woah@blackspike.com</a>
+    p Please ping an email to <a href="mailto:woah@blackspike.com">woah@blackspike.com</a>
 
     h3.about__by-title App design &amp; build by
 

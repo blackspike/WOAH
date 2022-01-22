@@ -4,7 +4,7 @@
   h2.workout-card__title {{ workouts[dayKey].title }}
 
   //- Edit button
-  button.btn.btn-icon.workout-card__btn-edit(@click='editing = !editing')
+  button.btn-icon.workout-card__btn-edit(@click='editing = !editing')
     svg.icon(height='24', width='24')
       use(href='#icon_x', v-if='editing')
       use(href='#icon_gear', v-else)

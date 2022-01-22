@@ -20,7 +20,7 @@
     //- Title
     h2.settings__title
       | {{ strings.settings }}
-      button.btn.btn-icon.settings__menu-btn(@click='settingsOpen = false')
+      button.btn-icon.settings__menu-btn(@click='settingsOpen = false')
         svg.icon(height='24', width='24')
           use(href='#icon_x', v-if='settingsOpen')
           use(href='#icon_menu', v-else)

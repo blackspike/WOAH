@@ -3,47 +3,62 @@
 // --------------------------
 
 :where(html) .btn {
-  // Button colours
-  --btn-border: var(--brand-blue);
-  --btn-text: var(--gray-1);
-  --btn-text-over: var(--brand-purple);
-  --btn-bg: var(--gray-0);
-  --btn-bg-over: var(--brand-blue);
-
   appearance: none;
-  border-radius: var(--radius-2);
+  background-color: hsl(0deg 0% 20% / 50%);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: var(--radius-5);
+  box-shadow: 0 0.5rem 0.5rem rgb(0 0 0 / 50%);
+  border: 0;
+  color: var(--gray-0);
   cursor: default;
-  font-size: var(--fs-xl);
-  font-family: var(--ff-heading);
+  font-family: var(--ff-brand);
+  font-size: var(--fs-md);
   font-weight: bold;
-  border: 5px solid var(--brand);
   line-height: var(--lh-base);
-  padding: calc(var(--m-sm) * 1.6) var(--m) var(--m-sm);
+  overflow: hidden;
+  padding: calc(var(--m-lg) * 1.05) var(--m-lg) var(--m-lg);
+  position: relative;
   text-align: center;
   text-decoration: none;
-  transition: all 0.1s ease-out;
+  text-transform: none;
   touch-action: manipulation;
-  background-color: var(--brand);
-  color: var(--text-inverse);
+  transition: all 0.2s ease-out;
   z-index: 1;
-  position: relative;
+  text-shadow: 0 1px 2px rgb(0 0 0 / 50%);
+
+  &::after {
+    content: '';
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    background-image: url('../img/bg-blur-button.jpg');
+    background-position: center bottom;
+    background-size: 150% auto;
+    transition: background-size 0.3s var(--ease-cubic);
+    z-index: -1;
+  }
 
   &.active,
   &:hover,
   &:active {
-    color: var(--btn-text);
-    background-color: transparent;
+    background-color: hsl(0deg 0% 20% / 100%);
 
-    // &::after {
-    //   opacity: 0.9;
-    // }
+    &::after {
+      background-size: 100% auto;
+    }
   }
 
   &:focus {
-    color: var(--text-inverse);
-    background-color: var(--brand);
     outline: 1px dotted var(--outline);
     outline-offset: -1px;
+
+    &::after {
+      background-size: 200% auto;
+    }
   }
 
   &[disabled] {
@@ -88,6 +103,10 @@
   align-items: center;
   display: flex;
   justify-content: center;
+
+  &::after {
+    display: none;
+  }
 
   &:focus {
     outline: none;
