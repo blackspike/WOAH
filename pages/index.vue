@@ -11,18 +11,25 @@ section.intro
     )
     img(alt='', src='~/assets/img/screengrabs/screengrab-tall-smol.png')
 
-  .intro__header
+  //- Header
+  header.intro__header
+    //- Title
     h1.intro__title
       span.spanimation Work
       span.spanimation Out
       span.spanimation At
       span.spanimation Home
+
     p.intro__subtitle Warmup &amp; workout timer
 
-  .intro__actions
-    nuxt-link.btn.action-button.action-button--warmup(to='/warmup') Start warmup
-    nuxt-link.btn.action-button.action-button--workout(to='/workout') Start workout
-    nuxt-link.btn.action-button.action-button--workout(to='/videos') Video tutorials
+  //- Actions list
+  ul.actions.intro__actions
+    li.actions__item
+      nuxt-link.btn.actions__button(to='/warmup') Start warmup
+    li.actions__item
+      nuxt-link.btn.actions__button(to='/workout') Start workout
+    li.actions__item
+      nuxt-link.btn.actions__button(to='/videos') Video tutorials
 
   .intro__footer
     p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
@@ -36,6 +43,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Animations
+
+// Bobbing animation
+@keyframes bobbing {
+  from {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(0, 1rem);
+  }
+  to {
+    transform: translate(0, -0);
+  }
+}
+
+// Drop in animation
+@keyframes drop-in {
+  from {
+    transform: translate(0, -5rem);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, -0);
+    opacity: 1;
+  }
+}
+
+// Drop up animation
+@keyframes drop-up {
+  from {
+    transform: translate(0, 3rem);
+    opacity: 0;
+  }
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+}
+
+// Intro
 .intro {
   align-items: center;
   display: grid;
@@ -46,7 +93,7 @@ export default {
   height: 100%;
   margin: 0 auto;
   padding: var(--m);
-  max-width: var(--mw-content-wide);
+  max-width: var(--mw-content);
   text-transform: uppercase;
 
   @include media-query('lg') {
@@ -58,54 +105,16 @@ export default {
     text-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
   }
 
-  // Bobbing animation
-  @keyframes bobbing {
-    from {
-      transform: translate(0, 0);
-    }
-    60% {
-      transform: translate(0, 1rem);
-    }
-    to {
-      transform: translate(0, -0);
-    }
-  }
-
   &__screengrabs {
     position: absolute;
     top: 0;
     right: 0;
     opacity: 0.5;
-
     animation: bobbing 10s ease-in-out infinite;
 
     @include media-query('lg') {
       opacity: 1;
       margin-top: 2vh;
-    }
-  }
-
-  // Drop in animation
-  @keyframes drop-in {
-    from {
-      transform: translate(0, -5rem);
-      opacity: 0;
-    }
-    to {
-      transform: translate(0, -0);
-      opacity: 1;
-    }
-  }
-
-  // Drop up animation
-  @keyframes drop-up {
-    from {
-      transform: translate(0, 3rem);
-      opacity: 0;
-    }
-    to {
-      transform: translate(0, 0);
-      opacity: 1;
     }
   }
 
@@ -156,20 +165,18 @@ export default {
       color: var(--brand-yellow);
     }
   }
+}
 
-  &__actions {
-    align-self: start;
-    display: grid;
-    grid-auto-flow: row;
-    gap: var(--m);
-  }
-  .action-button {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+// Actions
+.actions {
+  align-self: start;
+  display: grid;
+  gap: var(--m);
+  grid-auto-flow: row;
+  list-style: none;
+  padding: 0;
+
+  &__item {
     // Anim
     opacity: 0;
     transform: translate(0, 3rem);
@@ -192,6 +199,15 @@ export default {
     &:nth-child(4) {
       animation-delay: 1.65s;
     }
+  }
+  // Buttons
+  &__button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
   }
 }
 </style>

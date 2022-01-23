@@ -138,7 +138,6 @@ export default {
   }
   &__title {
     align-items: center;
-    background-color: var(--gray);
     border-radius: var(--radius-2);
     color: var(--gray-0);
     display: flex;

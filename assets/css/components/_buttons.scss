@@ -41,18 +41,22 @@
     background-image: url('../img/bg-blur-button.jpg');
     background-position: center bottom;
     background-size: 150% 150%;
-    transition: background-size 0.3s var(--ease-cubic);
+    transition: background-size 0.3s var(--ease-cubic),
+      transform 0.1s var(--ease-cubic);
     z-index: -1;
   }
 
-  &.active,
-  &:hover,
-  &:active {
-    background-color: hsl(0deg 0% 20% / 100%);
+  &:hover {
+    transform: scale(1.02);
 
     &::after {
       background-size: 100% 150%;
     }
+  }
+
+  &.active,
+  &:active {
+    transform: scale(0.98);
   }
 
   &:focus {

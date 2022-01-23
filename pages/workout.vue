@@ -79,7 +79,7 @@ export default {
   gap: var(--m);
   line-height: 1;
   margin: 0 auto;
-  padding: 0 var(--m);
+  padding: 1vmin var(--m);
   width: 100%;
 
   @include media-query('lg') {

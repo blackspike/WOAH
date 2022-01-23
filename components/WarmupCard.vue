@@ -118,7 +118,7 @@ export default {
 .warmup-card {
   align-items: center;
   display: grid;
-  gap: var(--m-lg);
+  gap: var(--m);
   grid-template-areas: 'timer' 'step' 'next';
   grid-template-columns: 1fr;
   grid-template-rows: max-content 1fr auto;
@@ -140,14 +140,13 @@ export default {
   }
   &__title {
     align-items: center;
-    background-color: var(--gray);
     border-radius: var(--radius-2);
     color: var(--gray-0);
     display: flex;
     font-size: clamp(3rem, 7vw + 2rem, 5rem);
     grid-area: step;
-    justify-content: center;
     height: 100%;
+    justify-content: center;
     text-align: center;
 
     @include media-query('lg') {

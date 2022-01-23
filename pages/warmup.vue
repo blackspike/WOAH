@@ -165,6 +165,10 @@ export default {
   padding: var(--m-lg) var(--m);
   user-select: none;
 
+  @include media-query('md') {
+    padding: var(--m-lg);
+  }
+
   &__message {
     grid-area: title;
     text-align: center;
