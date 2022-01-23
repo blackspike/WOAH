@@ -1,5 +1,6 @@
 <template lang="pug">
 section.videos
+  //- Vid
   article.videos__wrap
     h2.videos__title.videos__title--warmup Warmup tutorial
     .video
@@ -11,6 +12,7 @@ section.videos
         allowfullscreen
       )
 
+  //- Vid
   article.videos__wrap
     h2.videos__title.videos__title--workout Workout tutorial
     .video
@@ -21,6 +23,8 @@ section.videos
         allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
         allowfullscreen
       )
+
+  //- Vid
   article.videos__wrap
     h2.videos__title.videos__title--neck Neck exercises
     .video
@@ -71,12 +75,12 @@ export default {
 }
 
 .video-iframe {
-  height: auto;
-  width: 100%;
   aspect-ratio: 16 / 9;
   background-color: var(--gray-10);
-  border-radius: var(--radius-2);
+  border-radius: var(--radius-3);
   box-shadow: var(--bxs-md);
+  height: auto;
   overflow: hidden;
+  width: 100%;
 }
 </style>
