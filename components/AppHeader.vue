@@ -177,6 +177,7 @@ export default {
   flex-direction: column;
   gap: var(--m);
   height: calc(100% - 1rem);
+  justify-content: center;
   padding: var(--m-xl) var(--m-lg) var(--m-lg);
   position: fixed;
   right: 0.5rem;

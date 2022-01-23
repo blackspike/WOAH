@@ -155,11 +155,11 @@ export default {
 .card-start,
 .card-finished {
   align-items: center;
+  align-self: center;
   display: grid;
   gap: var(--m-lg);
   grid-template-areas: 'title' 'button';
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto auto;
   height: 100%;
   justify-content: center;
   padding: var(--m-lg) var(--m);
@@ -186,7 +186,7 @@ export default {
     grid-area: button;
     align-self: start;
 
-    @include media-query('sm') {
+    @include media-query('xs') {
       padding-left: var(--m-xl);
       padding-right: var(--m-xl);
       justify-self: center;

@@ -46,7 +46,7 @@ section.about
 
     .about__footer
       p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-      p Neck by #[a(href='https://www.versusarthritis.org/', target='_blank') versusarthritis.org] #[a(href='https://www.versusarthritis.org/media/21788/neckpain-exercise-sheet.pdf', target='_blank') | (pdf)]
+      p Neck by #[a(href='https://www.versusarthritis.org/', target='_blank') versusarthritis.org] | #[a(href='https://www.versusarthritis.org/media/21788/neckpain-exercise-sheet.pdf', target='_blank') (pdf)]
 </template>
 
 <script>
