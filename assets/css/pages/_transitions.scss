@@ -1,9 +1,42 @@
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.1s;
+// Animations
+
+// Bobbing animation
+@keyframes bobbing {
+  from {
+    transform: translate(0, 0);
+  }
+
+  60% {
+    transform: translate(0, 1rem);
+  }
+
+  to {
+    transform: translate(0, -0);
+  }
 }
 
-.page-enter,
-.page-leave-to {
-  opacity: 0;
+// Drop in animation
+@keyframes drop-in {
+  from {
+    transform: translate(0, -5rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, -0);
+    opacity: 1;
+  }
+}
+
+// Drop up animation
+@keyframes drop-up {
+  from {
+    transform: translate(0, 3rem);
+    opacity: 0;
+  }
+
+  to {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
 }

@@ -21,7 +21,9 @@ section.about
         span.spanimation Home
 
   .about__content
-    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? You also need a timer for the reps? Look no further! This is a web app for those things.
+    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? Need a timer &amp; counter for the reps?
+
+    p Then look no further! This is a web app for those things.
 
     p The neck exercises are for those of us who sit at computers all day 😬
 
@@ -29,7 +31,7 @@ section.about
 
     h3.about__fat-title Ideas? Bugs?
 
-    p Please ping an email to <a href="mailto:woah@blackspike.com">woah@blackspike.com</a>
+    p Please ping an email to <a href="mailto:woah@blackspike.com">woah@blackspike.com</a> or tweet <a href="https://twitter.com/blackspikeltd" target="_blank">@blackspikeltd</a>
 
     h3.about__by-title App design &amp; build by
 
@@ -72,17 +74,6 @@ export default {
       margin-top: 2vh;
     }
   }
-  // Drop in animation
-  @keyframes drop-in {
-    from {
-      transform: translate(0, -5rem);
-      opacity: 0;
-    }
-    to {
-      transform: translate(0, -0);
-      opacity: 1;
-    }
-  }
 
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
@@ -115,18 +106,15 @@ export default {
     }
   }
 }
+
 .about {
   text-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
-  font-size: var(--fs-lg);
-  align-items: center;
-  display: grid;
-  gap: var(--m);
-  grid-template-areas: 'header' 'content' 'footer';
-  grid-template-rows: 1fr 2fr auto;
-  height: 100%;
-  justify-content: center;
-  margin: 0 var(--m);
-  padding: var(--m) clamp(var(--m), 5vw, var(--m-lg)) var(--m-lg);
+  font-size: var(--fs-md);
+  font-family: var(--ff-sans);
+  font-weight: var(--fw-md);
+  margin: 0 auto;
+  max-width: var(--mw-content-wide);
+  padding: var(--m);
 
   &__header {
     grid-area: header;

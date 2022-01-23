@@ -123,7 +123,7 @@ export default {
 
   &__label {
     flex: 1;
-    font-weight: var(--fw-bd);
+
     text-transform: uppercase;
   }
 
@@ -136,7 +136,6 @@ export default {
   }
 
   &__reset-confirmed {
-    font-weight: var(--fw-bd);
     text-transform: uppercase;
     color: var(--brand-orange);
     text-align: center;

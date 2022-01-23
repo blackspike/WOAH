@@ -30,10 +30,14 @@ section.intro
       nuxt-link.btn.actions__button(to='/workout') Start workout
     li.actions__item
       nuxt-link.btn.actions__button(to='/videos') Video tutorials
+    li.actions__item.actions__item--credits
+      .credits
+        span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+        span Web App by #[nuxt-link(to='/about') Blackspike.com]
 
-  .intro__footer
-    p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-    p #[nuxt-link(to='/about') About this app]
+  .intro__footer.credits
+    span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+    span Web App by #[nuxt-link(to='/about') Blackspike.com]
 </template>
 
 <script>
@@ -43,53 +47,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Animations
-
-// Bobbing animation
-@keyframes bobbing {
-  from {
-    transform: translate(0, 0);
-  }
-  60% {
-    transform: translate(0, 1rem);
-  }
-  to {
-    transform: translate(0, -0);
-  }
-}
-
-// Drop in animation
-@keyframes drop-in {
-  from {
-    transform: translate(0, -5rem);
-    opacity: 0;
-  }
-  to {
-    transform: translate(0, -0);
-    opacity: 1;
-  }
-}
-
-// Drop up animation
-@keyframes drop-up {
-  from {
-    transform: translate(0, 3rem);
-    opacity: 0;
-  }
-  to {
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-}
-
 // Intro
 .intro {
   align-items: center;
   display: grid;
-  font-weight: var(--fw-bd);
   gap: var(--m-lg);
   grid-template-areas: 'header' 'start' 'footer';
-  grid-template-rows: 1fr 1fr auto;
+  grid-template-rows: auto 1fr auto;
   height: 100%;
   margin: 0 auto;
   padding: var(--m);
@@ -98,6 +62,7 @@ export default {
 
   @include media-query('lg') {
     gap: var(--m-xl);
+    max-width: var(--mw-content-wide);
   }
 
   &__header {
@@ -121,7 +86,7 @@ export default {
   &__title {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     font-family: var(--ff-brand);
-    margin: var(--m-xl) 0 var(--m-lg);
+    margin: 5vh 0 var(--m-lg);
     display: flex;
     flex-wrap: wrap;
     gap: 0 var(--m);
@@ -157,13 +122,46 @@ export default {
 
   &__footer {
     grid-area: footer;
-    display: flex;
-    flex-direction: column;
-    gap: var(--m);
 
-    a {
-      color: var(--brand-yellow);
+    &.credits {
+      display: none;
+
+      @include media-query('lg') {
+        display: flex;
+      }
     }
+  }
+}
+
+// Credits
+.credits {
+  background-color: var(--gray-10);
+  border-radius: var(--radius-3);
+  color: var(--gray-6);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fs-sm);
+  gap: var(--m);
+  margin-top: var(--m);
+  align-items: center;
+  opacity: 0.8;
+  padding: var(--m-lg);
+  transition: opacity 0.2s ease;
+
+  @include media-query('lg') {
+    flex-direction: row;
+    opacity: 0.4;
+    margin: var(--m-xxl) 0;
+    border-radius: var(--radius-5);
+    justify-content: center;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  a {
+    color: var(--gray-5);
   }
 }
 
@@ -176,6 +174,7 @@ export default {
   list-style: none;
   padding: 0;
 
+  // Items
   &__item {
     // Anim
     opacity: 0;
@@ -198,6 +197,13 @@ export default {
     }
     &:nth-child(4) {
       animation-delay: 1.65s;
+    }
+
+    // Credits
+    &--credits {
+      @include media-query('lg') {
+        display: none;
+      }
     }
   }
   // Buttons

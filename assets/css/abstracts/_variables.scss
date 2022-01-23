@@ -109,11 +109,12 @@
   --fs-xxxxl: var(--fs-6);
 
   // Families
-  --ff-base: 'Inter', system-ui, -apple-system, segoe ui, roboto, ubuntu,
-    cantarell, noto sans, sans-serif;
+  --ff-sans: system-ui, -apple-system, segoe ui, roboto, ubuntu, cantarell,
+    noto sans, sans-serif;
+  --ff-base: 'InterBd', var(--ff-sans);
   --ff-serif: ui-serif, serif;
-  --ff-heading: bebas, var(--ff-base);
-  --ff-brand: 'Integral Bold', var(--ff-base);
+  --ff-heading: 'Bebas', 'Impact', var(--ff-base);
+  --ff-brand: 'Integral Bold', 'Arial Black', var(--ff-base);
   --ff-mono: consolas, sf mono, dank mono, operator mono, inconsolata, fira mono,
     ui-monospace, monaco, droid sans mono, source code pro, monospace;
 

@@ -56,7 +56,7 @@ export default {
       strings: {
         finishedTitle: 'Warmup Finished',
         finishedMsg: 'Nice one!',
-        finishedBtn: 'Start workout',
+        finishedBtn: 'Go to workout',
         startTitle: 'Warmup start',
         startMsg: "Don't forget to start your smartwatch!",
         startBtn: 'Start warmup',
@@ -159,7 +159,7 @@ export default {
   gap: var(--m-lg);
   grid-template-areas: 'title' 'button';
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 1fr;
   height: 100%;
   justify-content: center;
   padding: var(--m-lg) var(--m);
@@ -172,6 +172,7 @@ export default {
   &__message {
     grid-area: title;
     text-align: center;
+    align-self: end;
   }
 
   &__title {
@@ -183,9 +184,11 @@ export default {
   }
   &__btn-action {
     grid-area: button;
+    align-self: start;
 
-    @include media-query('lg') {
-      width: 30vw;
+    @include media-query('sm') {
+      padding-left: var(--m-xl);
+      padding-right: var(--m-xl);
       justify-self: center;
     }
   }

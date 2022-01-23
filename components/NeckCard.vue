@@ -180,7 +180,7 @@ export default {
     line-height: 1;
     color: var(--brand-blue);
     // font-size: var(--fs-lg);
-    font-weight: var(--fw-bd);
+
     text-align: center;
     text-transform: uppercase;
     display: flex;

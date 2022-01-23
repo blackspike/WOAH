@@ -75,7 +75,7 @@ export default {
     color: var(--gray-5);
     font-family: var(--ff-base);
     font-size: var(--fs-xs);
-    font-weight: var(--fw-bd);
+
     grid-area: header;
     margin-top: var(--m-xs);
     text-transform: uppercase;
