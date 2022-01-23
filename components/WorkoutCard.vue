@@ -21,7 +21,8 @@
     li.step-list__item(
       v-else,
       v-for='(step, index) in editableSteps',
-      :key='step.title'
+      :key='step.title',
+      :class='{ single: editableSteps.length === 1 }'
     )
       span.step-list__count {{ step.count }}
       span.step-list__title {{ step.title }}
@@ -152,6 +153,17 @@ export default {
     font-size: var(--fs-xl);
     gap: var(--m-sm);
     padding: var(--m-sm) var(--m-sm) var(--m-xs);
+
+    // Single items
+    &.single {
+      height: 100%;
+      width: 100%;
+      background-color: transparent;
+      border: 0;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
   }
   &__count {
     color: var(--brand-yellow);
@@ -160,6 +172,10 @@ export default {
   &__title {
     flex: 2;
     color: var(--brand-blue);
+
+    .single & {
+      flex: unset;
+    }
   }
 
   // Rest day

@@ -14,7 +14,7 @@ section.about
 
     .intro__header
       h2.intro__title
-        span.spanimation About
+        span.spanimation.intro__title--about About
         span.spanimation Work
         span.spanimation Out
         span.spanimation At
@@ -82,6 +82,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 0 var(--m);
+
+    &--about {
+      color: var(--brand-yellow);
+    }
 
     .spanimation {
       opacity: 0;
