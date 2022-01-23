@@ -69,17 +69,6 @@ svg(xmlns='http://www.w3.org/2000/svg', style='display: none')
     path(d='M16,0V1H0V0ZM0,5H16V4H0ZM0,9H16V8H0Z', fill='currentColor')
     path(d='M16,0H0V1H16V0Zm0,4H0V5H16V4Zm0,4H0V9H16V8Z', fill='currentColor')
 
-  symbol#icon_edit(
-    viewBox='0 0 24 24',
-    fill='none',
-    stroke='currentColor',
-    stroke-width='2',
-    stroke-linecap='round',
-    stroke-linejoin='round'
-  )
-    path(d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7')
-    path(d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1l1-4l9.5-9.5z')
-
   symbol#icon_trash(
     viewBox='0 0 24 24',
     fill='none',
@@ -98,51 +87,6 @@ svg(xmlns='http://www.w3.org/2000/svg', style='display: none')
   symbol#icon_menu(viewBox='0 0 20 10', fill='currentColor', stroke='none')
     rect(height='2', width='16', x='2')
     rect(height='2', width='13', x='5', y='8')
-
-  symbol#icon_play(
-    viewBox='0 0 24 24',
-    fill='none',
-    stroke='currentColor',
-    stroke-width='2',
-    stroke-linecap='round',
-    stroke-linejoin='round'
-  )
-    polygon(points='5 3 19 12 5 21 5 3')
-
-  symbol#icon_pause(
-    viewBox='0 0 24 24',
-    fill='none',
-    stroke='currentColor',
-    stroke-width='2',
-    stroke-linecap='round',
-    stroke-linejoin='round'
-  )
-    path(d='M6 4h4v16H6Z')
-    path(d='M14 4h4v16h-4Z')
-
-  symbol#icon_stop(
-    viewBox='0 0 24 24',
-    fill='none',
-    stroke='currentColor',
-    stroke-width='2',
-    stroke-linecap='round',
-    stroke-linejoin='round'
-  )
-    rect(width='18', height='18', x='3', y='3', rx='2')
-
-  symbol#icon_watch(
-    viewBox='0 0 24 24',
-    fill='none',
-    stroke='currentColor',
-    stroke-width='2',
-    stroke-linecap='round',
-    stroke-linejoin='round'
-  )
-    path(d='M12 5a7 7 0 1 0 0 14 7 7 0 1 0 0-14Z')
-    path(d='M12 9l0 3 1.5 1.5')
-    path(
-      d='M16.51 17.35l-.35 3.83v0c-.1 1.03-.97 1.82-2 1.82H9.83v0c-1.04 0-1.91-.79-2-1.82l-.35-3.83m.01-10.7l.35-3.83V2.81C7.93 1.78 8.79.99 9.83.99h4.35V.99c1.03-.01 1.9.78 2 1.82l.35 3.83'
-    )
 
   symbol#icon_x(
     viewBox='0 0 24 24',

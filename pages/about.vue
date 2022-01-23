@@ -142,6 +142,7 @@ export default {
 
   &__by-title {
     margin: var(--m-xl) 0 var(--m);
+    color: var(--brand-orange);
   }
 
   &__logo {
@@ -149,6 +150,7 @@ export default {
     max-width: 220px;
     height: auto;
     margin: 0 0 var(--m-xl);
+    color: var(--brand-yellow);
   }
 
   &__footer {

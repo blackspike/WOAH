@@ -114,6 +114,7 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
   ],
+
   stylelint: {
     fix: true,
   },

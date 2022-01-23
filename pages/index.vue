@@ -9,7 +9,12 @@ section.intro
       type='image/webp',
       srcset='~/assets/img/screengrabs/screengrab-tall-smol.webp'
     )
-    img(alt='', src='~/assets/img/screengrabs/screengrab-tall-smol.png')
+    img(
+      alt='',
+      height='1008',
+      width='548',
+      src='~/assets/img/screengrabs/screengrab-tall-smol.png'
+    )
 
   //- Header
   header.intro__header
