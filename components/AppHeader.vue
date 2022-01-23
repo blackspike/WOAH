@@ -128,7 +128,7 @@ export default {
 
   &__link {
     color: currentColor;
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);
     text-transform: uppercase;
 
     &:focus,

@@ -151,7 +151,7 @@ export default {
   @include media-query('lg') {
     flex-direction: row;
     opacity: 0.4;
-    margin: var(--m-xxl) 0;
+    margin: var(--m-xxxl) 0;
     border-radius: var(--radius-5);
     justify-content: center;
   }
