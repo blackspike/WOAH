@@ -1,12 +1,7 @@
 <template lang="pug">
 section.warmup
-  video.sleep-video(
-    src='/sleep-vid.mp4',
-    loop,
-    muted,
-    playsinline,
-    ref='sleepVid'
-  )
+  video.sleep-video(loop, muted, playsinline, ref='sleepVid')
+    source(src='/sleep-vid.mp4', type='video/mp4')
   //- Slider
   client-only
     splide.woah-splide(

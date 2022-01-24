@@ -143,11 +143,11 @@ export default {
 .card-start,
 .card-finished {
   align-items: center;
+  align-self: center;
   display: grid;
   gap: var(--m-lg);
   grid-template-areas: 'title' 'button';
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: auto auto;
   height: 100%;
   justify-content: center;
   padding: var(--m-lg) var(--m);
@@ -156,6 +156,7 @@ export default {
   &__message {
     grid-area: title;
     text-align: center;
+    align-self: end;
   }
 
   &__title {
@@ -167,6 +168,7 @@ export default {
   }
   &__btn-action {
     grid-area: button;
+    align-self: start;
 
     @include media-query('lg') {
       width: 30vw;
