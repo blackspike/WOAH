@@ -1,7 +1,10 @@
 <template lang="pug">
 .header(v-click-outside='hideNav')
   .header__masthead
-    nuxt-link.header__logo(@click.native='navOpen = false', to='/') WOAH
+    nuxt-link.header__logo(@click.native='navOpen = false', to='/')
+      svg.header__icon.icon(height='27', width='18')
+        use(href='#icon_spike', aria-hidden)
+      | WOAH
     span(v-if='$nuxt.$route.name !== "index"') //
     h1.header__title {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("-", " ") }}
 
@@ -33,7 +36,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 import ClickOutside from 'vue-click-outside'
 
 export default {
@@ -45,9 +47,6 @@ export default {
     return {
       navOpen: false,
     }
-  },
-  computed: {
-    ...mapState(['siteName']),
   },
   methods: {
     toggleNav() {
@@ -91,12 +90,18 @@ export default {
     grid-area: masthead;
   }
 
+  &__icon {
+    align-self: flex-end;
+    margin-right: var(--m-sm);
+    height: var(--fs-lg);
+    width: auto;
+    transform: translateY(0.25rem);
+  }
   &__logo {
-    font-family: var(--ff-brand);
     color: currentColor;
     display: flex;
+    font-family: var(--ff-brand);
     font-size: var(--fs-lg);
-
     text-transform: uppercase;
 
     &:focus,
@@ -118,7 +123,7 @@ export default {
 // List nav
 .nav-desktop {
   display: none;
-  gap: var(--m);
+  gap: var(--m-sm);
   grid-area: nav-desktop;
   justify-content: center;
 
@@ -128,13 +133,24 @@ export default {
 
   &__link {
     color: currentColor;
-    font-size: var(--fs-sm);
+    font-size: var(--fs-xs);
     text-transform: uppercase;
+    background-color: var(--gray-8);
+    display: flex;
+    padding: var(--m-sm) var(--m);
+    border-radius: var(--radius-5);
+    transition: all 0.3s ease;
 
     &:focus,
-    &:active,
+    &:hover,
+    &:active {
+      background-color: var(--gray-10);
+      color: var(--gray-0);
+    }
+
     &.nuxt-link-exact-active {
-      color: var(--brand-orange);
+      background-color: var(--brand-orange);
+      color: var(--gray-0);
     }
   }
 }

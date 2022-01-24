@@ -54,6 +54,13 @@
   }
 }
 
+// Spin  animation
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 // Hue animation
 @keyframes hue-rotate {
   from {

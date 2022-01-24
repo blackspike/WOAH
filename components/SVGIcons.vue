@@ -11,6 +11,11 @@ svg(xmlns='http://www.w3.org/2000/svg', style='display: none')
     path(d='M22 11.08V12a10 10 0 1 1-5.93-9.14')
     path(d='M22 4L12 14.01l-3-3')
 
+  symbol#icon_spike(viewBox='0 0 18 27', fill='currentColor')
+    path(
+      d='M9.00032 27L4.01136 20.6044L0 13.5493V3.80326L8.96086 0L18 3.80016V13.5493L13.8858 20.7545L9.00032 27ZM6.74102 18.1323L9.00032 21.0206L11.2577 18.1323L14.2339 12.8967V6.77838L8.9725 4.56503L3.76227 6.7759V12.8967L6.74102 18.1323Z'
+    )
+
   symbol#icon_yoga(
     viewBox='0 0 24 24',
     fill='none',

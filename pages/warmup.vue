@@ -137,25 +137,21 @@ export default {
 <style lang="scss" scoped>
 // Needs to be wrapped in div for safari positioning
 .no-sleep-wrapper {
-  height: 24px;
-  right: 2rem;
-  position: fixed;
+  background-color: var(--gray-10);
+  border-radius: var(--radius-5);
   bottom: 1rem;
-  width: 24px;
-
-  video {
-    mix-blend-mode: screen;
-  }
+  height: 32px;
+  overflow: hidden;
+  padding: var(--m-xs);
+  position: fixed;
+  right: 2rem;
+  width: 32px;
+  z-index: var(--layer-5);
 
   @include media-query('md') {
     bottom: 2rem;
     right: 7vw;
   }
-}
-.sleep-video {
-  height: 24px;
-  width: 24px;
-  z-index: var(--layer-5);
 }
 
 .card-start,
