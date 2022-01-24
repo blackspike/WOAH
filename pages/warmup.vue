@@ -42,21 +42,14 @@ section.warmup
 <script>
 import '@splidejs/splide/dist/css/splide.min.css'
 import { mapState } from 'vuex'
-import NoSleep from 'nosleep.js'
 
 export default {
   name: 'Warmup',
-  beforeRouteLeave(to, from, next) {
-    // Disable no sleep on page leave
-    this.toggleNoSleep(false)
-    next()
-  },
   data() {
     return {
       currentStep: 0,
       finished: false,
       started: false,
-      noSleepLib: false,
       strings: {
         finishedTitle: 'Warmup Finished',
         finishedMsg: 'Nice one!',
@@ -86,12 +79,7 @@ export default {
     ...mapState({
       steps: (state) => state.warmup.steps,
       speech: (state) => state.settings.speech,
-      sleep: (state) => state.settings.noSleep,
     }),
-  },
-  mounted() {
-    // Doing this via mount to keep client side!
-    this.noSleepLib = new NoSleep()
   },
   methods: {
     // slideChange
@@ -104,15 +92,6 @@ export default {
       }
     },
 
-    // Start/stop sleep
-    toggleNoSleep(value = true) {
-      if (value && this.sleep) {
-        this.noSleepLib.enable()
-      } else {
-        this.noSleepLib.disable()
-      }
-    },
-
     // Start warmup button
     startWarmup() {
       this.$refs.sleepVid.play()
@@ -121,7 +100,6 @@ export default {
     },
     // Finish warmup button
     finishWarmup() {
-      this.toggleNoSleep(false)
       this.$router.push({
         path: '/workout',
       })
