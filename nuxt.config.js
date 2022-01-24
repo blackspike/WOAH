@@ -90,7 +90,6 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.scss',
-    'node_modules/lite-youtube-embed/src/lite-yt-embed.css',
   ],
 
   // https://github.com/nuxt-community/style-resources-module
@@ -104,7 +103,6 @@ export default {
     // { src: '~/plugins/vendor/persistedState.client.js' },
     { src: '~/plugins/vendor/vue-draggable.js' },
     { src: '~/plugins/vendor/splide', mode: 'client' },
-    { src: '~/plugins/vendor/youtube-lite.client.js'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

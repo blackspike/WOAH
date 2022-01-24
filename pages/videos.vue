@@ -1,29 +1,40 @@
 <template lang="pug">
 section.videos
   //- Vid
-  article.video
-    h2.video__title.video__title--warmup Warmup tutorial
-
-    lite-youtube.video__iframe(
-      videoid='qQ96oXp5RTU',
-      playlabel='NerdFitness.com Warmup tutorial'
-    )
-
-  //- Vid
-  article.video
-    h2.video__title.video__title--workout Workout tutorial
-    lite-youtube.video__iframe(
-      videoid='qvhHhDNjtxM',
-      playlabel='NerdFitness.com Workout tutorial'
-    )
+  article.videos__wrap
+    h2.videos__title.videos__title--warmup Warmup tutorial
+    .video
+      iframe.video-iframe(
+        src='https://www.youtube.com/embed/qQ96oXp5RTU',
+        title='Warmup tutorial on YouTube',
+        frameborder='0',
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen
+      )
 
   //- Vid
-  article.video
-    h2.video__title.video__title--neck Neck exercises
-    lite-youtube.video__iframe(
-      videoid='fTUKGwC_-WE',
-      playlabel='Neck exercises on YouTube'
-    )
+  article.videos__wrap
+    h2.videos__title.videos__title--workout Workout tutorial
+    .video
+      iframe.video-iframe(
+        src='https://www.youtube.com/embed/qvhHhDNjtxM',
+        title='Workout tutorial on YouTube',
+        frameborder='0',
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen
+      )
+
+  //- Vid
+  article.videos__wrap
+    h2.videos__title.videos__title--neck Neck exercises
+    .video
+      iframe.video-iframe(
+        src='https://www.youtube.com/embed/fTUKGwC_-WE',
+        title='Neck exercises on YouTube',
+        frameborder='0',
+        allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture',
+        allowfullscreen
+      )
 </template>
 
 <script>
@@ -46,10 +57,6 @@ export default {
   max-width: var(--mw-content-wide);
   padding: 0 var(--m) var(--m-xl);
   width: 100%;
-}
-
-.video {
-  width: 100%;
 
   &__title {
     font-size: var(--fs-xl);
@@ -65,16 +72,15 @@ export default {
       color: var(--brand-green);
     }
   }
+}
 
-  &__iframe {
-    max-width: none;
-    aspect-ratio: 16 / 9;
-    background-color: var(--gray-10);
-    border-radius: var(--radius-3);
-    box-shadow: var(--bxs-md);
-    height: auto;
-    overflow: hidden;
-    width: 100%;
-  }
+.video-iframe {
+  aspect-ratio: 16 / 9;
+  background-color: var(--gray-10);
+  border-radius: var(--radius-3);
+  box-shadow: var(--bxs-md);
+  height: auto;
+  overflow: hidden;
+  width: 100%;
 }
 </style>
