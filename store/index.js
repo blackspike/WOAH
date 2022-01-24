@@ -61,6 +61,17 @@ export const mutations = {
     newArr.splice(removeStepIndex, 1)
     state.warmup.steps = newArr
   },
+  // Increment or decrement step warmup step
+  INCR_DECR_WARMUP_STEPS(state, incr) {
+    state.warmup.steps.forEach((step) => {
+      // Prevent negative count
+      if (!incr && step.count > 1) {
+        step.count--
+      } else if (incr) {
+        step.count++
+      }
+    })
+  },
 
   // --------------------------------
   // Workout Steps
@@ -92,6 +103,19 @@ export const mutations = {
     const newArr = [...state.workouts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
     state.workouts[removeStep.dayKey].steps = newArr
+  },
+
+  // Increment or decrement step workout step
+  INCR_DECR_WORKOUT_STEPS(state, data) {
+    state.workouts[data.dayKey].steps.forEach((step) => {
+
+      // Prevent negative count
+      if (!data.incr && step.count > 1) {
+        step.count--
+      } else if (data.incr) {
+        step.count++
+      }
+    })
   },
 
   // --------------------------------

@@ -87,13 +87,13 @@ export default {
 <style lang="scss" scoped>
 .settings {
   flex: 0;
-  margin: var(--m-lg) var(--m);
+  margin: var(--m) var(--m);
   max-width: var(--mw-content);
   padding: var(--m-lg) clamp(var(--m), 5vw, var(--m-lg));
   user-select: none;
 
   @include media-query('lg') {
-    margin: var(--m-lg) auto;
+    margin: var(--m) auto;
     width: 100%;
   }
 

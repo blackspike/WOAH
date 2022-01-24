@@ -138,14 +138,22 @@ export default {
 // Needs to be wrapped in div for safari positioning
 .no-sleep-wrapper {
   height: 24px;
-  left: 2rem;
-  position: absolute;
-  top: 1rem;
+  right: 2rem;
+  position: fixed;
+  bottom: 1rem;
   width: 24px;
+
+  video {
+    mix-blend-mode: screen;
+  }
+
+  @include media-query('md') {
+    bottom: 2rem;
+    right: 7vw;
+  }
 }
 .sleep-video {
   height: 24px;
-  mix-blend-mode: screen;
   width: 24px;
   z-index: var(--layer-5);
 }

@@ -43,7 +43,7 @@
 
     //- Add new
     li.edit-list__item.edit-list__item--add(slot='footer')
-      WorkoutEditorRowAddNew(:dayKey='dayKey')
+      WorkoutEditorRowUtils(:dayKey='dayKey')
 </template>
 
 <script>

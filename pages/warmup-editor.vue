@@ -23,6 +23,28 @@ section.warmup-editor.card-bg
     li.edit-list__item.edit-list__item--add(slot='footer')
       WarmupEditorRowAddNew
 
+    //- Inc/dec
+    li.edit-list__item.edit-list__item--incr-decr(slot='footer')
+      //- Increase/Decrease
+      .increase-decrease
+        //- increase one
+        button.btn-icon.btn-gray.increase-decrease__btn-increase(
+          type='button',
+          @click='INCR_DECR_WARMUP_STEPS(true)'
+        )
+          svg.icon(height='24', width='24')
+            use(href='#icon_plus')
+
+        //- increase one
+        button.btn-icon.btn-gray.increase-decrease__btn-decrease(
+          type='button',
+          @click='INCR_DECR_WARMUP_STEPS(false)'
+        )
+          svg.icon(height='24', width='24')
+            use(href='#icon_minus')
+        span.increase-decrease__label Increase/Decrease all by 1
+
+  //- Finished
   nuxt-link.btn.warmup-editor__finished(to='/warmup') Finished editing
 </template>
 
@@ -56,7 +78,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(['SET_WARMUP_STEPS']),
+    ...mapMutations(['SET_WARMUP_STEPS', 'INCR_DECR_WARMUP_STEPS']),
   },
 }
 </script>
@@ -65,6 +87,7 @@ export default {
 .warmup-editor {
   display: grid;
   flex: 0;
+  font-family: var(--ff-heading);
   grid-template-areas: 'header' 'list' 'done';
   grid-template-rows: auto 1fr auto;
   margin: 0 var(--m) var(--m-lg);
@@ -74,10 +97,13 @@ export default {
     color: var(--gray-5);
     font-family: var(--ff-base);
     font-size: var(--fs-xs);
-
     grid-area: header;
     margin-top: var(--m-xs);
     text-transform: uppercase;
+  }
+
+  &__incr-decr {
+    grid-area: incr-decr;
   }
   &__finished {
     grid-area: done;
@@ -119,7 +145,10 @@ export default {
     width: 100%;
 
     &--add {
-      margin-block-start: var(--m-lg);
+      margin-block-start: var(--m);
+    }
+    &--incr-decr {
+      margin-block-start: var(--m);
     }
   }
 

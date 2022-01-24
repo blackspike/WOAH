@@ -147,6 +147,7 @@ export default {
     grid-area: import;
   }
   &__share {
+    margin-top: var(--m-lg);
     grid-area: share;
   }
 }

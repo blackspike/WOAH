@@ -35,6 +35,11 @@
     padding: calc(var(--m-lg) * 1.05) var(--m-lg) var(--m-lg);
   }
 
+  &--sml {
+    font-size: var(--fs-sm);
+    padding: calc(var(--m) * 0.95) var(--m-lg) var(--m);
+  }
+
   &::after {
     content: '';
     top: 0;
@@ -52,9 +57,9 @@
 
   &:hover {
     transform: scale(1.02);
-    animation: hue-rotate 0.75s linear;
 
     &::after {
+      animation: hue-rotate 1.5s var(--ease-cubic);
       background-size: 100% 150%;
     }
   }
@@ -86,6 +91,27 @@
     border-color: var(--gray-8);
   }
 }
+
+// Gray buttons
+
+.btn-gray {
+  border-radius: var(--radius-2);
+  border: 0;
+  padding: var(--m-sm);
+  background-color: var(--gray-9);
+  color: var(--brand-blue);
+  transition: all 0.2s ease-out;
+  font-size: var(--fs-md);
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--gray-9);
+    background-color: var(--brand-blue);
+  }
+}
+
+// Plain
 
 .btn-plain {
   padding: 0;

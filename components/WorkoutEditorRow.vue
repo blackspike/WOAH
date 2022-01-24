@@ -14,7 +14,10 @@ form.editor
   )
   //- Delete
   .editor__action
-    button.btn-icon.editor__btn-delete(@click='removeStep', type='button')
+    button.btn-icon.btn-gray.editor__btn-delete(
+      @click='removeStep',
+      type='button'
+    )
       svg.icon(height='24', width='24')
         use(href='#icon_trash')
 </template>
