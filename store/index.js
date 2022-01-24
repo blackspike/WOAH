@@ -103,6 +103,15 @@ export const mutations = {
     state.warmup = state.initialState.warmup
     state.workouts = state.initialState.workouts
   },
+
+  // --------------------------------
+  // Reset State
+  // --------------------------------
+
+  IMPORT_DATA(state, data) {
+    state.warmup = data.warmup
+    state.workouts = data.workouts
+  },
 }
 
 // Getters

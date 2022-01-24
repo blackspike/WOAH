@@ -48,7 +48,6 @@ export default {
 
     editableSteps: {
       get() {
-        console.log(this.warmup)
         return this.warmup.steps
       },
       set(value) {

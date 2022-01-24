@@ -21,7 +21,7 @@
   font-weight: bold;
   line-height: var(--lh-base);
   overflow: hidden;
-  padding: calc(var(--m-lg) * 1.05) var(--m-lg) var(--m-lg);
+  padding: calc(var(--m) * 0.95) var(--m-lg) var(--m);
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -29,7 +29,11 @@
   touch-action: manipulation;
   transition: all 0.2s ease-out;
   z-index: 1;
-  text-shadow: 0 2px 1rem rgb(0 0 0 / 50%);
+  text-shadow: 0 2px 1rem rgb(0 0 0 / 50%), 0 2px 0.75rem rgba(44 11 11 / 25%);
+
+  @include media-query('md') {
+    padding: calc(var(--m-lg) * 1.05) var(--m-lg) var(--m-lg);
+  }
 
   &::after {
     content: '';
@@ -48,6 +52,7 @@
 
   &:hover {
     transform: scale(1.02);
+    animation: hue-rotate 0.75s linear;
 
     &::after {
       background-size: 100% 150%;

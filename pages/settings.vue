@@ -12,10 +12,13 @@ section.settings.card-bg
     label.settings__label(for='set_sleep') {{ strings.sleepEnabled }}
     input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
 
+  //- Import/Export
+  SettingsExport
+
   //- Reset
   .settings__row.settings__row--plain
     //- Reset?
-    button.btn.settings__button(
+    button.btn.settings__button.settings__button--danger(
       v-if='!resetConfirm',
       @click='resetConfirm = true'
     ) {{ strings.resetState }}
@@ -133,6 +136,19 @@ export default {
 
   &__button {
     flex: 1;
+
+    &--danger {
+      margin-top: var(--m);
+      background-image: linear-gradient(rgb(240, 69, 46), rgb(141, 26, 26));
+
+      &:hover {
+        animation: none;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
   }
 
   &__reset-confirmed {
