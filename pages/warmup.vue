@@ -1,5 +1,12 @@
 <template lang="pug">
 section.warmup
+  video.sleep-video(
+    src='/sleep-vid.mp4',
+    loop,
+    muted,
+    playsinline,
+    ref='sleepVid'
+  )
   //- Slider
   client-only
     splide.woah-splide(
@@ -111,7 +118,8 @@ export default {
 
     // Start warmup button
     startWarmup() {
-      this.toggleNoSleep(true)
+      this.$refs.sleepVid.play()
+      // this.toggleNoSleep(true)
       this.prevNext(true)
     },
     // Finish warmup button
@@ -152,6 +160,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sleep-video {
+  position: absolute;
+  top: 1rem;
+  left: 2rem;
+  height: 24px;
+  width: 24px;
+  z-index: var(--layer-5);
+  mix-blend-mode: screen;
+}
+
 .card-start,
 .card-finished {
   align-items: center;

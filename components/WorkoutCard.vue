@@ -161,13 +161,19 @@ export default {
       background-color: transparent;
       border: 0;
       justify-content: center;
+      flex-direction: column;
       align-items: center;
       text-align: center;
+      font-size: var(--fs-xxl);
     }
   }
   &__count {
     color: var(--brand-yellow);
     font-variant-numeric: tabular-nums;
+
+    .single & {
+      font-size: var(--fs-xxxxl);
+    }
   }
   &__title {
     flex: 2;
