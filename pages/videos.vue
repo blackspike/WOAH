@@ -6,8 +6,7 @@ section.videos
 
     lite-youtube.video__iframe(
       videoid='qQ96oXp5RTU',
-      playlabel='NerdFitness.com Warmup tutorial',
-      params='rel=0&enablejsapi=1'
+      playlabel='NerdFitness.com Warmup tutorial'
     )
 
   //- Vid
@@ -15,8 +14,7 @@ section.videos
     h2.video__title.video__title--workout Workout tutorial
     lite-youtube.video__iframe(
       videoid='qvhHhDNjtxM',
-      playlabel='NerdFitness.com Workout tutorial',
-      params='rel=0&enablejsapi=1'
+      playlabel='NerdFitness.com Workout tutorial'
     )
 
   //- Vid
@@ -24,8 +22,7 @@ section.videos
     h2.video__title.video__title--neck Neck exercises
     lite-youtube.video__iframe(
       videoid='fTUKGwC_-WE',
-      playlabel='Neck exercises on YouTube',
-      params='rel=0&enablejsapi=1'
+      playlabel='Neck exercises on YouTube'
     )
 </template>
 
