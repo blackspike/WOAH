@@ -1,7 +1,9 @@
 <template lang="pug">
 section.warmup
-  video.sleep-video(loop, muted, playsinline, ref='sleepVid')
-    source(src='/sleep-vid.mp4', type='video/mp4')
+  //- No sleep video
+  .no-sleep-wrapper
+    video.sleep-video(loop, muted, playsinline, ref='sleepVid')
+      source(src='~/assets/video/sleep-vid.mp4', type='video/mp4')
   //- Slider
   client-only
     splide.woah-splide(
@@ -155,14 +157,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.sleep-video {
+// Needs to be wrapped in div for safari positioning
+.no-sleep-wrapper {
+  height: 24px;
+  left: 2rem;
   position: absolute;
   top: 1rem;
-  left: 2rem;
+  width: 24px;
+}
+.sleep-video {
   height: 24px;
+  mix-blend-mode: screen;
   width: 24px;
   z-index: var(--layer-5);
-  mix-blend-mode: screen;
 }
 
 .card-start,
