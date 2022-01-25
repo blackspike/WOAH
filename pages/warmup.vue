@@ -1,7 +1,7 @@
 <template lang="pug">
 section.warmup
   //- No sleep video
-  .no-sleep-wrapper
+  .no-sleep-wrapper(v-show='started')
     video.sleep-video(loop, muted, playsinline, ref='sleepVid')
       source(src='~/assets/video/sleep-vid.mp4', type='video/mp4')
   //- Slider
@@ -95,6 +95,7 @@ export default {
     // Start warmup button
     startWarmup() {
       this.$refs.sleepVid.play()
+      this.started = true
       // this.toggleNoSleep(true)
       this.prevNext(true)
     },
