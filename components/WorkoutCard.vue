@@ -6,9 +6,7 @@
     h2.workout-card-header__title {{ title }}
 
     //- Edit button
-    button.btn-icon.workout-card-header__btn-edit(
-      @click='saveEditedWorkoutSteps'
-    )
+    button.btn-icon.workout-card-header__btn-edit(@click='editing = !editing')
       svg.icon(height='24', width='24')
         use(href='#icon_check', v-if='editing')
         use(href='#icon_gear', v-else)
@@ -40,7 +38,8 @@
       v-model='editableSteps',
       tag='ol',
       v-bind='draggableOptions',
-      draggable='.draggable-item'
+      draggable='.draggable-item',
+      @end='dragEnd'
     )
       //- Draggable items
       li.edit-list__item.draggable-item(
@@ -52,7 +51,8 @@
           :index='index',
           :title='step.title',
           :count='step.count',
-          @updateStep='updateStep',
+          @updateStepTitle='updateStepTitle',
+          @updateStepCount='updateStepCount',
           @deleteStep='deleteStep'
         )
 
@@ -80,11 +80,10 @@
       span.increase-decrease__label Increase/Decrease all by 1
 
     //- Finished
-    button.btn.workout-card-editor__finished(@click='saveEditedWorkoutSteps') Finished editing
+    button.btn.workout-card-editor__finished(@click='editing = !editing') Finished editing
 </template>
 
 <script>
-import cloneDeep from 'lodash.clonedeep'
 import { mapMutations, mapState } from 'vuex'
 
 export default {
@@ -96,10 +95,6 @@ export default {
     },
     title: {
       type: String,
-      required: true,
-    },
-    daySteps: {
-      type: Array,
       required: true,
     },
   },
@@ -118,51 +113,62 @@ export default {
   computed: {
     ...mapState(['workouts']),
   },
-
   mounted() {
-    // Deep clone so we can change all the steps items
-    this.editableSteps = cloneDeep(this.daySteps)
+    this.editableSteps = [...this.workouts[this.dayKey].steps]
   },
   methods: {
-    ...mapMutations(['SET_WORKOUT_DAY_STEPS']),
+    ...mapMutations([
+      'UPDATE_WORKOUT_DAY_STEPS',
+      'CREATE_WORKOUT_STEP',
+      'UPDATE_WORKOUT_STEP_TITLE',
+      'UPDATE_WORKOUT_STEP_COUNT',
+      'DELETE_WORKOUT_STEP',
+      'INCR_DECR_WORKOUT_STEPS',
+    ]),
 
     // Add editable step
     createStep(newStep) {
-      this.editableSteps.push(newStep)
+      this.CREATE_WORKOUT_STEP({
+        index: newStep.index,
+        title: newStep.title,
+        count: newStep.count,
+        dayKey: this.dayKey,
+      })
     },
 
-    // Update editable step
-    updateStep(newStep) {
-      this.editableSteps[newStep.index] = newStep.step
+    // Update editable step title
+    updateStepTitle(newStepTitle) {
+      this.UPDATE_WORKOUT_STEP_TITLE({
+        index: newStepTitle.index,
+        title: newStepTitle.title,
+        dayKey: this.dayKey,
+      })
+    },
+    // Update editable step count
+    updateStepCount(newStepCount) {
+      this.UPDATE_WORKOUT_STEP_COUNT({
+        index: newStepCount.index,
+        count: newStepCount.count,
+        dayKey: this.dayKey,
+      })
     },
 
     // delete editable step
     deleteStep(index) {
-      this.editableSteps.splice(index, 1)
+      this.DELETE_WORKOUT_STEP({ index, dayKey: this.dayKey })
+    },
+
+    // Save on drag
+    dragEnd() {
+      this.UPDATE_WORKOUT_DAY_STEPS({
+        dayKey: this.dayKey,
+        steps: this.editableSteps,
+      })
     },
 
     // Increase/Decrease all by 1
     incrDecr(incr) {
-      this.editableSteps.forEach((step) => {
-        // Prevent negative count
-        if (step.count > 1) {
-          step.count--
-        } else if (incr) {
-          step.count++
-        }
-      })
-    },
-
-    // Update vuex
-    saveEditedWorkoutSteps() {
-      this.editing = !this.editing
-
-      console.log(this.editableSteps)
-
-      this.SET_WORKOUT_DAY_STEPS({
-        steps: this.editableSteps,
-        dayKey: this.dayKey,
-      })
+      this.INCR_DECR_WORKOUT_STEPS({ incr, dayKey: this.dayKey })
     },
   },
 }

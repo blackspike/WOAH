@@ -117,6 +117,7 @@ export default {
       this.DELETE_WARMUP_STEP(index)
     },
 
+    // Save on drag
     dragEnd() {
       this.UPDATE_WARMUP_STEPS(this.editableSteps)
     },

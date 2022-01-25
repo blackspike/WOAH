@@ -21,11 +21,7 @@ section.workout
   client-only
     splide.woah-splide(:options='splideOptions')
       splide-slide(v-for='(day, dayKey) in workouts', :key='dayKey')
-        WorkoutCard(
-          :dayKey='dayKey',
-          :daySteps='day.steps',
-          :title='day.title'
-        )
+        WorkoutCard(:dayKey='dayKey', :title='day.title')
 </template>
 
 <script>

@@ -88,12 +88,12 @@ export const mutations = {
   // Edit workout step title
   UPDATE_WORKOUT_STEP_TITLE(state, editedStepTitle) {
     state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
-      editedStepTitle.value
+      editedStepTitle.title
   },
   // Edit workout step Count
   UPDATE_WORKOUT_STEP_COUNT(state, editedStepCount) {
     state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
-      editedStepCount.value
+      editedStepCount.count
   },
   // Add workout step
   CREATE_WORKOUT_STEP(state, newStep) {

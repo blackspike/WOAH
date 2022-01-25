@@ -49,7 +49,7 @@ export default {
     updateStepCount(e) {
       this.$emit('updateStepCount', {
         index: this.index,
-        count: e.target.value,
+        count: Number(e.target.value),
       })
     },
     // Call Delete
