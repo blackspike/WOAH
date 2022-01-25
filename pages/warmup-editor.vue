@@ -23,26 +23,24 @@ section.warmup-editor.card-bg
     li.edit-list__item.edit-list__item--add(slot='footer')
       WarmupEditorRowAddNew
 
-    //- Inc/dec
-    li.edit-list__item.edit-list__item--incr-decr(slot='footer')
-      //- Increase/Decrease
-      .increase-decrease
-        //- increase one
-        button.btn-icon.btn-gray.increase-decrease__btn-increase(
-          type='button',
-          @click='INCR_DECR_WARMUP_STEPS(true)'
-        )
-          svg.icon(height='24', width='24')
-            use(href='#icon_plus')
+  //- Increase/Decrease
+  .increase-decrease
+    //- increase one
+    button.btn-icon.btn-gray.increase-decrease__btn-increase(
+      type='button',
+      @click='INCR_DECR_WARMUP_STEPS(true)'
+    )
+      svg.icon(height='24', width='24')
+        use(href='#icon_plus')
 
-        //- increase one
-        button.btn-icon.btn-gray.increase-decrease__btn-decrease(
-          type='button',
-          @click='INCR_DECR_WARMUP_STEPS(false)'
-        )
-          svg.icon(height='24', width='24')
-            use(href='#icon_minus')
-        span.increase-decrease__label Increase/Decrease all by 1
+    //- increase one
+    button.btn-icon.btn-gray.increase-decrease__btn-decrease(
+      type='button',
+      @click='INCR_DECR_WARMUP_STEPS(false)'
+    )
+      svg.icon(height='24', width='24')
+        use(href='#icon_minus')
+    span.increase-decrease__label Increase/Decrease all by 1
 
   //- Finished
   nuxt-link.btn.warmup-editor__finished(to='/warmup') Finished editing
@@ -88,10 +86,16 @@ export default {
   display: grid;
   flex: 0;
   font-family: var(--ff-heading);
-  grid-template-areas: 'header' 'list' 'done';
-  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'header' 'list' 'incr-decr' 'done';
+  grid-template-rows: auto 1fr auto auto;
   margin: 0 var(--m) var(--m-lg);
   padding: var(--m) var(--m);
+
+  @include media-query('md') {
+    grid-template-areas: 'header header' 'list list' 'incr-decr done';
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr auto;
+  }
 
   &__title {
     color: var(--gray-5);
@@ -136,7 +140,7 @@ export default {
 // Edit list
 .edit-list {
   grid-area: list;
-  padding: 2vh 0;
+  padding: var(--m-sm) 0 var(--m);
 
   &__item {
     list-style: none;

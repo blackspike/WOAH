@@ -75,7 +75,6 @@ export default {
 
   @include media-query('md') {
     padding: var(--m);
-    align-items: baseline;
   }
 
   @include media-query('lg') {
@@ -127,7 +126,7 @@ export default {
   grid-area: nav-desktop;
   justify-content: center;
 
-  @include media-query('md') {
+  @include media-query('lg') {
     display: flex;
   }
 
@@ -178,7 +177,7 @@ export default {
     width: 1.5rem;
   }
 
-  @include media-query('md') {
+  @include media-query('lg') {
     display: none;
   }
 }
@@ -204,6 +203,10 @@ export default {
 
   &.open {
     transform: translateX(0%);
+  }
+
+  @include media-query('md') {
+    justify-content: flex-start;
   }
 
   &__link {
