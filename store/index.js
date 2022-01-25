@@ -84,8 +84,8 @@ export const mutations = {
   // --------------------------------
 
   // Set workout steps
-  SET_WORKOUT_DAY_STEPS(state, step) {
-    state.workouts[step.dayKey].steps = step.value
+  SET_WORKOUT_DAY_STEPS(state, workout) {
+    state.workouts[workout.dayKey].steps = workout.steps
   },
   // Edit workout step title
   EDIT_WORKOUT_STEP_TITLE(state, editedStepTitle) {

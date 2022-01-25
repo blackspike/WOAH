@@ -1,53 +1,89 @@
 <template lang="pug">
 .workout-card.card-bg
-  //- Title
-  h2.workout-card__title {{ workouts[dayKey].title }}
+  //- Header
+  header.workout-card__header.workout-card-header
+    //- Title
+    h2.workout-card-header__title {{ $store.state.workouts[dayKey].title }}
 
-  //- Edit button
-  button.btn-icon.workout-card__btn-edit(@click='editing = !editing')
-    svg.icon(height='24', width='24')
-      use(href='#icon_check', v-if='editing')
-      use(href='#icon_gear', v-else)
+    //- Edit button
+    button.btn-icon.workout-card-header__btn-edit(@click='saveEditedSteps')
+      svg.icon(height='24', width='24')
+        use(href='#icon_check', v-if='editing')
+        use(href='#icon_gear', v-else)
 
-  //- Step list
-  .step-list(v-if='!editing')
-    //- Rest day (no steps)
-    li.rest-day(v-if='!editableSteps.length')
-      span.rest-day__title Rest day
-      svg.rest-day__icon.icon(height='24', width='24')
-        use(href='#icon_yoga')
+  //- Content
+  .workout-card__content.workout-card-content(v-if='!editing')
+    //- Step list
+    .workout-card-content__list.step-list
+      //- Rest day (no steps)
+      li.rest-day(v-if='!editableSteps.length')
+        span.rest-day__title Rest day
+        svg.rest-day__icon.icon(height='24', width='24')
+          use(href='#icon_yoga')
 
-    //- Step list items
-    li.step-list__item(
-      v-else,
-      v-for='(step, index) in editableSteps',
-      :key='step.title',
-      :class='{ single: editableSteps.length === 1 }'
+      //- Step list items
+      li.step-list__item(
+        v-else,
+        v-for='(step, index) in editableSteps',
+        :key='`${step.title}_${index}`',
+        :class='{ single: editableSteps.length === 1 }'
+      )
+        span.step-list__count {{ step.count }}
+        span.step-list__title {{ step.title }}
+
+  //- Editor
+  .workout-card__editor.workout-card-editor(v-if='editing')
+    //- Edit list
+    draggable.workout-card-editor__edit-list.edit-list(
+      v-model='editableSteps',
+      tag='ol',
+      v-bind='draggableOptions',
+      draggable='.draggable-item'
     )
-      span.step-list__count {{ step.count }}
-      span.step-list__title {{ step.title }}
+      //- Draggable items
+      li.edit-list__item.draggable-item(
+        v-for='(step, index) in editableSteps',
+        :key='`${step.title}_${index}`'
+      )
+        //- Editor
+        .edit-list__editor
+          EditorRow(
+            :index='index',
+            :title='step.title',
+            :count='step.count',
+            @updateStep='updateStep',
+            @deleteStep='deleteStep'
+          )
 
-  //- Edit list
-  draggable.edit-list(
-    v-else,
-    v-model='editableSteps',
-    tag='ol',
-    v-bind='draggableOptions',
-    draggable='.draggable-item'
-  )
-    //- Draggable items
-    li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
-      //- Editor
-      .edit-list__editor
-        WorkoutEditorRow(:step='step', :dayKey='dayKey', :index='index')
+      //- Add new
+      li.edit-list__item.edit-list__item--add(slot='footer')
+        EditorRowAddNew(@createStep='createStep')
 
-    //- Add new
-    li.edit-list__item.edit-list__item--add(slot='footer')
-      WorkoutEditorRowUtils(:dayKey='dayKey')
+    //- Increase/Decrease
+    .workout-card-editor__incr-decr.increase-decrease
+      //- increase one
+      button.btn-icon.btn-gray.increase-decrease__btn-increase(
+        type='button',
+        @click='incrDecr(true)'
+      )
+        svg.icon(height='24', width='24')
+          use(href='#icon_plus')
+
+      //- increase one
+      button.btn-icon.btn-gray.increase-decrease__btn-decrease(
+        type='button',
+        @click='incrDecr(false)'
+      )
+        svg.icon(height='24', width='24')
+          use(href='#icon_minus')
+      span.increase-decrease__label Increase/Decrease all by 1
+
+    //- Finished
+    button.btn.workout-card-editor__finished(@click='saveEditedSteps') Finished editing
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'WorkoutCard',
@@ -60,7 +96,7 @@ export default {
   data() {
     return {
       editing: false,
-      repCount: 3,
+      editableSteps: [],
       draggableOptions: {
         animation: 200,
         group: 'description',
@@ -69,34 +105,82 @@ export default {
       },
     }
   },
-  computed: {
-    ...mapState(['workouts']),
 
-    editableSteps: {
-      get() {
-        return this.$store.state.workouts[this.dayKey].steps
-      },
-      set(value) {
-        this.$store.commit('SET_WORKOUT_DAY_STEPS', {
-          dayKey: this.dayKey,
-          value,
-        })
-      },
-    },
+  mounted() {
+    // Deep clone so we can change all the steps items
+    this.editableSteps = JSON.parse(
+      JSON.stringify(this.$store.state.workouts[this.dayKey].steps)
+    )
   },
   methods: {
     ...mapMutations(['SET_WORKOUT_DAY_STEPS']),
+
+    // Add editable step
+    createStep(newStep) {
+      this.editableSteps.push(newStep)
+    },
+
+    // Update editable step
+    updateStep(newStep) {
+      this.editableSteps[newStep.index] = newStep.step
+    },
+
+    // delete editable step
+    deleteStep(index) {
+      this.editableSteps.splice(index, 1)
+    },
+
+    // Increase/Decrease all by 1
+    incrDecr(incr) {
+      this.editableSteps.forEach((step) => {
+        // Prevent negative count
+        if (!incr && step.count > 1) {
+          step.count--
+        } else if (incr) {
+          step.count++
+        }
+      })
+    },
+
+    // Update vuex
+    saveEditedSteps() {
+      this.editing = !this.editing
+
+      this.SET_WORKOUT_DAY_STEPS({
+        steps: this.editableSteps,
+        dayKey: this.dayKey,
+      })
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
 .workout-card {
+  display: grid;
   font-family: var(--ff-heading);
+  grid-template-areas: 'header' 'panel';
+  grid-template-rows: auto 1fr;
   height: 100%;
-  width: 100%;
-  user-select: none;
   padding: var(--m) clamp(var(--m), 5vw, var(--m-lg)) var(--m-lg);
+  user-select: none;
+  width: 100%;
+
+  // Header
+  &__header {
+    grid-area: header;
+  }
+  &__content,
+  &__editor {
+    grid-area: panel;
+  }
+}
+
+// Header
+.workout-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   &__title {
     font-size: var(--fs-lg);
@@ -104,9 +188,6 @@ export default {
   }
 
   &__btn-edit {
-    position: absolute;
-    top: var(--m);
-    right: clamp(var(--m), 5vw, var(--m-lg));
     background-color: transparent;
     color: var(--gray-0);
     border-color: transparent;
@@ -151,15 +232,15 @@ export default {
 
     // Single items
     &.single {
-      height: 100%;
-      width: 100%;
+      align-items: center;
       background-color: transparent;
       border: 0;
-      justify-content: center;
       flex-direction: column;
-      align-items: center;
-      text-align: center;
       font-size: var(--fs-xxl);
+      height: 100%;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
     }
   }
   &__count {
@@ -181,12 +262,12 @@ export default {
 
   // Rest day
   .rest-day {
+    align-items: center;
     color: var(--gray-10);
     display: flex;
     flex-direction: column;
     height: 100%;
     justify-content: center;
-    align-items: center;
     opacity: 0.25;
 
     &__title {
@@ -198,10 +279,39 @@ export default {
     }
   }
 }
+
+// Editor
+.workout-card-editor {
+  display: grid;
+  grid-template-areas: 'list' 'incr-decr' 'done';
+  grid-template-rows: auto 1fr auto;
+
+  @include media-query('md') {
+    grid-template-areas: 'list list' 'incr-decr done';
+    grid-template-rows: 1fr auto;
+    grid-template-columns: 1fr auto;
+  }
+
+  &__edit-list {
+    grid-area: list;
+  }
+  &__incr-decr {
+    align-self: start;
+    grid-area: incr-decr;
+
+    @include media-query('md') {
+      align-self: center;
+    }
+  }
+  &__finished {
+    grid-area: done;
+  }
+}
+
 // Edit list
 .edit-list {
   grid-area: list;
-  padding: 2vh 0;
+  padding: var(--m) 0;
 
   &__item {
     list-style: none;
@@ -215,7 +325,6 @@ export default {
   }
 
   &__editor {
-    grid-area: editor;
     min-width: 0;
   }
 }
@@ -223,12 +332,6 @@ export default {
 /* Draggable Transition
 ============================= */
 
-.flip-list-move {
-  transition: transform 0.5s;
-}
-.no-move {
-  transition: transform 0s;
-}
 .ghost {
   background-color: var(--c-bg);
   color: var(--c-brand);
