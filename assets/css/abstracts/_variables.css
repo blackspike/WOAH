@@ -1,11 +1,11 @@
-// A bunch taken from https://open-props.style
-// Type scale generator https://utopia.fyi/type/calculator
+/* A bunch taken from https:/*open-props.style */
+/* Type scale generator https:/*utopia.fyi/type/calculator */
 
 :root {
-  // If dark
+  /* If dark */
   color-scheme: dark;
 
-  // Gray Colours
+  /* Gray Colours */
   --gray-0: #f8f9fa;
   --gray-1: #f1f3f5;
   --gray-2: #e9ecef;
@@ -18,7 +18,7 @@
   --gray-9: #212529;
   --gray-10: #111;
 
-  // Brand colours
+  /* Brand colours */
   --brand-blue: #0ef;
   --brand-purple: #6000fa;
   --brand-green: #65e41c;
@@ -27,7 +27,7 @@
   --brand-orange: orangered;
   --brand: var(--brand-blue);
 
-  // Text colours
+  /* Text colours */
   --text: var(--gray-2);
   --text-light: var(--gray-0);
   --text-dark: var(--gray-4);
@@ -35,20 +35,20 @@
   --text-link: var(--brand-blue);
   --text-link-over: var(--brand-orange);
 
-  // Named grays
+  /* Named grays */
   --border: var(--gray-3);
   --border-dark: var(--gray-4);
   --bg: var(--gray-9);
   --bg-app: var(--gray-8);
 
-  // Status colours
+  /* Status colours */
   --status-danger: #ff1d25;
   --status-warning: #ff931e;
   --status-success: #7ac943;
   --status-neutral: var(--gray-6);
   --status-activity: #37befb;
 
-  // Global margin
+  /* Global margin */
   --m: 1rem;
   --m-xs: calc(var(--m) / 4);
   --m-sm: calc(var(--m) / 2);
@@ -57,7 +57,7 @@
   --m-xxl: calc(var(--m) * 6);
   --m-xxxl: calc(var(--m) * 8);
 
-  // Weights
+  /* Weights */
   --fw-1: 100;
   --fw-2: 200;
   --fw-3: 300;
@@ -72,15 +72,15 @@
   --fw-bd: var(--fw-7);
   --fw-xb: var(--fw-9);
 
-  // Line height
+  /* Line height */
   --lh-base: 1;
   --lh-xs: 0.9;
   --lh-sm: 1.1;
   --lh-md: 1.5;
   --lh-lg: 1.65;
 
-  // Clamp font sizes
-  // https://utopia.fyi/type/calculator/?c=320,20,1.333,1140,24,1.333,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l
+  /* Clamp font sizes */
+  /* https:/*utopia.fyi/type/calculator/?c=320,20,1.333,1140,24,1.333,10,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
   /* stylelint-disable */
   --fs--2: clamp(0.7rem, calc(0.65rem + 0.27vw), 0.84rem);
   --fs--1: clamp(0.94rem, calc(0.86rem + 0.37vw), 1.13rem);
@@ -97,7 +97,7 @@
   --fs-9: clamp(16.61rem, calc(15.31rem + 6.48vw), 19.93rem);
   --fs-10: clamp(22.14rem, calc(20.41rem + 8.64vw), 26.57rem);
 
-  // Sizes
+  /* Sizes */
   --fs-base: 1rem;
   --fs-xs: var(--fs--2);
   --fs-sm: var(--fs--1);
@@ -108,7 +108,7 @@
   --fs-xxxl: var(--fs-5);
   --fs-xxxxl: var(--fs-6);
 
-  // Families
+  /* Families */
   --ff-sans: system-ui, -apple-system, segoe ui, roboto, ubuntu, cantarell,
     noto sans, sans-serif;
   --ff-base: 'InterBd', var(--ff-sans);
@@ -118,18 +118,18 @@
   --ff-mono: consolas, sf mono, dank mono, operator mono, inconsolata, fira mono,
     ui-monospace, monaco, droid sans mono, source code pro, monospace;
 
-  // Utils
+  /* Utils */
   --bxs-md: 0 0.25rem 1rem 0 rgb(0 0 0 / 20%);
 
-  // Shadows
+  /* Shadows */
   --bxs-lg: 0 5px 20px -5px rgb(0 0 0 / 25%), 5vh 5vw 8vw -5vw rgb(0 0 0 / 30%);
   --bxs-lg-blue: 0 5px 27px -5px rgb(0 238 255 / 25%),
     10vh 9vw 16vw -10vw rgb(0 0 0 30%);
 
-  // Easing
+  /* Easing */
   --ease-cubic: cubic-bezier(0.645, 0.045, 0.355, 1); /* easeInOutCubic */
 
-  // Radius
+  /* Radius */
   --radius-1: 2px;
   --radius-2: 5px;
   --radius-3: 1rem;
@@ -137,13 +137,13 @@
   --radius-5: 4rem;
   --radius-6: 8rem;
 
-  // Layout utils
+  /* Layout utils */
   --h-header: 3rem;
   --h-footer: 4rem;
   --mw-content: 768px;
   --mw-content-wide: 1140px;
 
-  // Z-indexes
+  /* Z-indexes */
   --layer-1: 1;
   --layer-2: 2;
   --layer-3: 3;

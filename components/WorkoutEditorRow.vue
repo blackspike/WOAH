@@ -8,7 +8,7 @@ form.editor
   label.visually-hidden(for='edit_title') Edit step title
   input#edit_title.editor__title(
     type='text',
-    v-model.trim.lazy='editableTitle',
+    v-model.trim='editableTitle',
     placeholder='Exercise type',
     @focus='$event.target.select()'
   )

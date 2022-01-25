@@ -146,6 +146,7 @@ export default {
   position: fixed;
   right: 2rem;
   width: 32px;
+  border-color: --bran;
   z-index: var(--layer-5);
 
   @include media-query('md') {

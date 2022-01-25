@@ -9,7 +9,7 @@ form.editor(@submit.prevent='submitForm')
   input#edit_title.editor__title(
     required,
     type='text',
-    v-model.trim.lazy='title',
+    v-model.trim='title',
     placeholder='Add Exercise step'
   )
   //- Add/Delete
