@@ -36,10 +36,12 @@ export const mutations = {
   SET_TIMER_COUNT(state, count) {
     state.warmup.timerCount = count
   },
+
   // Set all steps
   SET_WARMUP_STEPS(state, steps) {
     state.warmup.steps = steps
   },
+
   // Add step
   ADD_WARMUP_STEP(state, newStep) {
     state.warmup.steps.push({
@@ -47,20 +49,24 @@ export const mutations = {
       title: newStep.title,
     })
   },
+
   // Edit step title
   EDIT_WARMUP_STEP_TITLE(state, editedStepTitle) {
     state.warmup.steps[editedStepTitle.index].title = editedStepTitle.value
   },
+
   // Edit step Count
   EDIT_WARMUP_STEP_COUNT(state, editedStepCount) {
     state.warmup.steps[editedStepCount.index].count = editedStepCount.value
   },
+
   // Remove step
   REMOVE_WARMUP_STEP(state, removeStepIndex) {
     const newArr = [...state.warmup.steps]
     newArr.splice(removeStepIndex, 1)
     state.warmup.steps = newArr
   },
+
   // Increment or decrement step warmup step
   INCR_DECR_WARMUP_STEPS(state, incr) {
     state.warmup.steps.forEach((step) => {
@@ -140,9 +146,9 @@ export const mutations = {
 
 // Getters
 export const getters = {
-  // getWarmup(state) {
-  //   return state.warmup
-  // },
+  getWarmupSteps(state) {
+    return state.warmup.steps
+  },
 }
 
 // State

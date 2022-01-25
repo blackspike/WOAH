@@ -4,7 +4,8 @@ section.warmup-editor.card-bg
   //- Edit
   nuxt-link.btn-icon.warmup-editor__btn-edit(
     to='/warmup',
-    aria-label='Back top warmup'
+    aria-label='Back top warmup',
+    @click.native='saveEditedSteps'
   )
     svg.icon(height='24', width='24')
       use(href='#icon_check')
@@ -17,18 +18,28 @@ section.warmup-editor.card-bg
     draggable='.draggable-item'
   )
     //- Draggable items
-    li.edit-list__item.draggable-item(v-for='(step, index) in editableSteps')
-      WarmupEditorRow(:index='index', :type='warmup')
+    li.edit-list__item.draggable-item(
+      v-for='(step, index) in editableSteps',
+      :key='`${step.title}_${index}`'
+    )
+      EditorRow(
+        :index='index',
+        :title='step.title',
+        :count='step.count',
+        @updateStep='updateStep',
+        @deleteStep='deleteStep'
+      )
 
+    //- Add new
     li.edit-list__item.edit-list__item--add(slot='footer')
-      WarmupEditorRowAddNew
+      EditorRowAddNew(@createStep='createStep')
 
   //- Increase/Decrease
   .increase-decrease
     //- increase one
     button.btn-icon.btn-gray.increase-decrease__btn-increase(
       type='button',
-      @click='INCR_DECR_WARMUP_STEPS(true)'
+      @click='incrDecr(true)'
     )
       svg.icon(height='24', width='24')
         use(href='#icon_plus')
@@ -36,14 +47,17 @@ section.warmup-editor.card-bg
     //- increase one
     button.btn-icon.btn-gray.increase-decrease__btn-decrease(
       type='button',
-      @click='INCR_DECR_WARMUP_STEPS(false)'
+      @click='incrDecr(false)'
     )
       svg.icon(height='24', width='24')
         use(href='#icon_minus')
     span.increase-decrease__label Increase/Decrease all by 1
 
   //- Finished
-  nuxt-link.btn.warmup-editor__finished(to='/warmup') Finished editing
+  nuxt-link.btn.warmup-editor__finished(
+    to='/warmup',
+    @click.native='saveEditedSteps'
+  ) Finished editing
 </template>
 
 <script>
@@ -54,7 +68,7 @@ export default {
   data() {
     return {
       editing: false,
-      repCount: 3,
+      editableSteps: [],
       draggableOptions: {
         animation: 200,
         group: 'description',
@@ -65,18 +79,47 @@ export default {
   },
   computed: {
     ...mapState(['warmup']),
-
-    editableSteps: {
-      get() {
-        return this.warmup.steps
-      },
-      set(value) {
-        this.$store.commit('SET_WARMUP_STEPS', value)
-      },
-    },
+  },
+  mounted() {
+    // Deep clone so we can change all the steps items
+    this.editableSteps = JSON.parse(
+      JSON.stringify(this.$store.state.warmup.steps)
+    )
   },
   methods: {
-    ...mapMutations(['SET_WARMUP_STEPS', 'INCR_DECR_WARMUP_STEPS']),
+    ...mapMutations(['SET_WARMUP_STEPS']),
+
+    // Add editable step
+    createStep(newStep) {
+      this.editableSteps.push(newStep)
+    },
+
+    // Update editable step
+    updateStep(newStep) {
+      this.editableSteps[newStep.index] = newStep.step
+    },
+
+    // delete editable step
+    deleteStep(index) {
+      this.editableSteps.splice(index, 1)
+    },
+
+    // Increase/Decrease all by 1
+    incrDecr(incr) {
+      this.editableSteps.forEach((step) => {
+        // Prevent negative count
+        if (!incr && step.count > 1) {
+          step.count--
+        } else if (incr) {
+          step.count++
+        }
+      })
+    },
+
+    // Update vuex
+    saveEditedSteps() {
+      this.SET_WARMUP_STEPS(this.editableSteps)
+    },
   },
 }
 </script>

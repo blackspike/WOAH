@@ -1,5 +1,5 @@
 <template lang="pug">
-form.editor(@submit.prevent='submitForm')
+form.editor(@submit.prevent='createNew')
   //- Count
   select.editor__count(v-model.number='count')
     option(v-for='i in 120', :value='i') {{ i }}
@@ -15,19 +15,17 @@ form.editor(@submit.prevent='submitForm')
   //- Add/Delete
   .editor__action
     //- Add
-    button.btn-icon.editor__btn-add(
+    button.btn-icon.btn-gray.editor__btn-add(
       type='submit',
-      @submit.prevent='submitForm'
+      @submit.prevent='createNew'
     )
       svg.icon(height='24', width='24')
         use(href='#icon_plus')
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
 export default {
-  name: 'WorkoutEditorAddNew',
+  name: 'EditorRowAddNew',
   data() {
     return {
       title: '',
@@ -35,16 +33,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['ADD_WARMUP_STEP']),
     // Submit
-    submitForm() {
+    createNew() {
       try {
-        this.ADD_WARMUP_STEP({
+        this.$emit('createStep', {
           count: this.count,
           title: this.title,
         })
         this.title = ''
-        this.count = null
+        this.count = 20
       } catch (error) {
         console.log(error)
       }
