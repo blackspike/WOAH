@@ -106,11 +106,13 @@ export default {
     }
   },
 
-  mounted() {
+  beforeMount() {
     // Deep clone so we can change all the steps items
-    this.editableSteps = JSON.parse(
+    const newObj = JSON.parse(
       JSON.stringify(this.$store.state.workouts[this.dayKey].steps)
     )
+    console.log(newObj)
+    this.editableSteps = [...newObj]
   },
   methods: {
     ...mapMutations(['SET_WORKOUT_DAY_STEPS']),
