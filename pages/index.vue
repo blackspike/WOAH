@@ -241,13 +241,10 @@ export default {
       animation-delay: 1.25s;
     }
     &:nth-child(2) {
-      animation-delay: 1.35s;
-    }
-    &:nth-child(3) {
       animation-delay: 1.5s;
     }
-    &:nth-child(4) {
-      animation-delay: 1.65s;
+    &:nth-child(3) {
+      animation-delay: 1.75s;
     }
 
     // Credits

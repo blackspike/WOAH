@@ -3,10 +3,12 @@
   //- Header
   header.workout-card__header.workout-card-header
     //- Title
-    h2.workout-card-header__title {{ $store.state.workouts[dayKey].title }}
+    h2.workout-card-header__title {{ title }}
 
     //- Edit button
-    button.btn-icon.workout-card-header__btn-edit(@click='saveEditedSteps')
+    button.btn-icon.workout-card-header__btn-edit(
+      @click='saveEditedWorkoutSteps'
+    )
       svg.icon(height='24', width='24')
         use(href='#icon_check', v-if='editing')
         use(href='#icon_gear', v-else)
@@ -25,7 +27,7 @@
       li.step-list__item(
         v-else,
         v-for='(step, index) in editableSteps',
-        :key='`${step.title}_${index}`',
+        :key='`${step}_${index}`',
         :class='{ single: editableSteps.length === 1 }'
       )
         span.step-list__count {{ step.count }}
@@ -42,18 +44,17 @@
     )
       //- Draggable items
       li.edit-list__item.draggable-item(
-        v-for='(step, index) in editableSteps',
-        :key='`${step.title}_${index}`'
+        v-for='(step, index) of editableSteps',
+        :key='`${step}_${index}`'
       )
         //- Editor
-        .edit-list__editor
-          EditorRow(
-            :index='index',
-            :title='step.title',
-            :count='step.count',
-            @updateStep='updateStep',
-            @deleteStep='deleteStep'
-          )
+        EditorRow(
+          :index='index',
+          :title='step.title',
+          :count='step.count',
+          @updateStep='updateStep',
+          @deleteStep='deleteStep'
+        )
 
       //- Add new
       li.edit-list__item.edit-list__item--add(slot='footer')
@@ -79,17 +80,26 @@
       span.increase-decrease__label Increase/Decrease all by 1
 
     //- Finished
-    button.btn.workout-card-editor__finished(@click='saveEditedSteps') Finished editing
+    button.btn.workout-card-editor__finished(@click='saveEditedWorkoutSteps') Finished editing
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import cloneDeep from 'lodash.clonedeep'
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   name: 'WorkoutCard',
   props: {
     dayKey: {
       type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    daySteps: {
+      type: Array,
       required: true,
     },
   },
@@ -105,14 +115,13 @@ export default {
       },
     }
   },
+  computed: {
+    ...mapState(['workouts']),
+  },
 
-  beforeMount() {
+  mounted() {
     // Deep clone so we can change all the steps items
-    const newObj = JSON.parse(
-      JSON.stringify(this.$store.state.workouts[this.dayKey].steps)
-    )
-    console.log(newObj)
-    this.editableSteps = [...newObj]
+    this.editableSteps = cloneDeep(this.daySteps)
   },
   methods: {
     ...mapMutations(['SET_WORKOUT_DAY_STEPS']),
@@ -136,7 +145,7 @@ export default {
     incrDecr(incr) {
       this.editableSteps.forEach((step) => {
         // Prevent negative count
-        if (!incr && step.count > 1) {
+        if (step.count > 1) {
           step.count--
         } else if (incr) {
           step.count++
@@ -145,8 +154,10 @@ export default {
     },
 
     // Update vuex
-    saveEditedSteps() {
+    saveEditedWorkoutSteps() {
       this.editing = !this.editing
+
+      console.log(this.editableSteps)
 
       this.SET_WORKOUT_DAY_STEPS({
         steps: this.editableSteps,
@@ -158,6 +169,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Card
 .workout-card {
   display: grid;
   font-family: var(--ff-heading);
@@ -324,10 +336,6 @@ export default {
     &--add {
       margin-block-start: var(--m-lg);
     }
-  }
-
-  &__editor {
-    min-width: 0;
   }
 }
 

@@ -1,21 +1,26 @@
 <template lang="pug">
 section.warmup-editor.card-bg
-  p.warmup-editor__title PSST &mdash; Drag steps to rearrange!
-  //- Edit
-  nuxt-link.btn-icon.warmup-editor__btn-edit(
-    to='/warmup',
-    aria-label='Back top warmup',
-    @click.native='saveEditedSteps'
-  )
-    svg.icon(height='24', width='24')
-      use(href='#icon_check')
+  //- Header
+  header.warmup-editor__header.warmup-editor-header
+    //- Title
+    p.warmup-editor-header__title PSST &mdash; Drag steps to rearrange!
+
+    //- Edit button
+    //- Edit
+    nuxt-link.btn-icon.warmup-editor-header__btn-edit(
+      to='/warmup',
+      aria-label='Back top warmup'
+    )
+      svg.icon(height='24', width='24')
+        use(href='#icon_check')
 
   //- Edit list
   draggable.edit-list(
     v-model='editableSteps',
     tag='ol',
     v-bind='draggableOptions',
-    draggable='.draggable-item'
+    draggable='.draggable-item',
+    @end='dragEnd'
   )
     //- Draggable items
     li.edit-list__item.draggable-item(
@@ -26,7 +31,8 @@ section.warmup-editor.card-bg
         :index='index',
         :title='step.title',
         :count='step.count',
-        @updateStep='updateStep',
+        @updateStepTitle='updateStepTitle',
+        @updateStepCount='updateStepCount',
         @deleteStep='deleteStep'
       )
 
@@ -54,10 +60,7 @@ section.warmup-editor.card-bg
     span.increase-decrease__label Increase/Decrease all by 1
 
   //- Finished
-  nuxt-link.btn.warmup-editor__finished(
-    to='/warmup',
-    @click.native='saveEditedSteps'
-  ) Finished editing
+  nuxt-link.btn.warmup-editor__finished(to='/warmup') Finished editing
 </template>
 
 <script>
@@ -68,7 +71,7 @@ export default {
   data() {
     return {
       editing: false,
-      editableSteps: [],
+      editableSteps: null,
       draggableOptions: {
         animation: 200,
         group: 'description',
@@ -81,44 +84,46 @@ export default {
     ...mapState(['warmup']),
   },
   mounted() {
-    // Deep clone so we can change all the steps items
-    this.editableSteps = JSON.parse(
-      JSON.stringify(this.$store.state.warmup.steps)
-    )
+    this.editableSteps = [...this.warmup.steps]
   },
   methods: {
-    ...mapMutations(['SET_WARMUP_STEPS']),
+    ...mapMutations([
+      'UPDATE_WARMUP_STEPS',
+      'CREATE_WARMUP_STEP',
+      'UPDATE_WARMUP_STEP_TITLE',
+      'UPDATE_WARMUP_STEP_COUNT',
+      'DELETE_WARMUP_STEP',
+      'INCR_DECR_WARMUP_STEPS',
+    ]),
 
     // Add editable step
     createStep(newStep) {
-      this.editableSteps.push(newStep)
+      this.CREATE_WARMUP_STEP(newStep)
     },
 
-    // Update editable step
-    updateStep(newStep) {
-      this.editableSteps[newStep.index] = newStep.step
+    // Update editable step title
+    updateStepTitle(newStepTitle) {
+      console.log({ newStepTitle })
+
+      this.UPDATE_WARMUP_STEP_TITLE(newStepTitle)
+    },
+    // Update editable step count
+    updateStepCount(newStepCount) {
+      this.UPDATE_WARMUP_STEP_COUNT(newStepCount)
     },
 
     // delete editable step
     deleteStep(index) {
-      this.editableSteps.splice(index, 1)
+      this.DELETE_WARMUP_STEP(index)
+    },
+
+    dragEnd() {
+      this.UPDATE_WARMUP_STEPS(this.editableSteps)
     },
 
     // Increase/Decrease all by 1
     incrDecr(incr) {
-      this.editableSteps.forEach((step) => {
-        // Prevent negative count
-        if (!incr && step.count > 1) {
-          step.count--
-        } else if (incr) {
-          step.count++
-        }
-      })
-    },
-
-    // Update vuex
-    saveEditedSteps() {
-      this.SET_WARMUP_STEPS(this.editableSteps)
+      this.INCR_DECR_WARMUP_STEPS(incr)
     },
   },
 }
@@ -156,17 +161,27 @@ export default {
     grid-area: done;
     margin: var(--m) 0 var(--m);
   }
+}
+
+// Header
+.warmup-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__title {
+    font-size: var(--fs-xs);
+    font-family: var(--ff-base);
+    opacity: 0.5;
+  }
+
   &__btn-edit {
     background-color: transparent;
-    border-color: transparent;
     color: var(--gray-0);
-    opacity: 0.8;
-    position: absolute;
-    right: 1rem;
-    top: 0.5rem;
-    z-index: var(--layer-2);
+    border-color: transparent;
+    opacity: 0.5;
+    padding: 0 var(--m-sm);
 
-    &.active,
     &:hover,
     &:active {
       background-color: transparent;
@@ -174,8 +189,10 @@ export default {
     }
 
     &:focus {
+      background-color: transparent;
       color: var(--gray-0);
       outline-offset: -1px;
+      opacity: 1;
     }
   }
 }

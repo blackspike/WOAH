@@ -1,6 +1,4 @@
-// import NoSleep from 'nosleep.js'
-// const noSleep = new NoSleep()
-
+// export const strict = false
 
 // // Actions
 // export const actions = {
@@ -33,17 +31,17 @@ export const mutations = {
   // --------------------------------
 
   // Set timer count
-  SET_TIMER_COUNT(state, count) {
+  UPDATE_TIMER_COUNT(state, count) {
     state.warmup.timerCount = count
   },
 
-  // Set all steps
-  SET_WARMUP_STEPS(state, steps) {
+  // Replace all steps
+  UPDATE_WARMUP_STEPS(state, steps) {
     state.warmup.steps = steps
   },
 
   // Add step
-  ADD_WARMUP_STEP(state, newStep) {
+  CREATE_WARMUP_STEP(state, newStep) {
     state.warmup.steps.push({
       count: newStep.count,
       title: newStep.title,
@@ -51,19 +49,19 @@ export const mutations = {
   },
 
   // Edit step title
-  EDIT_WARMUP_STEP_TITLE(state, editedStepTitle) {
-    state.warmup.steps[editedStepTitle.index].title = editedStepTitle.value
+  UPDATE_WARMUP_STEP_TITLE(state, editedStepTitle) {
+    state.warmup.steps[editedStepTitle.index].title = editedStepTitle.title
   },
 
-  // Edit step Count
-  EDIT_WARMUP_STEP_COUNT(state, editedStepCount) {
-    state.warmup.steps[editedStepCount.index].count = editedStepCount.value
+  // Edit step count
+  UPDATE_WARMUP_STEP_COUNT(state, editedStepCount) {
+    state.warmup.steps[editedStepCount.index].count = editedStepCount.count
   },
 
   // Remove step
-  REMOVE_WARMUP_STEP(state, removeStepIndex) {
+  DELETE_WARMUP_STEP(state, index) {
     const newArr = [...state.warmup.steps]
-    newArr.splice(removeStepIndex, 1)
+    newArr.splice(index, 1)
     state.warmup.steps = newArr
   },
 
@@ -83,29 +81,29 @@ export const mutations = {
   // Workout Steps
   // --------------------------------
 
-  // Set workout steps
-  SET_WORKOUT_DAY_STEPS(state, workout) {
+  // Replace all steps
+  UPDATE_WORKOUT_DAY_STEPS(state, workout) {
     state.workouts[workout.dayKey].steps = workout.steps
   },
   // Edit workout step title
-  EDIT_WORKOUT_STEP_TITLE(state, editedStepTitle) {
+  UPDATE_WORKOUT_STEP_TITLE(state, editedStepTitle) {
     state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
       editedStepTitle.value
   },
   // Edit workout step Count
-  EDIT_WORKOUT_STEP_COUNT(state, editedStepCount) {
+  UPDATE_WORKOUT_STEP_COUNT(state, editedStepCount) {
     state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
       editedStepCount.value
   },
   // Add workout step
-  ADD_WORKOUT_STEP(state, newStep) {
+  CREATE_WORKOUT_STEP(state, newStep) {
     state.workouts[newStep.dayKey].steps.push({
       count: newStep.count,
       title: newStep.title,
     })
   },
   // Remove workout step
-  REMOVE_WORKOUT_STEP(state, removeStep) {
+  DELETE_WORKOUT_STEP(state, removeStep) {
     const newArr = [...state.workouts[removeStep.dayKey].steps]
     newArr.splice(removeStep.index, 1)
     state.workouts[removeStep.dayKey].steps = newArr
@@ -114,7 +112,6 @@ export const mutations = {
   // Increment or decrement step workout step
   INCR_DECR_WORKOUT_STEPS(state, data) {
     state.workouts[data.dayKey].steps.forEach((step) => {
-
       // Prevent negative count
       if (!data.incr && step.count > 1) {
         step.count--

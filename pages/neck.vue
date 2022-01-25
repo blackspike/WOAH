@@ -77,7 +77,6 @@ export default {
       steps: (state) => state.neck.steps,
       reps: (state) => state.neck.reps,
       speech: (state) => state.settings.speech,
-      sleep: (state) => state.settings.noSleep,
     }),
   },
   methods: {

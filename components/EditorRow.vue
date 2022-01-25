@@ -1,24 +1,20 @@
 <template lang="pug">
 .editor
-  select.editor__count(
-    v-model.number='editedCount',
-    @change='$emit("updateStep", { index, step: { count: editedCount, title: editedTitle } })'
-  )
+  select.editor__count(:value='count', @change='updateStepCount')
     option(v-for='i in 120', :value='i') {{ i }}
 
   label.visually-hidden(for='edit_title') Edit step title
   input#edit_title.editor__title(
     type='text',
-    v-model.trim='editedTitle',
-    @change='$emit("updateStep", { index, step: { count: editedCount, title: editedTitle } })',
-    placeholder='Exercise type',
-    @focus='$event.target.select()'
+    :value='title',
+    @change='updateStepTitle',
+    placeholder='Exercise type'
   )
 
   //- Delete
   .editor__action
     button.btn-icon.btn-gray.editor__btn-delete(
-      @click='$emit("deleteStep", index)',
+      @click='deleteStep',
       type='button'
     )
       svg.icon(height='24', width='24')
@@ -42,11 +38,24 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      editedCount: this.count,
-      editedTitle: this.title,
-    }
+  methods: {
+    // Call update
+    updateStepTitle(e) {
+      this.$emit('updateStepTitle', {
+        index: this.index,
+        title: e.target.value,
+      })
+    },
+    updateStepCount(e) {
+      this.$emit('updateStepCount', {
+        index: this.index,
+        count: e.target.value,
+      })
+    },
+    // Call Delete
+    deleteStep() {
+      this.$emit('deleteStep', this.index)
+    },
   },
 }
 </script>
