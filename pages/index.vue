@@ -61,7 +61,7 @@ export default {
   name: 'Home',
   head() {
     return {
-      bodyAttrs: {
+      htmlAttrs: {
         class: 'home',
       },
     }
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style lang="scss">
-body.home {
+html.home {
   background-image: url('~assets/img/bg-blur.png');
   background-position: top right;
   background-repeat: no-repeat;
@@ -179,13 +179,13 @@ body.home {
   height: 80px;
   right: 2rem;
   position: fixed;
-  user-select: none;
+  pointer-events: none;
   width: 80px;
   z-index: var(--layer-2);
   // Anim
-  opacity: 0;
   animation: spin-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   animation-delay: 1.8s;
+  opacity: 0;
 
   &__star {
     animation: spin 20s linear infinite;

@@ -150,6 +150,10 @@ export default {
     text-transform: uppercase;
     transition: all 0.3s ease;
 
+    .home & {
+      background-color: var(--gray-9);
+    }
+
     &:focus,
     &:hover,
     &:active {

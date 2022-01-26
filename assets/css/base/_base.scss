@@ -11,31 +11,20 @@
 html {
   background-color: var(--bg);
   height: 100%;
-
-  // overflow: hidden;
-  // display: flex;
-  // flex-direction: column;
 }
 
 body {
+  -moz-osx-font-smoothing: grayscale;
   color: var(--text);
+  flex: 1;
   font-family: var(--ff-base);
   font-feature-settings: 'kern';
-  -moz-osx-font-smoothing: grayscale;
   font-synthesis: none;
   line-height: var(--lh-base);
+  min-height: 100vh;
   position: relative;
   text-rendering: optimizeLegibility;
-  flex: 1;
 }
-/* stylelint-disable */
-// #__nuxt,
-// #__layout {
-//   height: 100%;
-//   width: 100%;
-//   display: flex;
-// }
-/* stylelint-enable */
 
 [hidden] {
   display: none !important;
@@ -77,28 +66,27 @@ h4,
 h5,
 .h6,
 h6 {
+  color: var(--text);
   font-family: var(--ff-heading);
   line-height: var(--lh-xs);
-  color: var(--text);
   word-wrap: break-word;
 }
 
 .h1,
 h1 {
-  // letter-spacing: -2px;
   font-size: var(--fs-xxxxl);
 }
 
 .h2,
 h2 {
-  letter-spacing: -0.5px;
   font-size: var(--fs-xxxl);
+  letter-spacing: -0.5px;
 }
 
 .h3,
 h3 {
-  letter-spacing: -0.5px;
   font-size: var(--fs-lg);
+  letter-spacing: -0.5px;
 }
 
 .h4,
