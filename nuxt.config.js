@@ -71,7 +71,7 @@ export default {
       {
         hid: 'apple-mobile-web-app-status-bar-style',
         name: 'apple-mobile-web-app-status-bar-style',
-        content: 'translucent',
+        content: 'black-translucent',
       },
     ],
     link: [

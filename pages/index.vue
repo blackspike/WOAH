@@ -52,11 +52,9 @@ section.intro
       d='M111.566 0.479858L121.467 10.9563L133.221 2.61269L140.888 14.8193L154.044 8.92923L159.182 22.397L173.234 19.1867L175.646 33.3981L190.055 32.991L189.648 47.3998L203.859 49.8116L200.649 63.8641L214.117 69.002L208.226 82.1582L220.433 89.8248L212.09 101.579L222.566 111.48L212.09 121.381L220.433 133.135L208.226 140.802L214.117 153.958L200.649 159.096L203.859 173.148L189.648 175.56L190.055 189.969L175.646 189.562L173.234 203.773L159.182 200.563L154.044 214.03L140.888 208.14L133.221 220.347L121.467 212.003L111.566 222.48L101.665 212.003L89.9109 220.347L82.2443 208.14L69.0881 214.03L63.9502 200.563L49.8977 203.773L47.4859 189.562L33.0771 189.969L33.4842 175.56L19.2728 173.148L22.4831 159.096L9.01532 153.958L14.9054 140.802L2.69878 133.135L11.0423 121.381L0.565948 111.48L11.0423 101.579L2.69878 89.8248L14.9054 82.1582L9.01532 69.002L22.4831 63.8641L19.2728 49.8116L33.4842 47.3998L33.0771 32.991L47.4859 33.3981L49.8977 19.1867L63.9502 22.397L69.0881 8.92923L82.2443 14.8193L89.9109 2.61269L101.665 10.9563L111.566 0.479858Z',
       fill='#FF00C7'
     )
-    text.free__headline(transform='translate(33 107)')
-      tspan(x='0.0546875', y='27.6') FREE!
+    text.free__headline(transform='translate(33 134)') FREE!
 
-    text.free__strapline(transform='translate(34 149)')
-      tspan(x='0.225098', y='4.72727') NO ADS • NO TRACKING
+    text.free__strapline(transform='translate(34 151)') NO ADS OR TRACKERS
 </template>
 
 <script>
@@ -192,17 +190,18 @@ html.home {
   opacity: 0;
 
   &__headline {
-    transform: translate(33px, calc(107px + 10px));
+    transform: translate(33px, calc(134px + 10px));
 
     @include media-query('md') {
-      transform: translate(33px, 107px);
+      transform: translate(33px, 134px);
     }
   }
 
   &__strapline {
     display: none;
     font-family: var(--ff-base);
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: 1px;
 
     @include media-query('md') {
       display: block;
