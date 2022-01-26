@@ -105,9 +105,13 @@ export default {
   }
 
   &__btn {
-    color: var(--gray-9);
+    color: var(--gray-0);
     height: 100%;
     padding: var(--m-sm) var(--m-sm);
+
+    svg symbol {
+      stroke-width: 5px !important;
+    }
   }
 }
 </style>
