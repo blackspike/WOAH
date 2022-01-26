@@ -37,6 +37,7 @@ section.intro
     li.actions__item
       nuxt-link.btn.actions__button(to='/videos') Video tutorials
 
+  //- Credits
   .intro__footer.credits
     span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
     span Web App by #[nuxt-link(to='/about') Blackspike.com]
@@ -55,6 +56,9 @@ section.intro
     text.free__headline(transform='translate(33 134)') FREE!
 
     text.free__strapline(transform='translate(34 151)') NO ADS OR TRACKERS
+
+  //- Import section
+  HomeSectionImport
 </template>
 
 <script>
@@ -72,7 +76,7 @@ export default {
 
 <style lang="scss">
 html.home {
-  background-image: linear-gradient(var(--bg), transparent 30%),
+  background-image: linear-gradient(var(--bg), rgba(33, 37, 41, 0) 40%),
     url('~assets/img/bg-blur.png');
   background-position: top right;
   background-repeat: no-repeat;
