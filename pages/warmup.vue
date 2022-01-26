@@ -3,7 +3,7 @@ section.warmup
   //- No sleep video
   .no-sleep(v-show='started', :class='{ show: started }')
     video.no-sleep__video(loop, muted, playsinline, ref='sleepVid')
-      source(src='~/assets/video/sleep-vid-alt.mp4', type='video/mp4')
+      source(src='/sleep-vid-alt.mp4', type='video/mp4')
 
   //- Splider
   client-only
