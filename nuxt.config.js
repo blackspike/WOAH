@@ -71,7 +71,7 @@ export default {
       {
         hid: 'apple-mobile-web-app-status-bar-style',
         name: 'apple-mobile-web-app-status-bar-style',
-        content: 'black-translucent',
+        content: 'translucent',
       },
     ],
     link: [
@@ -80,6 +80,11 @@ export default {
     ],
   },
 
+  // Transitions
+  pageTransition: {
+    name: 'fade',
+    mode: 'out-in',
+  },
   // Loading bar color
   loading: { color: 'var(--brand)' },
 

@@ -72,7 +72,8 @@ export default {
 
 <style lang="scss">
 html.home {
-  background-image: url('~assets/img/bg-blur.png');
+  background-image: linear-gradient(var(--bg), transparent 30%),
+    url('~assets/img/bg-blur.png');
   background-position: top right;
   background-repeat: no-repeat;
   background-size: cover;
