@@ -2,14 +2,14 @@
   "lang": "en",
   "dir": "ltr",
   "name": "WOAH | Work Out At Home",
-  "description": "Work Out At Home",
+  "description": "warmup & workout timer",
   "short_name": "WOAH",
   "start_url": "/",
   "display": "fullscreen",
   "scope": "/",
   "orientation": "landscape",
   "splash_pages": null,
-  "theme_color": "orangered",
+  "theme_color": "#00eeff",
   "background_color": "#212529",
   "icons": [
     {

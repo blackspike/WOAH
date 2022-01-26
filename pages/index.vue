@@ -35,10 +35,6 @@ section.intro
       nuxt-link.btn.actions__button(to='/workout') Start workout
     li.actions__item
       nuxt-link.btn.actions__button(to='/videos') Video tutorials
-    li.actions__item.actions__item--credits
-      .credits
-        span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-        span Web App by #[nuxt-link(to='/about') Blackspike.com]
 
   .intro__footer.credits
     span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
@@ -245,13 +241,6 @@ export default {
     }
     &:nth-child(3) {
       animation-delay: 1.75s;
-    }
-
-    // Credits
-    &--credits {
-      @include media-query('lg') {
-        display: none;
-      }
     }
   }
   // Buttons

@@ -21,7 +21,9 @@ section.about
         span.spanimation Home
 
   .about__content
-    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps? Need a timer &amp; counter for the reps?
+    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps?
+
+    p Need a timer &amp; counter for the reps?
 
     p Then look no further! This is a web app for those things.
 

@@ -1,7 +1,7 @@
 <template lang="pug">
 .import-export
   h3.import-export__title Import / Export data
-  p.import-export__info Export your workouts and warmups to transfer to another device
+  p.import-export__info Export your workouts and warmups to transfer to another device, or import a custom regime created by your trainer!
 
   //- Import
   //- Upload label button
@@ -136,6 +136,8 @@ export default {
 
   &__info {
     grid-area: info;
+    font-family: var(--ff-sans);
+    line-height: var(--lh-md);
     margin-block-end: var(--m);
   }
 

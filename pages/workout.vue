@@ -95,7 +95,6 @@ export default {
     color: var(--brand-yellow);
     font-family: var(--ff-brand);
     font-size: var(--fs-lg);
-    margin-inline-end: var(--m-sm);
 
     &--last {
       color: var(--brand-orange);

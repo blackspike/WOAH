@@ -6,7 +6,7 @@
         use(href='#icon_spike', aria-hidden)
       | WOAH
     span(v-if='$nuxt.$route.name !== "index"') //
-    h1.header__title {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("-", " ") }}
+    h1.header__title {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("warmup-editor", "Editor") }}
 
   nav.nav-desktop
     nuxt-link.nav-desktop__link(to='/warmup') Warmup
@@ -92,8 +92,8 @@ export default {
   &__icon {
     align-self: flex-end;
     height: var(--fs-lg);
-    margin-inline-end: var(--m-sm);
-    transform: translateY(0.22rem);
+    margin-right: var(--m-sm);
+    transform: translateY(0.21rem);
     width: auto;
   }
   &__logo {

@@ -88,9 +88,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    '@/assets/css/main.scss',
-  ],
+  css: ['@/assets/css/main.scss'],
 
   // https://github.com/nuxt-community/style-resources-module
   styleResources: {
@@ -115,7 +113,14 @@ export default {
     '@nuxtjs/style-resources',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/pwa',
   ],
+
+  pwa: {
+    icon: false,
+    meta: false,
+    manifest: false,
+  },
 
   stylelint: {
     fix: true,
