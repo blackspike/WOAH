@@ -5,7 +5,6 @@ section.warmup
     video.no-sleep__video(loop, muted, playsinline, ref='sleepVid')
       source(src='~/assets/video/sleep-vid.mp4', type='video/mp4')
 
-  h2 {{ currentStep }} of {{ steps.length + 1 }}
   //- Splider
   client-only
     splide.woah-splide(
