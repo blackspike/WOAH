@@ -5,6 +5,7 @@ section.warmup
     video.no-sleep__video(loop, muted, playsinline, ref='sleepVid')
       source(src='~/assets/video/sleep-vid.mp4', type='video/mp4')
 
+  h2 {{ currentStep }} of {{ steps.length + 1 }}
   //- Splider
   client-only
     splide.woah-splide(
@@ -123,8 +124,9 @@ export default {
         this.$refs.warmupSplide.go('<')
       }
 
+      console.log(this.currentStep, this.steps.length + 1)
       // Stop if last slide
-      if (this.currentStep === this.steps.length) {
+      if (this.currentStep === this.steps.length + 1) {
         this.started = false
         this.finished = true
       }
@@ -146,6 +148,7 @@ export default {
 // Needs to be wrapped in div for safari positioning
 .no-sleep {
   background-color: var(--gray-10);
+  border-color: --bran;
   border-radius: var(--radius-5);
   bottom: 1rem;
   height: 32px;
@@ -154,7 +157,6 @@ export default {
   position: fixed;
   right: 2rem;
   width: 32px;
-  border-color: --bran;
   z-index: var(--layer-5);
 
   // Anim
@@ -189,26 +191,25 @@ export default {
   }
 
   &__message {
+    align-self: end;
     grid-area: title;
     text-align: center;
-    align-self: end;
   }
 
   &__title {
-    margin-bottom: var(--m);
+    margin-block-end: var(--m);
   }
   &__subtitle {
     color: var(--brand-pink);
     font-size: var(--fs-xxl);
   }
   &__btn-action {
-    grid-area: button;
     align-self: start;
+    grid-area: button;
 
     @include media-query('xs') {
-      padding-left: var(--m-xl);
-      padding-right: var(--m-xl);
       justify-self: center;
+      padding-inline: var(--m-xl);
     }
   }
 }

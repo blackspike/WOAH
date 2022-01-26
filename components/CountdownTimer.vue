@@ -80,11 +80,11 @@ export default {
 <style lang="scss" scoped>
 // Timer
 .timer {
-  width: 100%;
-  height: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
+  height: 100%;
+  width: 100%;
 
   &__svg {
     margin: auto;
@@ -99,11 +99,11 @@ export default {
 // SVGs
 .svg-number,
 .svg-pi {
+  aspect-ratio: 1 / 1;
   grid-column: 1;
   grid-row: 1;
-  width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1;
+  width: 100%;
 }
 
 // Flasher
@@ -126,15 +126,15 @@ export default {
       transform 0.5s cubic-bezier(0.87, 0, 0.13, 1),
       opacity 0.5s cubic-bezier(0.87, 0, 0.13, 1);
     &.active {
-      transform: translateY(0);
       opacity: 1;
+      transform: translateY(0);
     }
   }
 
   &__text {
-    font-size: var(--fs-8);
-    font-family: var(--ff-heading);
     fill: var(--brand-blue);
+    font-family: var(--ff-heading);
+    font-size: var(--fs-8);
     transition: animation 1s ease-in-out;
 
     &.active {
@@ -142,12 +142,12 @@ export default {
     }
 
     &.ending {
-      fill: var(--brand-orange);
-      animation-name: flasher;
+      animation-direction: alternate;
       animation-duration: 0.5s;
       animation-iteration-count: infinite;
-      animation-direction: alternate;
+      animation-name: flasher;
       animation-timing-function: ease-out;
+      fill: var(--brand-orange);
     }
   }
 }

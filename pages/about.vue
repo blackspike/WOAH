@@ -57,18 +57,18 @@ export default {
 
 <style lang="scss" scoped>
 .intro {
-  max-width: var(--mw-content-wide);
   margin: 0 auto;
+  max-width: var(--mw-content-wide);
 
   &__header {
     text-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
   }
 
   &__screengrabs {
-    position: absolute;
-    top: 0;
-    right: 0;
     opacity: 0.2;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     @include media-query('lg') {
       margin-top: 2vh;
@@ -76,21 +76,21 @@ export default {
   }
 
   &__title {
-    font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
-    font-family: var(--ff-brand);
-    margin: var(--m-xl) 0 var(--m-lg);
     display: flex;
     flex-wrap: wrap;
+    font-family: var(--ff-brand);
+    font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     gap: 0 var(--m);
+    margin: var(--m-xl) 0 var(--m-lg);
 
     &--about {
       color: var(--brand-yellow);
     }
 
     .spanimation {
+      animation: drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       opacity: 0;
       transform: translate(0, -5rem);
-      animation: drop-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 
       &:nth-child(1) {
         animation-delay: 0.25s;
@@ -112,13 +112,13 @@ export default {
 }
 
 .about {
-  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
-  font-size: var(--fs-md);
   font-family: var(--ff-sans);
+  font-size: var(--fs-md);
   font-weight: var(--fw-md);
   margin: 0 auto;
   max-width: var(--mw-content-wide);
   padding: var(--m);
+  text-shadow: 0 0 1rem rgba(0, 0, 0, 0.8);
 
   &__header {
     grid-area: header;
@@ -126,8 +126,8 @@ export default {
 
   &__content {
     grid-area: content;
-    max-width: var(--mw-content-wide);
     margin: 0 auto 0 0;
+    max-width: var(--mw-content-wide);
 
     * {
       max-width: var(--mw-content);
@@ -141,23 +141,22 @@ export default {
   }
 
   &__by-title {
-    margin: var(--m-xl) 0 var(--m);
     color: var(--gray-6);
+    margin: var(--m-xl) 0 var(--m);
   }
 
   &__logo {
-    color: var(--text);
-    max-width: 220px;
+    color: var(--brand-pink);
     height: auto;
     margin: 0 0 var(--m-xl);
-    color: var(--brand-pink);
+    max-width: 220px;
   }
 
   &__footer {
-    grid-area: footer;
     font-family: var(--ff-brand);
     font-size: var(--fs-sm);
-    margin-bottom: var(--m-xl);
+    grid-area: footer;
+    margin-block-end: var(--m-xl);
 
     a {
       color: var(--brand-yellow);
@@ -165,8 +164,8 @@ export default {
   }
 
   &__content {
-    grid-area: content;
     align-self: start;
+    grid-area: content;
     line-height: var(--lh-lg);
 
     p {

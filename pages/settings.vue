@@ -100,7 +100,7 @@ export default {
   &__title {
     font-family: var(--ff-brand);
     font-size: var(--fs-lg);
-    margin-bottom: var(--m-lg);
+    margin-block-end: var(--m-lg);
   }
 
   // Rows
@@ -112,21 +112,20 @@ export default {
     display: flex;
     gap: var(--m);
     justify-content: space-between;
-    margin-bottom: var(--m);
+    margin-block-end: var(--m);
     padding: var(--m);
 
     &--plain {
       background-color: unset;
       border-radius: unset;
       border: unset;
-      margin-bottom: unset;
+      margin-block-end: unset;
       padding: unset;
     }
   }
 
   &__label {
     flex: 1;
-
     text-transform: uppercase;
   }
 
@@ -138,8 +137,8 @@ export default {
     flex: 1;
 
     &--danger {
-      margin-top: var(--m);
       background-image: linear-gradient(rgb(240, 69, 46), rgb(141, 26, 26));
+      margin-block-start: var(--m);
 
       &:hover {
         animation: none;
@@ -152,11 +151,11 @@ export default {
   }
 
   &__reset-confirmed {
-    text-transform: uppercase;
     color: var(--brand-orange);
-    text-align: center;
     flex: 1;
     padding: var(--m) 0;
+    text-align: center;
+    text-transform: uppercase;
   }
 }
 </style>

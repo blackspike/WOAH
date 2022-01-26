@@ -143,8 +143,8 @@ export default {
 
   @include media-query('md') {
     grid-template-areas: 'header header' 'list list' 'incr-decr done';
-    grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr auto;
   }
 
   &__title {
@@ -174,15 +174,15 @@ export default {
   width: 100%;
 
   &__title {
-    font-size: var(--fs-xs);
     font-family: var(--ff-base);
+    font-size: var(--fs-xs);
     opacity: 0.5;
   }
 
   &__btn-edit {
     background-color: transparent;
-    color: var(--gray-0);
     border-color: transparent;
+    color: var(--gray-0);
     opacity: 0.5;
     padding: 0 var(--m-sm);
 
@@ -195,8 +195,8 @@ export default {
     &:focus {
       background-color: transparent;
       color: var(--gray-0);
-      outline-offset: -1px;
       opacity: 1;
+      outline-offset: -1px;
     }
   }
 }
@@ -208,7 +208,7 @@ export default {
 
   &__item {
     list-style: none;
-    margin-top: var(--m-sm);
+    margin-block-start: var(--m-sm);
     padding: 0;
     width: 100%;
 
@@ -223,6 +223,21 @@ export default {
   &__editor {
     grid-area: editor;
     min-width: 0;
+  }
+}
+
+// Increase/Decrease
+.increase-decrease {
+  align-items: center;
+  display: grid;
+  font-size: var(--fs-md);
+  gap: var(--m-sm);
+  grid-template-areas: 'button button title';
+  grid-template-columns: auto auto 1fr;
+  margin-block-end: var(--m);
+
+  &__label {
+    margin-left: var(--m-sm);
   }
 }
 </style>

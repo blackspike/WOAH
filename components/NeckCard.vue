@@ -132,8 +132,8 @@ export default {
   }
 
   &__timer-wrapper {
-    grid-area: timer;
     align-self: center;
+    grid-area: timer;
     height: 100%;
   }
   &__title {
@@ -143,8 +143,8 @@ export default {
     display: flex;
     font-size: clamp(3rem, 7vw + 2rem, 5rem);
     grid-area: step;
-    justify-content: center;
     height: 100%;
+    justify-content: center;
     text-align: center;
 
     @include media-query('lg') {
@@ -153,13 +153,13 @@ export default {
   }
 
   &__btn-edit {
-    color: var(--gray-0);
     background-color: transparent;
-    position: absolute;
-    top: 0;
-    right: 0;
     border-color: transparent;
+    color: var(--gray-0);
     opacity: 0.2;
+    position: absolute;
+    right: 0;
+    top: 0;
 
     &.active,
     &:hover,
@@ -176,28 +176,26 @@ export default {
 
   // Next step
   &__next-up {
-    grid-area: next;
-    line-height: 1;
     color: var(--brand-blue);
-    // font-size: var(--fs-lg);
-
-    text-align: center;
-    text-transform: uppercase;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: var(--m-sm);
+    grid-area: next;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
 
     @include media-query('lg') {
       margin-block-end: var(--m-lg);
     }
 
     span {
-      font-size: var(--fs-xl);
-      font-family: var(--ff-heading);
-      display: inline-block;
-      margin-inline: var(--m-sm);
       color: var(--gray-4);
+      display: inline-block;
+      font-family: var(--ff-heading);
+      font-size: var(--fs-xl);
+      margin-inline: var(--m-sm);
     }
   }
 }

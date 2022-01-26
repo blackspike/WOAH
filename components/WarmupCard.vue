@@ -21,9 +21,9 @@ article.warmup-card.card-bg
 
   //- Next step
   .warmup-card__next-up(v-if='nextStep') Next up
-    span {{ nextStep.title }}
-  .warmup-card__next-up(v-else)
-    span Final step!
+    span.warmup-card__next-up-msg {{ nextStep.title }}
+  .warmup-card__next-up-msg(v-else)
+    span.warmup-card__next-up Final step!
 </template>
 
 <script>
@@ -134,8 +134,8 @@ export default {
   }
 
   &__timer-wrapper {
-    grid-area: timer;
     align-self: center;
+    grid-area: timer;
     height: 100%;
   }
   &__title {
@@ -155,13 +155,13 @@ export default {
   }
 
   &__btn-edit {
-    color: var(--gray-0);
     background-color: transparent;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
     border-color: transparent;
+    color: var(--gray-0);
     opacity: 0.2;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
     z-index: var(--layer-2);
 
     &.active,
@@ -179,29 +179,27 @@ export default {
 
   // Next step
   &__next-up {
-    grid-area: next;
-    line-height: 1;
     color: var(--brand-blue);
-    // font-size: var(--fs-lg);
-
-    text-align: center;
-    text-transform: uppercase;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: var(--m-sm);
+    grid-area: next;
+    justify-content: center;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
 
     @include media-query('lg') {
       margin-block-end: var(--m-lg);
     }
+  }
 
-    span {
-      font-size: var(--fs-xl);
-      font-family: var(--ff-heading);
-      display: inline-block;
-      margin-inline: var(--m-sm);
-      color: var(--gray-4);
-    }
+  &__next-up-msg {
+    color: var(--gray-4);
+    display: inline-block;
+    font-family: var(--ff-heading);
+    font-size: var(--fs-xl);
+    margin-inline: var(--m-sm);
   }
 }
 </style>

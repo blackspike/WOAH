@@ -91,10 +91,10 @@ export default {
 
   &__icon {
     align-self: flex-end;
-    margin-right: var(--m-sm);
     height: var(--fs-lg);
-    width: auto;
+    margin-inline-end: var(--m-sm);
     transform: translateY(0.22rem);
+    width: auto;
   }
   &__logo {
     color: currentColor;
@@ -110,8 +110,8 @@ export default {
   }
   &__title {
     color: var(--gray-3);
-    font-size: var(--fs-sm);
     font-family: var(--ff-base);
+    font-size: var(--fs-sm);
     text-transform: uppercase;
   }
   &__current-step {
@@ -131,13 +131,13 @@ export default {
   }
 
   &__link {
-    color: currentColor;
-    font-size: var(--fs-xs);
-    text-transform: uppercase;
     background-color: var(--gray-8);
-    display: flex;
-    padding: var(--m-sm) var(--m);
     border-radius: var(--radius-5);
+    color: currentColor;
+    display: flex;
+    font-size: var(--fs-xs);
+    padding: var(--m-sm) var(--m);
+    text-transform: uppercase;
     transition: all 0.3s ease;
 
     &:focus,
@@ -156,14 +156,14 @@ export default {
 
 // Button
 .nav-btn {
+  color: var(--gray-5);
+  display: flex;
   grid-area: button;
   height: 3rem;
-  width: 3rem;
-  display: flex;
   justify-content: flex-end;
-  z-index: var(--layer-5);
   padding: var(--m-sm) 0 0;
-  color: var(--gray-5);
+  width: 3rem;
+  z-index: var(--layer-5);
 
   &:focus,
   &:hover,

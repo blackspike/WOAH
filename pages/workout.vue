@@ -72,8 +72,8 @@ export default {
   width: 100%;
 }
 
+// Reps
 .reps {
-  width: 100%;
   align-items: center;
   display: flex;
   gap: var(--m);
@@ -86,6 +86,7 @@ export default {
     max-width: var(--mw-content-wide);
     padding: var(--m) var(--m);
   }
+
   &__counter {
     flex: 1;
   }
@@ -94,7 +95,7 @@ export default {
     color: var(--brand-yellow);
     font-family: var(--ff-brand);
     font-size: var(--fs-lg);
-    margin-right: var(--m-sm);
+    margin-inline-end: var(--m-sm);
 
     &--last {
       color: var(--brand-orange);
@@ -103,10 +104,11 @@ export default {
       color: var(--brand-green);
     }
   }
+
   &__btn {
+    color: var(--gray-9);
     height: 100%;
     padding: var(--m-sm) var(--m-sm);
-    color: var(--gray-9);
   }
 }
 </style>

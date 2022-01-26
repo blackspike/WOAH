@@ -59,3 +59,35 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.editor {
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  grid-template-areas: 'count title action';
+  gap: var(--m-sm);
+
+  &__count {
+    grid-area: count;
+    max-width: 5ch;
+    height: 100%;
+    font-size: var(--fs-lg);
+  }
+
+  &__title {
+    grid-area: title;
+    height: 100%;
+    font-size: var(--fs-lg);
+  }
+
+  &__action {
+    grid-area: action;
+  }
+
+  &__btn-add.btn-gray,
+  &__btn-delete.btn-gray {
+    padding: 0 var(--m-sm);
+    height: 100%;
+  }
+}
+</style>

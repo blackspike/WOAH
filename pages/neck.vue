@@ -105,10 +105,6 @@ export default {
         this.currentStep = 1
         this.currentRep++
         return
-        // if (this.currentRep < this.reps) {
-        //   this.currentRep++
-        //   return
-        // }
       }
 
       // Back / forth
@@ -153,9 +149,9 @@ export default {
   user-select: none;
 
   &__message {
+    align-self: end;
     grid-area: title;
     text-align: center;
-    align-self: end;
   }
 
   &__title {
@@ -166,12 +162,12 @@ export default {
     font-size: var(--fs-xxl);
   }
   &__btn-action {
-    grid-area: button;
     align-self: start;
+    grid-area: button;
 
     @include media-query('lg') {
-      width: 30vw;
       justify-self: center;
+      width: 30vw;
     }
   }
 }

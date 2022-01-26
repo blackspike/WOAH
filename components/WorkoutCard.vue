@@ -200,19 +200,19 @@ export default {
 
 // Header
 .workout-card-header {
+  align-items: center;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   &__title {
-    font-size: var(--fs-lg);
     font-family: var(--ff-brand);
+    font-size: var(--fs-lg);
   }
 
   &__btn-edit {
     background-color: transparent;
-    color: var(--gray-0);
     border-color: transparent;
+    color: var(--gray-0);
     opacity: 0.5;
     padding: 0;
 
@@ -233,11 +233,11 @@ export default {
 
 // Step list
 .step-list {
-  grid-area: list;
   display: flex;
-  gap: var(--m-sm);
-  height: 100%;
   flex-direction: column;
+  gap: var(--m-sm);
+  grid-area: list;
+  height: 100%;
   line-height: 1;
   padding: 3vh 0;
 
@@ -246,7 +246,6 @@ export default {
     background-color: var(--gray-9);
     border-radius: var(--radius-2);
     border: 2px solid var(--gray-9);
-    // box-shadow: inset 1px 1px 3px var(--gray-10);
     display: flex;
     font-size: var(--fs-xl);
     gap: var(--m-sm);
@@ -274,8 +273,8 @@ export default {
     }
   }
   &__title {
-    flex: 2;
     color: var(--brand-blue);
+    flex: 2;
 
     .single & {
       flex: unset;
@@ -310,8 +309,8 @@ export default {
 
   @include media-query('md') {
     grid-template-areas: 'list list' 'incr-decr done';
-    grid-template-rows: 1fr auto;
     grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr auto;
   }
 
   &__edit-list {
@@ -337,13 +336,28 @@ export default {
 
   &__item {
     list-style: none;
-    margin-top: var(--m-sm);
+    margin-block-start: var(--m-sm);
     padding: 0;
     width: 100%;
 
     &--add {
       margin-block-start: var(--m-lg);
     }
+  }
+}
+
+// Increase/Decrease
+.increase-decrease {
+  align-items: center;
+  display: grid;
+  font-size: var(--fs-md);
+  gap: var(--m-sm);
+  grid-template-areas: 'button button title';
+  grid-template-columns: auto auto 1fr;
+  margin-block-end: var(--m);
+
+  &__label {
+    margin-left: var(--m-sm);
   }
 }
 

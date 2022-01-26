@@ -119,35 +119,36 @@ export default {
 <style lang="scss" scoped>
 .import-export {
   display: grid;
+  gap: var(--m);
   grid-template-areas: 'title title' 'info info' 'import export' 'share share';
   grid-template-columns: 1fr 1fr;
-  gap: var(--m);
   margin-bottom: var(--m);
 
   .btn {
+    padding-inline: 0;
     width: 100%;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   &__title {
     grid-area: title;
-    margin-top: var(--m-lg);
+    margin-block-start: var(--m-lg);
   }
 
   &__info {
     grid-area: info;
-    margin-bottom: var(--m);
+    margin-block-end: var(--m);
   }
 
   &__export {
     grid-area: export;
   }
+
   &__import {
     grid-area: import;
   }
+
   &__share {
-    margin-top: var(--m-lg);
+    margin-block-start: var(--m-lg);
     grid-area: share;
   }
 }
