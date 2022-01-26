@@ -243,25 +243,42 @@ export default {
 
   &__item {
     align-items: baseline;
-    background-color: var(--gray-9);
     border-radius: var(--radius-2);
-    border: 2px solid var(--gray-9);
     display: flex;
     font-size: var(--fs-xl);
     gap: var(--m-sm);
-    padding: var(--m-sm) var(--m-sm) var(--m-xs);
+    overflow: hidden;
+    padding: var(--m-sm) var(--m-sm) calc(var(--m-xs) / 1.2);
+
+    @include media-query('md') {
+      padding: var(--m) var(--m) calc(var(--m-sm) / 1.2);
+    }
+
+    &::before {
+      content: '';
+      background-color: var(--gray-9);
+      bottom: 0;
+      left: 0;
+      opacity: 0.7;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 0;
+    }
 
     // Single items
     &.single {
       align-items: center;
-      background-color: transparent;
-      border: 0;
       flex-direction: column;
       font-size: var(--fs-xxl);
       height: 100%;
       justify-content: center;
       text-align: center;
       width: 100%;
+
+      &::before {
+        display: none;
+      }
     }
   }
   &__count {
