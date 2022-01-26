@@ -93,8 +93,9 @@ export default {
 
   &__count {
     color: var(--brand-yellow);
-    font-family: var(--ff-brand);
+    font-family: var(--ff-bsae);
     font-size: var(--fs-lg);
+    text-transform: uppercase;
 
     &--last {
       color: var(--brand-orange);
