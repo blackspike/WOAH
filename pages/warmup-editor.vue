@@ -19,8 +19,7 @@ section.warmup-editor.card-bg
     v-model='editableSteps',
     tag='ol',
     v-bind='draggableOptions',
-    draggable='.draggable-item',
-    @end='dragEnd'
+    draggable='.draggable-item'
   )
     //- Draggable items
     li.edit-list__item.draggable-item(
@@ -41,7 +40,7 @@ section.warmup-editor.card-bg
       EditorRowAddNew(@createStep='createStep')
 
   //- Increase/Decrease
-  .increase-decrease
+  .warmup-editor__incr-decr.increase-decrease
     //- increase one
     button.btn-icon.btn-gray.increase-decrease__btn-increase(
       type='button',
@@ -71,7 +70,6 @@ export default {
   data() {
     return {
       editing: false,
-      editableSteps: null,
       draggableOptions: {
         animation: 200,
         group: 'description',
@@ -82,10 +80,17 @@ export default {
   },
   computed: {
     ...mapState(['warmup']),
+
+    editableSteps: {
+      get() {
+        return this.warmup.steps
+      },
+      set(value) {
+        this.UPDATE_WARMUP_STEPS(value)
+      },
+    },
   },
-  mounted() {
-    this.editableSteps = [...this.warmup.steps]
-  },
+
   methods: {
     ...mapMutations([
       'UPDATE_WARMUP_STEPS',
@@ -103,23 +108,19 @@ export default {
 
     // Update editable step title
     updateStepTitle(newStepTitle) {
-      console.log({ newStepTitle })
-
       this.UPDATE_WARMUP_STEP_TITLE(newStepTitle)
     },
+
     // Update editable step count
     updateStepCount(newStepCount) {
       this.UPDATE_WARMUP_STEP_COUNT(newStepCount)
     },
 
-    // delete editable step
+    // Delete (all but last) editable steps
     deleteStep(index) {
-      this.DELETE_WARMUP_STEP(index)
-    },
+      if (this.editableSteps.length === 1) return
 
-    // Save on drag
-    dragEnd() {
-      this.UPDATE_WARMUP_STEPS(this.editableSteps)
+      this.DELETE_WARMUP_STEP(index)
     },
 
     // Increase/Decrease all by 1
@@ -166,9 +167,11 @@ export default {
 
 // Header
 .warmup-editor-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
+  display: flex;
+  grid-area: header;
+  justify-content: space-between;
+  width: 100%;
 
   &__title {
     font-size: var(--fs-xs);

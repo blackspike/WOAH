@@ -1,16 +1,18 @@
 <template lang="pug">
 section.warmup
   //- No sleep video
-  .no-sleep-wrapper(v-show='started')
-    video.sleep-video(loop, muted, playsinline, ref='sleepVid')
+  .no-sleep(v-show='started', :class='{ show: started }')
+    video.no-sleep__video(loop, muted, playsinline, ref='sleepVid')
       source(src='~/assets/video/sleep-vid.mp4', type='video/mp4')
-  //- Slider
+
+  //- Splider
   client-only
     splide.woah-splide(
       :options='splideOptions',
       @splide:move='slideChange',
       ref='warmupSplide'
     )
+      //- Start slide
       splide-slide
         .card-start.card-bg
           .card-start__message
@@ -18,6 +20,7 @@ section.warmup
             h3.card-start__subtitle {{ strings.startMsg }}
           a.btn.card-start__btn-action(@click='startWarmup') {{ strings.startBtn }}
 
+      //- Step slides
       splide-slide(
         v-for='(step, index) in steps',
         :key='step.title',
@@ -31,6 +34,8 @@ section.warmup
           :nextStep='steps[index + 1]',
           @prevNext='prevNext'
         )
+
+      //- Finished slide
       splide-slide
         .card-finished.card-bg
           .card-finished__message
@@ -86,6 +91,7 @@ export default {
     slideChange(el, newIndex, prevIndex, destIndex) {
       // Update vuex
       this.currentStep = newIndex
+
       // Speak last step
       if (this.currentStep === this.steps.length + 1) {
         this.speak(this.strings.finishedTitle + ', ' + this.strings.finishedMsg)
@@ -96,9 +102,9 @@ export default {
     startWarmup() {
       this.$refs.sleepVid.play()
       this.started = true
-      // this.toggleNoSleep(true)
       this.prevNext(true)
     },
+
     // Finish warmup button
     finishWarmup() {
       this.$router.push({
@@ -119,6 +125,7 @@ export default {
 
       // Stop if last slide
       if (this.currentStep === this.steps.length) {
+        this.started = false
         this.finished = true
       }
     },
@@ -137,7 +144,7 @@ export default {
 
 <style lang="scss" scoped>
 // Needs to be wrapped in div for safari positioning
-.no-sleep-wrapper {
+.no-sleep {
   background-color: var(--gray-10);
   border-radius: var(--radius-5);
   bottom: 1rem;
@@ -149,6 +156,14 @@ export default {
   width: 32px;
   border-color: --bran;
   z-index: var(--layer-5);
+
+  // Anim
+  opacity: 0;
+  transform: translate(0, 3rem);
+
+  &.show {
+    animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
 
   @include media-query('md') {
     bottom: 2rem;

@@ -38,8 +38,7 @@
       v-model='editableSteps',
       tag='ol',
       v-bind='draggableOptions',
-      draggable='.draggable-item',
-      @end='dragEnd'
+      draggable='.draggable-item'
     )
       //- Draggable items
       li.edit-list__item.draggable-item(
@@ -101,7 +100,6 @@ export default {
   data() {
     return {
       editing: false,
-      editableSteps: [],
       draggableOptions: {
         animation: 200,
         group: 'description',
@@ -112,9 +110,18 @@ export default {
   },
   computed: {
     ...mapState(['workouts']),
-  },
-  mounted() {
-    this.editableSteps = [...this.workouts[this.dayKey].steps]
+
+    editableSteps: {
+      get() {
+        return this.workouts[this.dayKey].steps
+      },
+      set(value) {
+        this.UPDATE_WORKOUT_DAY_STEPS({
+          dayKey: this.dayKey,
+          steps: value,
+        })
+      },
+    },
   },
   methods: {
     ...mapMutations([
@@ -144,6 +151,7 @@ export default {
         dayKey: this.dayKey,
       })
     },
+
     // Update editable step count
     updateStepCount(newStepCount) {
       this.UPDATE_WORKOUT_STEP_COUNT({
@@ -153,17 +161,11 @@ export default {
       })
     },
 
-    // delete editable step
+    // Delete (all but last) editable steps
     deleteStep(index) {
-      this.DELETE_WORKOUT_STEP({ index, dayKey: this.dayKey })
-    },
+      if (this.editableSteps.length === 1) return
 
-    // Save on drag
-    dragEnd() {
-      this.UPDATE_WORKOUT_DAY_STEPS({
-        dayKey: this.dayKey,
-        steps: this.editableSteps,
-      })
+      this.DELETE_WORKOUT_STEP({ index, dayKey: this.dayKey })
     },
 
     // Increase/Decrease all by 1

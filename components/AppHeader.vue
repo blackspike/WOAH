@@ -94,7 +94,7 @@ export default {
     margin-right: var(--m-sm);
     height: var(--fs-lg);
     width: auto;
-    transform: translateY(0.25rem);
+    transform: translateY(0.22rem);
   }
   &__logo {
     color: currentColor;

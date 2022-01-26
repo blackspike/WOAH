@@ -1,18 +1,6 @@
-// export const strict = false
-
-// // Actions
-// export const actions = {
-//   enableNoSleep() {
-//     console.log(state.settings)
-//     noSleep.enable()
-//   },
-//   disableNoSleep() {
-//     console.log(state.settings)
-//     noSleep.disable()
-//   },
-// }
 // Mutations
 export const mutations = {
+
   // --------------------------------
   // Settings Controls
   // --------------------------------
@@ -21,6 +9,7 @@ export const mutations = {
   SET_SPEECH(state) {
     state.settings.speech = !state.settings.speech
   },
+
   // Set sleep
   SET_SLEEP(state) {
     state.settings.noSleep = !state.settings.noSleep
@@ -85,16 +74,19 @@ export const mutations = {
   UPDATE_WORKOUT_DAY_STEPS(state, workout) {
     state.workouts[workout.dayKey].steps = workout.steps
   },
+
   // Edit workout step title
   UPDATE_WORKOUT_STEP_TITLE(state, editedStepTitle) {
     state.workouts[editedStepTitle.dayKey].steps[editedStepTitle.index].title =
       editedStepTitle.title
   },
+
   // Edit workout step Count
   UPDATE_WORKOUT_STEP_COUNT(state, editedStepCount) {
     state.workouts[editedStepCount.dayKey].steps[editedStepCount.index].count =
       editedStepCount.count
   },
+
   // Add workout step
   CREATE_WORKOUT_STEP(state, newStep) {
     state.workouts[newStep.dayKey].steps.push({
@@ -102,6 +94,7 @@ export const mutations = {
       title: newStep.title,
     })
   },
+
   // Remove workout step
   DELETE_WORKOUT_STEP(state, removeStep) {
     const newArr = [...state.workouts[removeStep.dayKey].steps]
@@ -142,11 +135,11 @@ export const mutations = {
 }
 
 // Getters
-export const getters = {
-  getWarmupSteps(state) {
-    return state.warmup.steps
-  },
-}
+// export const getters = {
+//   getWarmupSteps(state) {
+//     return state.warmup.steps
+//   },
+// }
 
 // State
 export const state = () => ({
@@ -354,8 +347,8 @@ export const state = () => ({
       ],
     },
   },
-  // Intitial state is just a copy of the original state so we can reset the app! Prob a better way...
 
+  // Intitial state is just a copy of the original state so we can reset the app! Prob a better way...
   initialState: {
     settings: {
       speech: true,
