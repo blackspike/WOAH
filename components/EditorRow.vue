@@ -63,21 +63,21 @@ export default {
 <style lang="scss" scoped>
 .editor {
   display: grid;
-  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
-  grid-template-areas: 'count title action';
   gap: var(--m-sm);
+  grid-template-areas: 'count title action';
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
 
   &__count {
-    grid-area: count;
-    max-width: 5ch;
-    height: 100%;
     font-size: var(--fs-lg);
+    grid-area: count;
+    height: 100%;
+    max-width: 5ch;
   }
 
   &__title {
+    font-size: var(--fs-lg);
     grid-area: title;
     height: 100%;
-    font-size: var(--fs-lg);
   }
 
   &__action {
@@ -86,8 +86,16 @@ export default {
 
   &__btn-add.btn-gray,
   &__btn-delete.btn-gray {
-    padding: 0 var(--m-sm);
+    color: var(--brand-orange);
     height: 100%;
+    padding: 0 var(--m-sm);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--brand-orange);
+      color: var(--gray-10);
+    }
   }
 }
 </style>

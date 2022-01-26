@@ -91,17 +91,27 @@ export default {
 
   &__icon {
     align-self: flex-end;
-    height: var(--fs-lg);
+    height: var(--fs-md);
     margin-right: var(--m-sm);
-    transform: translateY(0.21rem);
+    transform: translateY(0.125rem);
     width: auto;
+
+    @include media-query('md') {
+      height: var(--fs-lg);
+      transform: translateY(0.21rem);
+    }
   }
+
   &__logo {
     color: currentColor;
     display: flex;
     font-family: var(--ff-brand);
-    font-size: var(--fs-lg);
+    font-size: var(--fs-md);
     text-transform: uppercase;
+
+    @include media-query('md') {
+      font-size: var(--fs-lg);
+    }
 
     &:focus,
     &:active {

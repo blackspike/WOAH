@@ -1,6 +1,7 @@
 <template lang="pug">
 section.intro
-  picture.intro__screengrabs
+  //- Screengrab
+  picture.intro__screengrab
     source(
       type='image/avif',
       srcset='~/assets/img/screengrabs/screengrab-tall-smol.avif'
@@ -58,8 +59,25 @@ section.intro
 <script>
 export default {
   name: 'Home',
+  head() {
+    return {
+      bodyAttrs: {
+        class: 'home',
+      },
+    }
+  },
 }
 </script>
+
+<style lang="scss">
+body.home {
+  background-image: url('~assets/img/bg-blur.png');
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+</style>
 
 <style lang="scss" scoped>
 // Intro
@@ -82,10 +100,10 @@ export default {
 
   &__header {
     grid-area: header;
-    text-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
+    text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
   }
 
-  &__screengrabs {
+  &__screengrab {
     position: absolute;
     top: 0;
     right: 0;
@@ -105,6 +123,10 @@ export default {
     display: flex;
     flex-wrap: wrap;
     gap: 0 var(--m);
+
+    @include media-query('md') {
+      gap: 0 var(--m-lg);
+    }
 
     .spanimation {
       opacity: 0;

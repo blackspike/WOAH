@@ -251,15 +251,16 @@ export default {
     padding: var(--m-sm) var(--m-sm) calc(var(--m-xs) / 1.2);
 
     @include media-query('md') {
-      padding: var(--m) var(--m) calc(var(--m-sm) / 1.2);
+      border-radius: var(--radius-3);
+      padding: var(--m) var(--m) calc(var(--m-sm) / 0.95);
     }
 
     &::before {
       content: '';
-      background-color: var(--gray-9);
+      background-color: var(--gray-10);
       bottom: 0;
       left: 0;
-      opacity: 0.7;
+      opacity: 0.4;
       position: absolute;
       right: 0;
       top: 0;

@@ -48,8 +48,8 @@
     right: 0;
     position: absolute;
     background-image: url('../img/bg-blur-button.jpg');
-    background-position: center bottom;
-    background-size: 150% 150%;
+    background-position: center right;
+    background-size: 250% 250%;
     transition: background-size 0.3s var(--ease-cubic),
       transform 0.1s var(--ease-cubic);
     z-index: -1;

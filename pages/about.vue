@@ -64,6 +64,7 @@ export default {
 
   &__header {
     text-shadow: 0 0 5rem rgba(0, 0, 0, 0.8);
+    margin-block-end: var(--m-xxl);
   }
 
   &__screengrabs {
@@ -84,6 +85,10 @@ export default {
     font-size: clamp(3rem, 10vw + 2rem, 10.5rem);
     gap: 0 var(--m);
     margin: var(--m-xl) 0 var(--m-lg);
+
+    @include media-query('md') {
+      gap: 0 var(--m-lg);
+    }
 
     &--about {
       color: var(--brand-yellow);
