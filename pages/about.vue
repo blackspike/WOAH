@@ -21,14 +21,6 @@ section.about
         span.spanimation Home
 
   .about__content
-    p Follow the brilliant #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] beginners #[nuxt-link(to='videos') warmup and workout videos], but keep forgetting the steps?
-
-    p Need a timer &amp; counter for the reps?
-
-    p Then look no further! This is a web app for those things.
-
-    p The neck exercises are for those of us who sit at computers all day 😬
-
     P This app will be open sourced on github once the kinks are ironed out. Cheers!
 
     h3.about__fat-title Ideas? Bugs?

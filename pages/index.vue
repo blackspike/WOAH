@@ -1,46 +1,48 @@
 <template lang="pug">
-section.intro
-  //- Screengrab
-  picture.intro__screengrab
-    source(
-      type='image/avif',
-      srcset='~/assets/img/screengrabs/screengrab-tall-smol.avif'
-    )
-    source(
-      type='image/webp',
-      srcset='~/assets/img/screengrabs/screengrab-tall-smol.webp'
-    )
-    img(
-      alt='',
-      height='1008',
-      width='548',
-      src='~/assets/img/screengrabs/screengrab-tall-smol.png'
-    )
+section.home
+  section.hero
+    //- Screengrab
+    picture.hero__screengrab.screengrab
+      source(
+        type='image/avif',
+        srcset='~/assets/img/screengrabs/screengrab-tall-smol.avif'
+      )
+      source(
+        type='image/webp',
+        srcset='~/assets/img/screengrabs/screengrab-tall-smol.webp'
+      )
+      img(
+        alt='',
+        height='1008',
+        width='548',
+        src='~/assets/img/screengrabs/screengrab-tall-smol.png'
+      )
 
-  //- Header
-  header.intro__header
-    //- Title
-    h1.intro__title
-      span.spanimation Work
-      span.spanimation Out
-      span.spanimation At
-      span.spanimation Home
+    //- Header
+    header.hero__header
+      //- Title
+      h1.hero__title
+        span.spanimation Work
+        span.spanimation Out
+        span.spanimation At
+        span.spanimation Home
 
-    p.intro__subtitle Warmup &amp; workout timer
+      p.hero__subtitle Warmup &amp; workout timer
 
-  //- Actions list
-  ul.actions.intro__actions
-    li.actions__item
-      nuxt-link.btn.actions__button(to='/warmup') Start warmup
-    li.actions__item
-      nuxt-link.btn.actions__button(to='/workout') Start workout
-    li.actions__item
-      nuxt-link.btn.actions__button(to='/videos') Video tutorials
+    //- Intro text
+    .hero__content
+      p Following #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
 
-  //- Credits
-  .intro__footer.credits
-    span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-    span Web App by #[nuxt-link(to='/about') Blackspike.com]
+      p Need a timer &amp; counter for the reps?
+
+      p Then look no further! This is a web app for those things.
+
+      //- Actions list
+      ul.actions.hero__actions
+        li.actions__item
+          nuxt-link.btn.btn--sm.actions__button(to='/warmup') Warmup
+        li.actions__item
+          nuxt-link.btn.btn--sm.actions__button(to='/workout') Workout
 
   svg.free(
     width='222',
@@ -59,6 +61,12 @@ section.intro
 
   //- Import section
   HomeSectionImport
+
+  //- Credits
+  footer.credits-footer
+    .credits
+      span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+      span Web App by #[nuxt-link(to='/about') Blackspike.com]
 </template>
 
 <script>
@@ -67,7 +75,7 @@ export default {
   head() {
     return {
       htmlAttrs: {
-        class: 'home',
+        class: 'homepage',
       },
     }
   },
@@ -75,7 +83,7 @@ export default {
 </script>
 
 <style lang="scss">
-html.home {
+html.homepage {
   background-image: linear-gradient(var(--bg), rgba(33, 37, 41, 0) 40%),
     url('~assets/img/bg-blur.png');
   background-position: top right;
@@ -86,39 +94,30 @@ html.home {
 </style>
 
 <style lang="scss" scoped>
-// Intro
-.intro {
+// home
+.hero {
   align-items: center;
   display: grid;
-  gap: var(--m-lg);
-  grid-template-areas: 'header' 'start' 'footer';
+  gap: var(--m);
+  grid-template-areas: 'header' 'content';
   grid-template-rows: auto 1fr auto;
   height: 100%;
-  margin: 0 auto;
+  margin: 0 auto var(--m-xxl);
   padding: var(--m);
   max-width: var(--mw-content);
-  text-transform: uppercase;
 
   @include media-query('lg') {
-    gap: var(--m-xl);
     max-width: var(--mw-content-wide);
+    grid-template-areas: 'header screengrab' 'content screengrab';
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: 2fr 1fr;
   }
 
   &__header {
     grid-area: header;
     text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
-  }
-
-  &__screengrab {
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0.5;
-    animation: bobbing 10s ease-in-out infinite;
-
     @include media-query('lg') {
-      opacity: 1;
-      margin-top: 2vh;
+      grid-column: 1 / -1;
     }
   }
 
@@ -164,16 +163,37 @@ html.home {
     transform: translate(0, -5rem);
   }
 
-  &__footer {
-    grid-area: footer;
+  &__content {
+    align-self: start;
+    grid-area: content;
+    line-height: var(--lh-sm);
+    font-family: var(--ff-sans);
 
-    &.credits {
-      display: none;
-
-      @include media-query('lg') {
-        display: flex;
-      }
+    p {
+      margin-bottom: var(--m-lg);
+      font-size: var(--fs-lg);
     }
+    @include media-query('lg') {
+      width: clamp(20rem, 50vw, 30rem);
+      margin: 0 auto 0 0;
+    }
+  }
+}
+
+// Phone screengrab
+
+.screengrab {
+  display: none;
+
+  @include media-query('lg') {
+    align-self: end;
+    grid-area: screengrab;
+    animation: bobbing 10s ease-in-out infinite;
+    display: block;
+    height: 100%;
+    justify-self: end;
+    width: auto;
+    grid-column: 1 / -1;
   }
 }
 
@@ -228,46 +248,14 @@ html.home {
   }
 }
 
-// Credits
-.credits {
-  background-color: var(--gray-10);
-  border-radius: var(--radius-3);
-  color: var(--gray-6);
-  display: flex;
-  flex-direction: column;
-  font-size: var(--fs-sm);
-  gap: var(--m);
-  margin-top: var(--m);
-  align-items: center;
-  opacity: 0.8;
-  padding: var(--m-lg);
-  transition: opacity 0.2s ease;
-
-  @include media-query('lg') {
-    flex-direction: row;
-    opacity: 0.4;
-    margin: var(--m-xxxl) 0;
-    border-radius: var(--radius-5);
-    justify-content: center;
-  }
-
-  &:hover {
-    opacity: 0.9;
-  }
-
-  a {
-    color: var(--gray-5);
-  }
-}
-
 // Actions
 .actions {
   align-self: start;
   display: grid;
   gap: var(--m);
-  grid-auto-flow: row;
+  grid-auto-flow: column;
   list-style: none;
-  padding: 0;
+  padding: var(--m) 0;
 
   // Items
   &__item {
@@ -275,11 +263,6 @@ html.home {
     opacity: 0;
     transform: translate(0, 3rem);
     animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-
-    @include media-query('lg') {
-      width: clamp(20rem, 50vw, 30rem);
-      margin: 0 auto 0 0;
-    }
 
     &:nth-child(1) {
       animation-delay: 1.25s;
@@ -299,6 +282,43 @@ html.home {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
+    padding-inline: var(--m-sm);
+  }
+}
+
+// Footer
+.credits-footer {
+  display: none;
+
+  @include media-query('lg') {
+    display: flex;
+    margin-inline: auto;
+    max-width: var(--mw-content-wide);
+  }
+  // Credits
+  .credits {
+    align-items: center;
+    background-color: var(--gray-10);
+    border-radius: var(--radius-5);
+    color: var(--gray-6);
+    display: flex;
+    flex-direction: row;
+    font-size: var(--fs-sm);
+    gap: var(--m);
+    justify-content: center;
+    margin: var(--m-xxxl) 0;
+    opacity: 0.4;
+    padding: var(--m-lg);
+    transition: opacity 0.2s ease;
+    width: 100%;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    a {
+      color: var(--gray-5);
+    }
   }
 }
 </style>

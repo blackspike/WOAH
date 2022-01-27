@@ -60,6 +60,7 @@ export default {
       },
       splideOptions: {
         arrows: false,
+        width: '100%',
         pagination: false,
         start: 0,
         type: 'slide',
@@ -136,7 +137,6 @@ export default {
   },
 }
 </script>
-
 <style lang="scss" scoped>
 .card-start,
 .card-finished {
@@ -148,6 +148,7 @@ export default {
   grid-template-rows: auto auto;
   height: 100%;
   justify-content: center;
+  max-width: 100vw;
   padding: var(--m-lg) var(--m);
   user-select: none;
 

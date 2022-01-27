@@ -34,6 +34,10 @@ export default {
   gap: var(--m-lg);
   grid-template-areas: 'about' 'video';
   justify-content: center;
+  margin-block: 3vh;
+  margin-inline: auto;
+  max-width: var(--mw-content-wide);
+  padding: 0 var(--m);
 
   @include media-query('md') {
     grid-template-areas: 'about video';
@@ -43,18 +47,22 @@ export default {
   &__about {
     grid-area: about;
     line-height: var(--lh-lg);
-    display: flex;
     flex-direction: column;
-    gap: var(--m-lg);
+    font-family: var(--ff-sans);
+
+    p {
+      margin-block-end: var(--m-lg);
+      font-size: var(--fs-lg);
+    }
   }
 
   &__title {
     font-size: var(--fs-xxl);
-    // font-family: var(--ff-brand);
+    margin-block-end: var(--m-lg);
   }
 
   &__cta-btn {
-    margin-right: auto;
+    display: inline-block;
   }
 
   &__video {

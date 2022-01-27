@@ -2,6 +2,11 @@
 // Buttons
 // --------------------------
 
+// Disable double tap zoom?
+button {
+  touch-action: manipulation;
+}
+
 :where(html) .btn {
   appearance: none;
   background-color: hsl(0deg 0% 20% / 50%);
@@ -26,7 +31,6 @@
   text-align: center;
   text-decoration: none;
   text-transform: none;
-  touch-action: manipulation;
   transition: all 0.2s ease-out;
   z-index: 1;
   text-shadow: 0 2px 1rem rgb(0 0 0 / 50%), 0 2px 0.75rem rgba(44 11 11 / 25%);
