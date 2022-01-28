@@ -1,7 +1,8 @@
 <template lang="pug">
 .editor
-  select.editor__count(:value='count', @change='updateStepCount')
-    option(v-for='i in 120', :value='i') {{ i }}
+  .editor__count.select-container
+    select(:value='count', @change='updateStepCount')
+      option(v-for='i in 120', :value='i') {{ i }}
 
   label.visually-hidden(for='edit_title') Edit step title
   input#edit_title.editor__title(

@@ -1,8 +1,9 @@
 <template lang="pug">
 form.editor-add(@submit.prevent='createNew')
   //- Count
-  select.editor-add__count(v-model.number='count')
-    option(v-for='i in 120', :value='i') {{ i }}
+  .editor__count.select-container
+    select.editor-add__count(v-model.number='count')
+      option(v-for='i in 120', :value='i') {{ i }}
 
   //- Title
   label.visually-hidden(for='edit_title') Edit step title

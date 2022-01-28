@@ -16,7 +16,7 @@
         ref='number',
         text-anchor='middle',
         x='180',
-        y='250',
+        y='260',
         font-variant='tabular-nums',
         :class='{ ending: time < 6 && time !== 0, active }'
       ) {{ time }}

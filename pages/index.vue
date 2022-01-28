@@ -1,5 +1,5 @@
 <template lang="pug">
-section.home
+.home
   section.hero
     //- Screengrab
     picture.hero__screengrab.screengrab
@@ -27,15 +27,17 @@ section.home
         span.spanimation At
         span.spanimation Home
 
-      p.hero__subtitle Warmup &amp; workout timer
+      p.hero__subtitle Warmup &amp; Workout timer
 
     //- Intro text
     .hero__content
-      p Following #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com] warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
+      p Following #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]* warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
 
-      p Need a timer &amp; counter for the reps?
+      p Need a rep timer &amp; counter?
 
-      p Then look no further! This is a web app for those things.
+      p Then 👀 no further! This is a web app for those things.
+
+      p.disclaimer * Or any workout regime really
 
       //- Actions list
       ul.actions.hero__actions
@@ -44,6 +46,46 @@ section.home
         li.actions__item
           nuxt-link.btn.btn--sm.actions__button(to='/workout') Workout
 
+  //- Home section - Timer
+  HomeSectionImport(
+    title='Talking timer',
+    link='/warmup',
+    button-text='Go to warmup'
+  )
+    template(slot='content')
+      p The hands-free timer will read your steps aloud* and automatically progress through the warmup steps
+      p.disclaimer * If you want it to that is! You can turn that racket off in the #[nuxt-link(to='/settings') settings]
+
+    template(slot='graphic')
+      CountdownTimer(
+        ref='countdownTimer',
+        :time='timerSeconds',
+        :duration='30'
+      )
+
+  //- Home section - Import
+  HomeSectionImport(
+    button-text='Import / Export Data',
+    link='/settings',
+    :phone-bg='true',
+    :rtl='true',
+    title='Import / Export'
+  )
+    template(slot='content')
+      p Create and share warmups &amp; workouts &mdash; ideal for personal trainer-devised programs
+      p Export your data to back them up or move to another device
+
+    template(slot='graphic')
+      video(loop, muted, autoplay, playsinline, ref='importVid')
+        source(src='/videos/WOAH_import.mp4', type='video/mp4')
+
+  //- Footer Credits
+  footer.credits-footer
+    .credits
+      span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
+      span Web App by #[nuxt-link(to='/about') Blackspike.com]
+
+  //- Free sticker
   svg.free(
     width='222',
     alt='Free! no ads and no tracking',
@@ -56,28 +98,32 @@ section.home
       fill='#FF00C7'
     )
     text.free__headline(transform='translate(33 134)') FREE!
-
-    text.free__strapline(transform='translate(34 151)') NO ADS OR TRACKERS
-
-  //- Import section
-  HomeSectionImport
-
-  //- Credits
-  footer.credits-footer
-    .credits
-      span Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-      span Web App by #[nuxt-link(to='/about') Blackspike.com]
+    text.free__strapline(transform='translate(34 151)') No ads or trackers
 </template>
 
 <script>
 export default {
   name: 'Home',
+  data() {
+    return {
+      timerSeconds: 30,
+    }
+  },
   head() {
     return {
       htmlAttrs: {
         class: 'homepage',
       },
     }
+  },
+  mounted() {
+    setInterval(() => {
+      if (this.timerSeconds > 0) {
+        this.timerSeconds--
+      } else {
+        this.timerSeconds = 30
+      }
+    }, 1000)
   },
 }
 </script>
@@ -160,19 +206,25 @@ html.homepage {
     font-size: clamp(1rem, 1.5vw + 1rem, 3rem);
     justify-self: start;
     opacity: 0;
+    text-transform: uppercase;
     transform: translate(0, -5rem);
   }
 
   &__content {
     align-self: start;
     grid-area: content;
-    line-height: var(--lh-sm);
+    line-height: var(--lh-md);
     font-family: var(--ff-sans);
 
     p {
       margin-bottom: var(--m-lg);
       font-size: var(--fs-lg);
+
+      &.disclaimer {
+        font-size: var(--fs-sm);
+      }
     }
+
     @include media-query('lg') {
       width: clamp(20rem, 50vw, 30rem);
       margin: 0 auto 0 0;
@@ -227,6 +279,7 @@ html.homepage {
     font-family: var(--ff-base);
     font-size: 12px;
     letter-spacing: 1px;
+    text-transform: uppercase;
 
     @include media-query('md') {
       display: block;
