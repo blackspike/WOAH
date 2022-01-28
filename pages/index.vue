@@ -5,17 +5,17 @@
     picture.hero__screengrab.screengrab
       source(
         type='image/avif',
-        srcset='~/assets/img/screengrabs/screengrab-tall-smol.avif'
+        srcset='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.avif'
       )
       source(
         type='image/webp',
-        srcset='~/assets/img/screengrabs/screengrab-tall-smol.webp'
+        srcset='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.webp'
       )
-      img(
+      img.screengrab__img(
         alt='',
         height='1008',
         width='548',
-        src='~/assets/img/screengrabs/screengrab-tall-smol.png'
+        src='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.png'
       )
 
     //- Header
@@ -101,7 +101,8 @@
         width='584',
         loop,
         muted,
-        autoplay,
+        :autoplay='!isMobile',
+        :controls='isMobile',
         playsinline,
         ref='editVid',
         poster='/videos/workout-edit-poster-sm.png'
@@ -126,7 +127,8 @@
         height='1000',
         width='584',
         muted,
-        autoplay,
+        :autoplay='!isMobile',
+        :controls='isMobile',
         playsinline,
         ref='importVid',
         poster='/videos/import-export-poster-sm.png'
@@ -183,6 +185,7 @@ export default {
   data() {
     return {
       timerSeconds: 30,
+      isMobile: true,
     }
   },
   head() {
@@ -193,6 +196,10 @@ export default {
     }
   },
   mounted() {
+    // Autoplay video if not handheld
+    window.innerWidth <= 700 ? (this.isMobile = true) : (this.isMobile = false)
+
+    // Fake timer
     setInterval(() => {
       if (this.timerSeconds > 0) {
         this.timerSeconds--
@@ -221,7 +228,7 @@ html.homepage {
   align-items: center;
   display: grid;
   gap: var(--m);
-  grid-template-areas: 'header' 'content';
+  grid-template-areas: 'screengrab' 'header' 'content';
   grid-template-rows: auto 1fr auto;
   height: 100%;
   margin: 0 auto var(--m-xxl);
@@ -236,9 +243,12 @@ html.homepage {
   }
 
   &__header {
+    align-self: end;
     grid-area: header;
-    text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5), 0 0 2rem rgba(0, 0, 0, 0.8);
     @include media-query('lg') {
+      align-self: end;
+      text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
       grid-column: 1 / -1;
     }
   }
@@ -311,17 +321,29 @@ html.homepage {
 // Phone screengrab
 
 .screengrab {
-  display: none;
+  align-self: start;
+  grid-area: screengrab;
+  animation: bobbing 10s ease-in-out infinite;
+  display: block;
+  justify-self: end;
+  grid-column: 1 / -1;
+  grid-row-end: 3;
 
-  @include media-query('lg') {
+  &__img {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  @include media-query('md') {
     align-self: end;
-    grid-area: screengrab;
-    animation: bobbing 10s ease-in-out infinite;
-    display: block;
+    opacity: 1;
     height: 100%;
-    justify-self: end;
-    width: auto;
-    grid-column: 1 / -1;
+    max-height: 100%;
+
+    &__img {
+      max-height: 100%;
+    }
   }
 }
 
