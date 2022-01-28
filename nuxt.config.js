@@ -153,6 +153,11 @@ export default {
     manifest: false,
   },
 
+  // fixes pwa video on safari
+  workbox: {
+    cachingExtensions: '@/plugins/vendor/workbox-range-request.js'
+  },
+
   stylelint: {
     fix: true,
   },
