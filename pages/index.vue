@@ -187,6 +187,7 @@ export default {
     return {
       timerSeconds: 30,
       isMobile: true,
+      freeHider: false,
     }
   },
   head() {
@@ -229,7 +230,7 @@ html.homepage {
   align-items: center;
   display: grid;
   gap: var(--m);
-  grid-template-areas: 'screengrab' 'header' 'content';
+  grid-template-areas: 'header' 'screengrab' 'content';
   grid-template-rows: auto 1fr auto;
   height: 100%;
   margin: 0 auto var(--m-xxl);
@@ -386,7 +387,8 @@ html.homepage {
   }
 
   &__star {
-    animation: spin 20s linear infinite;
+    animation: spin 20s linear;
+    animation-iteration-count: 2;
     transform-origin: center;
   }
 
