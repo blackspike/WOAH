@@ -6,7 +6,7 @@
         use(href='#icon_spike', aria-hidden)
       | WOAH
     span(v-if='$nuxt.$route.name !== "index"') //
-    h1.header__title {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("warmup-editor", "Editor") }}
+    h1.header__title(v-if='$nuxt.$route.name') {{ $nuxt.$route.name === "index" ? "" : $nuxt.$route.name.replace("warmup-editor", "Editor") }}
 
   nav.nav-desktop
     nuxt-link.nav-desktop__link(to='/warmup') Warmup
