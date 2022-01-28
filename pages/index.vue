@@ -31,11 +31,12 @@
 
     //- Intro text
     .hero__content
-      p Following #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]* warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
+      p Follow #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]* warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
 
       p Need a rep timer &amp; counter?
 
-      p Then 👀 no further! This is a web app for those things.
+      p
+        strong This is a web app for those things.
 
       p.disclaimer * Or any workout regime really
 
@@ -54,7 +55,7 @@
   )
     template(slot='content')
       p The hands-free timer will read your steps aloud* and automatically progress through the warmup steps
-      p.disclaimer * If you want it to that is! You can turn that racket off in the #[nuxt-link(to='/settings') settings]
+      p.disclaimer * If you want it to that is! You can #[nuxt-link(to='/settings') turn that racket off]
 
     template(slot='graphic')
       CountdownTimer(
@@ -79,7 +80,7 @@
             alt='gear',
             height='27',
             width='18',
-            style='display: inline-block; vertical-align: middle; margin-inline: var(--m-sm)'
+            style='display: inline-block; vertical-align: -4px; margin-inline: var(--m-sm)'
           )
             use(href='#icon_gear', aria-hidden)
         | icon
@@ -117,7 +118,7 @@
     title='Import / Export'
   )
     template(slot='content')
-      p Create and share warmups &amp; workouts &mdash; ideal for personal trainers &amp; clients
+      p Create and share warmups &amp; workouts &mdash; probably ideal for personal trainers &amp; clients
       p Easily back up your workouts or move them to another device
       p.disclaimer Or hand-edit the raw #[code .json] file if you're a total 🤓
 
@@ -144,7 +145,7 @@
     title='Necksersises'
   )
     template(slot='content')
-      p Some of us* spend too much time looking at the computer
+      p Some of us* spend too much time staring at screens
       p Set yourself an #[a(href='https://sindresorhus.com/pandan', target='_blank') hourly reminder] to sit back, relax, and twirl your head around like you're in The Exorcist
       p.disclaimer * All of us
 
@@ -312,7 +313,7 @@ html.homepage {
     }
 
     @include media-query('lg') {
-      width: clamp(20rem, 50vw, 30rem);
+      width: clamp(20rem, 50vw, 32rem);
       margin: 0 auto 0 0;
     }
   }
@@ -447,7 +448,7 @@ html.homepage {
   // Credits
   .credits {
     align-items: center;
-    background-color: var(--gray-10);
+    background-color: var(--gray-9);
     border-radius: var(--radius-5);
     color: var(--gray-6);
     display: flex;
@@ -456,7 +457,6 @@ html.homepage {
     gap: var(--m);
     justify-content: center;
     margin-block-end: var(--m-xl);
-    opacity: 0.4;
     padding: var(--m-lg);
     transition: opacity 0.2s ease;
     width: 100%;
@@ -465,12 +465,12 @@ html.homepage {
       flex-direction: row;
     }
 
-    &:hover {
-      opacity: 0.9;
-    }
-
     a {
       color: var(--gray-5);
+
+      &:hover {
+        color: var(--brand);
+      }
     }
   }
 }

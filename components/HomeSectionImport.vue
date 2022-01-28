@@ -69,7 +69,7 @@ export default {
 
   &__content {
     grid-area: content;
-    line-height: var(--lh-lg);
+    line-height: var(--lh-md);
     flex-direction: column;
     font-family: var(--ff-sans);
 
