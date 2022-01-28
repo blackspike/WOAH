@@ -101,13 +101,16 @@ export default {
       border-radius: var(--radius-3);
       background-color: var(--gray-10);
       padding: var(--m-sm);
+      width: auto;
     }
 
     // Videos
     video {
+      border-radius: calc(var(--radius-3) * 0.6);
       height: 100%;
-      width: 100%;
       max-height: 50vh;
+      overflow: hidden;
+      width: 100%;
 
       @include media-query('md') {
         width: auto;

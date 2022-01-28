@@ -63,21 +63,52 @@
         :duration='30'
       )
 
+  //- Home section - Edit
+  HomeSectionImport(
+    button-text='Try it out',
+    link='/workout',
+    :phone-bg='true',
+    :rtl='true',
+    title='Fully Editable'
+  )
+    template(slot='content')
+      p Create and share warmups &amp; workouts &mdash; ideal for personal trainers &amp; clients
+      p Easily back up your workouts or move them to another device
+      p.disclaimer Or hand-edit the raw #[code .json] file if you're a total 🤓
+
+    template(slot='graphic')
+      video(
+        loop,
+        muted,
+        autoplay,
+        playsinline,
+        ref='editVid',
+        poster='/videos/workout-edit-poster-sm.png'
+      )
+        source(src='/videos/workout-edit-sm.mp4', type='video/mp4')
+
   //- Home section - Import
   HomeSectionImport(
     button-text='Import / Export Data',
     link='/settings',
     :phone-bg='true',
-    :rtl='true',
     title='Import / Export'
   )
     template(slot='content')
-      p Create and share warmups &amp; workouts &mdash; ideal for personal trainer-devised programs
-      p Export your data to back them up or move to another device
+      p Create and share warmups &amp; workouts &mdash; ideal for personal trainers &amp; clients
+      p Easily back up your workouts or move them to another device
+      p.disclaimer Or hand-edit the raw #[code .json] file if you're a total 🤓
 
     template(slot='graphic')
-      video(loop, muted, autoplay, playsinline, ref='importVid')
-        source(src='/videos/WOAH_import.mp4', type='video/mp4')
+      video(
+        loop,
+        muted,
+        autoplay,
+        playsinline,
+        ref='importVid',
+        poster='/videos/import-export-poster-sm.png'
+      )
+        source(src='/videos/import-export-sm.mp4', type='video/mp4')
 
   //- Footer Credits
   footer.credits-footer
