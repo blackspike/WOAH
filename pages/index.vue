@@ -439,13 +439,11 @@ html.homepage {
 
 // Footer
 .credits-footer {
-  display: none;
+  display: flex;
+  padding-inline: var(--m);
+  margin-inline: auto;
+  max-width: var(--mw-content-wide);
 
-  @include media-query('lg') {
-    display: flex;
-    margin-inline: auto;
-    max-width: var(--mw-content-wide);
-  }
   // Credits
   .credits {
     align-items: center;
@@ -453,15 +451,19 @@ html.homepage {
     border-radius: var(--radius-5);
     color: var(--gray-6);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: var(--fs-sm);
     gap: var(--m);
     justify-content: center;
-    margin: var(--m-xxxl) 0;
+    margin-block-end: var(--m-xl);
     opacity: 0.4;
     padding: var(--m-lg);
     transition: opacity 0.2s ease;
     width: 100%;
+
+    @include media-query('md') {
+      flex-direction: row;
+    }
 
     &:hover {
       opacity: 0.9;
