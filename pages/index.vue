@@ -54,7 +54,7 @@
     button-text='Go to warmup'
   )
     template(slot='content')
-      p The hands-free timer will read your steps aloud* and automatically progress through the warmup steps
+      p The big-ass hands-free timer will read your steps aloud* and automatically progress through the warmup steps
       p.disclaimer * If you want it to that is! You can #[nuxt-link(to='/settings') turn that racket off]
 
     template(slot='graphic')
@@ -73,7 +73,7 @@
     title='Fully Editable'
   )
     template(slot='content')
-      p All workout &amp; warmup steps are fully editable, draggable and &mdash; if you're sick of them &mdash; removeable
+      p All workout &amp; warmup steps are fully editable, draggable and &mdash; if you're sick of them &mdash; removable
       p Just click the
         span
           svg(
@@ -155,7 +155,7 @@
         height='486',
         width='500',
         style='object-fit: contain',
-        alt='A meme of a fellow sitting with sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\''
+        alt='A meme of a fellow sitting sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\''
       )
 
   //- Footer Credits
