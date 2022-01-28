@@ -66,18 +66,39 @@
   //- Home section - Edit
   HomeSectionImport(
     button-text='Try it out',
-    link='/workout',
+    link='/warmup-editor',
     :phone-bg='true',
     :rtl='true',
     title='Fully Editable'
   )
     template(slot='content')
-      p Create and share warmups &amp; workouts &mdash; ideal for personal trainers &amp; clients
-      p Easily back up your workouts or move them to another device
-      p.disclaimer Or hand-edit the raw #[code .json] file if you're a total 🤓
+      p All workout &amp; warmup steps are fully editable, draggable and &mdash; if you're sick of them &mdash; removeable
+      p Just click the
+        span
+          svg(
+            alt='gear',
+            height='27',
+            width='18',
+            style='display: inline-block; vertical-align: middle; margin-inline: var(--m-sm)'
+          )
+            use(href='#icon_gear', aria-hidden)
+        | icon
+
+      p.disclaimer Then the
+        span
+          svg(
+            height='27',
+            width='18',
+            alt='bin',
+            style='display: inline-block; vertical-align: -5px; margin-inline: var(--m-xs)'
+          )
+            use(href='#icon_trash', aria-hidden)
+        | icon
 
     template(slot='graphic')
       video(
+        height='984',
+        width='584',
         loop,
         muted,
         autoplay,
@@ -102,6 +123,8 @@
     template(slot='graphic')
       video(
         loop,
+        height='1000',
+        width='584',
         muted,
         autoplay,
         playsinline,
@@ -109,6 +132,28 @@
         poster='/videos/import-export-poster-sm.png'
       )
         source(src='/videos/import-export-sm.mp4', type='video/mp4')
+
+  //- Home section - Neck
+  HomeSectionImport(
+    button-text='Check your neck',
+    link='/neck',
+    :rtl='true',
+    :phone-bg='true',
+    title='Necksersises'
+  )
+    template(slot='content')
+      p Some of us* spend too much time looking at the computer
+      p Set yourself an #[a(href='https://sindresorhus.com/pandan', target='_blank') hourly reminder] to sit back, relax, and twirl your head around like you're in The Exorcist
+      p.disclaimer * All of us
+
+    template(slot='graphic')
+      img(
+        src='~/assets/img/posture-meme.png',
+        height='486',
+        width='500',
+        style='object-fit: contain',
+        alt='A meme of a fellow sitting with sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\''
+      )
 
   //- Footer Credits
   footer.credits-footer
@@ -231,8 +276,8 @@ html.homepage {
   }
 
   &__subtitle {
-    animation-delay: 0.95s;
     animation: drop-up 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: 0.95s;
     color: var(--brand-yellow);
     font-size: clamp(1rem, 1.5vw + 1rem, 3rem);
     justify-self: start;

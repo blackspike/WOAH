@@ -63,7 +63,7 @@ button {
     transform: scale(1.02);
 
     &::after {
-      animation: hue-rotate 1.5s var(--ease-cubic);
+      animation: hue-rotate 1.5s var(--ease-cubic) infinite;
       background-size: 100% 150%;
     }
   }

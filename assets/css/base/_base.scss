@@ -36,6 +36,13 @@ iframe {
   max-width: 100%;
 }
 
+// Selection
+
+::selection {
+  background-color: var(--brand-green);
+  color: var(--gray-10);
+}
+
 // Links
 a:not(.btn, button) {
   color: var(--text-link);
