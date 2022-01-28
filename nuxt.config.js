@@ -129,7 +129,7 @@ export default {
   // css: ['@/assets/css/main.scss'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // { src: '~/plugins/vendor/persistedState.client.js' },
+    { src: '~/plugins/vendor/persistedState.client.js' },
     { src: '~/plugins/vendor/vue-draggable.js' },
     { src: '~/plugins/vendor/splide', mode: 'client' },
   ],

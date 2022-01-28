@@ -38,7 +38,7 @@
       p
         strong This is a web app for those things.
 
-      p.disclaimer * Or any workout regime really
+      p.disclaimer * Or any workout regime, really
 
       //- Actions list
       ul.actions.hero__actions
