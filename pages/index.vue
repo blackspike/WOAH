@@ -31,6 +31,13 @@
 
     //- Intro text
     .hero__content
+      //- Actions list
+      ul.actions.hero__actions
+        li.actions__item
+          nuxt-link.btn.btn--sm.actions__button(to='/warmup') Warmup
+        li.actions__item
+          nuxt-link.btn.btn--sm.actions__button(to='/workout') Workout
+
       p Follow #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]* warmup and workout #[nuxt-link(to='videos') videos], but keep forgetting the steps?
 
       p Need a rep timer &amp; counter?
@@ -39,13 +46,6 @@
         strong This is a web app for those things.
 
       p.disclaimer * Or any workout regime, really
-
-      //- Actions list
-      ul.actions.hero__actions
-        li.actions__item
-          nuxt-link.btn.btn--sm.actions__button(to='/warmup') Warmup
-        li.actions__item
-          nuxt-link.btn.btn--sm.actions__button(to='/workout') Workout
 
   //- Home section - Timer
   HomeSection(
@@ -260,6 +260,10 @@ html.homepage {
       text-shadow: 0 0 5rem rgba(0, 0, 0, 0.5);
       grid-column: 1 / -1;
     }
+  }
+
+  &__actions {
+    margin-bottom: var(--m-lg);
   }
 
   &__title {

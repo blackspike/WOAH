@@ -52,11 +52,11 @@ export default {
         {
           title: 'Why',
           content:
-            'Because blackspike.com was getting fat and lazy, and decided to start doing the exercise routine devised by <a href="https://nerdfitness.com">nerdfitness.com</a>. We thought it would be useful to be able to follow the routines in a handsfree way, and to make an editable weekly planner.',
+            'We thought it would be useful to be able to follow the exercise routines devised by <a href="https://nerdfitness.com">nerdfitness.com</a> in a handsfree way, and to make an editable weekly exercise planner.',
         },
         {
           title: 'How',
-          content: `Using the amazing <a href="https://nuxtjs.org/">Nuxt JS</a>, and hosted on <a href="https://netlify.com/>netlify.com</a>. This app will be open sourced on github once the kinks are ironed out. Cheers!"`,
+          content: `Using the amazing <a href="https://nuxtjs.org/">Nuxt JS</a>, and hosted on <a href="https://netlify.com/">netlify.com</a>. This app will be open sourced on github once the kinks are ironed out.`,
         },
         {
           title: 'Ideas? Bugs?',
