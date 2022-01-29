@@ -57,10 +57,11 @@ export default {
   max-width: var(--mw-content-wide);
   padding: 0 var(--m);
 
-  @include media-query('md') {
+  @include media-query('sm') {
     gap: var(--m-xl);
     grid-template-areas: 'content graphic';
     grid-template-columns: 1fr 1fr;
+    padding-inline: var(--m-lg);
 
     &.rtl {
       grid-template-areas: 'graphic content';
@@ -93,6 +94,7 @@ export default {
   }
 
   &__graphic {
+    align-self: center;
     grid-area: graphic;
     margin: 0 auto;
     width: 100%;
@@ -107,11 +109,11 @@ export default {
     // Videos
     video {
       border-radius: calc(var(--radius-3) * 0.6);
-      height: 100%;
+      height: auto;
       overflow: hidden;
       width: 100%;
 
-      @include media-query('md') {
+      @include media-query('sm') {
         width: auto;
         max-height: 90vh;
       }

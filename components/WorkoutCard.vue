@@ -102,8 +102,7 @@ export default {
       editing: false,
       draggableOptions: {
         animation: 200,
-        group: 'description',
-        disabled: false,
+        delay: 250,
         ghostClass: 'ghost',
       },
     }
@@ -364,6 +363,14 @@ export default {
   }
 }
 
+// Draggable ghost
+.ghost {
+  background-color: var(--brand);
+  border-radius: var(--radius-2);
+  opacity: 0.5;
+  padding: var(--m-xs);
+}
+
 // Increase/Decrease
 .increase-decrease {
   align-items: center;
@@ -381,9 +388,4 @@ export default {
 
 /* Draggable Transition
 ============================= */
-
-.ghost {
-  background-color: var(--c-bg);
-  color: var(--c-brand);
-}
 </style>

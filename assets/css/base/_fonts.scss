@@ -1,14 +1,14 @@
 @font-face {
-  font-family: InterBd;
-  src: url('~/assets/fonts/Inter-Bold.ttf');
   font-display: swap;
+  font-family: InterBd;
   font-style: normal;
   font-weight: 700;
+  src: url('~/assets/fonts/Inter-Bold.woff2');
 }
 
 @font-face {
   font-family: Bebas;
-  src: url('~/assets/fonts/BebasNeue-Regular.ttf');
+  src: url('~/assets/fonts/BebasNeue-Regular.woff2');
   font-display: swap;
   font-style: normal;
   font-weight: 400;
@@ -19,6 +19,5 @@
   font-display: swap;
   font-style: normal;
   font-weight: normal;
-  src: url('../fonts/IntegralCF-Bold.woff2') format('woff2'),
-    url('../fonts/IntegralCF-Bold.woff') format('woff');
+  src: url('../fonts/IntegralCF-Bold.woff2') format('woff2');
 }

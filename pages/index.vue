@@ -48,7 +48,7 @@
           nuxt-link.btn.btn--sm.actions__button(to='/workout') Workout
 
   //- Home section - Timer
-  HomeSectionImport(
+  HomeSection(
     title='Talking timer',
     link='/warmup',
     button-text='Go to warmup'
@@ -65,7 +65,7 @@
       )
 
   //- Home section - Edit
-  HomeSectionImport(
+  HomeSection(
     button-text='Try it out',
     link='/warmup-editor',
     :phone-bg='true',
@@ -111,7 +111,7 @@
         source(src='/videos/workout-edit-sm.mp4', type='video/mp4')
 
   //- Home section - Import
-  HomeSectionImport(
+  HomeSection(
     button-text='Import / Export Data',
     link='/settings',
     :phone-bg='true',
@@ -137,7 +137,7 @@
         source(src='/videos/import-export-sm.mp4', type='video/mp4')
 
   //- Home section - Neck
-  HomeSectionImport(
+  HomeSection(
     button-text='Check your neck',
     link='/neck',
     :rtl='true',
@@ -235,10 +235,14 @@ html.homepage {
   height: 100%;
   margin: 0 auto var(--m-xxl);
   padding: var(--m);
-  max-width: var(--mw-content);
+  max-width: var(--mw-content-wide);
+  width: 100%;
+
+  @include media-query('sm') {
+    padding: var(--m) var(--m-lg);
+  }
 
   @include media-query('lg') {
-    max-width: var(--mw-content-wide);
     grid-template-areas: 'header screengrab' 'content screengrab';
     grid-template-rows: repeat(2, auto);
     grid-template-columns: 2fr 1fr;
@@ -339,7 +343,6 @@ html.homepage {
 
   @include media-query('md') {
     align-self: end;
-    opacity: 1;
     height: 100%;
     max-height: 100%;
 
@@ -463,7 +466,7 @@ html.homepage {
     transition: opacity 0.2s ease;
     width: 100%;
 
-    @include media-query('md') {
+    @include media-query('sm') {
       flex-direction: row;
     }
 

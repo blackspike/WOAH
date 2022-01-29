@@ -74,12 +74,11 @@ export default {
   width: 100%;
 
   @include media-query('md') {
-    padding: var(--m);
+    padding: var(--m) var(--m-lg);
   }
 
   @include media-query('lg') {
     max-width: var(--mw-content-wide);
-    padding: var(--m) var(--m);
   }
 
   &__masthead {

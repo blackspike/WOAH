@@ -3,7 +3,7 @@ section.warmup-editor.card-bg
   //- Header
   header.warmup-editor__header.warmup-editor-header
     //- Title
-    p.warmup-editor-header__title PSST &mdash; Drag steps to rearrange!
+    p.warmup-editor-header__title PSST &mdash; Hold &amp; drag steps to rearrange
 
     //- Edit button
     //- Edit
@@ -72,8 +72,7 @@ export default {
       editing: false,
       draggableOptions: {
         animation: 200,
-        group: 'description',
-        disabled: false,
+        delay: 250,
         ghostClass: 'ghost',
       },
     }
@@ -147,15 +146,6 @@ export default {
     grid-template-rows: auto 1fr auto;
   }
 
-  &__title {
-    color: var(--gray-5);
-    font-family: var(--ff-base);
-    font-size: var(--fs-xs);
-    grid-area: header;
-    margin-top: var(--m-xs);
-    text-transform: uppercase;
-  }
-
   &__incr-decr {
     grid-area: incr-decr;
   }
@@ -177,6 +167,7 @@ export default {
     font-family: var(--ff-base);
     font-size: var(--fs-xs);
     opacity: 0.5;
+    text-transform: uppercase;
   }
 
   &__btn-edit {
@@ -224,6 +215,14 @@ export default {
     grid-area: editor;
     min-width: 0;
   }
+}
+
+// Draggable ghost
+.ghost {
+  background-color: var(--brand);
+  border-radius: var(--radius-2);
+  opacity: 0.5;
+  padding: var(--m-xs);
 }
 
 // Increase/Decrease
