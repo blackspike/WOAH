@@ -79,6 +79,7 @@ export default {
 
   @include media-query('lg') {
     max-width: var(--mw-content-wide);
+    padding: var(--m) var(--m);
   }
 
   &__masthead {

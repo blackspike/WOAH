@@ -21,11 +21,7 @@ section.about
         span.spanimation Home
 
   .about__content
-    P This app will be open sourced on github once the kinks are ironed out. Cheers!
-
-    h3.about__fat-title Ideas? Bugs?
-
-    p Please ping an email to <a href="mailto:woah@blackspike.com">woah@blackspike.com</a> or tweet <a href="https://twitter.com/blackspikeltd" target="_blank">@blackspikeltd</a>
+    Accordion(:items='faqs')
 
     h3.about__by-title App design &amp; build by
 
@@ -37,15 +33,42 @@ section.about
       )
         svg.icon.about__logo(height='436', width='1182')
           use(href='#icon_blackspike')
-
-    .about__footer
-      p Workouts by #[a(href='https://nerdfitness.com', target='_blank') nerdfitness.com]
-      p Neck by #[a(href='https://www.versusarthritis.org/', target='_blank') versusarthritis.org] | #[a(href='https://www.versusarthritis.org/media/21788/neckpain-exercise-sheet.pdf', target='_blank') (pdf)]
 </template>
 
 <script>
 export default {
   name: 'About',
+  data() {
+    return {
+      faqs: [
+        {
+          title: 'Who',
+          content: `This web app was built by <a href='https://blackspike.com/'>Blackspike.com</a>, designers &amp; developers of fine websites and webapps. Hire them today for your next internet project!`,
+        },
+        {
+          title: 'What',
+          content: `It's an editable web app that walks (&amp; talks 😬) you through your exercise regime`,
+        },
+        {
+          title: 'Why',
+          content:
+            'Because blackspike.com was getting fat and lazy, and decided to start doing the exercise routine devised by <a href="https://nerdfitness.com">nerdfitness.com</a>. We thought it would be useful to be able to follow the routines in a handsfree way, and to make an editable weekly planner.',
+        },
+        {
+          title: 'How',
+          content: `Using the amazing <a href="https://nuxtjs.org/">Nuxt JS</a>, and hosted on <a href="https://netlify.com/>netlify.com</a>. This app will be open sourced on github once the kinks are ironed out. Cheers!"`,
+        },
+        {
+          title: 'Ideas? Bugs?',
+          content: `Please ping emails to <a href="mailto:woah@blackspike.com">woah@blackspike.com</a> or tweet <a href="https://twitter.com/blackspikeltd" target="_blank">@blackspikeltd</a>  if you have any questions, bugs or feature suggestions`,
+        },
+        {
+          title: 'Credits',
+          content: `<p>Workouts by <a href="https://nerdfitness.com" target="_blank">nerdfitness.com</a></p><p>Neck by <a href="https://www.versusarthritis.org/" target="_blank">versusarthritis.org</a> | <a href="https://www.versusarthritis.org/media/21788/neckpain-exercise-sheet.pdf" target="_blank">(pdf)</a></p>`,
+        },
+      ],
+    }
+  },
 }
 </script>
 

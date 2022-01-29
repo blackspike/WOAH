@@ -150,13 +150,16 @@
       p.disclaimer * All of us
 
     template(slot='graphic')
-      img(
-        src='~/assets/img/posture-meme.png',
-        height='486',
-        width='500',
-        style='object-fit: contain',
-        alt='A meme of a fellow sitting sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\''
-      )
+      picture.meme
+        source(type='image/avif', srcset='~/assets/img/posture-meme.avif')
+        source(type='image/webp', srcset='~/assets/img/posture-meme.webp')
+        img.meme__img(
+          height='486',
+          width='500',
+          style='object-fit: contain',
+          alt='A meme of a fellow sitting sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\'',
+          src='~/assets/img/posture-meme.png'
+        )
 
   //- Footer Credits
   footer.credits-footer
