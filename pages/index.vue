@@ -2,21 +2,8 @@
 .home
   section.hero
     //- Screengrab
-    picture.hero__screengrab.screengrab
-      source(
-        type='image/avif',
-        srcset='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.avif'
-      )
-      source(
-        type='image/webp',
-        srcset='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.webp'
-      )
-      img.screengrab__img(
-        alt='',
-        height='1008',
-        width='548',
-        src='~/assets/img/screengrabs/screengrab-tall-trimmed-smol.png'
-      )
+    .hero__screengrab
+      HomeSlider
 
     //- Header
     header.hero__header
@@ -251,6 +238,21 @@ html.homepage {
     grid-template-columns: 2fr 1fr;
   }
 
+  &__screengrab {
+    align-self: start;
+    grid-area: screengrab;
+    justify-self: end;
+    grid-column: 1 / -1;
+    grid-row-end: 3;
+
+    @include media-query('md') {
+      align-self: end;
+    }
+    @include media-query('lg') {
+      width: clamp(320px, 60vw, 540px);
+    }
+  }
+
   &__header {
     align-self: end;
     grid-area: header;
@@ -327,34 +329,6 @@ html.homepage {
     @include media-query('lg') {
       width: clamp(20rem, 50vw, 32rem);
       margin: 0 auto 0 0;
-    }
-  }
-}
-
-// Phone screengrab
-
-.screengrab {
-  align-self: start;
-  grid-area: screengrab;
-  animation: bobbing 10s ease-in-out infinite;
-  display: block;
-  justify-self: end;
-  grid-column: 1 / -1;
-  grid-row-end: 3;
-
-  &__img {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-  }
-
-  @include media-query('md') {
-    align-self: end;
-    height: 100%;
-    max-height: 100%;
-
-    &__img {
-      max-height: 100%;
     }
   }
 }

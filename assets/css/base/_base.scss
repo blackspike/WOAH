@@ -37,7 +37,6 @@ iframe {
 }
 
 // Selection
-
 ::selection {
   background-color: var(--brand-green);
   color: var(--gray-10);
@@ -57,6 +56,14 @@ a:not(.btn, button) {
 strong,
 b {
   font-weight: var(--fw-bd);
+}
+
+// Lists
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 // Headings
