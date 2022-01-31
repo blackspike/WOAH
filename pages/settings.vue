@@ -7,10 +7,10 @@ section.settings.card-bg
     label.settings__label(for='set_speech') {{ strings.announceSteps }}
     input#set_speech.settings__input(type='checkbox', v-model='getSetSpeech')
 
-  //- Sleep Doesnt work 😔
-  //- .settings__row
-  //-   label.settings__label(for='set_sleep') {{ strings.sleepEnabled }}
-  //-   input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
+  //- Sleep
+  .settings__row
+    label.settings__label(for='set_sleep') {{ strings.sleepEnabled }}
+    input#set_sleep.settings__input(type='checkbox', v-model='getSetSleep')
 
   //- Import/Export
   SettingsExport

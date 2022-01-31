@@ -1,5 +1,8 @@
 <template lang="pug">
 section.warmup
+  //- Nosleep
+  NoSleep(ref='noSleeper')
+
   //- Splider
   client-only
     splide.woah-splide(
@@ -96,12 +99,15 @@ export default {
 
     // Start warmup button
     startWarmup() {
+      this.$refs.noSleeper.toggleNoSleep(true)
       this.started = true
       this.prevNext(true)
     },
 
     // Finish warmup button
     finishWarmup() {
+      this.$refs.noSleeper.toggleNoSleep(false)
+
       this.$router.push({
         path: '/workout',
       })
