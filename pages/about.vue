@@ -4,13 +4,13 @@ section.about
     picture.intro__screengrabs
       source(
         type='image/avif',
-        srcset='~/assets/img/screengrabs/screengrab-tall-smol.avif'
+        srcset='~/assets/img/home-slider/slider_2-smol.avif'
       )
       source(
         type='image/webp',
-        srcset='~/assets/img/screengrabs/screengrab-tall-smol.webp'
+        srcset='~/assets/img/home-slider/slider_2-smol.webp'
       )
-      img(alt='', src='~/assets/img/screengrabs/screengrab-tall-smol.png')
+      img(alt='', src='~/assets/img/home-slider/slider_2-smol.png')
 
     .intro__header
       h2.intro__title

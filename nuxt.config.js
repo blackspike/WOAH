@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Work Out At Home | warmup & workout timer | WOAH',
+    title: 'Work Out At Home | Warmup & Workout Timer | WOAH',
     htmlAttrs: {
       lang: 'en',
     },
