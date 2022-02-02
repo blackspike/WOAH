@@ -56,7 +56,7 @@ export default {
         },
         {
           title: 'How',
-          content: `Using the amazing <a href="https://nuxtjs.org/">Nuxt JS</a>, and hosted on <a href="https://netlify.com/">netlify.com</a>. This app will be open sourced on github once the kinks are ironed out.`,
+          content: `Using the amazing <a href="https://nuxtjs.org/">Nuxt JS</a>, and hosted on <a href="https://netlify.com/">netlify.com</a>. This app will be open sourced on github once the kinks are ironed out. Open sourced on github, <a href="https://github.com/blackspike/WOAH" target="_blank">github.com/blackspike/WOAH</a>`,
         },
         {
           title: 'Ideas? Bugs?',
