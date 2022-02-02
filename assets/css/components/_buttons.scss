@@ -36,7 +36,7 @@ button {
   text-shadow: 0 2px 1rem rgb(0 0 0 / 50%), 0 2px 0.75rem rgba(44 11 11 / 25%);
 
   @include media-query('md') {
-    padding: calc(var(--m-lg) * 1.05) var(--m-lg) var(--m-lg);
+    padding: var(--m-lg) var(--m-lg);
   }
 
   &--sm {

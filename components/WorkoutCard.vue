@@ -102,8 +102,8 @@ export default {
       editing: false,
       draggableOptions: {
         animation: 200,
-        delay: 250,
         ghostClass: 'ghost',
+        touchStartThreshold: 4,
       },
     }
   },

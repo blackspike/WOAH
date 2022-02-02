@@ -30,7 +30,10 @@ section.settings.card-bg
     ) {{ strings.resetStateConfirm }}
 
     //- Reset confirmed
-    p.settings__reset-confirmed(v-if='resetDone') {{ strings.resetStateConfirmed }}
+    button.btn.settings__button.settings__button--confirmed(
+      v-if='resetDone',
+      disabled
+    ) {{ strings.resetStateConfirmed }}
 </template>
 
 <script>
@@ -48,7 +51,7 @@ export default {
         sleepEnabled: 'Prevent device sleeping',
         resetState: 'Reset data',
         resetStateConfirm: 'Confirm delete ',
-        resetStateConfirmed: 'All settings reset.',
+        resetStateConfirmed: 'All settings reset',
       },
     }
   },
@@ -148,14 +151,15 @@ export default {
         display: none;
       }
     }
-  }
 
-  &__reset-confirmed {
-    color: var(--brand-orange);
-    flex: 1;
-    padding: var(--m) 0;
-    text-align: center;
-    text-transform: uppercase;
+    &--confirmed {
+      color: var(--text);
+
+      &::after {
+        background-color: var(--gray-7);
+        background-image: none;
+      }
+    }
   }
 }
 </style>
