@@ -2,9 +2,9 @@
 
 A simple Warmup & Workout timer / diary
 
-<img src="./assets/img/home-slider/slider_1-smol.webp" alt="Screenshot of start page" width="250"/>
-<img src="./assets/img/home-slider/slider_3-smol.webp" alt="Screenshot of start page" width="250"/>
-<img src="./assets/img/home-slider/slider_2-smol.webp" alt="Screenshot of start page" width="250"/>
+|                                            Warmup timer                                             |                                            Workout Diary                                            |                                              Edit page                                              |
+| :-------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: |
+| <img src="./assets/img/home-slider/slider_1-smol.webp" alt="Screenshot of start page" width="250"/> | <img src="./assets/img/home-slider/slider_3-smol.webp" alt="Screenshot of start page" width="250"/> | <img src="./assets/img/home-slider/slider_2-smol.webp" alt="Screenshot of start page" width="250"/> |
 
 ## A Nuxt.js app hosted on Netlify
 
