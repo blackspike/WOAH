@@ -89,6 +89,8 @@ export default {
         perPage: 1,
         speed: 750,
         start: 0,
+        pauseOnHover: false,
+        pauseOnFocus: false,
         type: 'fade',
       },
     }
@@ -100,24 +102,10 @@ export default {
 // Phone screengrab
 
 .screengrab {
-  animation: bobbing 10s ease-in-out infinite;
-  width: 100%;
-  height: auto;
   display: block;
 
   &__img {
-    width: 100%;
-    height: auto;
     max-height: 70vh;
-  }
-
-  @include media-query('md') {
-    height: 100%;
-    max-height: 100%;
-
-    &__img {
-      max-height: 100%;
-    }
   }
 }
 </style>
