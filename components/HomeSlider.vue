@@ -105,7 +105,7 @@ export default {
   display: block;
 
   &__img {
-    max-height: 70vh;
+    // max-height: 70vh;
   }
 }
 </style>

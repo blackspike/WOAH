@@ -10,9 +10,10 @@ module.exports = {
   rules: {
     'at-rule-no-unknown': null,
     'scss/at-rule-no-unknown': true,
-    'value-list-comma-newline-after': false,
-    'declaration-colon-newline-after': false,
-    'string-quotes': 'single'
+    'selector-class-pattern': null,
+    'value-list-comma-newline-after': null,
+    'declaration-colon-newline-after': null,
+    'string-quotes': 'single',
   },
   overrides: [
     {

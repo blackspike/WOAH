@@ -3,6 +3,10 @@
   height: 100%;
 
   .splide {
+    &.is-active .splide__list {
+      display: flex;
+    }
+
     &__track {
       // Stop box shadow clipping
       padding-bottom: 2rem;
