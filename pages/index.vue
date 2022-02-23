@@ -144,7 +144,7 @@
           height='486',
           width='500',
           style='object-fit: contain',
-          alt='A meme of a fellow sitting sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\'',
+          alt=`A meme of a fellow sitting sprawled on a chair, with the caption \'Why does my back hurt?\' \'Also me\'`,
           src='~/assets/img/posture-meme.png'
         )
 

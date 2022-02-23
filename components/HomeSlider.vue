@@ -100,13 +100,19 @@ export default {
 
 <style lang="scss" scoped>
 // Phone screengrab
-
 .screengrab {
   display: block;
+}
 
-  &__img {
-    // max-height: 70vh;
+// Hack to hide splides til they're loaded
+.splide {
+  &__slide  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
   }
 }
+
 </style>
 
