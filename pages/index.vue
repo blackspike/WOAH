@@ -1,9 +1,23 @@
 <template lang="pug">
 .home
   section.hero
+
     //- Screengrab
-    .hero__screengrab
-      HomeSlider
+    picture.hero__screengrab.screengrab
+      source(
+        type='image/avif',
+        srcset='~/assets/img/home-slider/slider_1-smol.avif'
+      )
+      source(
+        type='image/webp',
+        srcset='~/assets/img/home-slider/slider_1-smol.webp'
+      )
+      img.screengrab__img(
+        alt='',
+        height='1008',
+        width='548',
+        src='~/assets/img/home-slider/slider_1-smol.png'
+      )
 
     //- Header
     header.hero__header
@@ -251,6 +265,7 @@ html.homepage {
     @include media-query('lg') {
       width: clamp(320px, 60vw, 540px);
     }
+
   }
 
   &__header {
@@ -331,6 +346,15 @@ html.homepage {
       margin: 0 auto 0 0;
     }
   }
+}
+
+
+.screengrab {
+
+    &__img {
+      width: auto;
+      height: auto;
+    }
 }
 
 // Freeeee
