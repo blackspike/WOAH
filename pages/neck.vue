@@ -12,7 +12,7 @@ section.neck
           .card-start__message
             h2.card-start__title {{ strings.startTitle }}
             h3.card-start__subtitle {{ strings.startMsg }}
-          a.btn.card-start__btn-action(@click='startNeck') {{ strings.startBtn }}
+          a.btn.card-start__btn-action(@mousedown='startNeck') {{ strings.startBtn }}
 
       splide-slide(
         v-for='(step, index) in steps',

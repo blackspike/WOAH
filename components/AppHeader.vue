@@ -17,16 +17,31 @@
     nuxt-link.nav-desktop__link(to='/about') About
 
   nav.nav-mobile(:class='{ open: navOpen }')
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/') Home
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/warmup') Warmup
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/workout') Workout
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/videos') Videos
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/neck') Neck
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/settings') Settings
-    nuxt-link.nav-mobile__link(@click.native='navOpen = false', to='/about') About
+    nuxt-link.nav-mobile__link(@mousedown.native='navOpen = false', to='/') Home
+    nuxt-link.nav-mobile__link(
+      @mousedown.native='navOpen = false',
+      to='/warmup'
+    ) Warmup
+    nuxt-link.nav-mobile__link(
+      @mousedown.native='navOpen = false',
+      to='/workout'
+    ) Workout
+    nuxt-link.nav-mobile__link(
+      @mousedown.native='navOpen = false',
+      to='/videos'
+    ) Videos
+    nuxt-link.nav-mobile__link(@mousedown.native='navOpen = false', to='/neck') Neck
+    nuxt-link.nav-mobile__link(
+      @mousedown.native='navOpen = false',
+      to='/settings'
+    ) Settings
+    nuxt-link.nav-mobile__link(
+      @mousedown.native='navOpen = false',
+      to='/about'
+    ) About
 
   button.btn-plain.btn-icon.nav-btn(
-    @click='toggleNav',
+    @mousedown='toggleNav',
     :class='{ open: navOpen }',
     aria-label='Toggle nav'
   )

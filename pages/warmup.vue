@@ -16,7 +16,7 @@ section.warmup
           .card-start__message
             h2.card-start__title {{ strings.startTitle }}
             h3.card-start__subtitle {{ strings.startMsg }}
-          a.btn.card-start__btn-action(@click='startWarmup') {{ strings.startBtn }}
+          a.btn.card-start__btn-action(@mousedown='startWarmup') {{ strings.startBtn }}
 
       //- Step slides
       splide-slide(
@@ -39,7 +39,7 @@ section.warmup
           .card-finished__message
             h2.card-finished__title {{ strings.finishedTitle }}
             h3.card-finished__subtitle {{ strings.finishedMsg }}
-          button.btn.card-finished__btn-action(@click='finishWarmup') {{ strings.finishedBtn }}
+          button.btn.card-finished__btn-action(@mousedown='finishWarmup') {{ strings.finishedBtn }}
 </template>
 
 <script>

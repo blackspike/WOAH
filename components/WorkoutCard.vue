@@ -6,7 +6,9 @@
     h2.workout-card-header__title {{ title }}
 
     //- Edit button
-    button.btn-icon.workout-card-header__btn-edit(@click='editing = !editing')
+    button.btn-icon.workout-card-header__btn-edit(
+      @mousedown='editing = !editing'
+    )
       svg.icon(height='24', width='24')
         use(href='#icon_check', v-if='editing')
         use(href='#icon_gear', v-else)
@@ -67,7 +69,7 @@
       //- increase one
       button.btn-icon.btn-gray.increase-decrease__btn-decrease(
         type='button',
-        @click='incrDecr(false)'
+        @mousedown='incrDecr(false)'
       )
         svg.icon(height='24', width='24')
           use(href='#icon_minus')
@@ -75,7 +77,7 @@
       //- increase one
       button.btn-icon.btn-gray.increase-decrease__btn-increase(
         type='button',
-        @click='incrDecr(true)'
+        @mousedown='incrDecr(true)'
       )
         svg.icon(height='24', width='24')
           use(href='#icon_plus')

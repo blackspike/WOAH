@@ -3,7 +3,7 @@
   .js-accordion__panel(v-for='(item, index) in items')
     h3.accordion__heading
       button.btn-plain.accordion__trigger(
-        @click='toggle(index)',
+        @mousedown='toggle(index)',
         :id='`item_title_${index}`',
         :aria-controls='`item_content_${index}`',
         :aria-expanded='expanded === index',

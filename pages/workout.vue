@@ -9,11 +9,11 @@ section.workout
       span.reps__count.reps__count--done(v-else) Done!
 
     //- +
-    button.btn.reps__btn(@click='repCount++')
+    button.btn.reps__btn(@mousedown='repCount++')
       svg.icon(height='24', width='24')
         use(href='#icon_plus')
     //-  -
-    button.btn.reps__btn(@click='repCount > 0 ? repCount-- : 1')
+    button.btn.reps__btn(@mousedown='repCount > 0 ? repCount-- : 1')
       svg.icon(height='24', width='24')
         use(href='#icon_minus')
 
