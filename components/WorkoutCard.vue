@@ -446,7 +446,7 @@ export default {
 
 .copy-to {
   grid-area: copy;
-  margin-block-start: var(--m-lg);
+  margin-block-end: var(--m-lg);
   display: flex;
   gap: var(--m);
   flex-direction: column;
