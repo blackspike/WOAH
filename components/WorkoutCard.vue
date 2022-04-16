@@ -61,13 +61,8 @@
 
     //- Increase/Decrease
     .workout-card-editor__incr-decr.increase-decrease
-      //- increase one
-      button.btn-icon.btn-gray.increase-decrease__btn-increase(
-        type='button',
-        @click='incrDecr(true)'
-      )
-        svg.icon(height='24', width='24')
-          use(href='#icon_plus')
+      //- Title
+      span.increase-decrease__label Increase/Decrease all
 
       //- increase one
       button.btn-icon.btn-gray.increase-decrease__btn-decrease(
@@ -76,7 +71,36 @@
       )
         svg.icon(height='24', width='24')
           use(href='#icon_minus')
-      span.increase-decrease__label Increase/Decrease all by 1
+
+      //- increase one
+      button.btn-icon.btn-gray.increase-decrease__btn-increase(
+        type='button',
+        @click='incrDecr(true)'
+      )
+        svg.icon(height='24', width='24')
+          use(href='#icon_plus')
+
+    //- Copy to
+    .copy-to
+      .copy-to__title
+        span Copy workout to
+        button.btn-gray(@click='copyToFn') copy
+      .copy-to__boxes
+        //- Copy to (hide if today)
+        .copy-to__box(
+          v-for='(day, index) in workouts',
+          v-show='day.title.slice(0, 3).toLowerCase() != dayKey'
+        )
+          //- Checkbox
+          input.copy-to__check(
+            :id='`#chk_mon_${day.title}`',
+            hidden,
+            :value='day.title.slice(0, 3).toLowerCase()',
+            type='checkbox',
+            v-model='copyTo'
+          )
+          //- Label
+          label.copy-to__label(:for='`#chk_mon_${day.title}`') {{ day.title.slice(0, 3) }}
 
     //- Finished
     button.btn.workout-card-editor__finished(@click='editing = !editing') Finished editing
@@ -99,6 +123,7 @@ export default {
   },
   data() {
     return {
+      copyTo: [],
       editing: false,
       draggableOptions: {
         animation: 200,
@@ -157,6 +182,17 @@ export default {
         index: newStepCount.index,
         count: newStepCount.count,
         dayKey: this.dayKey,
+      })
+    },
+
+    // Copy workout to day
+    copyToFn() {
+      this.copyTo.forEach((day) => {
+        this.UPDATE_WORKOUT_DAY_STEPS({
+          dayKey: day,
+          steps: this.workouts[this.dayKey].steps,
+        })
+        this.copyTo = []
       })
     },
 
@@ -321,13 +357,13 @@ export default {
 // Editor
 .workout-card-editor {
   display: grid;
-  grid-template-areas: 'list' 'incr-decr' 'done';
-  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 'list' 'incr-decr' 'copy' 'done';
+  grid-template-rows: auto 1fr auto auto;
 
   @include media-query('md') {
-    grid-template-areas: 'list list' 'incr-decr done';
+    grid-template-areas: 'list list' 'copy copy' 'incr-decr done';
     grid-template-columns: 1fr auto;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr auto auto;
   }
 
   &__edit-list {
@@ -377,15 +413,47 @@ export default {
   display: grid;
   font-size: var(--fs-md);
   gap: var(--m-sm);
-  grid-template-areas: 'button button title';
-  grid-template-columns: auto auto 1fr;
+  grid-template-areas: 'title button button';
+  grid-template-columns: 1fr auto auto;
   margin-block-end: var(--m);
-
-  &__label {
-    margin-left: var(--m-sm);
-  }
 }
 
-/* Draggable Transition
+/* Copy to
 ============================= */
+
+.copy-to {
+  grid-area: copy;
+  margin-block-end: calc(var(--m) * 2);
+  display: flex;
+  gap: var(--m);
+  flex-direction: column;
+  font-size: var(--fs-md);
+
+  &__title {
+    display: flex;
+    gap: var(--m);
+    align-items: center;
+    justify-content: space-between;
+  }
+  &__boxes {
+    display: grid;
+    gap: var(--m);
+    grid-auto-flow: column;
+  }
+  &__box {
+    display: flex;
+    flex-direction: column;
+    gap: var(--m);
+  }
+  &__label {
+    transition: color 0.1s ease;
+    color: var(--brand-blue);
+  }
+  &__check {
+    display: none;
+    &:checked ~ * {
+      color: var(--brand-pink);
+    }
+  }
+}
 </style>
