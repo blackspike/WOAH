@@ -86,7 +86,9 @@
     .copy-to
       .copy-to__title
         span Copy workout to
-        button.btn-gray(@click='copyToFn') copy
+        button.copy-to__btn-title.btn-gray(@click='copyToFn') copy
+
+      //- Boxes
       .copy-to__boxes
         //- Copy to (hide if today)
         .copy-to__box(
@@ -104,6 +106,8 @@
           //- Label
           label.copy-to__label(:for='`#chk_mon_${day.title}`') {{ day.title.slice(0, 3) }}
 
+        //- Copy to button
+        button.copy-to__btn-body.btn-gray(@click='copyToFn') copy
     //- Finished
     button.btn.workout-card-editor__finished(@click='editing = !editing') Finished editing
 </template>
@@ -415,9 +419,26 @@ export default {
   display: grid;
   font-size: var(--fs-md);
   gap: var(--m-sm);
-  grid-template-areas: 'title button button';
+  grid-template-areas: 'title dec inc';
   grid-template-columns: 1fr auto auto;
   margin-block-end: var(--m);
+
+  @include media-query('md') {
+    justify-content: start;
+    grid-template-columns: auto auto auto;
+    grid-template-areas: 'dec inc title';
+    gap: var(--m);
+  }
+
+  &__label {
+    grid-area: title;
+  }
+  &__btn-decrease {
+    grid-area: dec;
+  }
+  &__btn-increase {
+    grid-area: inc;
+  }
 }
 
 /* Copy to
@@ -425,22 +446,46 @@ export default {
 
 .copy-to {
   grid-area: copy;
-  margin-block-end: calc(var(--m) * 2);
+  margin-block-start: var(--m-lg);
   display: flex;
   gap: var(--m);
   flex-direction: column;
   font-size: var(--fs-md);
+
+  @include media-query('md') {
+    margin-block: var(--m-lg);
+  }
 
   &__title {
     display: flex;
     gap: var(--m);
     align-items: center;
     justify-content: space-between;
+
+    @include media-query('md') {
+      justify-content: start;
+      flex-direction: row-reverse;
+    }
   }
   &__boxes {
     display: grid;
     gap: var(--m);
     grid-auto-flow: column;
+    align-items: center;
+    @include media-query('md') {
+      justify-content: start;
+    }
+  }
+  &__btn-title {
+    @include media-query('md') {
+      display: none;
+    }
+  }
+  &__btn-body {
+    display: none;
+    @include media-query('md') {
+      display: block;
+    }
   }
   &__box {
     display: flex;
