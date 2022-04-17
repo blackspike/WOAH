@@ -6,12 +6,15 @@
     type='text',
     v-model='newTitle',
     ref='input',
+    spellcheck='false',
+    v-on:keyup.enter='$event.target.blur()',
+    enterkeyhint='done',
     @change='updateStepTitle'
   )
 
   .count-slider(:class='{ open: showSlider }')
-    label
-      .span.count-slider__label Count
+    label.span.count-slider__label
+      .span.count-slider__label-text Count
       input.count-slider__range(
         @change='updateStepCount',
         type='range',
@@ -158,6 +161,9 @@ export default {
   }
 
   &__label {
+    width: 100%;
+  }
+  &__label-text {
     display: none;
   }
   &__range {
