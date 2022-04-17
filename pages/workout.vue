@@ -92,6 +92,7 @@ export default {
   padding: var(--m);
 
   &__btn.splide__arrow {
+    border-radius: var(--radius-2);
     background-color: var(--gray-8);
     display: flex;
     justify-content: center;

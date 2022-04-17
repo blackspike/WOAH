@@ -480,6 +480,7 @@ export default {
     align-items: center;
     @include media-query('md') {
       justify-content: start;
+      gap: var(--m-sm);
     }
   }
   &__btn-title {
@@ -505,6 +506,10 @@ export default {
     text-align: center;
     padding: var(--m-sm) var(--m-xs) calc(var(--m-sm) * 0.8);
     background-color: var(--gray-9);
+
+    @include media-query('md') {
+      padding-inline: var(--m-sm);
+    }
   }
   &__check {
     display: none;
