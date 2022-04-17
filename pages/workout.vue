@@ -95,6 +95,7 @@ export default {
     background-color: var(--gray-8);
     display: flex;
     justify-content: center;
+    border-radius: 0;
     align-items: center;
     opacity: 0.5;
 
@@ -104,12 +105,9 @@ export default {
     &:active {
       opacity: 1;
     }
-    &:last-of-type {
-      transform: scaleX(-1);
-    }
     svg {
-      width: 70%;
-      height: 70%;
+      width: 40%;
+      height: 40%;
     }
     path {
       fill: var(--gray-5);
