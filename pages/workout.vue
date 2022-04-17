@@ -91,7 +91,7 @@ export default {
   justify-content: space-between;
   padding: var(--m);
 
-  &__btn {
+  &__btn.splide__arrow {
     background-color: var(--gray-8);
     display: flex;
     justify-content: center;
