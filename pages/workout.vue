@@ -34,18 +34,26 @@ export default {
     return {
       repCount: 3,
       splideOptions: {
-        arrows: false,
-        pagination: false,
-        start: 0,
-        speed: 500,
-        type: 'loop',
-        padding: { left: '5rem', right: '5rem' },
+        arrows: true,
+        drag: false,
         gap: '1.5rem',
+        keyboard: false,
+        padding: { left: '5rem', right: '5rem' },
+        pagination: false,
+        speed: 500,
+        start: 0,
+        type: 'loop',
+        arrowPath:
+          'M37.433,17.4464H8.7597L21.2866,4.9195c1.0011-1.0011,1.0011-2.644,0-3.6451-.9974-.9995-2.6163-1.0011-3.6158-.0037l-.0037,.0037L.7507,18.1908c-.9995,.9974-1.0011,2.6163-.0037,3.6158l.0037,.0037,16.9165,16.9165c.9995,.9995,2.62,.9995,3.6195,0s.9995-2.62,0-3.6195l-12.5269-12.5269h28.6733c1.4118,0,2.567-1.1551,2.567-2.567s-1.1551-2.567-2.567-2.567Z',
         breakpoints: {
           1024: {
             gap: '.5rem',
             padding: { left: '1rem', right: '1rem' },
           },
+        },
+        classes: {
+          arrows: 'splide__arrows woah-splide-nav',
+          arrow: 'splide__arrow woah-splide-nav__btn btn-gray',
         },
       },
     }
@@ -70,6 +78,43 @@ export default {
   gap: var(--m);
   height: 100%;
   width: 100%;
+}
+
+// Splide nav
+
+.splide {
+  display: flex;
+  flex-direction: column-reverse;
+}
+::v-deep .woah-splide-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--m);
+
+  &__btn {
+    background-color: var(--gray-8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 0.7;
+    }
+    &:active {
+      opacity: 1;
+    }
+    &:last-of-type {
+      transform: scaleX(-1);
+    }
+    svg {
+      width: 70%;
+      height: 70%;
+    }
+    path {
+      fill: var(--gray-5);
+    }
+  }
 }
 
 // Reps

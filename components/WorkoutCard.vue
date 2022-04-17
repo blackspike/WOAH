@@ -16,7 +16,7 @@
   //- Content
   .workout-card__content.workout-card-content(v-if='!editing')
     //- Step list
-    .workout-card-content__list.step-list
+    ol.workout-card-content__list.step-list
       //- Rest day (no steps)
       li.rest-day(v-if='!editableSteps.length')
         span.rest-day__title Rest day
@@ -30,8 +30,14 @@
         :key='`${step}_${index}`',
         :class='{ single: editableSteps.length === 1 }'
       )
-        span.step-list__count {{ step.count }}
-        span.step-list__title {{ step.title }}
+        WorkoutItem(
+          :dayKey='dayKey',
+          :title='step.title',
+          :count='step.count',
+          :index='index',
+          @updateStepTitle='updateStepTitle',
+          @updateStepCount='updateStepCount'
+        )
 
   //- Editor
   .workout-card__editor.workout-card-editor(v-if='editing')
@@ -48,7 +54,7 @@
         :key='`${step}_${index}`'
       )
         //- Editor
-        EditorRow(
+        EditorRowBasic(
           :index='index',
           :title='step.title',
           :count='step.count',
@@ -284,61 +290,61 @@ export default {
 
   &__item {
     align-items: baseline;
-    border-radius: var(--radius-2);
-    display: flex;
-    font-size: var(--fs-xl);
-    gap: var(--m-sm);
-    overflow: hidden;
-    padding: var(--m-sm) var(--m-sm) calc(var(--m-xs) / 1.2);
+    // border-radius: var(--radius-2);
+    // display: flex;
+    // font-size: var(--fs-xl);
+    // gap: var(--m-sm);
+    // overflow: hidden;
+    // padding: var(--m-sm) var(--m-sm) calc(var(--m-xs) / 1.2);
 
-    @include media-query('md') {
-      border-radius: var(--radius-3);
-      padding: var(--m) var(--m) calc(var(--m-sm) / 0.95);
-    }
+    // @include media-query('md') {
+    //   border-radius: var(--radius-3);
+    //   padding: var(--m) var(--m) calc(var(--m-sm) / 0.95);
+    // }
 
-    &::before {
-      content: '';
-      background-color: var(--gray-10);
-      bottom: 0;
-      left: 0;
-      opacity: 0.4;
-      position: absolute;
-      right: 0;
-      top: 0;
-      z-index: 0;
-    }
+    // &::before {
+    //   content: '';
+    //   background-color: var(--gray-10);
+    //   bottom: 0;
+    //   left: 0;
+    //   opacity: 0.4;
+    //   position: absolute;
+    //   right: 0;
+    //   top: 0;
+    //   z-index: 0;
+    // }
 
-    // Single items
-    &.single {
-      align-items: center;
-      flex-direction: column;
-      font-size: var(--fs-xxl);
-      height: 100%;
-      justify-content: center;
-      text-align: center;
-      width: 100%;
+    // // Single items
+    // &.single {
+    //   align-items: center;
+    //   flex-direction: column;
+    //   font-size: var(--fs-xxl);
+    //   height: 100%;
+    //   justify-content: center;
+    //   text-align: center;
+    //   width: 100%;
 
-      &::before {
-        display: none;
-      }
-    }
+    //   &::before {
+    //     display: none;
+    //   }
+    // }
   }
-  &__count {
-    color: var(--brand-yellow);
-    font-variant-numeric: tabular-nums;
+  // &__count {
+  //   color: var(--brand-yellow);
+  //   font-variant-numeric: tabular-nums;
 
-    .single & {
-      font-size: var(--fs-xxxxl);
-    }
-  }
-  &__title {
-    color: var(--brand-blue);
-    flex: 2;
+  //   .single & {
+  //     font-size: var(--fs-xxxxl);
+  //   }
+  // }
+  // &__title {
+  //   color: var(--brand-blue);
+  //   flex: 2;
 
-    .single & {
-      flex: unset;
-    }
-  }
+  //   .single & {
+  //     flex: unset;
+  //   }
+  // }
 
   // Rest day
   .rest-day {
@@ -469,7 +475,7 @@ export default {
   }
   &__boxes {
     display: grid;
-    gap: var(--m);
+    gap: var(--m-xs);
     grid-auto-flow: column;
     align-items: center;
     @include media-query('md') {
@@ -494,7 +500,11 @@ export default {
   }
   &__label {
     transition: color 0.1s ease;
-    color: var(--brand-blue);
+    color: var(--gray-6);
+    border-radius: var(--radius-2);
+    text-align: center;
+    padding: var(--m-sm) var(--m-xs) calc(var(--m-sm) * 0.8);
+    background-color: var(--gray-9);
   }
   &__check {
     display: none;
