@@ -98,6 +98,7 @@ export default {
     border-radius: 0;
     align-items: center;
     opacity: 0.5;
+    transform: scaleX(-1);
 
     &:hover {
       opacity: 0.7;
