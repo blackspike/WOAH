@@ -95,6 +95,7 @@ export default {
   border-radius: var(--radius-2);
   display: grid;
   font-size: var(--fs-xl);
+  height: 100%;
   gap: 0 var(--m-sm);
   grid-template-areas: 'count title' 'slider slider';
   grid-template-columns: 3ch 1fr;

@@ -81,7 +81,6 @@ export default {
 }
 
 // Splide nav
-
 .splide {
   display: flex;
   flex-direction: column-reverse;
@@ -96,7 +95,6 @@ export default {
     background-color: var(--gray-8);
     display: flex;
     justify-content: center;
-    border-radius: 0;
     align-items: center;
     opacity: 0.5;
     transform: scaleX(-1);
