@@ -11,7 +11,7 @@ export default {
   name: 'NoSleep',
   data() {
     return {
-      noSleep: null,
+      noSleepStatus: null,
     }
   },
   computed: {
@@ -20,12 +20,12 @@ export default {
     }),
   },
   mounted() {
-    this.noSleep = new NoSleep()
+    this.noSleepStatus = new NoSleep()
   },
   methods: {
     toggleNoSleep(enable = true) {
-      if (!this.noSleep) return
-      enable ? this.noSleep.enable() : this.noSleep.disable()
+      if (!this.noSleepStatus) return
+      enable ? this.noSleepStatus.enable() : this.noSleepStatus.disable()
       console.info(`NoSleep enabled: ${enable}`)
     },
   },
