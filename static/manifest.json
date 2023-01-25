@@ -4,7 +4,7 @@
   "name": "WOAH | Work Out At Home",
   "description": "warmup & workout timer",
   "short_name": "WOAH",
-  "start_url": "/",
+  "start_url": "/warmup",
   "display": "fullscreen",
   "scope": "/",
   "orientation": "landscape",
