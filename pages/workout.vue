@@ -27,6 +27,7 @@ section.workout
 <script>
 import '@splidejs/splide/dist/css/splide-core.min.css'
 import { mapState } from 'vuex'
+import confetti from 'canvas-confetti'
 
 export default {
   name: 'Workout',
@@ -58,7 +59,26 @@ export default {
       },
     }
   },
+  watch: {
+    repCount(newValue, oldValue) {
+      if (newValue === 0) this.stars()
+    },
+  },
 
+  methods: {
+    stars() {
+      confetti({
+        spread: 360,
+        ticks: 50,
+        particleCount: 200,
+        gravity: .8,
+        decay: 0.9,
+        startVelocity: 30,
+        shapes: ['star'],
+        colors: ['0ef', '6000fa', '65e41c', 'ff0095', 'f2c811', 'FF5349']
+      })
+    }
+  },
   computed: {
     ...mapState(['workouts']),
   },
@@ -85,6 +105,7 @@ export default {
   display: flex;
   flex-direction: column-reverse;
 }
+
 ::v-deep .woah-splide-nav {
   display: flex;
   justify-content: space-between;
@@ -102,13 +123,16 @@ export default {
     &:hover {
       opacity: 0.7;
     }
+
     &:active {
       opacity: 1;
     }
+
     svg {
       width: 40%;
       height: 40%;
     }
+
     path {
       fill: var(--gray-5);
     }
@@ -136,15 +160,16 @@ export default {
 
   &__count {
     color: var(--brand-yellow);
-    font-family: var(--ff-bsae);
+    font-family: var(--ff-base);
     font-size: var(--fs-lg);
     text-transform: uppercase;
 
     &--last {
       color: var(--brand-orange);
     }
+
     &--done {
-      color: var(--brand-green);
+      color: var(--brand-pink);
     }
   }
 
