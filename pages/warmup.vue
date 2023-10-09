@@ -98,10 +98,24 @@ export default {
     },
 
     // Start warmup button
-    startWarmup() {
+    async startWarmup() {
       this.$refs.noSleeper.toggleNoSleep(true)
       this.started = true
       this.prevNext(true)
+
+      // Create a reference for the Wake Lock.
+      let wakeLock = null
+
+      // create an async function to request a wake lock
+      try {
+        wakeLock = await navigator.wakeLock.request("screen")
+        console.log("Wake Lock is active!", wakeLock)
+
+      } catch (err) {
+        // The Wake Lock request has failed - usually system related, such as battery.
+         console.log(`${err.name}, ${err.message}`)
+      }
+
     },
 
     // Finish warmup button
